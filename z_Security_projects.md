@@ -22,12 +22,9 @@
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[exploit-db](https://www.exploit-db.com/)|引擎|Offensive Security’s Exploit Database Archive.|
-
-|名称|属性|
-|:-------------:|-----|
-|[Remote Exploits](https://www.exploit-db.com/remote/)|exploit-db|
-|[Web Application Exploits](https://www.exploit-db.com/webapps/)|exploit-db|
-|[Local & Privilege Escalation Exploits](https://www.exploit-db.com/local/)|exploit-db|
-|[Denial of Service & Proof of Concept Exploits](https://www.exploit-db.com/dos/)|exploit-db|
-|[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|exploit-db|
-|[Archived Security Papers](https://www.exploit-db.com/papers/)|exploit-db|
+|||[Remote Exploits](https://www.exploit-db.com/remote/)|
+|||[Web Application Exploits](https://www.exploit-db.com/webapps/)|
+|||[Local & Privilege Escalation Exploits](https://www.exploit-db.com/local/)|
+|||[Denial of Service & Proof of Concept Exploits](https://www.exploit-db.com/dos/)|
+|||[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|
+|||[Archived Security Papers](https://www.exploit-db.com/papers/)|
