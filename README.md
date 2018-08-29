@@ -1,11 +1,13 @@
 # notes
-Security &amp; Development
+
+* [Security](##Security)
+* [Development](##Development)
 
 ---
 
 ## Security
 
-##### 全能框架
+#### 全能框架
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[metasploit-framework](http://github.com/rapid7/metasploit-framework)|Ruby|Linux/Mac OS/windows|必备的功能强大的渗透测试框架|
@@ -16,14 +18,14 @@ Security &amp; Development
 |[Empire](https://github.com/EmpireProject/Empire)|python |Kali/Debian/Ubuntu|域渗透利器Empire is a post-exploitation framework|
 |[sRDI](https://github.com/monoxgas/sRDI)|powershell|windows|Shellcode implementation of Reflective DLL Injection. Convert DLLs to position independent shellcode|
 
-##### 爬虫
+#### 爬虫
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[chromeless](https://github.com/prisma/chromeless)|js|/|动态爬虫 Chrome自动化|
 |[Anti-Anti-Spider](https://github.com/luyishisi/Anti-Anti-Spider)|python|/|反反爬虫|
 |[httplib2](https://github.com/httplib2/httplib2)|python|/|社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
 
-##### website
+#### website安全网站
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[exploit-db](https://www.exploit-db.com/)|引擎|Offensive Security’s Exploit Database Archive.|
@@ -38,9 +40,15 @@ Security &amp; Development
 
 ---
 
-## Web Development
+## Development
 
-##### web前端
+#### 必备网站
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/JavaScript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
+|[graphemica.com/](http://graphemica.com/|characters|同一字符的各种编码情况下的表示 各种格式|
+
+#### web前端
 
 |名称|属性|描述|
 |:-------------:|--|-----|
@@ -48,7 +56,8 @@ Security &amp; Development
 |[PDF.js](https://mozilla.github.io/pdf.js/)|pdf浏览|23k★ https://mozilla.github.io/pdf.js/|
 |[clipboard.js](https://clipboardjs.com)|clipboard操作|23k★ Modern copy to clipboard. |
 
-##### web系统
+#### web系统
+
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[filebrowser](https://github.com/filebrowser/filebrowser)|云盘系统 Golang|3k★ A stylish web-based file manager|
