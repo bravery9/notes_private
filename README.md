@@ -1,7 +1,7 @@
 # notes
 
-* [Security](##Security)
-* [Development](##Development)
+* [Security](#Security)
+* [Development](#Development)
 
 ---
 
