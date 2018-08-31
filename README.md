@@ -48,6 +48,14 @@
 |[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/JavaScript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
 |[graphemica.com/](http://graphemica.com/|characters|同一字符的各种编码情况下的表示 各种格式|
 
+
+#### web应用开发-基础框架
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[Spring Framework](https://github.com/spring-projects/spring-framework)|Java|23k★ create enterprise applications in a wide range of scenarios and architectures. |
+|[Spring Boot](https://github.com/spring-projects/spring-boot)|Java|28k★ Spring Boot makes it easy to create Spring-powered, production-grade applications and services with absolute minimum fuss. |
+|[ThinkPHP5 Framework](https://github.com/top-think/framework)|php|1k★ 中文web应用开发框架  |
+
 #### web前端
 
 |名称|属性|描述|
