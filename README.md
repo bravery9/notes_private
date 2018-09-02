@@ -45,13 +45,22 @@
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[exploit-db](https://www.exploit-db.com/)|引擎|Offensive Security’s Exploit Database Archive.|
-|||[Remote Exploits](https://www.exploit-db.com/remote/)|
-|||[Web Application Exploits](https://www.exploit-db.com/webapps/)|
-|||[Local & Privilege Escalation Exploits](https://www.exploit-db.com/local/)|
-|||[Denial of Service & Proof of Concept Exploits](https://www.exploit-db.com/dos/)|
-|||[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|
-|||[Archived Security Papers](https://www.exploit-db.com/papers/)|
+|[exploit-db](https://www.exploit-db.com/)|exp引擎|Offensive Security’s Exploit Database Archive.|
+|-|exp引擎|[Remote Exploits](https://www.exploit-db.com/remote/)|
+|-|exp引擎|[Web Application Exploits](https://www.exploit-db.com/webapps/)|
+|-|exp引擎|[Local & Privilege Escalation Exploits](https://www.exploit-db.com/local/)|
+|-|exp引擎|[Denial of Service & Proof of Concept Exploits](https://www.exploit-db.com/dos/)|
+|-|/|[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|
+|-|Papers|[Archived Security Papers](https://www.exploit-db.com/papers/)|
+|[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
+|[360威胁分析平台](https://ti.360.net/)|威胁分析引擎|威胁情报 ip domain file url email|
+|[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|威胁情报 ip domain file url email|
+|[Shodan.io](https://www.shodan.io/)|网络空间引擎|Shodan is the world's first search engine for Internet-connected devices.|
+|[Fofa.so](https://fofa.so/)|网络空间引擎|白帽汇 [规则列表](https://fofa.so/library)|
+|[Zoomeye](https://www.zoomeye.org/)|网络空间引擎|知道创宇|
+|[www.seebug.org](https://www.seebug.org/)|/|知道创宇|
+|[paper.seebug.org](https://paper.seebug.org/)|Papers|知道创宇|
+
 
 
 
@@ -90,11 +99,17 @@
 |[filebrowser](https://github.com/filebrowser/filebrowser)|云盘系统 Golang|3k★ A stylish web-based file manager|
 |[nextcloud](https://github.com/nextcloud/server)|云盘系统 PHP|5k★ a safe home for all your data. 多客户端：web、ios、android |
 
-#### 学习优秀项目
+#### 学习项目
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[Linux kernel map](http://www.makelinux.net/kernel_map/)|linux|linux内核学习 交互式操作 美国网站|
 |[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|100★ 源代码学习 《Nginx完全开发指南》的作者 |
+
+#### 学习资源
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[Java-Guide](https://github.com/Snailclimb/Java-Guide)|非代码|Java学习指南 一份涵盖大部分Java程序员所需要掌握的核心知识|
+
 
 #### 其他
 |名称|属性|运行环境|描述|
