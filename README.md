@@ -60,7 +60,7 @@
 |[Zoomeye](https://www.zoomeye.org/)|网络空间引擎|知道创宇|
 |[www.seebug.org](https://www.seebug.org/)|/|知道创宇|
 |[paper.seebug.org](https://paper.seebug.org/)|Papers|知道创宇|
-
+|[dnsdumpster.com](https://dnsdumpster.com/) |/|FREE domain research tool that can discover hosts related to a domain.|
 
 
 
@@ -72,7 +72,7 @@
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/JavaScript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
+|[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/javascript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
 |[graphemica.com/](http://graphemica.com/)|characters|同一字符的各种编码情况下的表示 各种格式|
 
 
@@ -83,6 +83,8 @@
 |[Spring Framework](https://github.com/spring-projects/spring-framework)|Java|23k★ create enterprise applications in a wide range of scenarios and architectures. |
 |[Spring Boot](https://github.com/spring-projects/spring-boot)|Java|28k★ Spring Boot makes it easy to create Spring-powered, production-grade applications and services with absolute minimum fuss. |
 |[ThinkPHP5 Framework](https://github.com/top-think/framework)|php|1k★ 中文web应用开发框架  |
+|[Vue.js](https://github.com/vuejs/vue)|js前端框架|112k★ A progressive, incrementally-adoptable JavaScript framework for building UI on the web.|
+
 
 #### web前端
 
