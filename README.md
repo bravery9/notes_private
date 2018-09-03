@@ -53,6 +53,7 @@
 |-|/|[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|
 |-|Papers|[Archived Security Papers](https://www.exploit-db.com/papers/)|
 |[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
+|-|知识库|#反序列化安全# [Deserialization Cheat Sheet](https://www.owasp.org/index.php/Deserialization_Cheat_Sheet)|
 |[360威胁分析平台](https://ti.360.net/)|威胁分析引擎|威胁情报 ip domain file url email|
 |[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|威胁情报 ip domain file url email|
 |[Shodan.io](https://www.shodan.io/)|网络空间引擎|Shodan is the world's first search engine for Internet-connected devices.|
