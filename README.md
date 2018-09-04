@@ -32,7 +32,7 @@
 #### github泄露扫描
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[x-patrol](https://github.com/gophish/gophish)|golang|all|MiSecurity|
+|[x-patrol](https://github.com/MiSecurity/x-patrol/)|golang|all|MiSecurity|
 
 #### Phishing钓鱼
 
