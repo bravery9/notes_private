@@ -33,4 +33,3 @@ add user
 ```
 /etc/init.d/sockd adduser USERNAME PASSWORD
 ```
-
