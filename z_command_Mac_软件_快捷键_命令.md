@@ -2,7 +2,7 @@
 
 ### 视频音频播放器 - IINA 
 强大又极客范的播放器 https://lhc70000.github.io/iina/zh-cn/
-安装命令`brew cask install iina`
+安装命令`brew cask install iina`【自用】
 
 ### NTFS支持
 * mounty 好用免费 点击下载http://enjoygineering.com/mounty/releases/Mounty.dmg
@@ -539,8 +539,6 @@ $
 商标Trademark  option+2
 ™
 ```
-
-
 
 # MacOS有用的技巧
 
