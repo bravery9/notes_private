@@ -145,7 +145,7 @@ FUD:Fully undetectable
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[Java-Guide](https://github.com/Snailclimb/Java-Guide)|非代码|Java学习指南 一份涵盖大部分Java程序员所需要掌握的核心知识|
-
+|[Project-Based-Tutorials-in-C](https://github.com/rby90/Project-Based-Tutorials-in-C)|C|2k★ C语言 基于项目的教程|
 
 #### 其他
 |名称|属性|运行环境|描述|
