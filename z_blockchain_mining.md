@@ -8,6 +8,10 @@
 
 ### 挖矿方式1 - 生成前端挖矿的js代码
 
+这种挖矿方式是借助第三方服务，提供挖矿平台，如注册
+https://crypto-loot.com/dashboard/documentation.php
+后生成自己的js文件，内嵌或外联到html中，打开浏览器即开始挖矿。
+
 ### 挖矿方式2 - CPU挖矿
 
 挖矿程序xmrig(主流系统linux/Mac/windows下均可编译运行)
