@@ -8,7 +8,7 @@ https://github.com/Lozy/danted
 wget —no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh -O install.sh
 ```
 ```
-chmod +x install.sh && ./install.sh –port=端口 –user=自己设置用户名 –passwd=设置密码
+chmod +x install.sh && ./install.sh –-port=端口 –-user=自己设置用户名 –-passwd=设置密码
 ```
 
 安装成功提示`Dante Server Install Successfuly!`
