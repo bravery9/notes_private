@@ -40,6 +40,20 @@
 |[QuasarRAT](https://github.com/quasar/QuasarRAT)|C#|windows|#RAT 传统远控 Remote Administration Tool for Windows|
 |[sRDI](https://github.com/monoxgas/sRDI)|powershell|windows|Shellcode implementation of Reflective DLL Injection. Convert DLLs to position independent shellcode|
 
+#### Proxy代理
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[frp](https://github.com/fatedier/frp)|golang|14k★ 高性能的反向代理(reverse proxy). 可用于内网穿透,支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
+|[brook](https://github.com/txthinking/brook)|golang|6k★ 【Server端】开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
+
+#### 自动化
+|名称|属性|运行环境|描述|
+|:-------------:|--|--|-----|
+|[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|python+shell|kali_linux|Automate Pentest Tool|
+|[Sn1per](https://github.com/1N3/Sn1per)|python+shell|kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
+
+
 #### 爬虫
 
 |名称|属性|运行环境|描述|
@@ -47,6 +61,7 @@
 |[chromeless](https://github.com/prisma/chromeless)|js|/|动态爬虫 Chrome自动化|
 |[Anti-Anti-Spider](https://github.com/luyishisi/Anti-Anti-Spider)|python|/|反反爬虫|
 |[httplib2](https://github.com/httplib2/httplib2)|python|/|社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
+
 
 #### github泄露扫描
 |名称|属性|运行环境|描述|
@@ -67,13 +82,6 @@ FUD:Fully undetectable
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[ASWCrypter](https://github.com/AbedAlqaderSwedan1/ASWCrypter)|shell+python|An Bash&Python Script For Generating Payloads that Bypasses All Antivirus so far FUD.实测无法过360ZhuDongFangyu|
-
-#### Proxy代理
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[frp](https://github.com/fatedier/frp)|golang|14k★ 高性能的反向代理(reverse proxy). 可用于内网穿透,支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
-|[brook](https://github.com/txthinking/brook)|golang|6k★ 【Server端】开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
 
 #### website安全网站
 
