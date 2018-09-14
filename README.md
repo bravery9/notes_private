@@ -45,7 +45,7 @@
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[frp](https://github.com/fatedier/frp)|golang|14k★ 高性能的反向代理(reverse proxy). 可用于内网穿透,支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
-|[brook](https://github.com/txthinking/brook)|golang|6k★ 【Server端】开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
+|[brook](https://github.com/txthinking/brook)|golang|6k★ 【Server端】(Linux/MacOS/Windows/Android/iOS)开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
 
 #### 自动化
 |名称|属性|运行环境|描述|
