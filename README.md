@@ -14,7 +14,7 @@ _________________________________/
     + [github泄露扫描](#github泄露扫描)
     + [Phishing钓鱼](#phishing钓鱼)
     + [免杀](#免杀)
-    + [web_CMS系统](#web_CMS系统)
+    + [CMS](#CMS)
     + [website_技术知识](#website_技术知识)
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
@@ -113,7 +113,7 @@ FUD:Fully undetectable
 |[ASWCrypter](https://github.com/AbedAlqaderSwedan1/ASWCrypter)|shell+python|An Bash&Python Script For Generating Payloads that Bypasses All Antivirus so far FUD.实测无法过360ZhuDongFangyu|
 
 
-#### web_CMS系统
+#### CMS
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[WordPress](https://github.com/WordPress/WordPress)|php|11k★ 31% of the web uses [WordPress](https://wordpress.org/), from hobby blogs to the biggest news sites online.|
