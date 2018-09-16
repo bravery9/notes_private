@@ -92,15 +92,24 @@ FUD:Fully undetectable
 |[ASWCrypter](https://github.com/AbedAlqaderSwedan1/ASWCrypter)|shell+python|An Bash&Python Script For Generating Payloads that Bypasses All Antivirus so far FUD.实测无法过360ZhuDongFangyu|
 
 
-
-#### CMS
+#### web_CMS系统
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[WordPress](https://github.com/WordPress/WordPress)|php|11k★ 31% of the web uses [WordPress](https://wordpress.org/), from hobby blogs to the biggest news sites online.|
 |[joomla](https://github.com/joomla/joomla-cms)|php|3k★ Joomla! Content Management System.|
 
 
-#### website安全网站
+#### website_技术知识
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
+|-|知识库|#反序列化安全# [Deserialization Cheat Sheet](https://www.owasp.org/index.php/Deserialization_Cheat_Sheet)|
+|[www.seebug.org](https://www.seebug.org/)|/|知道创宇|
+|[paper.seebug.org](https://paper.seebug.org/)|Papers|知道创宇|
+
+
+#### website_exp引擎
 
 |名称|属性|描述|
 |:-------------:|--|-----|
@@ -111,16 +120,31 @@ FUD:Fully undetectable
 |-|exp引擎|[Denial of Service & Proof of Concept Exploits](https://www.exploit-db.com/dos/)|
 |-|/|[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|
 |-|Papers|[Archived Security Papers](https://www.exploit-db.com/papers/)|
-|[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
-|-|知识库|#反序列化安全# [Deserialization Cheat Sheet](https://www.owasp.org/index.php/Deserialization_Cheat_Sheet)|
-|[360威胁分析平台](https://ti.360.net/)|威胁分析引擎|威胁情报 ip domain file url email|
-|[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|威胁情报 ip domain file url email|
+|[sploitus.com](https://sploitus.com/)|exp引擎|Exploits.|
+
+
+#### website_网络空间引擎
+
+|名称|属性|描述|
+|:-------------:|--|-----|
 |[Shodan.io](https://www.shodan.io/)|网络空间引擎|Shodan is the world's first search engine for Internet-connected devices.|
 |[Fofa.so](https://fofa.so/)|网络空间引擎|白帽汇 [规则列表](https://fofa.so/library)|
 |[Zoomeye](https://www.zoomeye.org/)|网络空间引擎|知道创宇|
-|[www.seebug.org](https://www.seebug.org/)|/|知道创宇|
-|[paper.seebug.org](https://paper.seebug.org/)|Papers|知道创宇|
-|[dnsdumpster.com](https://dnsdumpster.com/) |/|FREE domain research tool that can discover hosts related to a domain.|
+
+#### website_威胁分析引擎
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[360威胁分析平台](https://ti.360.net/)|威胁分析引擎|威胁情报 ip domain file url email|
+|[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|威胁情报 ip domain file url email|
+
+#### website_安全工具online
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[findsubdomains.com](https://findsubdomains.com/) |domain|子域名查找 Find subdomains online.|
+|[dnsdumpster.com](https://dnsdumpster.com/) |domain|FREE domain research tool that can discover hosts related to a domain.|
+|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack|在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 
 
 ---
