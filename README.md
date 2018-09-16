@@ -19,8 +19,11 @@
 |:-------------:|--|-----|
 |[z_net_wireshark.md](z_net_wireshark.md)|net|wireshark使用总结|
 |[z_command_Mac_软件_快捷键_命令_技巧.md](z_command_Mac_软件_快捷键_命令_技巧.md)|Mac|MacOS下的好用软件、快捷键、命令、技巧|
-|[z_history_RAT.md](z_history_RAT.md)|RAT|2008年当时的远控介绍|
+|[z_history_RAT.md](z_history_RAT.md)|RAT|2008年的远控软件介绍|
 |[linux_proxy_Ubuntu_CentOS_socks5_Server.md](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|Proxy|在Ubuntu或CentOS下一键安装Socks5代理服务器|
+|[web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md](web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md)|web|web中间件修复方案 SSL slowhttpdos Tomcat|
+|[z_blockchain_mining.md](z_blockchain_mining.md)|blockchain|虚拟币挖矿的多种方式|
+
 
 ---
 
