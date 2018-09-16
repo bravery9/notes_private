@@ -14,7 +14,7 @@ _________________________________/
     + [github泄露扫描](#github泄露扫描)
     + [Phishing钓鱼](#phishing钓鱼)
     + [免杀](#免杀)
-    + [CMS](#CMS)
+    + [CMS](#cms)
     + [website_技术知识](#website_技术知识)
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
@@ -211,7 +211,7 @@ FUD:Fully undetectable
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[Linux kernel map](http://www.makelinux.net/kernel_map/)|linux|linux内核学习 交互式操作 美国网站|
-|[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|100★ 源代码学习 《Nginx完全开发指南》的作者 |
+|[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
 
 #### 学习资源
 |名称|属性|描述|
