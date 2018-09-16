@@ -140,12 +140,12 @@ FUD:Fully undetectable
 
 #### website_安全工具online
 
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[findsubdomains.com](https://findsubdomains.com/) |domain|子域名查找 Find subdomains online.|
-|[dnsdumpster.com](https://dnsdumpster.com/) |domain|FREE domain research tool that can discover hosts related to a domain.|
-|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack|在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
-
+|名称|描述|
+|:-------------:|-----|
+|[findsubdomains.com](https://findsubdomains.com/) |domain信息收集 子域名查找 Find subdomains online.|
+|[dnsdumpster.com](https://dnsdumpster.com/) |domain信息收集 FREE domain research tool that can discover hosts related to a domain.|
+|[wappalyzer.com](https://www.wappalyzer.com/) |信息收集 web技术栈 web frameworks, server software, analytics tools and many more. |
+|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 
 ---
 
