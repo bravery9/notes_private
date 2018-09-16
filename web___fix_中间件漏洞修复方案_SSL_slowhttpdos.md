@@ -1,5 +1,4 @@
-
-#### Slow HTTP DOS攻击
+### Slow HTTP DOS攻击
 
 描述：
 WVS扫描发现http慢速拒绝服务，使用测试脚本对该站点测试，发现页面超时无法打开，达到拒绝服务效果。
@@ -32,7 +31,7 @@ QS_SrvMaxConnPerIP 50
 
 
 
-#### 泄露Web Server 各种组件详细版本号相关信息
+### 泄露Web Server 各种组件详细版本号相关信息
 
 漏洞描述：
 测试发现服务Response信息中泄露了Web Server 各种组件详细版本号相关信息。为攻击者做信息收集提供方便，便于收集各组件存在漏洞情况。
@@ -42,8 +41,7 @@ QS_SrvMaxConnPerIP 50
 
 
 
-#### SSL漏洞修复
-
+### SSL漏洞修复
 
 Web网站的SSL漏洞主要包括如下几种：
 
@@ -54,6 +52,7 @@ Web网站的SSL漏洞主要包括如下几种：
 3、The FREAK attack(export cipher suites supported)
 
 4、The POODLE ataack（SSLV3 supported）
+
 SSLv3协议POODLE漏洞
 漏洞影响：攻击者可以利用此漏洞获取受害者的https请求中的敏感信息，如cookies等。
 漏洞介绍和修复参考：https://bbs.aliyun.com/read/179684.html
@@ -74,11 +73,11 @@ SSL修复建议总结如下：
 3、针对不同的web Server修改如下配置
 
 
-【针对OPENSSL，使用如下配置】
+【OPENSSL】使用如下配置
 ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5
 
 
-【Apache 配置指南  mod_ssl】
+【Apache】配置指南 mod_ssl
 适用于Apache HTTP Server 2.2+/2.4+ with mod_ssl，配置文件apache/conf/extra/httpd-ssl.conf
 
 SSLProtocol ALL -SSLv2 -SSLv3
@@ -91,7 +90,7 @@ SSLCompression Off
 
 
 
-【Nginx配置指南】
+【Nginx】配置指南
 
 ssl_prefer_server_ciphers On;
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
@@ -157,4 +156,3 @@ Tomcat7+权限分为：
 输入弱密码`tomcat:tomcat`
 即可访问后台
 上传war包即可直接getshell
-
