@@ -69,6 +69,14 @@ _________________________________/
 
 #### 二进制
 
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[gdbgui](https://github.com/cs01/gdbgui)|/|6k★ 基于浏览器可视化gdb调试 [下载安装ubuntu14.04+](https://gdbgui.com/downloads.html)|
+|[peda](https://github.com/longld/peda)|python|6k★ Python Exploit Development Assistance for GDB|
+|[pwntools](https://github.com/Gallopsled/pwntools)|python|4k★ CTF framework and exploit development library|
+
+
+
 #### Proxy代理
 
 |名称|属性|描述|
