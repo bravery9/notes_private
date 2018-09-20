@@ -112,6 +112,16 @@ _________________________________/
 |[gophish](https://github.com/gophish/gophish)|golang|all|2k★ Open-Source Phishing Toolkit. 用于对企业进行定期的钓鱼测试. 启动后先在`Sending Profiles`中配置真实可用的`mail server`,发起一个Campaign:钓鱼邮件(内含钓鱼网站) [使用视频](https://www.youtube.com/watch?v=knc6Iq-hNcw)|
 |[blackeye](https://github.com/flagellantX/blackeye)|.sh .php|/| 钓鱼页面Phishing Pages 含各大网站`Facebook,Google,Twitter,Microsoft`等|
 
+#### mail
+|名称|描述|
+|:-------------:|--|
+|https://emkei.cz/|在线发送钓鱼邮件 可伪造邮件发送者 (如伪造xx@163.com发送到qq邮箱)|
+|http://www.yopmail.com/zh/|临时邮箱 可随意进入xxx@yopmail.com收发邮件|
+|https://10minutemail.net/|临时邮箱 十分钟邮箱 短期 每次邮箱地址不同 适用于注册小号|
+|https://protonmail.com/|匿名邮箱 瑞士的匿名邮箱 长期 google验证码认证后可注册|
+
+
+
 #### 免杀
 
 FUD:Fully undetectable
