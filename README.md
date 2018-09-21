@@ -143,6 +143,7 @@ FUD:Fully undetectable
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
+|-|知识库|OWASP web测试指南V4 双语 [owasp-testing-guide-v4](/https://kennel209.gitbooks.io/owasp-testing-guide-v4/content/)|
 |-|知识库|#反序列化安全# [Deserialization Cheat Sheet](https://www.owasp.org/index.php/Deserialization_Cheat_Sheet)|
 |[www.seebug.org](https://www.seebug.org/)|/|知道创宇|
 |[paper.seebug.org](https://paper.seebug.org/)|Papers|知道创宇|
