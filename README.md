@@ -184,7 +184,7 @@ FUD:Fully undetectable
 |名称|描述|
 |:-------------:|-----|
 |[findsubdomains.com](https://findsubdomains.com/) |domain信息收集 子域名查找 Find subdomains online.|
-|[dnsdumpster.com](https://dnsdumpster.com/) |domain信息收集 FREE domain research tool that can discover hosts related to a domain.|
+|[dnsdumpster.com](https://dnsdumpster.com/) |domain信息收集 DNS枚举子域名 FREE domain research tool that can discover hosts related to a domain.|
 |[wappalyzer.com](https://www.wappalyzer.com/) |信息收集 web技术栈 web frameworks, server software, analytics tools and many more. |
 |[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 
