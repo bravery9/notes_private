@@ -189,6 +189,7 @@ FUD:Fully undetectable
 |[dnsdumpster.com](https://dnsdumpster.com/) |domain信息收集 DNS枚举子域名 FREE domain research tool that can discover hosts related to a domain.|
 |[wappalyzer.com](https://www.wappalyzer.com/) |信息收集 web技术栈 web frameworks, server software, analytics tools and many more. |
 |[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
+|https://www.irongeek.com/homoglyph-attack-generator.php|外观类似的替换字符 常用于钓鱼|
 
 #### website_encoder
 
