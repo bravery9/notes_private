@@ -21,9 +21,11 @@ _________________________________/
     + [website_网络空间引擎](#website_网络空间引擎)
     + [website_威胁分析引擎](#website_威胁分析引擎)
     + [website_安全工具online](#website_安全工具online)
+    + [website_encoder](#website_encoder)
     + [website_ip](#website_ip)
 - [Development](#development)开发
     + [必备网站](#必备网站)
+    + [其他网站](#其他网站)
     + [web应用开发-基础框架](#web应用开发-基础框架)
     + [web前端](#web前端)
     + [web系统](#web系统)
@@ -188,6 +190,12 @@ FUD:Fully undetectable
 |[wappalyzer.com](https://www.wappalyzer.com/) |信息收集 web技术栈 web frameworks, server software, analytics tools and many more. |
 |[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 
+#### website_encoder
+
+|名称|描述|
+|:-------------:|-----|
+|https://codebeautify.org/|进制转换 json xml Escape/Unescape sql...|
+
 
 #### website_ip
 
@@ -208,6 +216,10 @@ FUD:Fully undetectable
 |[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/javascript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
 |[graphemica.com/](http://graphemica.com/)|characters|同一字符的各种编码情况下的表示 各种格式|
 
+#### 其他网站
+|名称|属性|描述|
+|:-------------:|--|-----|
+|https://httpbin.org/|http debug|A simple HTTP Request & Response Service.|
 
 #### web应用开发-基础框架
 
