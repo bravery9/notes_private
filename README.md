@@ -78,8 +78,7 @@ _________________________________/
 |[gdbgui](https://github.com/cs01/gdbgui)|/|6k★ 基于浏览器可视化gdb调试 [下载安装ubuntu14.04+](https://gdbgui.com/downloads.html)|
 |[peda](https://github.com/longld/peda)|python|6k★ Python Exploit Development Assistance for GDB|
 |[pwntools](https://github.com/Gallopsled/pwntools)|python|4k★ CTF framework and exploit development library|
-
-
+|[heap-viewer](https://github.com/danigargu/heap-viewer)|python| [IDA Pro plugin] examine the glibc heap, focused on exploit development|
 
 #### Proxy代理
 
