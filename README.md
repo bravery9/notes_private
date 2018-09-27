@@ -109,7 +109,7 @@ _________________________________/
 #### ProxyPool
 |名称|描述|
 |:-------------:|-----|
-|http://proxylist.fatezero.org/proxy.list | 在线代理池 该列表每15分钟更新一次 即https://github.com/fate0/proxylist/blob/master/proxy.list|
+|http://proxylist.fatezero.org/proxy.list | 在线代理池 每15分钟更新. 实测很多高匿代理会暴露真实ip(具体在http header的X-Forwarded-For中最后一个ip)   即https://github.com/fate0/proxylist/blob/master/proxy.list|
 
 
 #### 扫描自动化
