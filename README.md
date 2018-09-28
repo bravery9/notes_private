@@ -121,11 +121,18 @@ _________________________________/
 
 #### 爬虫
 
-|名称|属性|运行环境|描述|
-|:-------------:|--|--|-----|
-|[chromeless](https://github.com/prisma/chromeless)|js|/|动态爬虫 Chrome自动化|
-|[Anti-Anti-Spider](https://github.com/luyishisi/Anti-Anti-Spider)|python|/|反反爬虫|
-|[httplib2](https://github.com/httplib2/httplib2)|python|/|社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
+|名称|属性|描述|
+|:-------------:|--|-----|
+|https://github.com/NikolaiT/GoogleScraper|python3.7| 2k★ 异步搜索引擎爬虫 A Python module to scrape several search engines.|
+|[chromeless](https://github.com/prisma/chromeless)|js|动态爬虫 Chrome自动化|
+|[Anti-Anti-Spider](https://github.com/luyishisi/Anti-Anti-Spider)|python|反反爬虫|
+
+#### 基本库
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[httplib2](https://github.com/httplib2/httplib2)|python|社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
+|[puppeteer](https://github.com/GoogleChrome/puppeteer)|js| 38k★ [google] Headless Chrome Node API |
 
 
 #### github泄露扫描
