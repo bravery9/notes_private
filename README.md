@@ -171,6 +171,27 @@ FUD:Fully undetectable
 |:-------------:|--|--|-----|
 |1099(RMI)|[BaRMIe](https://github.com/NickstaDB/BaRMIe)|Java| enumerating and attacking Java RMI (Remote Method Invocation) services.|
 
+```
+#BaRMIe
+java -jar BaRMIe_v1.01.jar -attack ip port
+#可以只输入ip自动进行端口枚举
+#支持13种payload
+Deserialization payloads for: 10.0.0.1:1099
+ 1) Apache Commons Collections 3.1, 3.2, 3.2.1
+ 2) Apache Commons Collections 4.0-alpha1, 4.0
+ 3) Apache Groovy 1.7-beta-1 to 2.4.0-beta-4
+ 4) Apache Groovy 2.4.0-rc1 to 2.4.3
+ 5) JBoss Interceptors API
+ 6) ROME 0.5 to 1.0
+ 7) ROME 1.5 to 1.7.3
+ 8) Mozilla Rhino 1.7r2
+ 9) Mozilla Rhino 1.7r2 for Java 1.4
+ 10) Mozilla Rhino 1.7r3
+ 11) Mozilla Rhino 1.7r3 for Java 1.4
+ 12) Mozilla Rhino 1.7r4 and 1.7r5
+ 13) Mozilla Rhino 1.7r6, 1.7r7, and 1.7.7.1
+ ```
+ 
 
 #### website_mail
 |名称|描述|
