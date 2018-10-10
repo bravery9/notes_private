@@ -72,6 +72,7 @@ _________________________________/
 |名称|属性tags|运行环境|描述|
 |:-------------:|--|--|-----|
 |[Empire](https://github.com/EmpireProject/Empire)|python|Kali/Debian/Ubuntu|#域渗透 #RAT 域渗透利器Empire is a post-exploitation framework|
+|[CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)|python+powershell|[Installation](https://github.com/byt3bl33d3r/CrackMapExec/wiki/Installation)| 2k★ #域渗透 域渗透利器|
 |[QuasarRAT](https://github.com/quasar/QuasarRAT)|C#|windows|#RAT 传统远控 Remote Administration Tool for Windows|
 |[sRDI](https://github.com/monoxgas/sRDI)|powershell|windows|Shellcode implementation of Reflective DLL Injection. Convert DLLs to position independent shellcode|
 
