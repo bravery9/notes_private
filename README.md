@@ -15,7 +15,7 @@ _________________________________/
     + [扫描自动化](#扫描自动化)
     + [爬虫](#爬虫)
     + [github泄露扫描](#github泄露扫描)
-    + [免杀](#免杀)
+    + [工具_免杀AntiVirusEvasion](#工具_免杀antivirusevasion)
     + [CMS](#cms)
     + [Phishing钓鱼](#phishing钓鱼)
     + [PortExp](#portexp)
@@ -141,14 +141,15 @@ _________________________________/
 |:-------------:|--|--|-----|
 |[x-patrol](https://github.com/MiSecurity/x-patrol/)|golang|all|MiSecurity|
 
-#### 免杀
+#### 工具_免杀AntiVirusEvasion
 
 FUD:Fully undetectable
 
 |名称|属性|描述|
 |:-------------:|--|-----|
+|[avet](https://github.com/govolution/avet)|C+shell+python|[仅针对Windows exe] AntiVirus Evasion Tool 运行于kali2|
+|[Veil-Evasion](https://github.com/Veil-Framework/Veil-Evasion)|shell+C+python2.7|[可针对Windows exe] generate metasploit payloads that bypass common anti-virus solutions|
 |[ASWCrypter](https://github.com/AbedAlqaderSwedan1/ASWCrypter)|shell+python|An Bash&Python Script For Generating Payloads that Bypasses All Antivirus so far FUD.实测无法过360ZhuDongFangyu|
-
 
 #### CMS
 |名称|属性|描述|
