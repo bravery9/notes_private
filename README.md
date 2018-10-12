@@ -84,6 +84,7 @@ Remote Administration Tool
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[EggShell](https://github.com/neoneggplant/EggShell)|python|macOS/Linux|#RAT iOS(Jailbroken)/macOS/Linux(OnlyFileManage)|
+|[LaZagne](https://github.com/AlessandroZ/LaZagne)|python|windows/Linux/macOS|#密码恢复 Credentials recovery project. 系统口令/浏览器软件/邮箱软件/wifi|
 
 
 #### 工具_反编译_Decompiler
