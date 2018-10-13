@@ -142,6 +142,14 @@ network security monitoring
 |[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|python+shell|kali_linux|Automate Pentest Tool|
 |[Sn1per](https://github.com/1N3/Sn1per)|python+shell|kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
 
+#### Payload_弱口令字典
+|名称|描述|
+|:-------------:|-----|
+|https://github.com/danielmiessler/SecLists/tree/master/Passwords|弱口令字典|
+|https://weakpass.com/|弱口令字典|
+
+
+
 
 #### 爬虫
 
