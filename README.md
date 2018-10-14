@@ -8,6 +8,7 @@ _________________________________/
     + [全能框架](#全能框架)
     + [工具_后渗透windows](#工具_后渗透windows)
     + [工具_后渗透](#工具_后渗透)
+    + [工具集_CTFtools](#工具集_CTFtools)
     + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
     + [二进制_debug](#二进制_debug_pwn)
     + [二进制_fuzz](#二进制_fuzz)
@@ -86,6 +87,11 @@ Remote Administration Tool
 |:-------------:|--|--|-----|
 |[EggShell](https://github.com/neoneggplant/EggShell)|python|macOS/Linux|#RAT iOS(Jailbroken)/macOS/Linux(OnlyFileManage)|
 |[LaZagne](https://github.com/AlessandroZ/LaZagne)|python|windows/Linux/macOS|#密码恢复 Credentials recovery project. 系统口令/浏览器软件/邮箱软件/wifi|
+
+
+#### 工具集_CTFtools
+
+https://github.com/zardus/ctf-tools
 
 
 #### 工具_反编译_Decompiler
