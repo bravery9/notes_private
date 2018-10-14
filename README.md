@@ -87,8 +87,8 @@ Remote Administration Tool
 |:-------------:|--|--|-----|
 |[EggShell](https://github.com/neoneggplant/EggShell)|python|macOS/Linux|#RAT iOS(Jailbroken)/macOS/Linux(OnlyFileManage)|
 |[LaZagne](https://github.com/AlessandroZ/LaZagne)|python|windows/Linux/macOS|#密码恢复 Credentials recovery project. 系统口令/浏览器软件/邮箱软件/wifi|
-|https://github.com/iamckn/backdoors|sh|linux|#backdoor [利用SSH日志触发的后门分析](http://www.freebuf.com/articles/system/185942.html)|
-|https://github.com/iagox86/dnscat2|C++ C Ruby|linux Win32|#backdoor DNS后门|
+|[backdoors](https://github.com/iamckn/backdoors)|sh|linux|#backdoor [利用SSH日志触发的后门分析](http://www.freebuf.com/articles/system/185942.html)|
+|[dnscat2](https://github.com/iagox86/dnscat2)|C++ C Ruby|linux Win32|#backdoor DNS后门|
 
 
 #### 工具集_CTFtools
