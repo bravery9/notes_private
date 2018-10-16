@@ -8,7 +8,7 @@ _________________________________/
     + [全能框架](#全能框架)
     + [工具_后渗透windows](#工具_后渗透windows)
     + [工具_后渗透](#工具_后渗透)
-    + [工具_CTFs](#工具_ctf)
+    + [工具_CTF](#工具_ctf)
     + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
     + [二进制_debug](#二进制_debug_pwn)
     + [二进制_fuzz](#二进制_fuzz)
@@ -96,9 +96,8 @@ Remote Administration Tool
 
 |名称|描述|
 |:-------------:|--|
-|https://github.com/zardus/ctf-tools|CTF工具集|
+|https://github.com/zardus/ctf-tools|3k★ CTF工具集 包含类型:binary forensics crypto web stego misc|
 |http://www.garykessler.net/library/file_sigs.html|#CTF知识 各种文件头部hex值 真实文件格式|
-
 
 
 #### 工具_反编译_Decompiler
