@@ -8,7 +8,7 @@ _________________________________/
     + [全能框架](#全能框架)
     + [工具_后渗透windows](#工具_后渗透windows)
     + [工具_后渗透](#工具_后渗透)
-    + [工具集_CTFtools](#工具集_ctftools)
+    + [工具_CTFs](#工具_ctf)
     + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
     + [二进制_debug](#二进制_debug_pwn)
     + [二进制_fuzz](#二进制_fuzz)
@@ -92,9 +92,13 @@ Remote Administration Tool
 |[m0nad/Diamorphine](https://github.com/m0nad/Diamorphine)|C|linux|#backdoor 需要ROOT权限 隐藏指定进程与通信 LKM rootkit for Linux Kernels 2.6.x/3.x/4.x (x86 x86_64)|
 
 
-#### 工具集_CTFtools
+#### 工具_CTF
 
-https://github.com/zardus/ctf-tools
+|名称|描述|
+|:-------------:|--|
+|https://github.com/zardus/ctf-tools|CTF工具集|
+|http://www.garykessler.net/library/file_sigs.html|#CTF知识 各种文件头部hex值 真实文件格式|
+
 
 
 #### 工具_反编译_Decompiler
