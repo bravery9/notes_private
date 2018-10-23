@@ -15,8 +15,7 @@ _________________________________/
     + [工具_二进制_fuzz](#工具_二进制_fuzz)
     + [工具_Proxy代理](#工具_proxy代理)
     + [ProxyPool](#proxypool)
-    + [工具_防御_流量解析](#工具_防御_流量解析)
-    + [工具_防御](#工具_防御)
+    + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
     + [爬虫](#爬虫)
     + [工具_github泄露扫描](#工具_github泄露扫描)
@@ -146,18 +145,16 @@ Remote Administration Tool
 |http://proxylist.fatezero.org/proxy.list | 在线代理池 每15分钟更新. 实测很多高匿代理会暴露真实ip(具体在http header的X-Forwarded-For中最后一个ip)   即https://github.com/fate0/proxylist/blob/master/proxy.list|
 
 
-#### 工具_防御_流量解析
+#### 工具_防御与分析
 
-IPS
-IDS
-network security monitoring
-
-|名称|描述|
-|:-------------:|-----|
-|[suricata](https://github.com/OISF/suricata) | #强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
+|名称|属性|描述|
+|:-------------:|-----|-----|
+|[suricata](https://github.com/OISF/suricata) |流量解析| #强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
+|[cuckoo](https://github.com/cuckoosandbox/cuckoo)|文件分析引擎|3k★ #分析行为 an automated dynamic malware analysis system|
 
 
 #### 工具_扫描自动化
+
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|python+shell|kali_linux|Automate Pentest Tool|
