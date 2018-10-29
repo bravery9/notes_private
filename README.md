@@ -398,6 +398,6 @@ Deserialization payloads for: 10.0.0.1:1099
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[transfer.sh](https://github.com/dutchcoders/transfer.sh)|golang|all|7k★ 命令行中上传文件`curl --upload-file ./1.txt https://transfer.sh/1.txt`|
+|[transfer.sh](https://github.com/dutchcoders/transfer.sh)|golang|all|7k★ 命令行中上传文件`curl --upload-file ./1.txt https://yoursite.com/1.txt`|
 |[MailHog](https://github.com/mailhog/MailHog)|golang|all|3k★ 仅供SMTP测试使用（基于Web和API） Mac下安装:`brew install mailhog`|
 
