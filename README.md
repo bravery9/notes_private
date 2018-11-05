@@ -56,7 +56,7 @@ _________________________________/
 
 |笔记标题|属性|描述|
 |:-------------:|--|-----|
-|[静态爬虫利器 - GraphQuery](z_web_crawl.md)|web|z_web_crawl.md|
+|[静态爬虫 - 内容提取利器 - GraphQuery](z_web_crawl.md)|web|z_web_crawl.md|
 |[wireshark使用总结](z_net_wireshark.md)|net|z_net_wireshark.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac_软件_快捷键_命令_技巧.md)|Mac|z_command_Mac_软件_快捷键_命令_技巧.md|
 |[Ubuntu/CentOS一键安装Socks5代理服务器](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|Proxy|linux_proxy_Ubuntu_CentOS_socks5_Server.md|
