@@ -1,4 +1,10 @@
-### 静态爬虫利器 - GraphQuery
+### 爬虫架构的分类
+
+* 单任务版
+* 并发版
+* 分布式版
+
+### 静态爬虫 - 内容提取利器 - GraphQuery
 
 项目地址https://github.com/storyicon/graphquery
 
