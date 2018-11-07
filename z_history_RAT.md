@@ -46,10 +46,11 @@
 * 自动上线方式：专用上线（付费）、DNS解析域名、固定IP等。（此例为DNS解析域名）
 
 
-### 当今RAT
-最像传统远控的RAT：QuasarRAT(C#，适用于windows)
+
+### 现代远控RAT
+Cobalt Strike
+empire
+metasploit
+
+一个传统远控：QuasarRAT(C#，适用于windows)
 https://github.com/quasar/QuasarRAT
-
-现在还有empire、metasploit等。
-
-
