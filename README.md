@@ -58,10 +58,11 @@ _________________________________/
 |:-------------:|--|-----|
 |[静态爬虫 - 内容提取利器 - GraphQuery](z_web_crawl.md)|web|z_web_crawl.md|
 |[wireshark使用总结](z_net_wireshark.md)|net|z_net_wireshark.md|
+|[各系统的自动化操作](z_auto_operation.md)|Mac|z_auto_operation.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac_软件_快捷键_命令_技巧.md)|Mac|z_command_Mac_软件_快捷键_命令_技巧.md|
 |[Ubuntu/CentOS一键安装Socks5代理服务器](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|Proxy|linux_proxy_Ubuntu_CentOS_socks5_Server.md|
 |[web中间件修复方案 SSL slowhttpdos Tomcat](web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md)|web|web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md|
-|[虚拟币挖矿的多种方式](z_blockchain_mining.md)|blockchain|z_blockchain_mining.md|
+|[虚拟币挖矿的各种方式](z_blockchain_mining.md)|blockchain|z_blockchain_mining.md|
 |[远控软件历史](z_history_RAT.md)|RAT|z_history_RAT.md|
 
 ---
@@ -161,6 +162,7 @@ http://shell-storm.org/shellcode/|shellcode|各种平台下的shellcode包括:BS
 |[brook](https://github.com/txthinking/brook)|golang|6k★ 【Server端】(Linux/MacOS/Windows/Android/iOS)开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
 
 #### ProxyPool
+
 |名称|描述|
 |:-------------:|-----|
 |http://proxylist.fatezero.org/proxy.list | 在线代理池 每15分钟更新. 实测很多高匿代理会暴露真实ip(具体在http header的X-Forwarded-For中最后一个ip)   即https://github.com/fate0/proxylist/blob/master/proxy.list|
