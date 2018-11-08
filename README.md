@@ -395,6 +395,7 @@ Deserialization payloads for: 10.0.0.1:1099
 #### 学习项目
 |名称|属性|描述|
 |:-------------:|--|-----|
+|[Go Data Structures](https://github.com/emirpasic/gods)|Go|5k★ Go数据结构 Containers/Sets/Lists/Stacks/Maps/Trees/Comparators/Iterators/…|
 |[Project-Based-Tutorials-in-C](https://github.com/rby90/Project-Based-Tutorials-in-C)|C|2k★ C语言 基于项目的教程|
 
 #### 知识
