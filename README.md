@@ -367,6 +367,13 @@ Deserialization payloads for: 10.0.0.1:1099
 |:-------------:|--|-----|
 |https://httpbin.org/|http debug|A simple HTTP Request & Response Service.|
 
+#### Awesome
+
+|名称|描述|
+|[Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)|Awesome-Hacking|
+|[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言 CheatSheet|
+|[Awesome Go](https://github.com/avelino/awesome-go)|37k★ Awesome Go|
+
 #### web应用开发-基础框架
 
 |名称|属性|描述|
@@ -374,7 +381,7 @@ Deserialization payloads for: 10.0.0.1:1099
 |[Spring Framework](https://github.com/spring-projects/spring-framework)|Java|23k★ create enterprise applications in a wide range of scenarios and architectures. |
 |[Spring Boot](https://github.com/spring-projects/spring-boot)|Java|28k★ Spring Boot makes it easy to create Spring-powered, production-grade applications and services with absolute minimum fuss. |
 |[ThinkPHP5 Framework](https://github.com/top-think/framework)|php|1k★ 中文web应用开发框架  |
-|[Vue.js](https://github.com/vuejs/vue)|js前端框架|112k★ A progressive, incrementally-adoptable JavaScript framework for building UI on the web.|
+|[Vue.js](https://github.com/vuejs/vue)|js前端框架|120k★ A progressive, incrementally-adoptable JavaScript framework for building UI on the web.|
 
 
 #### web前端
