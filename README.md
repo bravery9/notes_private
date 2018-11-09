@@ -36,6 +36,7 @@ _________________________________/
 - [Development](#development)开发
     + [必备网站](#必备网站)
     + [其他网站](#其他网站)
+    + [Awesome系列](#awesome)
     + [web应用开发-基础框架](#web应用开发-基础框架)
     + [web前端](#web前端)
     + [web系统](#web系统)
@@ -370,9 +371,10 @@ Deserialization payloads for: 10.0.0.1:1099
 #### Awesome
 
 |名称|描述|
+|:-------------:|-----|
 |[Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)|Awesome-Hacking|
-|[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言 CheatSheet|
-|[Awesome Go](https://github.com/avelino/awesome-go)|37k★ Awesome Go|
+|[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言基本语法 CheatSheet|
+|[Awesome-Go](https://github.com/avelino/awesome-go)|37k★ Awesome-Go|
 
 #### web应用开发-基础框架
 
