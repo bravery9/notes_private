@@ -23,7 +23,6 @@ _________________________________/
     + [工具_免杀AntiVirusEvasion](#工具_免杀antivirusevasion)
     + [CMS](#cms)
     + [工具_Phishing钓鱼](#工具_phishing钓鱼)
-    + [PortExp](#portexp)
     + [website_mail匿名邮箱](#website_mail匿名邮箱)
     + [website_知识_安全技术](#website_知识_安全技术)
     + [website_exp引擎](#website_exp引擎)
@@ -238,34 +237,6 @@ FUD:Fully undetectable
 |:-------------:|--|--|-----|
 |[gophish](https://github.com/gophish/gophish)|golang|all|2k★ Open-Source Phishing Toolkit. 用于对企业进行定期的钓鱼测试. 启动后先在`Sending Profiles`中配置真实可用的`mail server`,发起一个Campaign:钓鱼邮件(内含钓鱼网站) [使用视频](https://www.youtube.com/watch?v=knc6Iq-hNcw)|
 |[blackeye](https://github.com/flagellantX/blackeye)|.sh .php|/| 钓鱼页面Phishing Pages 含各大网站`Facebook,Google,Twitter,Microsoft`等|
-
-
-#### PortExp
-
-|针对端口|工具名称|编程语言|工具描述|
-|:-------------:|--|--|-----|
-|1099(RMI)|[BaRMIe](https://github.com/NickstaDB/BaRMIe)|Java| enumerating and attacking Java RMI (Remote Method Invocation) services.|
-
-```
-#BaRMIe
-java -jar BaRMIe_v1.01.jar -attack ip port
-#可以只输入ip自动进行端口枚举
-#支持13种payload
-Deserialization payloads for: 10.0.0.1:1099
- 1) Apache Commons Collections 3.1, 3.2, 3.2.1
- 2) Apache Commons Collections 4.0-alpha1, 4.0
- 3) Apache Groovy 1.7-beta-1 to 2.4.0-beta-4
- 4) Apache Groovy 2.4.0-rc1 to 2.4.3
- 5) JBoss Interceptors API
- 6) ROME 0.5 to 1.0
- 7) ROME 1.5 to 1.7.3
- 8) Mozilla Rhino 1.7r2
- 9) Mozilla Rhino 1.7r2 for Java 1.4
- 10) Mozilla Rhino 1.7r3
- 11) Mozilla Rhino 1.7r3 for Java 1.4
- 12) Mozilla Rhino 1.7r4 and 1.7r5
- 13) Mozilla Rhino 1.7r6, 1.7r7, and 1.7.7.1
- ```
  
 
 #### website_mail匿名邮箱
