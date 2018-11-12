@@ -58,15 +58,15 @@ _________________________________/
 |笔记标题|描述|
 |:-------------:|-----|
 |[web - 静态爬虫 - 内容提取利器 - GraphQuery](z_web_crawl.md)|z_web_crawl.md|
-|[web - 中间件修复方案 SSL slowhttpdos Tomcat](web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md)|web|web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md|
-|[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|web|z_web_webgoat.md|
-|[web - 代码审计 - PHP](web_code_audit_PHP.md)|web|web_code_audit_PHP.md|
+|[web - 中间件修复方案 SSL slowhttpdos Tomcat](web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md)|web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md|
+|[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|z_web_webgoat.md|
+|[web - 代码审计 - PHP](web_code_audit_PHP.md)|web_code_audit_PHP.md|
 |[net - wireshark使用总结](z_net_wireshark.md)|z_net_wireshark.md|
 |[Mac - MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac_软件_快捷键_命令_技巧.md)|z_command_Mac_软件_快捷键_命令_技巧.md|
-|[Ubuntu/CentOS一键安装Socks5代理服务器](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|Proxy|linux_proxy_Ubuntu_CentOS_socks5_Server.md|
+|[Proxy - Ubuntu/CentOS一键安装Socks5代理服务器](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|linux_proxy_Ubuntu_CentOS_socks5_Server.md|
+|[blockchain - 虚拟币挖矿的各种方式](z_blockchain_mining.md)|z_blockchain_mining.md|
+|[RAT - 远控软件历史](z_history_RAT.md)|z_history_RAT.md|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
-|[虚拟币挖矿的各种方式](z_blockchain_mining.md)|blockchain|z_blockchain_mining.md|
-|[远控软件历史](z_history_RAT.md)|RAT|z_history_RAT.md|
 
 ---
 
