@@ -146,8 +146,9 @@ Remote Administration Tool
 |[heap-viewer](https://github.com/danigargu/heap-viewer)|python| [IDA Pro plugin] examine the glibc heap, focused on exploit development|
 
 |名称|属性|描述|
-|http://syscalls.kernelgrok.com/|/|系统调用参考 主要用sys_execve|
-http://shell-storm.org/shellcode/|shellcode|各种平台下的shellcode包括:BSD/Cisco/FreeBSD/Linux/OSX/Windows|
+|:-------------:|--|-----|
+|http://syscalls.kernelgrok.com/|syscalls|系统调用参考 主要用sys_execve|
+|http://shell-storm.org/shellcode/|shellcode|各种平台下的shellcode包括:BSD/Cisco/FreeBSD/Linux/OSX/Windows|
 
 
 #### 工具_二进制_fuzz
