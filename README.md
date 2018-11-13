@@ -64,7 +64,8 @@ _________________________________/
 |[net - wireshark使用总结](z_net_wireshark.md)|z_net_wireshark.md|
 |[Mac - MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac_软件_快捷键_命令_技巧.md)|z_command_Mac_软件_快捷键_命令_技巧.md|
 |[Proxy - Ubuntu/CentOS一键安装Socks5代理服务器](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|linux_proxy_Ubuntu_CentOS_socks5_Server.md|
-|[blockchain - 虚拟币挖矿的各种方式](z_blockchain_mining.md)|z_blockchain_mining.md|
+|[blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)|blockchain_SmartContracts|
+|[blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)|blockchain_mining.md|
 |[RAT - 远控软件历史](z_history_RAT.md)|z_history_RAT.md|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
 
