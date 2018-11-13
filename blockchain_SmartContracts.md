@@ -1,8 +1,11 @@
->[智能合约概述 — Solidity develop 文档](https://solidity-cn.readthedocs.io/zh/develop/introduction-to-smart-contracts.html)
+### 资料
 
->ETH的智能合约 逻辑漏洞安全检测清单[knownsec/Ethereum-Smart-Contracts-Security-CheckList](https://github.com/knownsec/Ethereum-Smart-Contracts-Security-CheckList/blob/master/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%AE%A1%E8%AE%A1CheckList.md)
+[以太坊 白皮书 White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper)
 
->以太坊 白皮书 https://github.com/ethereum/wiki/wiki/White-Paper
+[智能合约语言Solidity](https://solidity-cn.readthedocs.io/zh/develop/introduction-to-smart-contracts.html)
+
+[ETH的智能合约 逻辑漏洞安全检测清单 knownsec/Ethereum-Smart-Contracts-Security-CheckList](https://github.com/knownsec/Ethereum-Smart-Contracts-Security-CheckList/blob/master/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%AE%A1%E8%AE%A1CheckList.md)
+
 
 ### 区块链开发
 
