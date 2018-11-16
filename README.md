@@ -11,6 +11,7 @@ _________________________________/
     + [工具_后渗透windows](#工具_后渗透windows)
     + [工具_后渗透](#工具_后渗透)
     + [工具_CTF](#工具_ctf)
+    + [工具_web](#工具_web)
     + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
     + [工具_二进制_debug_pwn](#工具_二进制_debug_pwn)
     + [工具_二进制_fuzz](#工具_二进制_fuzz)
@@ -128,6 +129,13 @@ Remote Administration Tool
 |:-------------:|--|
 |https://ctf-wiki.github.io/ctf-wiki/|#CTF知识 wiki知识库|
 |http://www.garykessler.net/library/file_sigs.html|#CTF知识 各种文件头部hex值 真实文件格式|
+
+#### 工具_web
+
+|名称|描述|
+|:-------------:|--|
+|[sqlmap](https://github.com/sqlmapproject/sqlmap)| Automatic SQL injection and database takeover tool|
+|[upload-fuzz-dic-builder](https://github.com/c0ny1/upload-fuzz-dic-builder)| #fuzz 生成字典 尝试突破文件上传限制|
 
 
 #### 工具_反编译_Decompiler
