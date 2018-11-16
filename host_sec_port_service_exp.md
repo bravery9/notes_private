@@ -11,9 +11,16 @@
 
 ### Services
 
-|服务|常见端口|工具名称|编程语言|工具描述|
-|:-------------:|--|--|--|-----|
-|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe)|Java| enumerating and attacking Java RMI (Remote Method Invocation) services.|
+
+|服务|常见端口|攻击工具/方式|防御/修复|
+|:-------------:|--|-----|-----|
+|SSH|22|hydra - 暴力枚举|基线检查 检查并修正不安全配置|
+|MySQL|3306|hydra - 暴力枚举|基线检查 检查并修正不安全配置|
+
+
+|服务|常见端口| 攻击工具/方式 | 防御/修复 |
+|:-------------:|--|--|-----|
+|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) - enumerating and attacking Java RMI (Remote Method Invocation) services.|ACL|
 
 ```
 #BaRMIe
