@@ -1,29 +1,35 @@
-### 背景
+### 主机扫描思路
 
 由于被扫描主机的各种设置，具体端口号 与 端口提供的服务 不必然相关（如80通常为web端口 但不是必然)
 
-### 思路
+针对端口的攻击与防御 应该以服务为主：
 
 **Port -> Service -> Exp**
 
 扫描全部端口 - 确定各端口服务 - 对每个服务尝试其对应的漏洞利用办法
 
+### 防御思路
+
+* 资产收集与管理
+* 权限最小化
+ * 主机权限
+ * 网络划分
 
 ### Services
 
 
-|服务|常见端口|攻击工具/方式|防御/修复|
+|服务|常见端口|攻击工具/检测方式|防御/修复|
 |:-------------:|--|-----|-----|
-|SSH|22|hydra - 暴力枚举|基线检查 检查并修正不安全配置|
-|MySQL|3306|hydra - 暴力枚举|基线检查 检查并修正不安全配置|
+|SSH|22|hydra - 暴力枚举|基线检查|
+|MySQL|3306|hydra - 暴力枚举|基线检查|
+| - | - | - | - |
+|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) |ACL|
 
-
-|服务|常见端口| 攻击工具/方式 | 防御/修复 |
-|:-------------:|--|--|-----|
-|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) - enumerating and attacking Java RMI (Remote Method Invocation) services.|ACL|
+### 相关说明
 
 ```
-#BaRMIe
+# BaRMIe
+# enumerating and attacking Java RMI (Remote Method Invocation) services.
 java -jar BaRMIe_v1.01.jar -attack ip port
 #可以只输入ip自动进行端口枚举
 #支持13种payload
