@@ -78,7 +78,7 @@ _________________________________/
 
 |名称|描述|
 |:-------------:|--|
-|[sdlchina-web](https://github.com/sdlchina/sdlchina-web/tree/master/_posts)|SDL流程简介 SDL规范文档 SDL落地方案|
+|[sdlchina-web](https://github.com/SecurityPaper/SecurityPaper-web/tree/master/_posts)|SDL流程简介 SDL规范文档 SDL落地方案|
 
 
 #### 知识_RedTeam
