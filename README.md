@@ -196,11 +196,12 @@ Remote Administration Tool
 |[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|python+shell|kali_linux|Automate Pentest Tool|
 |[Sn1per](https://github.com/1N3/Sn1per)|python+shell|kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
 
-#### Payload_弱口令字典
+#### Payload_dictionary_字典
 |名称|描述|
 |:-------------:|-----|
 |https://github.com/danielmiessler/SecLists/tree/master/Passwords|弱口令字典|
 |https://weakpass.com/|弱口令字典|
+|https://github.com/1135/dictionary/blob/master/web_upload_filename_all.txt?raw=true|fuzz字典_web上传_文件名|
 
 
 #### 爬虫
