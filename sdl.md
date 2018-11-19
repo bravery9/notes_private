@@ -1,5 +1,7 @@
 >https://www.microsoft.com/en-us/SDL/process/training.aspx
 
+>[绿盟科技SDL实践–ADSL | 绿盟科技博客](http://blog.nsfocus.net/nsfocus-adsl/)
+
 ### 安全开发生命周期
 
 （Security Development Lifecycle,SDL）
