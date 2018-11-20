@@ -87,6 +87,7 @@ _________________________________/
 |名称|描述|
 |:-------------:|--|
 |[Red-Team-Infrastructure-Wiki](https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki)|红队基础设施Wiki|
+|[infosecn1nja/AD-Attack-Defense](https://github.com/infosecn1nja/AD-Attack-Defense)|Active Directory Security For Red & Blue Team|
 
 
 #### 全能框架
