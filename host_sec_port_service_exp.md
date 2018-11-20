@@ -17,17 +17,21 @@
 
 |服务类型|服务名称|常见端口|漏洞类型 - 黑盒检测方式/攻击工具|白盒修复/防御|
 |:-------------:|-----|-----|-----|-----|
-|远程连接类服务|SSH|22|暴力枚举 - hydra|基线检查|
-|远程连接类服务|RDP(windows)|3389|暴力枚举 - hydra|基线检查|
+|远程控制类服务|SSH|22|暴力枚举 - hydra|基线检查|
+|远程控制类服务|RDP(windows)|3389|暴力枚举 - hydra|基线检查|
+|远程控制类服务|VNC|5901|暴力枚举 - hydra|基线检查|
 |数据库类服务|MySQL|3306|暴力枚举 - hydra|基线检查|
 |数据库类服务|MS SQL Server(windows)|1433|暴力枚举 - hydra|基线检查|
 |数据库类服务|Postgres|5432|暴力枚举 - hydra|基线检查|
 |数据库类服务|redis|6379|暴力枚举 - hydra|基线检查|
 |数据库类服务|MongoDB|27017|暴力枚举 - python脚本|基线检查|
-|其他服务|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) |ACL|
-|中间件服务|Tomcat|||
-|中间件服务|ActiveMQ|||
+|中间件服务|Tomcat|8080|暴力枚举 - python脚本/burp|基线检查|
+|中间件服务|ActiveMQ|8161|未授权访问 - 远程代码执行|基线检查|
 |中间件服务|RabbitMQ(web)|15679|暴力枚举 - python脚本/burp|基线检查|
+|其他服务|FTP|21|暴力枚举 - python脚本|基线检查|
+|其他服务|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) |ACL|
+|其他服务|Rsync|
+
 
 ### 相关说明
 
