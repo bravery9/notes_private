@@ -29,13 +29,14 @@
 |中间件服务|ActiveMQ|8161|未授权访问 - 远程代码执行|基线检查|
 |中间件服务|RabbitMQ(web)|15679|暴力枚举 - python脚本/burp|基线检查|
 |其他服务|FTP|21|暴力枚举 - python脚本|基线检查|
-|其他服务|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) |ACL|
-|其他服务|Rsync|
+|其他服务|RMI|1099|[BaRMIe](https://github.com/NickstaDB/BaRMIe) (Java) |ACL - iptables|
+|其他服务|Rsync|873|暴力枚举 - 命令行|ACL - iptables|
 
 
 ### 相关说明
 
-防御 - 基线检查：使用白盒方法和工具 检查不安全配置
+防御 - 基线检查: 使用白盒方法和工具 检查不安全配置
+防御 - ACL - iptables: 使用iptables限制端口可被哪些网段访问 如仅内网
 
 ```
 # BaRMIe
