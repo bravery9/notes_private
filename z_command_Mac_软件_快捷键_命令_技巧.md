@@ -1,4 +1,4 @@
-# For MacOS High Sierra
+# For MacOS High Sierra/Mojave
 
 ### 视频音频播放器 - IINA 
 强大又极客范的播放器 https://lhc70000.github.io/iina/zh-cn/
@@ -248,6 +248,8 @@ brew uninstall formula_name --force  #彻底卸载某个软件包（本机不再
   https://github.com/soimort/you-get ）
 `brew install you-get`
 
+* sqlite数据库GUI管理工具
+`brew cask install db-browser-for-sqlite`
 
 * shadowsocks-ng 科学上网
 地址https://github.com/shadowsocks/ShadowsocksX-NG
@@ -303,9 +305,6 @@ Cmd + Option + B
  * 多窗口搜索
 Cmd + Option + E
  搜索，最匹配关键词的窗口会高亮显示，按回车键切换到高亮窗口。
-
-
-
 
 
 
