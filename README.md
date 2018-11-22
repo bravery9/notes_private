@@ -190,7 +190,7 @@ Remote Administration Tool
 |:-------------:|-----|-----|
 |[suricata](https://github.com/OISF/suricata) |流量解析| #强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
 |[cuckoo](https://github.com/cuckoosandbox/cuckoo)|文件分析引擎|3k★ #分析行为 an automated dynamic malware analysis system|
-
+|[objective-see/LuLu](https://github.com/objective-see/LuLu)|终端防御|3k★ MacOS防火墙 LuLu is the free macOS firewall that aims to block unauthorized (outgoing) network traffic|
 
 #### 工具_扫描自动化
 
