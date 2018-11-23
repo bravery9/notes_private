@@ -13,6 +13,8 @@
 
 项目地址https://github.com/storyicon/graphquery
 
+[storyicon/graphquery-playground: The playground of graphquery, let you quickly start and test your GraphQuery statement.](https://github.com/storyicon/graphquery-playground)
+
 参考文章https://juejin.im/entry/5bdab426f265da393d4af97e
 
 
