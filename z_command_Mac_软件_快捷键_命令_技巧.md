@@ -578,8 +578,7 @@ $
 [TKkk-iOSer/WeChatPlugin-MacOS: 一款功能强大的 macOS 版微信小助手](https://github.com/TKkk-iOSer/WeChatPlugin-MacOS)
 ```
 git clone https://github.com/TKkk-iOSer/WeChatPlugin-MacOS.git
-cd Other/
-./Install.sh
+./Other/Install.sh
+
+./Other/Uninstall.sh
 ```
-
-
