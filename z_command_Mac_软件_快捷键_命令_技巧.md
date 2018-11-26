@@ -572,3 +572,14 @@ $
 在设置窗口
 左侧 选中“互联网共享”
 右侧 共享以下来源的连接  选择【蓝牙PAN】
+
+### Mac版 微信小助手
+
+[TKkk-iOSer/WeChatPlugin-MacOS: 一款功能强大的 macOS 版微信小助手](https://github.com/TKkk-iOSer/WeChatPlugin-MacOS)
+```
+git clone https://github.com/TKkk-iOSer/WeChatPlugin-MacOS.git
+cd Other/
+./Install.sh
+```
+
+
