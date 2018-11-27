@@ -174,8 +174,8 @@ Remote Administration Tool
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[frp](https://github.com/fatedier/frp)|golang|14k★ 高性能的反向代理(reverse proxy). 可用于内网穿透,支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
-|[brook](https://github.com/txthinking/brook)|golang|6k★ 【Server端】(Linux/MacOS/Windows/Android/iOS)开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
+|[frp](https://github.com/fatedier/frp)|Golang|14k★ 高性能的反向代理(reverse proxy). 可用于内网穿透,支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
+|[brook](https://github.com/txthinking/brook)|Golang|6k★ 【Server端】(Linux/MacOS/Windows/Android/iOS)开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
 
 #### ProxyPool
 
@@ -227,7 +227,7 @@ Remote Administration Tool
 #### 工具_github泄露扫描
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[x-patrol](https://github.com/MiSecurity/x-patrol/)|golang|all|MiSecurity|
+|[x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
 
 #### 工具_免杀AntiVirusEvasion
 
@@ -250,7 +250,7 @@ FUD:Fully undetectable
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[gophish](https://github.com/gophish/gophish)|golang|all|2k★ Open-Source Phishing Toolkit. 用于对企业进行定期的钓鱼测试. 启动后先在`Sending Profiles`中配置真实可用的`mail server`,发起一个Campaign:钓鱼邮件(内含钓鱼网站) [使用视频](https://www.youtube.com/watch?v=knc6Iq-hNcw)|
+|[gophish](https://github.com/gophish/gophish)|Golang|all|2k★ Open-Source Phishing Toolkit. 用于对企业进行定期的钓鱼测试. 启动后先在`Sending Profiles`中配置真实可用的`mail server`,发起一个Campaign:钓鱼邮件(内含钓鱼网站) [使用视频](https://www.youtube.com/watch?v=knc6Iq-hNcw)|
 |[blackeye](https://github.com/flagellantX/blackeye)|.sh .php|/| 钓鱼页面Phishing Pages 含各大网站`Facebook,Google,Twitter,Microsoft`等|
  
 #### 样本
@@ -393,12 +393,13 @@ FUD:Fully undetectable
 |:-------------:|--|-----|
 |[filebrowser](https://github.com/filebrowser/filebrowser)|云盘系统 Golang|3k★ A stylish web-based file manager|
 |[nextcloud](https://github.com/nextcloud/server)|云盘系统 PHP|5k★ a safe home for all your data. 多客户端：web、ios、android |
-|[gitea](https://github.com/go-gitea/gitea)|git系统 golang|9k★ 独立二进制包,无障碍开启self-hosted git service(自托管git服务). all platforms which Go supports!|
+|[gitea](https://github.com/go-gitea/gitea)|git系统 Golang|9k★ 独立二进制包,无障碍开启self-hosted git service(自托管git服务). all platforms which Go supports!|
 
 #### 学习项目
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[Go Data Structures](https://github.com/emirpasic/gods)|Go|5k★ Go数据结构 Containers/Sets/Lists/Stacks/Maps/Trees/Comparators/Iterators/…|
+|[Go Data Structures](https://github.com/emirpasic/gods)|Golang|5k★ Go数据结构 Containers/Sets/Lists/Stacks/Maps/Trees/Comparators/Iterators/…|
+|[radovskyb/go-packages](https://github.com/radovskyb/go-packages)|Golang| Go的标准包库的大型代码示例、文档  适合自学Golang 2016年的项目|
 |[Project-Based-Tutorials-in-C](https://github.com/rby90/Project-Based-Tutorials-in-C)|C|2k★ C语言 基于项目的教程|
 
 #### 知识
@@ -415,7 +416,7 @@ FUD:Fully undetectable
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[transfer.sh](https://github.com/dutchcoders/transfer.sh)|golang|all|7k★ 命令行中上传文件`curl --upload-file ./1.txt https://yoursite.com/1.txt`|
-|[MailHog](https://github.com/mailhog/MailHog)|golang|all|3k★ 仅供SMTP测试使用（基于Web和API） Mac下安装:`brew install mailhog`|
-|[GoRequest](https://github.com/parnurzeal/gorequest)|golang|all|2k★  Simplified HTTP client (inspired by nodejs SuperAgent)|
+|[transfer.sh](https://github.com/dutchcoders/transfer.sh)|Golang|all|7k★ 命令行中上传文件`curl --upload-file ./1.txt https://yoursite.com/1.txt`|
+|[MailHog](https://github.com/mailhog/MailHog)|Golang|all|3k★ 仅供SMTP测试使用（基于Web和API） Mac下安装:`brew install mailhog`|
+|[GoRequest](https://github.com/parnurzeal/gorequest)|Golang|all|2k★  Simplified HTTP client (inspired by nodejs SuperAgent)|
 
