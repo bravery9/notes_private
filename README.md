@@ -368,6 +368,7 @@ FUD:Fully undetectable
 |[Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)|Awesome-Hacking|
 |[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言基本语法 CheatSheet|
 |[Awesome-Go](https://github.com/avelino/awesome-go)|37k★ Awesome-Go|
+|[BruceDone/awesome-crawler](https://github.com/BruceDone/awesome-crawler)|3k★ 各语言爬虫 web crawler|
 
 #### web应用开发-基础框架
 
