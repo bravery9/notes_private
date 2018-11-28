@@ -190,6 +190,7 @@ Remote Administration Tool
 |名称|属性|描述|
 |:-------------:|-----|-----|
 |[suricata](https://github.com/OISF/suricata) |流量解析| #强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
+[Security-Onion-Solutions/security-onion](https://github.com/Security-Onion-Solutions/security-onion)|流量解析|#一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
 |[cuckoo](https://github.com/cuckoosandbox/cuckoo)|文件分析引擎|3k★ #分析行为 an automated dynamic malware analysis system|
 |[objective-see/LuLu](https://github.com/objective-see/LuLu)|终端防御|3k★ MacOS防火墙 LuLu is the free macOS firewall that aims to block unauthorized (outgoing) network traffic|
 |[Tencent/bk-cmdb](https://github.com/Tencent/bk-cmdb)|资产管理|2k★ 蓝鲸配置平台（蓝鲸CMDB）是一个基于运维场景设计的企业配置管理服务|
