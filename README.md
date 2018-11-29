@@ -118,6 +118,7 @@ Remote Administration Tool
 |[backdoors](https://github.com/iamckn/backdoors)|sh|linux|#backdoor [利用SSH日志触发的后门分析](http://www.freebuf.com/articles/system/185942.html)|
 |[dnscat2](https://github.com/iagox86/dnscat2)|C++ C Ruby|linux Win32|#backdoor DNS后门|
 |[m0nad/Diamorphine](https://github.com/m0nad/Diamorphine)|C|linux|#backdoor 需要ROOT权限 隐藏指定进程与通信 LKM rootkit for Linux Kernels 2.6.x/3.x/4.x (x86 x86_64)|
+[NYAN-x-CAT/Lime-RAT](https://github.com/NYAN-x-CAT/Lime-RAT)|VB|windows|#RAT 额外功能:勒索(加密文件)、xmr挖矿、DDOS|
 
 
 #### 工具_CTF
