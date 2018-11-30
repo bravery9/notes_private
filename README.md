@@ -396,7 +396,7 @@ FUD:Fully undetectable
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[filebrowser](https://github.com/filebrowser/filebrowser)|云盘系统 Golang|3k★ A stylish web-based file manager|
+|[filebrowser](https://github.com/filebrowser/filebrowser)|云盘系统 Golang|4k★ A stylish web-based file manager|
 |[nextcloud](https://github.com/nextcloud/server)|云盘系统 PHP|5k★ a safe home for all your data. 多客户端：web、ios、android |
 |[gitea](https://github.com/go-gitea/gitea)|git系统 Golang|9k★ 独立二进制包,无障碍开启self-hosted git service(自托管git服务). all platforms which Go supports!|
 
