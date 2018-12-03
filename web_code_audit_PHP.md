@@ -1,6 +1,6 @@
 ### 参考
 * [PHP危险函数 - Exploitable PHP functions](https://stackoverflow.com/questions/3115559/exploitable-php-functions)
-* [PHP安全编码 | WooYun知识库](http://wooyun.jozxing.cc/static/drops/tips-135.html#!)
+* [PHP安全编码 | WooYun知识库](http://su.xmd5.org/static/drops/tips-135.html#!)
 
 ### 思路
 (做代码审计 开发能力需过关)
