@@ -291,15 +291,8 @@ FUD:Fully undetectable
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[exploit-db](https://www.exploit-db.com/)|exp引擎|Offensive Security’s Exploit Database Archive.|
-|-|exp引擎|[Remote Exploits](https://www.exploit-db.com/remote/)|
-|-|exp引擎|[Web Application Exploits](https://www.exploit-db.com/webapps/)|
-|-|exp引擎|[Local & Privilege Escalation Exploits](https://www.exploit-db.com/local/)|
-|-|exp引擎|[Denial of Service & Proof of Concept Exploits](https://www.exploit-db.com/dos/)|
-|-|/|[Exploit Shellcode Archive](https://www.exploit-db.com/shellcode/)|
-|-|Papers|[Archived Security Papers](https://www.exploit-db.com/papers/)|
+|[exploit-db](https://www.exploit-db.com/)|exp引擎|Offensive Security’s Exploit Database Archive. /remote/webapps/local/dos/papers|
 |[sploitus.com](https://sploitus.com/)|exp引擎|Exploits.|
-
 
 #### website_网络空间引擎
 
