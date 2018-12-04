@@ -7,7 +7,7 @@
 * 被动接收为主 (营造环境/建立机制 让资讯主动展示在眼前 避免了不必要的消耗)
 * 主动获取为辅（主动获取略耗费精力时间 需要按需获取)
 
-### 我的方案 - 使用Slack的RSS订阅
+### 我的方案1 - 使用Slack的RSS订阅
 
 安装Slack客户端(PC/mobile)
 
@@ -40,10 +40,12 @@
  效果如图
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
 
-
-### 补充方案
+### 我的方案2 - 自写爬虫邮件推送
 
 * 邮件推送
 [1135/VulSpider: 本程序在后台持续运行，获取最新漏洞及每日简报，发送邮件给安全人员。](https://github.com/1135/VulSpider)
 
-* twitter等其他途径
+![all](https://images2.imgbox.com/c4/de/EhWf7z3R_o.png)
+
+
+### 补充方案 - twitter等其他途径
