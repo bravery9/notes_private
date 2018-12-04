@@ -200,10 +200,11 @@ Remote Administration Tool
 
 #### 工具_扫描自动化
 
-|名称|属性|运行环境|描述|
+|名称|属性|编程语言/运行环境|描述|
 |:-------------:|--|--|-----|
-|[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|python+shell|kali_linux|Automate Pentest Tool|
-|[Sn1per](https://github.com/1N3/Sn1per)|python+shell|kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
+|[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|主机扫描|python+shell / kali_linux|Automate Pentest Tool|
+|[Sn1per](https://github.com/1N3/Sn1per)|主机扫描|python+shell / kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
+[ttarvis/glasgo](https://github.com/ttarvis/glasgo)|Golang代码静态分析|golang / all | A Security Scanner for Go|
 
 #### Payload_dictionary_字典
 |名称|描述|
