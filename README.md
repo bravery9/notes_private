@@ -59,6 +59,7 @@ _________________________________/
 
 |笔记标题|描述|
 |:-------------:|-----|
+|[实践 - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)|sec_get_news.md|
 |[web - 静态爬虫 - 内容提取利器 - GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[web - 中间件修复方案 SSL slowhttpdos Tomcat](web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md)|web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md|
 |[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|z_web_webgoat.md|
