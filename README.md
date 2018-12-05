@@ -213,7 +213,7 @@ Remote Administration Tool
 |https://weakpass.com/|弱口令字典|
 |[dictionary/web_upload_filename_all.txt](https://github.com/1135/dictionary/blob/master/web_upload_filename_all.txt)|fuzz字典_web上传_文件名|
 |[Unleashing an Ultimate XSS Polyglot · 0xSobky/HackVault Wiki](https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot)|XSS payload|
-|[dictionary/web_markdown_xss_payload.txt](https://github.com/1135/dictionary/blob/master/web_markdown_xss_payload.txt)|
+|[dictionary/web_markdown_xss_payload.txt](https://github.com/1135/dictionary/blob/master/web_markdown_xss_payload.txt)|markdwon XSS payload|
 
 #### 爬虫
 
