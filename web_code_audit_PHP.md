@@ -15,9 +15,13 @@
 
 ### 实例1 系统命令执行漏洞
 
-#### PHP中 【执行系统命令的函数】
+#### 设计
 
-它们只有略微差别：
+程序设计时就需要尽量避免使用命令执行函数。
+
+#### 【执行系统命令的函数】
+
+PHP中【执行系统命令的函数】，它们只有略微差别：
  ```
 +----------------+-----------------+----------------+----------------+
 |    Command     | Displays Output | Can Get Output | Gets Exit Code |
@@ -30,20 +34,24 @@
 +----------------+-----------------+----------------+----------------+
  ```
 
-传入以上【执行系统命令的函数】的参数如果来自用户，必须进行严格的过滤/转义（如果此处没有正确实现，则可能存在命令注入）。
+传入【执行系统命令的函数】的参数如果来自用户输入，必须进行严格的过滤/转义（如果此处没有正确实现，则可能存在命令注入）。
 
 #### PHP命令执行漏洞修复方案
 
 使用PHP自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg
 ```
 <?php
-$arg = "-L";
-system(escapeshellcmd('pwd '.escapeshellarg($arg)));
-//此时尝试进行命令注入：修改"-L"和'pwd '  会发现关键字符被转义 无法执行命令
+system(escapeshellcmd('pwd '.escapeshellarg("-L")));
+//此时尝试进行命令注入：修改"-L"和'pwd '  会发现关键字符被转义 无法执行命令:
+echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\` '-L\;id'
 ?>
 ```
 
 #### 过滤原理
+
+* escapeshellcmd  防止用户利用shell下的一些字符（如# ; `等）构造其他命令
+* escapeshellarg  防止用户输入的内容逃逸出"参数值"的位置转而变成一个"参数选项"
+
 
 escapeshellarg和escapeshellcmd 的C具体实现 331行
 https://github.com/php/php-src/blob/321c0cc3493998f731f0666127c093eff4e119eb/ext/standard/exec.c
