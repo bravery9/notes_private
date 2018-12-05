@@ -212,7 +212,7 @@ Remote Administration Tool
 |https://github.com/danielmiessler/SecLists/tree/master/Passwords|弱口令字典|
 |https://weakpass.com/|弱口令字典|
 |https://github.com/1135/dictionary/blob/master/web_upload_filename_all.txt?raw=true|fuzz字典_web上传_文件名|
-
+|[Unleashing an Ultimate XSS Polyglot · 0xSobky/HackVault Wiki](https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot)|XSS payload|
 
 #### 爬虫
 
