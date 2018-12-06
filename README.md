@@ -196,6 +196,7 @@ Remote Administration Tool
 [Security-Onion-Solutions/security-onion](https://github.com/Security-Onion-Solutions/security-onion)|流量解析|#一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
 |[cuckoo](https://github.com/cuckoosandbox/cuckoo)|文件分析引擎|3k★ #分析行为 an automated dynamic malware analysis system|
 |[objective-see/LuLu](https://github.com/objective-see/LuLu)|终端防御|3k★ MacOS防火墙 LuLu is the free macOS firewall that aims to block unauthorized (outgoing) network traffic|
+[Eloston/ungoogled-chromium](https://github.com/Eloston/ungoogled-chromium#software-repositories)|终端防御|6k★ 无Google的chrome/chromium浏览器[Downloads for ungoogled-chromium](https://ungoogled-software.github.io/ungoogled-chromium-binaries/)|
 |[Tencent/bk-cmdb](https://github.com/Tencent/bk-cmdb)|资产管理|2k★ 蓝鲸配置平台（蓝鲸CMDB）是一个基于运维场景设计的企业配置管理服务|
 
 #### 工具_扫描自动化
