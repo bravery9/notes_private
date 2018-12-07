@@ -289,7 +289,7 @@ FUD:Fully undetectable
 |https://attack.mitre.org/|知识库|真实世界用到的、系统化的网络攻击技术|
 |[www.seebug.org](https://www.seebug.org/)|/|知道创宇|
 |[paper.seebug.org](https://paper.seebug.org/)|Papers|知道创宇 Papers|
-
+|[每日安全 - 腾讯安全玄武实验室出品](https://sec.today/)|/|腾讯安全玄武实验室出品|
 
 #### website_exp引擎
 
