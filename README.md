@@ -64,6 +64,7 @@ ________________________________________________/
 |[web - 中间件修复方案 SSL slowhttpdos Tomcat](web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md)|web___fix_中间件漏洞修复方案_SSL_slowhttpdos.md|
 |[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|z_web_webgoat.md|
 |[web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)|web_code_audit_PHP.md|
+|[web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)|web_code_audit_Python.md|
 |[host - 主机扫描思路_各种服务的攻击与防御](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
 |[net - wireshark使用总结](z_net_wireshark.md)|z_net_wireshark.md|
 |[Mac - MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac_软件_快捷键_命令_技巧.md)|z_command_Mac_软件_快捷键_命令_技巧.md|
@@ -144,7 +145,6 @@ Remote Administration Tool
 |[sqlmap](https://github.com/sqlmapproject/sqlmap)| Automatic SQL injection and database takeover tool|
 |[upload-fuzz-dic-builder](https://github.com/c0ny1/upload-fuzz-dic-builder)| #fuzz 生成字典 尝试突破文件上传限制|
 
-
 #### 工具_反编译_Decompiler
 
 |名称|属性|描述|
@@ -198,6 +198,7 @@ Remote Administration Tool
 |[objective-see/LuLu](https://github.com/objective-see/LuLu)|终端防御|3k★ MacOS防火墙 LuLu is the free macOS firewall that aims to block unauthorized (outgoing) network traffic|
 [Eloston/ungoogled-chromium](https://github.com/Eloston/ungoogled-chromium#software-repositories)|终端防御|6k★ 无Google的chrome/chromium浏览器[Downloads for ungoogled-chromium](https://ungoogled-software.github.io/ungoogled-chromium-binaries/)|
 |[Tencent/bk-cmdb](https://github.com/Tencent/bk-cmdb)|资产管理|2k★ 蓝鲸配置平台（蓝鲸CMDB）是一个基于运维场景设计的企业配置管理服务|
+|[SpiderLabs/owasp-modsecurity-crs](https://github.com/SpiderLabs/owasp-modsecurity-crs)|Web攻击检测规则|OWASP ModSecurity核心规则集 Web应用程序防火墙的通用攻击检测规则|
 
 #### 工具_扫描自动化
 
