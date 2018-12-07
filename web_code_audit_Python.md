@@ -15,7 +15,8 @@ https://stackoverflow.com/questions/89228/calling-an-external-command-in-python
 #### 修复方案
 
 (Python没有像PHP中自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg）
-所以需要自己写 过滤/转义 函数。
+
+所以Python需要自己写 过滤/转义 函数。
 
 * 白名单法 （更安全 参考以下代码）
 * 黑名单法 （不推荐 可能被绕过）
