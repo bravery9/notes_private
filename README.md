@@ -264,7 +264,8 @@ FUD:Fully undetectable
 |:-------------:|--|--|-----|
 |[gophish](https://github.com/gophish/gophish)|Golang|all|2k★ Open-Source Phishing Toolkit. 用于对企业进行定期的钓鱼测试. 启动后先在`Sending Profiles`中配置真实可用的`mail server`,发起一个Campaign:钓鱼邮件(内含钓鱼网站) [使用视频](https://www.youtube.com/watch?v=knc6Iq-hNcw)|
 |[blackeye](https://github.com/flagellantX/blackeye)|.sh .php|/| 钓鱼页面Phishing Pages 含各大网站`Facebook,Google,Twitter,Microsoft`等|
- 
+|[kgretzky/evilginx2](https://github.com/kgretzky/evilginx2)|Golang|linux|MITM attack framework used for phishing.|
+
 #### 样本
 |名称|描述|针对|
 |--|--|-----|
