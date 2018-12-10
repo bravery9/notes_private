@@ -17,25 +17,33 @@
 
 设置订阅以下网站的RSS地址即可（可随时增删）
 
-```
- Tencent XuanwuLab Security Daily News Push
- Seebug 最新漏洞
- paper - Last paper
- 知道创宇
- jetlib.sec
- 360 Technology Blog
- 知道创宇
- FreeBuf互联网安全新媒体平台
- Seebug 近期最热漏洞
- 腾讯安全玄武实验室
- 安全客-有思想的安全新媒体
- Malwarebytes Labs
- 绿盟科技博客
- 腾讯安全响应中心
- Hacking Articles
- 360 CERT
- c0d3p1ut0s
- ```
+|标题|rss地址|
+|:-------------:|-----|
+| KitPloit - PenTest Tools!|https://feeds.feedburner.com/PentestTools|
+| 腾讯安全玄武实验室||
+| 安全客-有思想的安全新媒体||
+| Malwarebytes Labs||
+| 绿盟科技博客||
+| 腾讯安全响应中心||
+| Hacking Articles||
+| Tencent XuanwuLab Security Daily News Push||
+| Seebug 最新漏洞||
+| paper - Last paper||
+| 知道创宇||
+| jetlib.sec||
+| 360 Technology Blog||
+| 知道创宇||
+| FreeBuf互联网安全新媒体平台||
+| Seebug 近期最热漏洞||
+| 独自等待-信息安全博客||
+| US Blog RSS Feed||
+| KitPloit - PenTest Tools!||
+| 360 CERT||
+| c0d3p1ut0s||
+| Hacking Articles||
+| Recent vulnerabilities - Vulmon||
+| Blog – SentinelOne||
+
  
  效果如图
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
