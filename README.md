@@ -130,7 +130,7 @@ Remote Administration Tool
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[epinna/weevely3](https://github.com/epinna/weevely3)|python|php|#RAT webshell 文件管理/HTTP(S) proxy/Bruteforce SQL accounts/Port scan|
+|[epinna/weevely3](https://github.com/epinna/weevely3)|python|php|文件管理/HTTP(S) proxy/Bruteforce SQL accounts/Port scan|
 
 
 #### 工具_CTF
