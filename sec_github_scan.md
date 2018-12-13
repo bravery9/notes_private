@@ -1,6 +1,9 @@
-### github泄露扫描
+#### github泄露扫描系统
 
-使用小米的开源系统[MiSecurity/x-patrol: github泄露扫描系统](https://github.com/MiSecurity/x-patrol)
+|名称|属性|运行环境|描述|
+|:-------------:|--|--|-----|
+|[[MiSecurity/x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
+
 
 ### 搭建过程
 
