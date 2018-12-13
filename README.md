@@ -21,7 +21,6 @@ ________________________________________________/
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
     + [爬虫](#爬虫)
-    + [工具_github泄露扫描](#工具_github泄露扫描)
     + [工具_免杀AntiVirusEvasion](#工具_免杀antivirusevasion)
     + [CMS](#cms)
     + [样本](#样本)
@@ -242,11 +241,6 @@ Remote Administration Tool
 |[httplib2](https://github.com/httplib2/httplib2)|python|社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
 |[puppeteer](https://github.com/GoogleChrome/puppeteer)|js| 38k★ [google] Headless Chrome Node API |
 
-
-#### 工具_github泄露扫描
-|名称|属性|运行环境|描述|
-|:-------------:|--|--|-----|
-|[x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
 
 #### 工具_免杀AntiVirusEvasion
 
