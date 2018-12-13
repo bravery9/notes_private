@@ -274,7 +274,7 @@ FUD:Fully undetectable
 
 |名称|描述|
 |:-------------:|--|
-|https://emkei.cz/|在线发送钓鱼邮件 可伪造邮件发送者 (如伪造xx@163.com发送到qq邮箱)|
+|https://emkei.cz/|在线发送伪造邮件(可用于钓鱼 如伪造邮件发送者xx@163.com发送到目标的qq邮箱)|
 |http://www.yopmail.com/zh/|临时邮箱 可随意进入xxx@yopmail.com收发邮件|
 |http://www.mailinator.com/|临时邮箱 可随意进入asd@mailinator.com收邮件|
 |https://10minutemail.net/|临时邮箱 十分钟邮箱 短期 每次邮箱地址不同 适用于注册小号|
