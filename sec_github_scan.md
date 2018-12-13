@@ -2,7 +2,7 @@
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
-|[[MiSecurity/x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
+|[MiSecurity/x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
 
 
 ### 搭建过程
