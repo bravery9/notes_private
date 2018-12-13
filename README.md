@@ -24,7 +24,6 @@ ________________________________________________/
     + [工具_github泄露扫描](#工具_github泄露扫描)
     + [工具_免杀AntiVirusEvasion](#工具_免杀antivirusevasion)
     + [CMS](#cms)
-    + [工具_Phishing钓鱼](#工具_phishing钓鱼)
     + [样本](#样本)
     + [website_mail匿名邮箱](#website_mail匿名邮箱)
     + [website_知识_安全技术](#website_知识_安全技术)
@@ -265,16 +264,8 @@ FUD:Fully undetectable
 |[joomla](https://github.com/joomla/joomla-cms)|php|3k★ Joomla! Content Management System.|
 
 
-#### 工具_Phishing钓鱼
-
-|名称|属性|运行环境|描述|
-|:-------------:|--|--|-----|
-|[gophish](https://github.com/gophish/gophish)|Golang|all|2k★ Open-Source Phishing Toolkit. 用于对企业进行定期的钓鱼测试. 启动后先在`Sending Profiles`中配置真实可用的`mail server`,发起一个Campaign:钓鱼邮件(内含钓鱼网站) [使用视频](https://www.youtube.com/watch?v=knc6Iq-hNcw)|
-|[blackeye](https://github.com/flagellantX/blackeye)|.sh .php|/| 钓鱼页面Phishing Pages 含各大网站`Facebook,Google,Twitter,Microsoft`等|
-|[kgretzky/evilginx2](https://github.com/kgretzky/evilginx2)|Golang|linux|MITM attack framework used for phishing.|
-
 #### 样本
-|名称|描述|针对|
+|名称|描述|针对目标|
 |--|--|-----|
 |[chenerlich / FCL(Fileless Command Lines)](https://github.com/chenerlich/FCL)|无文件攻击实例(fileless malicious executions)|windows用户|
 
@@ -342,7 +333,6 @@ FUD:Fully undetectable
 |[wappalyzer.com](https://www.wappalyzer.com/) |信息收集 web技术栈 web frameworks, server software, analytics tools and many more. |
 |[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 |[Objectif Sécurité - Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|crack在线破解 NTLM|
-|https://www.irongeek.com/homoglyph-attack-generator.php|外观类似的替换字符 常用于钓鱼|
 
 #### website_encoder
 
