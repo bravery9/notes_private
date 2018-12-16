@@ -189,7 +189,7 @@ Remote Administration Tool
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[frp](https://github.com/fatedier/frp)|Golang|14k★ 高性能的反向代理(reverse proxy). 可用于内网穿透,支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
+|[frp](https://github.com/fatedier/frp)|Golang|18k★ 高性能的反向代理(reverse proxy). 用于内网穿透(将NAT或防火墙后面的本地服务器暴露给Internet),支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
 |[brook](https://github.com/txthinking/brook)|Golang|6k★ 【Server端】(Linux/MacOS/Windows/Android/iOS)开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
 
 #### ProxyPool
