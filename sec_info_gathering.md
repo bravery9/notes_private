@@ -8,6 +8,9 @@
 使用引号搜索完全匹配的结果
 "tallest building"
 
+搜索未知字词
+"largest * in the world"
+
 搜素具体站点下的url
 site:so.com
 
