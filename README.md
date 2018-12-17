@@ -105,9 +105,11 @@ ________________________________________________/
 |:-------------:|--|--|-----|
 |[metasploit-framework](http://github.com/rapid7/metasploit-framework)|Ruby #RAT|Linux/Mac OS/windows|必备的功能强大的渗透测试框架|
 
-#### 工具_后渗透windows_post_exploitation
+#### 工具_后渗透for_windows_post_exploitation
 
-|名称|属性|运行环境|描述|
+以下工具仅针对windows目标
+
+|名称|属性|攻击者环境|描述|
 |:-------------:|--|--|-----|
 |[Empire](https://github.com/EmpireProject/Empire)|python|Kali/Debian/Ubuntu|#域渗透 #RAT 域渗透利器Empire is a post-exploitation framework|
 |[CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)|python+powershell|[Installation](https://github.com/byt3bl33d3r/CrackMapExec/wiki/Installation)| 2k★ #域渗透 域渗透利器|
@@ -119,7 +121,7 @@ ________________________________________________/
 
 Remote Administration Tool
 
-|名称|属性|运行环境|描述|
+|名称|属性|针对目标|描述|
 |:-------------:|--|--|-----|
 |[n1nj4sec/pupy](https://github.com/n1nj4sec/pupy)|python2|Windows/Linux/OSX/Android| 4k★ #RAT Pupy is a cross-platform remote administration and post-exploitation tool|
 |[EggShell](https://github.com/neoneggplant/EggShell)|python|macOS/Linux|#RAT iOS(Jailbroken)/macOS/Linux(OnlyFileManage)|
