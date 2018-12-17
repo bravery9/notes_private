@@ -34,6 +34,7 @@ site:apple.com -paper -music -inurl:.edu
 ```
 
 [Advanced Searching in Google - Resources and Search Strategies](https://sites.google.com/site/resourcesandsearchstrategies/google/advanced-searching-in-google)
+
 [Google高级语法（非官方） - Google Guide](http://www.googleguide.com/or_operator.html)
 
 ### 例1 找web后台
