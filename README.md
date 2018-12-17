@@ -121,6 +121,7 @@ Remote Administration Tool
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
+|[n1nj4sec/pupy](https://github.com/n1nj4sec/pupy)|python2|Windows/Linux/OSX/Android| 4k★ #RAT Pupy is a cross-platform remote administration and post-exploitation tool|
 |[EggShell](https://github.com/neoneggplant/EggShell)|python|macOS/Linux|#RAT iOS(Jailbroken)/macOS/Linux(OnlyFileManage)|
 |[LaZagne](https://github.com/AlessandroZ/LaZagne)|python|windows/Linux/macOS|#密码恢复 Credentials recovery project. 系统口令/浏览器软件/邮箱软件/wifi|
 |[backdoors](https://github.com/iamckn/backdoors)|sh|linux|#backdoor [利用SSH日志触发的后门分析](http://www.freebuf.com/articles/system/185942.html)|
