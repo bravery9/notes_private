@@ -5,6 +5,9 @@
 ### Google常规语法
 
 ```
+使用引号搜索完全匹配的结果
+"tallest building"
+
 搜素具体站点下的url
 site:so.com
 
