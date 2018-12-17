@@ -24,6 +24,9 @@ intext:seo blog
 在html body中存在特定关键字(allintext 多个关键字同时存在才行)的url
 allintext:seo blog
 
+搜索社交媒体 如
+@twitter
+
 找相似的网站
 related:bilibili.com
 
@@ -35,6 +38,8 @@ filetype:pdf
 用减法排除具有某些关键字的结果
 site:apple.com -paper -music -inurl:.edu
 ```
+
+[优化网页搜索 - Google 搜索帮助](https://support.google.com/websearch/answer/2466433)
 
 [Advanced Searching in Google - Resources and Search Strategies](https://sites.google.com/site/resourcesandsearchstrategies/google/advanced-searching-in-google)
 
