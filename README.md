@@ -41,7 +41,7 @@ ________________________________________________/
     + [web前端](#web前端)
     + [web系统](#web系统)
     + [学习项目](#学习项目)
-    + [知识](#知识)
+    + [知识_books](#知识_books)
     + [其他工具](#其他工具)
     
 ________________________________________________/
@@ -411,7 +411,7 @@ FUD:Fully undetectable
 |[radovskyb/go-packages](https://github.com/radovskyb/go-packages)|Golang| Go的标准包库的大型代码示例、文档  适合自学Golang 2016年的项目|
 |[Project-Based-Tutorials-in-C](https://github.com/rby90/Project-Based-Tutorials-in-C)|C|2k★ C语言 基于项目的教程|
 
-#### 知识
+#### 知识_books
 
 |名称|属性|描述|
 |:-------------:|--|-----|
@@ -419,7 +419,7 @@ FUD:Fully undetectable
 |[tensorflow_cookbook](https://github.com/nfmcclure/tensorflow_cookbook)|python #ML|3k★ Code for Tensorflow Machine Learning Cookbook |
 |[Linux kernel map](http://www.makelinux.net/kernel_map/)|linux|linux内核学习 交互式操作 美国网站|
 |[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
-
+|[PDFs_books](https://github.com/tongxurt/pdfs)|pdf|网络是怎样连接的_户根勤.pdf Linux内核设计与实现(第三版中文高清带目录).pdf|
 
 #### 其他工具
 
