@@ -39,7 +39,7 @@ filetype:pdf
 
 ```
 用减法排除具有某些关键字的结果
-site:apple.com -paper -music -inurl:.edu
+site:apple.com -paper -music -inurl:https -inurl:.edu
 ```
 
 [优化网页搜索 - Google 搜索帮助](https://support.google.com/websearch/answer/2466433)
