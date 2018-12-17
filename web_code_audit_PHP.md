@@ -2,8 +2,15 @@
 * [PHP危险函数 - Exploitable PHP functions](https://stackoverflow.com/questions/3115559/exploitable-php-functions)
 * [PHP安全编码 | WooYun知识库](http://su.xmd5.org/static/drops/tips-135.html#!)
 
+### 准备
+代码审计的前提:足够的开发能力
+
+审计方法:
+* 静态代码审计
+* 动态调试跟踪
+
 ### 思路
-(做代码审计 开发能力需过关)
+
 * 搜索 危险函数 - 尝试利用
 
 * 搜索 自定义安全过滤函数 - 尝试绕过
