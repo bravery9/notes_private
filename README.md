@@ -430,5 +430,6 @@ FUD:Fully undetectable
 |:-------------:|--|--|-----|
 |[transfer.sh](https://github.com/dutchcoders/transfer.sh)|Golang|all|7k★ 命令行中上传文件`curl --upload-file ./1.txt https://yoursite.com/1.txt`|
 |[MailHog](https://github.com/mailhog/MailHog)|Golang|all|3k★ 仅供SMTP测试使用（基于Web和API） Mac下安装:`brew install mailhog`|
-|[GoRequest](https://github.com/parnurzeal/gorequest)|Golang|all|2k★  Simplified HTTP client (inspired by nodejs SuperAgent)|
+|[GoRequest](https://github.com/parnurzeal/gorequest)|Golang|all| 2k★ Simplified HTTP client (inspired by nodejs SuperAgent)|
+|[asciimoo/searx](https://github.com/asciimoo/searx)|python3|Debian/Ubuntu| 4k★ About 70 supported search engines. 搜索引擎. No user tracking/profiling.  https://asciimoo.github.io/searx/|
 
