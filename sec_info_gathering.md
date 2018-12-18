@@ -11,7 +11,7 @@
 搜索未知字词
 "largest * in the world"
 
-搜素具体站点下的url
+搜素具体域名站点下的url
 site:so.com
 
 url中存在具体字符的url
@@ -35,11 +35,13 @@ related:bilibili.com
 
 查找具体文件
 filetype:pdf
+filetype:xls inurl:pass user
 ```
 
 ```
 用减法排除具有某些关键字的结果
 site:apple.com -paper -music -inurl:https -inurl:.edu
+site:apple.com -site:www.apple.com -inurl:support
 ```
 
 [优化网页搜索 - Google 搜索帮助](https://support.google.com/websearch/answer/2466433)
