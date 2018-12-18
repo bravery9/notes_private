@@ -1,5 +1,13 @@
 # SQL注入漏洞
 
+### 类型
+* boolean-based blind
+* time-based blind
+* error-based
+* UNION query-based
+* stacked queries
+* out-of-band
+
 ### 原理
 
 SQL injection主要是对请求的参数过滤不严格造成的，如动态拼接字符串。
@@ -129,9 +137,8 @@ try {
 }
 ```
 
-* 3. 白名单方法
+* 3. 白名单输入验证(White List Input Validation)
 
-* 4. 数据库用户权限最小化
+* 4. 数据库用户权限最小化(Least Privilege)
 
-OWASP参考
-https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet
+OWASP防御SQL注入的参考 https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet
