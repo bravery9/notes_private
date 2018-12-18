@@ -1,5 +1,9 @@
 # SQL注入漏洞
 
+### 原理
+
+SQL injection主要是对用户请求中的输入参数过滤不严格造成的，如动态拼接字符串。
+
 ### 类型
 * boolean-based blind
 * time-based blind
@@ -7,11 +11,6 @@
 * UNION query-based
 * stacked queries
 * out-of-band
-
-### 原理
-
-SQL injection主要是对用户请求中的输入参数过滤不严格造成的，如动态拼接字符串。
-
 
 ### 漏洞影响
 
@@ -85,38 +84,36 @@ db.Exec("INSERT INTO users(name, email) VALUES($1, $2)",
 
 ```
 // Golang(mysql)
+// http://mindbowser.com/golang-go-database-sql/
 package main
  import (
  _ "github.com/go-sql-driver/mysql"
  "database/sql"
- "fmt"
  "log"
  )
  
  func main(){
- db, err := sql.Open("mysql", "root:xxxx@tcp(127.0.0.1:3306)/employeedb")
+ db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/employeedb")
+ 
+ // Connection Pooling methods
+ db.SetConnMaxLifetime(500)
+ db.SetMaxIdleConns(50)
+ db.SetMaxOpenConns(10)
+ db.Stats()
+ 
  if err != nil {
  log.Fatal(err)
- }else{
- fmt.Println("Connection Established")
  }
- var (
- id int
- name string
- )
- 
- rows,err:=db.Query("select id, username from user where id = ?", 2)
+ tx,_:=db.Begin()
+ stmt, err := tx.Prepare("INSERT INTO user(id,username) VALUES(?,?)")
+ res,err:=stmt.Exec(4,"Abhijit")
+ res,err=stmt.Exec(5,"Yogesh")
  if err!=nil{
+ tx.Rollback()
  log.Fatal(err)
  }
- 
- for rows.Next(){
- err:=rows.Scan(&id,&name)
- if err != nil {
- log.Fatal(err)
- }
- fmt.Println(id, name)
- }
+ tx.Commit()
+ log.Println(res)
 }
 ```
 
