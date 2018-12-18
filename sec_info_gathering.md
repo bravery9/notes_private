@@ -53,6 +53,6 @@ site:apple.com -site:www.apple.com -inurl:support
 ### 例1 找web后台
 
 ```
-site:github.com intext:管理|后台|登陆|用户名|密码|验证码|系统|帐号|manage|admin|login|system|portal
+管理 后台 登陆 用户名 帐号 密码 验证码 系统 inurl:manage|admin|login|system|portal
 site:github.com inurl:manage|admin|login|system|portal
 ```
