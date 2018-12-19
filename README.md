@@ -8,8 +8,6 @@ ________________________________________________/
     + [知识_SDL](#知识_sdl)
     + [知识_RedTeam](#知识_redteam)
     + [全能框架](#全能框架)
-    + [工具_后渗透for_windows_post_exploitation](#工具_后渗透for_windows_post_exploitation)
-    + [工具_后渗透](#工具_后渗透)
     + [工具_Webshell管理](#工具_Webshell管理)
     + [工具_CTF](#工具_ctf)
     + [工具_web](#工具_web)
@@ -104,32 +102,6 @@ ________________________________________________/
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[metasploit-framework](http://github.com/rapid7/metasploit-framework)|Ruby #RAT|Linux/Mac OS/windows|必备的功能强大的渗透测试框架|
-
-#### 工具_后渗透for_windows_post_exploitation
-
-以下工具仅针对windows目标
-
-|名称|属性|攻击者环境|描述|
-|:-------------:|--|--|-----|
-|[Empire](https://github.com/EmpireProject/Empire)|python|Kali/Debian/Ubuntu|#域渗透 #RAT 域渗透利器Empire is a post-exploitation framework|
-|[CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)|python+powershell|[Installation](https://github.com/byt3bl33d3r/CrackMapExec/wiki/Installation)| 2k★ #域渗透 域渗透利器|
-|[QuasarRAT](https://github.com/quasar/QuasarRAT)|C#|windows|#RAT 传统远控 Remote Administration Tool for Windows|
-|[NYAN-x-CAT/Lime-RAT](https://github.com/NYAN-x-CAT/Lime-RAT)|VB|windows|#RAT 额外功能:勒索(加密文件)、xmr挖矿、DDOS|
-|[sRDI](https://github.com/monoxgas/sRDI)|powershell|windows|Shellcode implementation of Reflective DLL Injection. Convert DLLs to position independent shellcode|
-
-#### 工具_后渗透
-
-Remote Administration Tool
-
-|名称|属性|针对目标|描述|
-|:-------------:|--|--|-----|
-|[n1nj4sec/pupy](https://github.com/n1nj4sec/pupy)|python2|Windows/Linux/OSX/Android| 4k★ #RAT Pupy is a cross-platform remote administration and post-exploitation tool|
-|[EggShell](https://github.com/neoneggplant/EggShell)|python|macOS/Linux|#RAT iOS(Jailbroken)/macOS/Linux(OnlyFileManage)|
-|[LaZagne](https://github.com/AlessandroZ/LaZagne)|python|windows/Linux/macOS|#密码恢复 Credentials recovery project. 系统口令/浏览器软件/邮箱软件/wifi|
-|[backdoors](https://github.com/iamckn/backdoors)|sh|linux|#backdoor [利用SSH日志触发的后门分析](http://www.freebuf.com/articles/system/185942.html)|
-|[dnscat2](https://github.com/iagox86/dnscat2)|C++ C Ruby|linux Win32|#backdoor #DNS|
-|[fbkcs/ThunderDNS](https://github.com/fbkcs/ThunderDNS)|python3/PowerShell/bash|linux/Win|#backdoor #DNS This tool can forward TCP traffic over DNS protocol. Non-compile clients + socks5 support.|
-|[m0nad/Diamorphine](https://github.com/m0nad/Diamorphine)|C|linux|#backdoor 需要ROOT权限 隐藏指定进程与通信 LKM rootkit for Linux Kernels 2.6.x/3.x/4.x (x86 x86_64)|
 
 #### 工具_Webshell管理
 
