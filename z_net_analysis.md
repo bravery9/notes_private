@@ -1,12 +1,10 @@
 ### 流量分析
 
-流量分析(traffic analysis)
-
+流量分析(traffic analysis)：根据"流量"发现 恶意软件特征:mining/APT/..malware
 
 分析工具
 * Wireshark
 * Security Onion
-
 
 [rshipp/awesome-malware-analysis: A curated list of awesome malware analysis tools and resources.](https://github.com/rshipp/awesome-malware-analysis)
 
