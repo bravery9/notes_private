@@ -1,4 +1,14 @@
-# 远程控制软件
+### 远控分类
+
+* 传统远控
+  * 针对个人电脑
+  * 网络协议单一
+  * 几乎无内网渗透能力
+
+* 现代远控
+  * 针对大中型网络
+  * 功能更多更强，尤其是内网横向渗透方面(oneliner/网络协议/内网渗透/bypassuac...)
+
 
 ### 传统远程控制
 
@@ -42,32 +52,24 @@
 * 主控端软件：打开软件，点击“生成客户端程序”按钮，填写必要的选项，如设置动态域名为xxx.3322.org（此域名是主控端“黑客”拥有的，“黑客”可设置该域名经过dns解析后的ip为“黑客”自己的ip），最后点击生成即可生成客户端程序（1.exe）。
 * 被控过程：小白打开该客户端程序，即可执行文件1.exe后，解析域名xxx.3322.org后得到了黑客当前的外网ip，即可主动连接到黑客ip的某端口，该小白的电脑被控。此时主控端语音提示“有主机上线请注意！”。
 * 自动上线方式：DNS解析域名、固定IP等。（此例为DNS解析域名）
-* 传统远控的缺点
-  * 针对个人电脑
-  * 网络协议单一
-  * 几乎无内网渗透能力
 
-### 现代远控
-
-现代远控:针对大中型网络，功能更多更强，尤其是内网横向渗透方面(oneliner/网络协议/内网渗透/bypassuac...)
-
-**RAT_for_Windows**
+### 现代远控RAT_for_Windows
 
 以下RAT都仅针对windows目标进行后渗透(post exploitation)
 
-* 非开源RAT
-  * Cobalt Strike
-    * [cobalt strike 快速上手 [ 一 ] - klion's blog](https://klionsec.github.io/2017/09/23/cobalt-strike/)
-    * [Cobalt Strike学习笔记 - FreeBuf](https://www.freebuf.com/sectool/133369.html)
-    * [深入研究cobalt strike malleable C2配置文件 - 先知社区](https://xz.aliyun.com/t/2796)
-
-* 开源RAT
-
 |名称|属性|攻击者环境|描述|
 |:-------------:|--|--|-----|
+|Cobalt Strike[非开源]|Java|/|/|
 |[Empire](https://github.com/EmpireProject/Empire)|python|Kali/Debian/Ubuntu|#域渗透 #RAT 域渗透利器Empire is a post-exploitation framework|
 |[QuasarRAT](https://github.com/quasar/QuasarRAT)|C#|windows|#RAT 传统远控 Remote Administration Tool for Windows|
 |[NYAN-x-CAT/Lime-RAT](https://github.com/NYAN-x-CAT/Lime-RAT)|VB|windows|#RAT 额外功能:勒索(加密文件)、xmr挖矿、DDOS|
 |--|--|--|-----|
 |[CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)|python+powershell|Kali/Debian/Ubuntu/MacOS[Installation](https://github.com/byt3bl33d3r/CrackMapExec/wiki/Installation)| 2k★ #域渗透 域渗透利器|
 |[sRDI](https://github.com/monoxgas/sRDI)|powershell|windows|Shellcode implementation of Reflective DLL Injection. Convert DLLs to position independent shellcode|
+
+
+* Cobalt Strike资料
+  * [cobalt strike 快速上手 [ 一 ] - klion's blog](https://klionsec.github.io/2017/09/23/cobalt-strike/)
+  * [Cobalt Strike学习笔记 - FreeBuf](https://www.freebuf.com/sectool/133369.html)
+  * [深入研究cobalt strike malleable C2配置文件 - 先知社区](https://xz.aliyun.com/t/2796)
+
