@@ -1,10 +1,9 @@
 # 远程控制软件
 
-### 远程控制历史
+### 传统远程控制 - 历史
 
-2008年，在台式电脑上自学一些感兴趣的技术——黑客技术，主要是远程控制，即RAT(Remote Administration Tool)。
-
-当时听过的远控软件名字：灰鸽子远程控制(delphi写的)、极光远控、Ghost、白金远控(2011)等。
+2008年在台式机上使用远程控制软件，即RAT(Remote Administration Tool)。
+（当时一些远控软件名字：灰鸽子远程控制(delphi)、极光远控、Ghost、白金远控等）
 
 当时情况：
 * 设备：台式电脑（主机，显示器，键盘，鼠标，音响，话筒，摄像头）
@@ -16,7 +15,7 @@
 * 系统：windows、Mac、iOS、andorid等。
 * 网络：多种设备通过路由器连接外网，设备默认只有内网ip。
 
-### 基本概念
+### 传统远程控制 - 基本概念
 
 远程控制技术：使用主控端软件，通过网络，去控制 另一些电脑（被控端）。
 
@@ -37,17 +36,20 @@
 * 注册表管理(操作被控端的注册表,就像操作本地注册表一样)
 * 命令广播(即对批量被控端执行某些操作，常见的是：关机、重启、打开网页，筛选符合条件的机等）
 
-### 使用过程
+### 传统远程控制 - 使用过程
 举例如下。
 * 主控端软件：打开软件，点击“生成客户端程序”按钮，填写必要的选项，如设置动态域名为xxx.3322.org（此域名是主控端“黑客”拥有的，“黑客”可设置该域名经过dns解析后的ip为“黑客”自己的ip），最后点击生成即可生成客户端程序（1.exe）。
 * 被控过程：小白打开该客户端程序，即可执行文件1.exe后，解析域名xxx.3322.org后得到了黑客当前的外网ip，即可主动连接到黑客ip的某端口，该小白的电脑被控。此时主控端语音提示“有主机上线请注意！”。
 * 自动上线方式：专用上线（付费）、DNS解析域名、固定IP等。（此例为DNS解析域名）
 
+一个开源的传统远控：QuasarRAT(C#，适用于windows)
+https://github.com/quasar/QuasarRAT
 
 ### 现代远控RAT
-Cobalt Strike
-empire
-metasploit
 
-一个传统远控：QuasarRAT(C#，适用于windows)
-https://github.com/quasar/QuasarRAT
+* empire
+* metasploit
+* Cobalt Strike 仅针对windows
+  * [cobalt strike 快速上手 [ 一 ] - klion's blog](https://klionsec.github.io/2017/09/23/cobalt-strike/)
+  * [Cobalt Strike学习笔记 - FreeBuf](https://www.freebuf.com/sectool/133369.html)
+  
