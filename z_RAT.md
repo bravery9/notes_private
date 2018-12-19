@@ -52,4 +52,4 @@ https://github.com/quasar/QuasarRAT
 * Cobalt Strike 仅针对windows
   * [cobalt strike 快速上手 [ 一 ] - klion's blog](https://klionsec.github.io/2017/09/23/cobalt-strike/)
   * [Cobalt Strike学习笔记 - FreeBuf](https://www.freebuf.com/sectool/133369.html)
-  
+  * [深入研究cobalt strike malleable C2配置文件 - 先知社区](https://xz.aliyun.com/t/2796)
