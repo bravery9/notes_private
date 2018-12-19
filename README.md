@@ -36,7 +36,7 @@ ________________________________________________/
 - [Development开发](#development)
     + [必备网站](#必备网站)
     + [其他网站](#其他网站)
-    + [Awesome系列](#awesome)
+    + [Awesome & cheat sheets](Awesome_and_cheat_sheets)
     + [web应用开发-基础框架](#web应用开发-基础框架)
     + [web前端](#web前端)
     + [web系统](#web系统)
@@ -368,7 +368,7 @@ FUD:Fully undetectable
 |:-------------:|--|-----|
 |https://httpbin.org/|http debug|A simple HTTP Request & Response Service.|
 
-#### Awesome
+#### Awesome_and_cheat_sheets
 
 |名称|描述|
 |:-------------:|-----|
@@ -376,8 +376,8 @@ FUD:Fully undetectable
 |[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言基本语法 CheatSheet|
 |[Awesome-Go](https://github.com/avelino/awesome-go)|37k★ Awesome-Go|
 |[BruceDone/awesome-crawler](https://github.com/BruceDone/awesome-crawler)|3k★ 各语言爬虫 web crawler|
-|[coreb1t/awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ Collection of the cheat sheets useful for pentesting.|
-|[rshipp/awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ A curated list of awesome malware analysis tools and resources.|
+|[coreb1t/awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ #pentesting |
+|[rshipp/awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ #流量分析 A curated list of awesome malware analysis tools and resources.|
 
 #### web应用开发-基础框架
 
