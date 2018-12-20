@@ -344,6 +344,8 @@ FUD:Fully undetectable
 |[mre/awesome-static-analysis](https://github.com/mre/awesome-static-analysis)|4k★ 各语言静态分析工具Static analysis tools for all programming languages|
 |[coreb1t/awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ #pentesting |
 |[rshipp/awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ #流量分析 A curated list of awesome malware analysis tools and resources.|
+|[a13xp0p0v/linux-kernel-defence-map](https://github.com/a13xp0p0v/linux-kernel-defence-map)|linux内核防御图|
+
 
 #### web应用开发-基础框架
 
