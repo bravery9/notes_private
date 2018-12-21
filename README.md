@@ -14,8 +14,6 @@ ________________________________________________/
     + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
     + [工具_二进制_debug_pwn](#工具_二进制_debug_pwn)
     + [工具_二进制_fuzz](#工具_二进制_fuzz)
-    + [工具_Proxy代理](#工具_proxy代理)
-    + [ProxyPool](#proxypool)
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
     + [爬虫](#爬虫)
@@ -159,21 +157,6 @@ ________________________________________________/
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[halfempty](https://github.com/googleprojectzero/halfempty)|C|[projectZero] testcase minimization tool.|
-
-
-#### 工具_Proxy代理
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[frp](https://github.com/fatedier/frp)|Golang|18k★ 高性能的反向代理(reverse proxy). 用于内网穿透(将NAT或防火墙后面的本地服务器暴露给Internet),支持协议:tcp, udp, http, https.[中文文档](https://github.com/fatedier/frp/blob/master/README_zh.md)|
-|[brook](https://github.com/txthinking/brook)|Golang|6k★ 【Server端】(Linux/MacOS/Windows/Android/iOS)开启VPN/Socks5/Shadowsocks 【Client端】可连接，以及Socks5 to HTTP|
-
-#### ProxyPool
-
-|名称|描述|
-|:-------------:|-----|
-|http://proxylist.fatezero.org/proxy.list | 在线代理池 每15分钟更新. 实测很多高匿代理会暴露真实ip(具体在http header的X-Forwarded-For中最后一个ip)   即https://github.com/fate0/proxylist/blob/master/proxy.list|
-
 
 #### 工具_防御与分析
 
