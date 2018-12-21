@@ -65,7 +65,7 @@ ________________________________________________/
 |[host - 主机扫描思路_各种服务的攻击与防御](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
 |[net - 流量分析_wireshark筛选_附恶意样本](z_net_analysis.md)|z_net_analysis.md|
 |[Mac - MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac_软件_快捷键_命令_技巧.md)|z_command_Mac_软件_快捷键_命令_技巧.md|
-|[Proxy - Ubuntu/CentOS一键安装Socks5代理服务器](linux_proxy_Ubuntu_CentOS_socks5_Server.md)|linux_proxy_Ubuntu_CentOS_socks5_Server.md|
+|[Proxy - 代理工具_tcp_udp_http_https_VPN_Socks5](sec_proxy.md)|sec_proxy.md #socks5 #内网穿透|
 |[blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)|blockchain_SmartContracts.md|
 |[blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)|blockchain_mining.md|
 |[安全开发生命周期（Security Development Lifecycle）](sdl.md)|sdl.md|
