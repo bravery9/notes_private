@@ -145,8 +145,7 @@ ________________________________________________/
 |[peda](https://github.com/longld/peda)|python|6k★ Python Exploit Development Assistance for GDB|
 |[pwntools](https://github.com/Gallopsled/pwntools)|python2.7(best Ubuntu)|4k★ CTF framework and exploit development library|
 |[heap-viewer](https://github.com/danigargu/heap-viewer)|python| [IDA Pro plugin] examine the glibc heap, focused on exploit development|
-|[cea-sec/miasm](https://github.com/cea-sec/miasm)|python|4k★ (PE/ELF)Reverse engineering framework|
-
+|[cea-sec/miasm](https://github.com/cea-sec/miasm)|python|2k★ (PE/ELF)Reverse engineering framework|
 
 |名称|属性|描述|
 |:-------------:|--|-----|
