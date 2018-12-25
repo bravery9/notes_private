@@ -15,8 +15,7 @@ ________________________________________________/
     + [工具_二进制_fuzz](#工具_二进制_fuzz)
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
-    + [爬虫](#爬虫)
-    + [website_mail匿名邮箱](#website_mail匿名邮箱
+    + [website_mail匿名邮箱](#website_mail匿名邮箱)
     + [website_知识_安全技术](#website_知识_安全技术)
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
@@ -180,14 +179,6 @@ ________________________________________________/
 |[dictionary/web_upload_filename_all.txt](https://github.com/1135/dictionary/blob/master/web_upload_filename_all.txt)|fuzz字典_web上传_文件名|
 |[Unleashing an Ultimate XSS Polyglot · 0xSobky/HackVault Wiki](https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot)|XSS payload|
 |[dictionary/web_markdown_xss_payload.txt](https://github.com/1135/dictionary/blob/master/web_markdown_xss_payload.txt)|markdwon XSS payload|
-
-#### 爬虫
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|https://github.com/NikolaiT/GoogleScraper|python3.7| 2k★ 异步搜索引擎爬虫 A Python module to scrape several search engines.|
-|[chromeless](https://github.com/prisma/chromeless)|js|动态爬虫 Chrome自动化|
-|[Anti-Anti-Spider](https://github.com/luyishisi/Anti-Anti-Spider)|python|反反爬虫|
 
 #### 基本库
 
