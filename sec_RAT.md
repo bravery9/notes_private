@@ -55,7 +55,7 @@
 
 ### 现代远控RAT_for_Windows
 
-以下RAT都仅针对windows目标进行后渗透(post exploitation)
+以下RAT都仅针对Windows目标进行后渗透(post exploitation)、Windows域渗透
 
 |名称|属性|攻击者环境|描述|
 |:-------------:|--|--|-----|
@@ -73,3 +73,6 @@
   * [Cobalt Strike学习笔记 - FreeBuf](https://www.freebuf.com/sectool/133369.html)
   * [深入研究cobalt strike malleable C2配置文件 - 先知社区](https://xz.aliyun.com/t/2796)
 
+* Windows域渗透
+  * [Windows domain - Wikipedia](https://en.wikipedia.org/wiki/Windows_domain)
+  * [Domain controller - Wikipedia](https://en.wikipedia.org/wiki/Domain_controller)
