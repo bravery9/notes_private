@@ -17,9 +17,7 @@ ________________________________________________/
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
     + [爬虫](#爬虫)
-    + [工具_免杀AntiVirusEvasion](#工具_免杀antivirusevasion)
-    + [CMS](#cms)
-    + [website_mail匿名邮箱](#website_mail匿名邮箱)
+    + [website_mail匿名邮箱](#website_mail匿名邮箱
     + [website_知识_安全技术](#website_知识_安全技术)
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
@@ -75,6 +73,7 @@ ________________________________________________/
 |[实践 - 信息搜集_Google Hacking](sec_info_gathering.md)|sec_info_gathering.md|
 |[RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows|
 |[RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
+|[实践 - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
 
 ---
@@ -203,18 +202,6 @@ ________________________________________________/
 |:-------------:|--|-----|
 |[httplib2](https://github.com/httplib2/httplib2)|python|社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
 |[puppeteer](https://github.com/GoogleChrome/puppeteer)|js| 38k★ [google] Headless Chrome Node API |
-
-
-#### 工具_免杀AntiVirusEvasion
-
-FUD:Fully undetectable
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[avet](https://github.com/govolution/avet)|C+shell+python|[仅针对Windows exe] AntiVirus Evasion Tool 运行于kali2|
-|[Veil-Evasion](https://github.com/Veil-Framework/Veil-Evasion)|shell+C+python2.7|[可针对Windows exe] generate metasploit payloads that bypass common anti-virus solutions|
-|[ASWCrypter](https://github.com/AbedAlqaderSwedan1/ASWCrypter)|shell+python|An Bash&Python Script For Generating Payloads that Bypasses All Antivirus so far FUD.实测无法过360ZhuDongFangyu|
-|[tokyoneon/Armor](https://github.com/tokyoneon/Armor)|shell|[仅针对MacOS]Armor is a simple Bash script designed to create encrypted macOS payloads capable of evading antivirus scanners.|
 
 #### CMS
 |名称|属性|描述|
