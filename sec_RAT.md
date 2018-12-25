@@ -1,4 +1,13 @@
-### 远控分类
+### Red-Team
+
+|名称|描述|
+|:-------------:|--|
+|[Red-Team-Infrastructure-Wiki](https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki)|红队基础设施Wiki|
+|[infosecn1nja/AD-Attack-Defense](https://github.com/infosecn1nja/AD-Attack-Defense)|Active Directory Security For Red & Blue Team|
+|红队攻防揭秘|微信公众号|
+
+
+### 远程控制 - 分类
 
 * 传统远控
   * 针对个人电脑
@@ -10,7 +19,7 @@
   * 功能更多更强，尤其是内网横向渗透方面(oneliner/网络协议/内网渗透/bypassuac...)
 
 
-### 传统远程控制
+### 远程控制 - 传统远程控制
 
 2008年在台式机上使用远程控制软件，即RAT(Remote Administration Tool)。
 （当时一些远控软件名字：灰鸽子远程控制(delphi)、极光远控、Ghost、白金远控等）
@@ -53,7 +62,7 @@
 * 被控过程：小白打开该客户端程序，即可执行文件1.exe后，解析域名xxx.3322.org后得到了黑客当前的外网ip，即可主动连接到黑客ip的某端口，该小白的电脑被控。此时主控端语音提示“有主机上线请注意！”。
 * 自动上线方式：DNS解析域名、固定IP等。（此例为DNS解析域名）
 
-### 现代远控RAT_for_Windows
+### 远程控制 - 现代远控RAT_for_Windows
 
 以下RAT都仅针对Windows目标进行后渗透(post exploitation)、Windows域渗透
 
