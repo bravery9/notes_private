@@ -67,7 +67,7 @@ ________________________________________________/
 |[实践 - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)|sec_mac_encryption_one_liner.md|
 |[实践 - github泄露扫描工具的搭建过程](sec_github_scan.md)|sec_github_scan.md|
 |[实践 - 信息搜集_Google Hacking](sec_info_gathering.md)|sec_info_gathering.md|
-|[RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows|
+|[RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
 |[RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
 |[实践 - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
 |[web - 爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
@@ -77,15 +77,6 @@ ________________________________________________/
 ---
 
 ## Security
-
-
-#### 知识_RedTeam
-
-|名称|描述|
-|:-------------:|--|
-|[Red-Team-Infrastructure-Wiki](https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki)|红队基础设施Wiki|
-|[infosecn1nja/AD-Attack-Defense](https://github.com/infosecn1nja/AD-Attack-Defense)|Active Directory Security For Red & Blue Team|
-|红队攻防揭秘|微信公众号|
 
 #### 全能框架
 
