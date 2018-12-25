@@ -5,7 +5,6 @@ ________________________________________________/
 - [MyProject我的项目](#myproject)
 - [MyNotes我的笔记](#mynotes)
 - [Security安全](#security)
-    + [知识_SDL](#知识_sdl)
     + [知识_RedTeam](#知识_redteam)
     + [全能框架](#全能框架)
     + [工具_Webshell管理](#工具_Webshell管理)
@@ -79,12 +78,6 @@ ________________________________________________/
 ---
 
 ## Security
-
-#### 知识_SDL
-
-|名称|描述|
-|:-------------:|--|
-|[sdlchina-web](https://github.com/SecurityPaper/SecurityPaper-web/tree/master/_posts)|SDL流程简介 SDL规范文档 SDL落地方案|
 
 
 #### 知识_RedTeam
