@@ -4,17 +4,16 @@
 
 |名称|描述|
 |:-------------:|-----|
+|https://www.virustotal.com/#/domain/qq.com| 综合查询 Whois/子域名/DNS解析历史(支持子域名) |
 |domain tools| |
-|[findsubdomains.com](https://findsubdomains.com/) |domain 子域名信息 Find subdomains online.|
-|[dnsdumpster.com](https://dnsdumpster.com/) |domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
-|https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
-|https://viewdns.info/iphistory/?domain=qq.com|IP History:找到该域名之前对应的历史ip|
+|https://findsubdomains.com/subdomains-of/qq.com|domain 子域名信息 Find subdomains online.|
+|https://dnsdumpster.com/|domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
+|https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.  DNS解析历史(IP History)不支持查询子域名的历史IP https://viewdns.info/iphistory/?domain=qq.com|
 |other tools| |
 |https://www.ipip.net/ip.html | 查国内ip的比较精确的物理位置|
 |[wappalyzer.com](https://www.wappalyzer.com/) |web技术栈信息 web frameworks, server software, analytics tools and many more. |
 |https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
 |http://www.ifconfig.io/ | my ip address |
-|https://who.is/whois/qq.com|whois查询 可直接使用Mac/linux下的whois命令|
 
 
 ### Google常规语法
