@@ -18,7 +18,6 @@ ________________________________________________/
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
     + [website_威胁分析引擎_防御](#website_威胁分析引擎_防御)
-    + [website_安全工具_防御](#website_安全工具_防御)
     + [website_安全工具](#website_安全工具)
 - [Development开发](#development)
     + [必备网站](#必备网站)
@@ -227,18 +226,10 @@ ________________________________________________/
 |[VirusTotal](https://www.virustotal.com/)|威胁分析引擎|分析可疑文件和URL 以检测恶意软件类型|
 [ThreatMiner.org](https://www.threatminer.org/)|威胁分析引擎|威胁情报的数据挖掘（有2008至今的APT报告pdf） Search for domains, IPs, MD5|SHA1|SHA256, email address or APTnotes(aptnotes:), ssl(ssl:), user-agent(ua:), AV family(av:), filename (filename:), URI (uri:), registry (reg:), mutex (mutex:)...|
 
-#### website_安全工具_防御
+#### website_安全工具
 |名称|描述|
 |:-------------:|-----|
 |http://spf.myisp.ch/|#防御 邮件服务器SPF配置检查|
-
-#### website_安全工具
-
-|名称|描述|
-|:-------------:|-----|
-|[findsubdomains.com](https://findsubdomains.com/) |domain信息收集 子域名查找 Find subdomains online.|
-|[dnsdumpster.com](https://dnsdumpster.com/) |domain信息收集 DNS枚举子域名 FREE domain research tool that can discover hosts related to a domain.|
-|[wappalyzer.com](https://www.wappalyzer.com/) |信息收集 web技术栈 web frameworks, server software, analytics tools and many more. |
 |[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 |[Objectif Sécurité - Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|crack在线破解 NTLM|
 
