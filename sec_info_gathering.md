@@ -1,6 +1,24 @@
 >[ Google Hacking Database - exploit-db.com](https://www.exploit-db.com/google-hacking-database)
 
-# Google Hacking
+
+### ip信息
+
+|名称|描述|
+|:-------------:|-----|
+|https://www.ipip.net/ip.html | 查国内ip 相对精确的物理位置|
+|分割线|以下为其他ip工具 非信息搜集类|
+|http://www.ifconfig.io/ | my ip address |
+|https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
+
+
+domain
+
+|名称|描述|
+|:-------------:|-----|
+|https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
+|https://viewdns.info/iphistory/?domain=qq.com|IP History:找到该域名之前对应的ip|
+
+
 
 ### Google常规语法
 
@@ -50,7 +68,7 @@ site:apple.com -site:www.apple.com -inurl:support
 
 [Google高级语法（非官方） - Google Guide](http://www.googleguide.com/or_operator.html)
 
-### 例1 找web后台
+**例1 找web后台**
 
 ```
 管理 后台 登陆 用户名 帐号 密码 验证码 系统 inurl:manage|admin|login|system|portal
