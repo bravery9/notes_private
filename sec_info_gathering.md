@@ -4,16 +4,16 @@
 
 |名称|描述|
 |:-------------:|-----|
-|https://www.ipip.net/ip.html | 查国内ip 相对精确的物理位置|
 |domain|以下为domain工具|
 |[findsubdomains.com](https://findsubdomains.com/) |domain 子域名信息 Find subdomains online.|
 |[dnsdumpster.com](https://dnsdumpster.com/) |domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
 |https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
 |https://viewdns.info/iphistory/?domain=qq.com|IP History:找到该域名之前对应的历史ip|
 |other|以下为其他工具|
+|https://www.ipip.net/ip.html | 查国内ip的比较精确的物理位置|
 |[wappalyzer.com](https://www.wappalyzer.com/) |web技术栈信息 web frameworks, server software, analytics tools and many more. |
-|http://www.ifconfig.io/ | my ip address |
 |https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
+|http://www.ifconfig.io/ | my ip address |
 
 
 ### Google常规语法
