@@ -20,11 +20,8 @@ ________________________________________________/
     + [website_威胁分析引擎_防御](#website_威胁分析引擎_防御)
     + [website_安全工具_防御](#website_安全工具_防御)
     + [website_安全工具](#website_安全工具)
-    + [website_encoder](#website_encoder)
-    + [website_ip](#website_ip)
 - [Development开发](#development)
     + [必备网站](#必备网站)
-    + [其他网站](#其他网站)
     + [Awesome & cheat sheets](#awesome_and_cheat_sheets)
     + [web应用开发-基础框架](#web应用开发-基础框架)
     + [web前端](#web前端)
@@ -245,20 +242,6 @@ ________________________________________________/
 |[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 |[Objectif Sécurité - Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|crack在线破解 NTLM|
 
-#### website_encoder
-
-|名称|描述|
-|:-------------:|-----|
-|https://codebeautify.org/|进制转换 json xml Escape/Unescape sql...|
-
-
-#### website_ip
-
-|名称|描述|
-|:-------------:|-----|
-|https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
-|https://www.ipip.net/ip.html | 查国内ip 相对精确的物理位置|
-|http://www.ifconfig.io/ | my ip address |
 
 ---
 
@@ -270,10 +253,7 @@ ________________________________________________/
 |:-------------:|--|-----|
 |[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/javascript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
 |[graphemica.com/](http://graphemica.com/)|characters|同一字符的各种编码情况下的表示 各种格式|
-
-#### 其他网站
-|名称|属性|描述|
-|:-------------:|--|-----|
+|https://codebeautify.org/|encoder|进制转换 json xml Escape/Unescape sql...|
 |https://httpbin.org/|http debug|A simple HTTP Request & Response Service.|
 
 #### Awesome_and_cheat_sheets
