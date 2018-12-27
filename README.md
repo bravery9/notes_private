@@ -60,7 +60,7 @@ ________________________________________________/
 |[实践 - 钓鱼Phishing_无文件攻击](sec_Phishing.md)|sec_Phishing.md|
 |[实践 - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)|sec_mac_encryption_one_liner.md|
 |[实践 - github泄露扫描工具的搭建过程](sec_github_scan.md)|sec_github_scan.md|
-|[实践 - 信息搜集_Google Hacking](sec_info_gathering.md)|sec_info_gathering.md|
+|[实践 - 信息搜集 Domain_IP_Google](sec_info_gathering.md)|sec_info_gathering.md|
 |[RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
 |[RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
 |[实践 - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
