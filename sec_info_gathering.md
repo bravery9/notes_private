@@ -14,6 +14,7 @@
 |[wappalyzer.com](https://www.wappalyzer.com/) |web技术栈信息 web frameworks, server software, analytics tools and many more. |
 |https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
 |http://www.ifconfig.io/ | my ip address |
+|https://who.is/whois/qq.com|whois查询 可直接使用Mac/linux下的whois命令|
 
 
 ### Google常规语法
@@ -46,6 +47,7 @@ allintext:seo blog
 
 找相似的网站
 related:bilibili.com
+related:alipay.com
 
 查找具体文件
 filetype:pdf
