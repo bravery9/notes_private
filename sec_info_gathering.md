@@ -1,23 +1,17 @@
 >[ Google Hacking Database - exploit-db.com](https://www.exploit-db.com/google-hacking-database)
 
 
-### ip信息
+### IP/Domain信息
 
 |名称|描述|
 |:-------------:|-----|
 |https://www.ipip.net/ip.html | 查国内ip 相对精确的物理位置|
-|分割线|以下为其他ip工具 非信息搜集类|
-|http://www.ifconfig.io/ | my ip address |
-|https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
-
-
-domain
-
-|名称|描述|
-|:-------------:|-----|
+|domain|以下为domain工具|
 |https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
 |https://viewdns.info/iphistory/?domain=qq.com|IP History:找到该域名之前对应的ip|
-
+|other|以下为其他工具|
+|http://www.ifconfig.io/ | my ip address |
+|https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
 
 
 ### Google常规语法
