@@ -78,6 +78,10 @@ ________________________________________________/
 |:-------------:|--|--|-----|
 |[metasploit-framework](http://github.com/rapid7/metasploit-framework)|Ruby #RAT|Linux/Mac OS/windows|必备的功能强大的渗透测试框架|
 
+web修复方案
+[OS Command Injection Defense Cheat Sheet - OWASP](https://www.owasp.org/index.php/OS_Command_Injection_Defense_Cheat_Sheet)
+
+
 #### 工具_Webshell管理
 
 |名称|属性|运行环境|描述|
