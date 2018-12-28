@@ -8,7 +8,9 @@
 |https://www.virustotal.com/#/domain/qq.com| 综合查询 Whois/子域名/DNS解析历史(支持子域名) |
 |https://findsubdomains.com/subdomains-of/qq.com|domain 子域名信息 Find subdomains online.|
 |https://dnsdumpster.com/|domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
-|https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.  DNS解析历史(IP History)不支持查询子域名的历史IP https://viewdns.info/iphistory/?domain=qq.com|
+|https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
+|https://viewdns.info/iphistory/?domain=qq.com|DNS解析历史(IP History) 该网站不支持查询子域名的历史IP|
+|http://www.domaincrawler.com/qq.com|whois/Mailserver(s)/subdomains|
 |https://censys.io/ipv4/104.93.196.220/table|根据tls证书获取域名 443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names|
 |other tools| |
 |https://www.ipip.net/ip.html | 查国内ip的比较精确的物理位置|
