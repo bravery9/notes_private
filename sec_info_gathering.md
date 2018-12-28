@@ -10,7 +10,7 @@
 |https://dnsdumpster.com/|domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
 |https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
 |https://viewdns.info/iphistory/?domain=qq.com|DNS解析历史(IP History) 该网站不支持查询子域名的历史IP|
-|http://www.domaincrawler.com/qq.com|whois/Mailserver(s)/subdomains|
+|http://www.domaincrawler.com/qq.com|综合查询 whois/Mailserver(s)/subdomains|
 |https://censys.io/ipv4/104.93.196.220/table|根据tls证书获取域名 443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names|
 |other tools| |
 |https://www.ipip.net/ip.html | 查国内ip的比较精确的物理位置|
