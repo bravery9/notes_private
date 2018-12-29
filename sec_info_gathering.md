@@ -9,6 +9,7 @@
 |https://findsubdomains.com/subdomains-of/qq.com|domain 子域名信息 Find subdomains online.|
 |https://dnsdumpster.com/|domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
 |https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
+|https://dnstable.com/ip/203.205.158.53| Reverse 解析为某ip的诸多域名|
 |https://viewdns.info/iphistory/?domain=qq.com|DNS解析历史(IP History) 该网站不支持查询子域名的历史IP|
 |http://www.domaincrawler.com/qq.com|综合查询 whois/Mailserver(s)/subdomains|
 |https://censys.io/ipv4/104.93.196.220/table|根据tls证书获取域名 443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names|
