@@ -22,14 +22,25 @@ DNS over HTTPS (DoH)允许通过https协议进行DNS解析.
 DNS over HTTPS (DoH) allows for DNS resolution via the HTTPS protocol.
 
 * 从攻击者的角度看DoH的优势
-  * 自定义内容 响应中有部分内容是攻击者可控的
-  * “白”域名 如`Google Public DNS` https://dns.google.com/resolve?name=qq.com&type=TXT
-  * 流量加密 `Over an SSL-encrypted channel`且许多已实施SSL检查的客户因各种原因（Google产品中的证书，流量负载，隐私等）将所有`Google`排除在检查范围之外。
-  
+  * 可控字符串 `响应中有部分内容是攻击者可控的`
+  * “白”域名 `Google Public DNS` https://dns.google.com/resolve?name=qq.com&type=TXT
+  * 流量加密 `Over an SSL-encrypted channel`且许多已实施SSL检查的客户将所有`Google domains`排除在检查范围之外（因为Google产品中的证书，流量负载，隐私等）
 
-httpGET https://dns.google.com/resolve?name=qq.com&type=TXT
+
+https GET https://dns.google.com/resolve?name=qq.com&type=TXT
+
+请求中的url参数值`qq.com`为我们可控的域名，设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于SPF的字符串
+举例如下：
+```
+"v=spf1 include:spf.mail.qq.com -all"
+```
+```
+"v=spf1 ip4:192.0.2.0/24 ip4:198.51.100.123 a -all"
+```
+
+我们将在响应中看到 可控字符串（其中data字段中的内容确认为我们可控的）
+
 response:
-其中data字段中的内容可控
 ```
 {
   "Status": 0,
