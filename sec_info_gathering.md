@@ -14,6 +14,7 @@
 |http://www.domaincrawler.com/qq.com|综合查询 whois/Mailserver(s)/subdomains|
 |https://censys.io/ipv4/104.93.196.220/table|根据tls证书获取域名 443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names|
 |other tools| |
+|https://dns.google.com/query?name=qq.com|Google Public DNS 查询dns解析|
 |https://www.ipip.net/ip.html | 查国内ip的比较精确的物理位置|
 [https://iplocation.com/?ip=52.186.31.196|IP Location|
 |[wappalyzer.com](https://www.wappalyzer.com/) |web技术栈信息 web frameworks, server software, analytics tools and many more. |
