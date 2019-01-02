@@ -44,6 +44,7 @@
 | Recent vulnerabilities - Vulmon||
 | Blog – SentinelOne||
 |Thomas Orlita's blog|https://blog.thomasorlita.cz/feed/|
+|Outflank Blog|https://outflank.nl/blog/feed/|
 
  效果如图
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
