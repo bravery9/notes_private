@@ -3,8 +3,8 @@ Building resilient C2(command and control) infrastructures
 
 * 持久访问方式(Persistent access)
   * 备用低频方式(long-haul beacons)stage 1
-    * 功能极简 - 主要做备用. 当所有的 日常高频方式(short-haul beacons) 都失败时 恢复对目标网络的访问
-    * 隐蔽性高 - 低频率的回调(calls back) 以尽量不让防御者发现的方式运作的方式
+    * 功能极简 - 当所有的 日常高频方式(short-haul beacons) 都失败时 可以恢复对目标网络的访问(Backup channel)
+    * 隐蔽性高 - 以尽量不让防御者发现的方式运作的方式：低频率的回调(calls back)、数据量小(如只传递payload的 delivery地址) ...
   * 日常高频方式(short-haul beacons)stage 2
     * 功能完整 - 功能强大的RAT`Cobalt Strike` `Empire` `Slingshot`...
     * 隐蔽性低 - 攻击者日常使用的、较频繁的对目标网络进行操作的方式
@@ -29,7 +29,8 @@ DNS over HTTPS (DoH) allows for DNS resolution via the HTTPS protocol.
 
 https GET https://dns.google.com/resolve?name=qq.com&type=TXT
 
-请求中的url参数值`qq.com`为我们可控的域名，设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于SPF的字符串
+请求中的url参数值`qq.com`为我们可控的域名，设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于`SPF records`的字符串(通常这里放的是 `IP addresses` `domains` `server names` 在这里放上域名很合理 看起来是无害的)
+
 举例如下：
 ```
 "v=spf1 include:spf.mail.qq.com -all"
