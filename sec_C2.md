@@ -13,29 +13,38 @@ Building resilient C2(command and control) infrastructures
   * channel独立性 - 如果一个channel被发现，不会直接暴露其他channel（避免关联发现其他channel）
   * channel隐蔽性 - 通信流量加密形式或与正常的网络流量混合（避免各种方式的调查）
 
-### stage 1 方案 - DNS over HTTPS (DoH)
+### 常规过程
+
+`stage 1` -> `stage 2(RAT)`
+
+C2基础设施的稳定性 取决于`stage 1`的方案
+
+### stage 1 的方案 - DNS over HTTPS (DoH)
 
 >通过https协议进行DNS解析 协议参考 [RFC 8484 - DNS Queries over HTTPS (DoH)](https://tools.ietf.org/html/rfc8484)
 
 >具体实施参考 https://outflank.nl/blog/2018/10/25/building-resilient-c2-infrastructues-using-dns-over-https/
 
-* stage 1 : DNS over HTTPS (DoH) - 通过https协议进行DNS解析 优势与特点
+* stage 1 : DNS over HTTPS (DoH) 优势与特点
   * 可控字符串 `响应中有部分内容是攻击者可控的`
   * “白”域名 `Google Public DNS` https://dns.google.com/resolve?name=qq.com&type=TXT
   * 流量加密 `Over an SSL-encrypted channel`且许多已实施SSL检查的客户将所有`Google domains`排除在检查范围之外（因为Google产品中的证书，流量负载，隐私等）
-* stage 2 : RAT
 
 
-https GET https://dns.google.com/resolve?name=qq.com&type=TXT
+#### 原理
 
-请求中的url参数值`qq.com`为我们可控的域名
-
-* 攻击者设置`stager`
-  * 通过设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于`SPF records`的字符串
-  * (通常这里放的是 `IP addresses` `domains` `server names` 在这里放上域名很合理 看起来是无害的)
+* 攻击者设置`stager 1`
+  * 通过设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于`SPF records`的字符串(通常这里放的是 `IP addresses` `domains` `server names` 在这里放上域名很合理 看起来是无害的)
   * 如`"v=spf1 include:spf.mail.qq.com -all"`  `"v=spf1 ip4:192.0.2.0/24 ip4:198.51.100.123 a -all"`
 
-我们将在响应中看到 可控字符串（其中data字段中的内容确认为我们可控的）
+
+**发起请求**
+
+https GET `https://dns.google.com/resolve?name=qq.com&type=TXT`
+
+（请求中的url参数值`qq.com`为我们可控的域名evildomain）
+
+**得到响应**
 
 response:
 ```
@@ -63,7 +72,9 @@ response:
 }
 ```
 
-所以`DoH via Google`是一个触发payload运行的理想channel
+在响应中看到 可控字符串（其中data字段中的内容确认为我们可控的）
+
+容易发现 `stage 1`的方案 `DoH via Google`是一个触发payload运行的理想channel
 
 * 目标主机情况
   * `SPFstager`定期查询：提取DNS`TXT record`中`SPF records`信息
