@@ -13,20 +13,17 @@ Building resilient C2(command and control) infrastructures
   * channel独立性 - 如果一个channel被发现，不会直接暴露其他channel（避免关联发现其他channel）
   * channel隐蔽性 - 通信流量加密形式或与正常的网络流量混合（避免各种方式的调查）
 
-### 具体方案1 - DNS over HTTPS (DoH)
+### stage 1 - 方案 - DNS over HTTPS (DoH)
 
-stage 1 : DNS over HTTPS (DoH)
+>协议参考 [RFC 8484 - DNS Queries over HTTPS (DoH)](https://tools.ietf.org/html/rfc8484)
 
-[RFC 8484 - DNS Queries over HTTPS (DoH)](https://tools.ietf.org/html/rfc8484)
+>方案实施参考 https://outflank.nl/blog/2018/10/25/building-resilient-c2-infrastructues-using-dns-over-https/
 
-DNS over HTTPS (DoH)允许通过https协议进行DNS解析.
-
-DNS over HTTPS (DoH) allows for DNS resolution via the HTTPS protocol.
-
-* 从攻击者的角度看DoH的优势
+* stage 1 : DNS over HTTPS (DoH) - 通过https协议进行DNS解析 优势与特点
   * 可控字符串 `响应中有部分内容是攻击者可控的`
   * “白”域名 `Google Public DNS` https://dns.google.com/resolve?name=qq.com&type=TXT
   * 流量加密 `Over an SSL-encrypted channel`且许多已实施SSL检查的客户将所有`Google domains`排除在检查范围之外（因为Google产品中的证书，流量负载，隐私等）
+* stage 2 : RAT
 
 
 https GET https://dns.google.com/resolve?name=qq.com&type=TXT
