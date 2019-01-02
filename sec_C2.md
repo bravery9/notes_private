@@ -31,16 +31,17 @@ C2基础设施的稳定性 取决于`stage 1`的方案
   * 流量加密 `Over an SSL-encrypted channel`且许多已实施SSL检查的客户将所有`Google domains`排除在检查范围之外（因为Google产品中的证书，流量负载，隐私等）
 
 
-#### 原理
+**原理**
 
 * 攻击者设置`stager 1`
-  * 通过设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于`SPF records`的字符串(通常这里放的是 `IP addresses` `domains` `server names` 在这里放上域名很合理 看起来是无害的)
+  * 通过设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的`SPF records`中的字符串(通常这里放的是 `IP addresses` `domains` `server names`) 在此处放上域名是很合理的 符合隐蔽性高的要求
   * 如`"v=spf1 include:spf.mail.qq.com -all"`  `"v=spf1 ip4:192.0.2.0/24 ip4:198.51.100.123 a -all"`
-
 
 **发起请求**
 
-https GET `https://dns.google.com/resolve?name=qq.com&type=TXT`
+`DoH via Google`https GET
+
+`https://dns.google.com/resolve?name=qq.com&type=TXT`
 
 （请求中的url参数值`qq.com`为我们可控的域名evildomain）
 
@@ -72,12 +73,11 @@ response:
 }
 ```
 
-在响应中看到 可控字符串（其中data字段中的内容确认为我们可控的）
+在响应中看到 可控字符串（其中data字段中的字符串内容为我们可控的）
 
-容易发现 `stage 1`的方案 `DoH via Google`是一个触发payload运行的理想channel
 
-* 目标主机情况
-  * `SPFstager`定期查询：提取DNS`TXT record`中`SPF records`信息
+* 目标主机的`stage 1`执行顺序
+  * `SPFstager`定期查询内容：提取DNS`TXT record`中`SPF records`的信息
   * `SPFtrigger`触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain
     * 提取隐藏信息-方案a`http-robots.txt`
       * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
