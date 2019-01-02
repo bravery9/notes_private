@@ -13,11 +13,11 @@ Building resilient C2(command and control) infrastructures
   * channel独立性 - 如果一个channel被发现，不会直接暴露其他channel（避免关联发现其他channel）
   * channel隐蔽性 - 通信流量加密形式或与正常的网络流量混合（避免各种方式的调查）
 
-### stage 1 - 方案 - DNS over HTTPS (DoH)
+### stage 1 方案 - DNS over HTTPS (DoH)
 
->协议参考 [RFC 8484 - DNS Queries over HTTPS (DoH)](https://tools.ietf.org/html/rfc8484)
+>通过https协议进行DNS解析 协议参考 [RFC 8484 - DNS Queries over HTTPS (DoH)](https://tools.ietf.org/html/rfc8484)
 
->方案实施参考 https://outflank.nl/blog/2018/10/25/building-resilient-c2-infrastructues-using-dns-over-https/
+>具体实施参考 https://outflank.nl/blog/2018/10/25/building-resilient-c2-infrastructues-using-dns-over-https/
 
 * stage 1 : DNS over HTTPS (DoH) - 通过https协议进行DNS解析 优势与特点
   * 可控字符串 `响应中有部分内容是攻击者可控的`
@@ -28,15 +28,12 @@ Building resilient C2(command and control) infrastructures
 
 https GET https://dns.google.com/resolve?name=qq.com&type=TXT
 
-请求中的url参数值`qq.com`为我们可控的域名，设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于`SPF records`的字符串(通常这里放的是 `IP addresses` `domains` `server names` 在这里放上域名很合理 看起来是无害的)
+请求中的url参数值`qq.com`为我们可控的域名
 
-举例如下：
-```
-"v=spf1 include:spf.mail.qq.com -all"
-```
-```
-"v=spf1 ip4:192.0.2.0/24 ip4:198.51.100.123 a -all"
-```
+* 攻击者设置`stager`
+  * 通过设置该域名 的[TXT record](https://en.wikipedia.org/wiki/TXT_record)中的 用于`SPF records`的字符串
+  * (通常这里放的是 `IP addresses` `domains` `server names` 在这里放上域名很合理 看起来是无害的)
+  * 如`"v=spf1 include:spf.mail.qq.com -all"`  `"v=spf1 ip4:192.0.2.0/24 ip4:198.51.100.123 a -all"`
 
 我们将在响应中看到 可控字符串（其中data字段中的内容确认为我们可控的）
 
@@ -68,13 +65,13 @@ response:
 
 所以`DoH via Google`是一个触发payload运行的理想channel
 
-* 目标主机中的`SPFtrigger`
-  * 定期查询：提取DNS`TXT record`中`SPF records`信息
-  * 触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain(stage 2)
-  * 提取隐藏信息-方案a`http-robots.txt`
-    * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
-    * https://github.com/outflanknl/DoH_c2_Trigger/blob/master/DoHtrigger.ps1
-  * 提取隐藏信息-方案b`http-xxx.png`
-    * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/date.png`提取`payload` 进行decode得到raw payload
-    * https://github.com/peewpw/Invoke-PSImage
+* 目标主机情况
+  * `SPFstager`定期查询：提取DNS`TXT record`中`SPF records`信息
+  * `SPFtrigger`触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain(stage 2)
+    * 提取隐藏信息-方案a`http-robots.txt`
+      * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
+      * https://github.com/outflanknl/DoH_c2_Trigger/blob/master/DoHtrigger.ps1
+    * 提取隐藏信息-方案b`http-xxx.png`
+      * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/date.png`提取`payload` 进行decode得到raw payload
+      * https://github.com/peewpw/Invoke-PSImage
   * 触发执行 - `payload triggering`
