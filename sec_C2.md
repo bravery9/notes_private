@@ -78,7 +78,9 @@ response:
 
 * 目标主机的`stage 1`执行顺序
   * `SPFstager`定期查询内容：提取DNS`TXT record`中`SPF records`的信息
-  * `SPFtrigger`触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain
+  * `SPFtrigger`
+    * 触发条件
+      * 当发现了`SPF records`中的新域名时 得到了域名evildomain
     * 提取隐藏信息-方案a`http-robots.txt`
       * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
       * https://github.com/outflanknl/DoH_c2_Trigger/blob/master/DoHtrigger.ps1
