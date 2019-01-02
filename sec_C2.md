@@ -73,9 +73,11 @@ response:
 
 * 目标主机中的`SPFtrigger`
   * 定期查询：提取DNS`TXT record`中`SPF records`信息
-  * 触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain(stage 2) 这个域名存放了payload
-  * 提取方案-a`http-robots.txt`：`SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
+  * 触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain(stage 2)
+  * 提取隐藏信息-方案a`http-robots.txt`
+    * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
     * https://github.com/outflanknl/DoH_c2_Trigger/blob/master/DoHtrigger.ps1
-  * 提取方案-b`http-xxx.png`：`SPFtrigger`程序根据evildomain域名 访问`http://evildomain/date.png`提取`payload` 进行decode得到raw payload
-    * https：//github.com/peewpw/Invoke-PSImage
+  * 提取隐藏信息-方案b`http-xxx.png`
+    * `SPFtrigger`程序根据evildomain域名 访问`http://evildomain/date.png`提取`payload` 进行decode得到raw payload
+    * https://github.com/peewpw/Invoke-PSImage
   * 触发执行 - `payload triggering`
