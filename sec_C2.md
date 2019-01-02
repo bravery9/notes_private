@@ -11,9 +11,11 @@ Building resilient C2(command and control) infrastructures
 * 健壮的C2基础设施 特征
   * channel多样性 - 具有多个channel的持久访问 稳定性强（避免丢失目标网络的权限）
   * channel独立性 - 如果一个channel被发现，不会直接暴露其他channel（避免关联发现其他channel）
-  * channel隐蔽性 - 加密的通信流量（避免各种方式的调查）
+  * channel隐蔽性 - 通信流量加密形式或与正常的网络流量混合（避免各种方式的调查）
 
 ### 具体方案1 - DNS over HTTPS (DoH)
+
+stage 1 : DNS over HTTPS (DoH)
 
 [RFC 8484 - DNS Queries over HTTPS (DoH)](https://tools.ietf.org/html/rfc8484)
 
@@ -68,3 +70,12 @@ response:
 ```
 
 所以`DoH via Google`是一个触发payload运行的理想channel
+
+* 目标主机中的`SPFtrigger`
+  * 定期查询：提取DNS`TXT record`中`SPF records`信息
+  * 触发条件：当发现了`SPF records`中的新域名时 得到了域名evildomain(stage 2) 这个域名存放了payload
+  * 提取方案-a`http-robots.txt`：`SPFtrigger`程序根据evildomain域名 访问`http://evildomain/robot.txt`提取`payload` 进行decode得到raw payload
+    * https://github.com/outflanknl/DoH_c2_Trigger/blob/master/DoHtrigger.ps1
+  * 提取方案-b`http-xxx.png`：`SPFtrigger`程序根据evildomain域名 访问`http://evildomain/date.png`提取`payload` 进行decode得到raw payload
+    * https：//github.com/peewpw/Invoke-PSImage
+  * 触发执行 - `payload triggering`
