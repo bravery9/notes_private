@@ -22,6 +22,7 @@
 |https://api.hackertarget.com/dnslookup/?q=vqq.com|实测确认是即时的 DNS lookup (A MX ..)|
 |https://whoer.net/ | ip匿名性自测 可获取内网ip(通过webRTC等技术) |
 |http://www.ifconfig.io/ | my ip address |
+|https://osintframework.com/|OSINT Framework( 自动化工具[Photon: Incredibly fast crawler designed for OSINT.](https://github.com/s0md3v/Photon))|
 
 ### Google常规语法
 
