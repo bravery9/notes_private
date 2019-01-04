@@ -27,12 +27,11 @@
 | 腾讯安全响应中心||
 | Hacking Articles||
 | Tencent XuanwuLab Security Daily News Push||
-| Seebug 最新漏洞||
-| paper - Last paper||
-| 知道创宇||
 | jetlib.sec||
 | 360 Technology Blog||
-| 知道创宇||
+| 知道创宇|https://www.seebug.org/ |
+| 知道创宇 Papers - Last paper |https://paper.seebug.org/|
+| Seebug 最新漏洞||
 | FreeBuf互联网安全新媒体平台||
 | Seebug 近期最热漏洞||
 | 独自等待-信息安全博客||
@@ -46,6 +45,15 @@
 |Thomas Orlita's blog|https://blog.thomasorlita.cz/feed/|
 |[RedTeam] Outflank Blog|https://outflank.nl/blog/feed/|
 |[RedTeam] Threat Express|http://threatexpress.com/feed/|
+
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
+|-|知识库|OWASP web测试指南V4 [owasp-testing-guide-v4(中文)](https://kennel209.gitbooks.io/owasp-testing-guide-v4/content/zh/index.html)|
+|-|知识库|#反序列化安全# [Deserialization Cheat Sheet](https://www.owasp.org/index.php/Deserialization_Cheat_Sheet)|
+|[每日安全 - 腾讯安全玄武实验室出品](https://sec.today/)|/|腾讯安全玄武实验室出品|
+
 
  效果如图
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
