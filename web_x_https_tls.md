@@ -2,7 +2,7 @@
 
 >[TLS handshake概述 - IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/SSFKSJ_7.1.0/com.ibm.mq.doc/sy10660_.htm)
 
->[Transport Layer Security - Wikipedia](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+>[传输层安全 - Transport Layer Security - Wikipedia](https://en.wikipedia.org/wiki/Transport_Layer_Security)
 
 
 ### 加密
