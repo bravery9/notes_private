@@ -49,7 +49,8 @@ ________________________________________________/
 |[net - 流量分析_wireshark筛选_附恶意样本](z_net_analysis.md)|z_net_analysis.md|
 |[web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)|web_code_audit_PHP.md|
 |[web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)|web_code_audit_Python.md|
-|[web - vul - SQL注入漏洞_原理_类型_修复方案](web_vul_sqli.md)|web_vul_sqli.md|
+|[web - vul - SQLi_原理_类型_利用方式_修复方案](web_vul_sqli.md)|web_vul_sqli.md|
+|[web - vul - SSRF_原理_利用方式_修复方案](web_vul_SSRF.md)|web_vul_SSRF.md|
 |[web - 中间件常见问题修复方案 SSL slowhttpdos Tomcat](web_vul_mid_SSL_slowhttpdos.md)|web_vul_mid_SSL_slowhttpdos.md|
 |[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|z_web_webgoat.md|
 |[host - 主机扫描思路_各种服务的攻击与防御](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
