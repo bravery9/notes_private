@@ -61,9 +61,10 @@ ________________________________________________/
 |[实践 - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)|sec_mac_encryption_one_liner.md|
 |[实践 - github泄露扫描工具的搭建过程](sec_github_scan.md)|sec_github_scan.md|
 |[实践 - 信息搜集 Domain_IP_Google](sec_info_gathering.md)|sec_info_gathering.md|
-|[RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
-|[RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
-|[实践 - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
+|[red - 构建高适应性的C2基础设施](sec_C2.md)|sec_C2.md|
+|[red - RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
+|[red - RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
+|[red - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
 |[web - 爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac.md)|z_command_Mac.md|
