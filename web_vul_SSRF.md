@@ -23,7 +23,7 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
   * 资源存在形式:图片.png、图标.ico、网页.html、文本.txt
 
 
-### 漏洞影响/利用方式
+### 漏洞影响
 
 * 内网
   * 探测内网(IP/port/service...)
@@ -38,6 +38,13 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
 
+### 利用方式
+
+绕过方式 
+  * 域名解析`http://10.100.21.7.xip.io`  `http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * 短网址跳转 `http://t.im/14tjq`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * 以下工具
+
 SSRF测试工具/利用工具
 
 |名称|属性|描述|
@@ -47,3 +54,6 @@ SSRF测试工具/利用工具
 |[samhaxr/XXRF-Shots](https://github.com/samhaxr/XXRF-Shots)|node.js|生成payload 发送众多请求 并使用phantomJS实现网页截图|
 |[swisskyrepo/SSRFmap](https://github.com/swisskyrepo/SSRFmap)|python3|Automatic SSRF fuzzer and exploitation(RCE...) tool|
 |[tarunkant/Gopherus](https://github.com/tarunkant/Gopherus)|python2|生成gopher link 以利用SSRF实现RCE. This tool generates gopher link for exploiting SSRF and gaining RCE in various servers |
+
+
+### 修复方式
