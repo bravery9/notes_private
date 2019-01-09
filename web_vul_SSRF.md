@@ -32,8 +32,12 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
   * 攻击内网其他主机
     * web漏洞(SQLi,XSS...)
   * 读取文件
-    * 类型1 Ffmpeg存在的文件读取漏洞 [新浪微盘存在Ffmpeg文件读取漏洞-SSRF](https://www.secpulse.com/archives/49510.html)
-    * 类型2 支持了file协议读取文件 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
+    * 类型1 CVE-2017-9993 Ffmpeg文件读取漏洞
+      * 实例 [新浪微盘存在Ffmpeg文件读取漏洞-SSRF](https://www.secpulse.com/archives/49510.html)
+      * 解析 [FFmpeg任意文件读取漏洞分析 - 知乎](https://zhuanlan.zhihu.com/p/28255225)
+    * 类型2 支持了file协议读取文件
+      * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
+      * 解析
 * 外网
   * 对外发起请求(攻击其他网站等恶意行为)
 
@@ -41,10 +45,13 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
 
 
 ### 利用方式
-
+  
 绕过方式 
-  * 域名解析`http://10.100.21.7.xip.io`  `http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
-  * 短网址跳转 `http://t.im/14tjq`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * 使用@绕过不严谨的过滤 `a.com@10.10.10.10` `a.com:b@10.10.10.10`
+  * IP地址变形 - 进制转换 `127.0.0.1 => 2130706433`
+  * 域名解析 `10.100.21.7 => http://10.100.21.7.xip.io 或 http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * 短网址跳转到内网地址 `http://10.10.116.11 => http://t.cn/RwbLKDx`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * JS跳转
   * 以下工具
 
 SSRF测试工具/利用工具
@@ -59,3 +66,6 @@ SSRF测试工具/利用工具
 
 
 ### 修复方式
+
+* 禁用协议 - 仅允许必要的协议 如http和https
+* 严格限制参数值(限制)
