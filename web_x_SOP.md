@@ -1,14 +1,23 @@
 ### 简介
 
 [Same-origin policy | Mozilla](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+
 [浏览器的同源策略 | Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
 
-浏览器的同源策略规定：非同源的 客户端脚本(主要指JavaScript) 在没明确授权的情况下，不能读写对方的资源。
+浏览器的同源策略规定：非同源的 客户端脚本(主要指JavaScript) 在没明确授权的情况下，不能读写非同源的资源。
+
+* 资源包括(客户端安全威胁都是围绕这些资源进行)
+  * HTTP消息头
+  * 整个DOM树(Document Object Model)
+  * 浏览器存储 如Cookies、Flash Cookies、localStorage...
+
 ### 同源策略的意义
 
 同源策略限制了非同源的客户端脚本的行为。
 
-如果浏览器没有同源策略:当你登录Gmail网站同时也打开这另一个网站E，网站E的JavaScript可以跨域读取你的Gmail网站的cookie，即获取到了Gmail的登录权限。
+* 如果浏览器没有同源策略:
+  * 例1 当你登录Gmail网站同时也打开这另一个网站E，网站E的JavaScript可以跨域读取你的Gmail网站的cookie，即获取到了Gmail的登录权限。
+  * 例2 当你访问了Evil.com 它使用JavaScript拦截其他站点的表单从而捕获数据,发出request到receive.com 从而盗取信息)
 
 ### 判断是否同源
 
