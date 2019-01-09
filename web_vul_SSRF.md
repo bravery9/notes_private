@@ -4,18 +4,36 @@ SSRF (Server Side Request Forgery)
 
 ### 原理
 
-Server1:存在SSRF漏洞的主机
-```
-Attacker --req1-payload-->  Server1(SSRF) ---req2-->  Server2
-     /\                      |    /\                   \/ 
-     |                       \/    |                    | 
-     '----<----resp1----<----'     '---<---resp2---<----' 
-```
-攻击者通过控制Requset1中的参数值，发送Requset1到存在SSRF漏洞的Server1，以Server1为"跳板"发出Requset2,通常根据判断Response2的情况(内容、响应时间等),来实现探测内网主机(IP/port/service...)
 
+```
+Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
+     /\                      |          /\                    \/ 
+     |                       \/         |                     | 
+     '----<----resp1----<----'          '---<---resp2----<----' 
+```
+
+攻击者通过控制Requset1中的参数值，发送Requset1到存在SSRF漏洞的Server1，以Server1为"跳板"发出Requset2,通常根据判断Response2的情况(内容、响应时间等),来实现探测内网主机(IP/port/service...)等利用方式
+
+
+造成SSRF的前提:服务端提供了与其他服务器交互的功能
+造成SSRF的原因:交互时 没有对目标地址做过滤与限制
+
+造成SSRF的常见场景:
+* 从指定URL地址获取资源(下载、分享、url跳转)
+  * 资源存在形式:图片.png、图标.ico、网页.html、文本.txt
 
 
 ### 漏洞影响/利用方式
+
+* 内网
+  * 探测内网(IP/port/service...)
+    * ip 探测内网存活主机
+    * service 如数据库类的服务
+  * 读取文件
+    * 类型1 Ffmpeg存在的文件读取漏洞 [新浪某站任意文件读取/SSRF](https://www.secpulse.com/archives/49510.html)
+    * 类型2 支持了file协议读取文件 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
+* 外网
+  * 对外发起请求(攻击其他网站等恶意行为)
 
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
