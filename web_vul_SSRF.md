@@ -32,7 +32,7 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
   * 攻击内网其他主机
     * web漏洞(SQLi,XSS...)
   * 读取文件
-    * 类型1 Ffmpeg存在的文件读取漏洞 [新浪某站任意文件读取/SSRF](https://www.secpulse.com/archives/49510.html)
+    * 类型1 Ffmpeg存在的文件读取漏洞 [新浪微盘存在Ffmpeg文件读取漏洞-SSRF](https://www.secpulse.com/archives/49510.html)
     * 类型2 支持了file协议读取文件 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
 * 外网
   * 对外发起请求(攻击其他网站等恶意行为)
