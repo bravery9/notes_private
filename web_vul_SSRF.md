@@ -2,11 +2,25 @@
 
 SSRF (Server Side Request Forgery) 
 
-### 文章
+### 原理
+
+Server1:存在SSRF漏洞的主机
+```
+Attacker --req1-payload-->  Server1(SSRF) ---req2-->  Server2
+     /\                      |    /\                   \/ 
+     |                       \/    |                    | 
+     '----<----resp1----<----'     '---<---resp2---<----' 
+```
+攻击者通过控制Requset1中的参数值，发送Requset1到存在SSRF漏洞的Server1，以Server1为"跳板"发出Requset2,通常根据判断Response2的情况(内容、响应时间等),来实现探测内网主机(IP/port/service...)
+
+
+
+### 漏洞影响/利用方式
 
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
-### SSRF工具
+
+SSRF测试工具/利用工具
 
 |名称|属性|描述|
 |:-------------:|--|-----|
