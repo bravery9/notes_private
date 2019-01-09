@@ -23,6 +23,14 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
   * 资源存在形式:图片.png、图标.ico、网页.html、文本.txt
 
 
+
+discuz x2.5/x3.0/x3.1/x3.2 SSRF漏洞
+
+　　
+
+　　
+  
+  
 ### 漏洞影响
 
 * 内网
@@ -32,12 +40,13 @@ Attacker --req1-payload-->  Server1(存在SSRF漏洞) ---req2--> Server2
   * 攻击内网其他主机
     * web漏洞(SQLi,XSS...)
   * 读取文件
-    * 类型1 CVE-2017-9993 Ffmpeg文件读取漏洞
+    * 类型1 Ffmpeg文件读取漏洞 CVE-2016-1897  CVE-2016-1898
       * 实例 [新浪微盘存在Ffmpeg文件读取漏洞-SSRF](https://www.secpulse.com/archives/49510.html)
       * 解析 [FFmpeg任意文件读取漏洞分析 - 知乎](https://zhuanlan.zhihu.com/p/28255225)
     * 类型2 支持了file协议读取文件
       * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
       * 解析
+    * 类型3 ImageMagick CVE-2016-3718
 * 外网
   * 对外发起请求(攻击其他网站等恶意行为)
 
