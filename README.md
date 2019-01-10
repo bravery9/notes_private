@@ -5,7 +5,6 @@ ________________________________________________/
 - [MyProject我的项目](#myproject)
 - [MyNotes我的笔记](#mynotes)
 - [Security安全](#security)
-    + [工具_Webshell管理](#工具_Webshell管理)
     + [工具_CTF](#工具_ctf)
     + [工具_web](#工具_web)
     + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
@@ -66,6 +65,7 @@ ________________________________________________/
 |[red - 构建高适应性的C2基础设施](sec_C2.md)|sec_C2.md|
 |[red - RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
 |[red - RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
+|[red - webshell管理](sec_webshell.md)|sec_webshell.md|
 |[red - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
 |[web - 爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
@@ -85,13 +85,6 @@ ________________________________________________/
 web修复方案
 [OS Command Injection Defense Cheat Sheet - OWASP](https://www.owasp.org/index.php/OS_Command_Injection_Defense_Cheat_Sheet)
 
-
-#### 工具_Webshell管理
-
-|名称|属性|运行环境|描述|
-|:-------------:|--|--|-----|
-|[epinna/weevely3](https://github.com/epinna/weevely3)|python|php|文件管理/HTTP(S) proxy/Bruteforce SQL accounts/Port scan|
-|[rebeyond/Behinder](https://github.com/rebeyond/Behinder)|Java|php/Java/.NET/“冰蝎”动态二进制 webshell管理端|
 
 #### 工具_CTF
 
