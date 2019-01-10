@@ -7,7 +7,9 @@
   * HTTP消息头
   * 整个DOM树(Document Object Model)
   * 浏览器存储 如Cookies、Flash Cookies、localStorage...
-
+* “例外”
+  * `<link>`标签 `<img>`标签 `<script>`标签 中的`href`属性/`src`属性 可"获取展示"异域的CSS/JavaScript/图片(其实并不能真正读取资源的内容)
+  
 ### 同源策略的意义
 
 同源策略限制了非同源的客户端脚本的行为。
@@ -26,12 +28,14 @@ Two URLs have the same origin if the protocol, port (if specified), and host.
   * port 端口完全相同 `:80`与`:443`与`:8080`互为非同源
 
 
-### 如何允许跨源访问
+### 如何允许跨源访问-方案
 
 * 根本解决方法(W3C标准)
   * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)跨域资源共享 - 允许任何http method的跨源AJAX请求. [CORS详情详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 * 其他解决办法
-  * JSONP - 只支持GET method
+  * JSONP - 只支持GET method (padding指的就是callback函数)
+  * Web Sockets
+  * HTML5 API `postMessage`
 
 ### CORS实例
 
@@ -80,3 +84,33 @@ Content-Type: application/xml
 如果`bar.other`响应中是`Access-Control-Allow-Origin: http://foo.example` 代表它的资源只可以被来自`http://foo.example`发出的requset访问。
 
 只有 `http://bar.other` 返回的HTTP响应头`Access-Control-Allow-Origin` 明确指定允许 `http://foo.example` 操作 `http://bar.other` 的资源时，`http://foo.example` 网站的客户端脚本JavaScript 才有权(通过AJAX技术)对 `http://bar.other` 上的资源进行读写操作。
+
+### 实例 - JSON with padding
+
+jsonp可以“跨域”的本质: <script> 标签可以请求不同域名下的资源.
+ 
+首先给body动态添加一个 <script> 内容如下:
+ 
+```
+var script = document.createElement('script');
+script.setAttribute("type","text/javascript");
+script.src = 'http://example.com/ip?callback=foo';
+document.body.appendChild(script);
+
+function foo(data) {
+console.log('Your public IP address is: ' + data.ip);
+};
+```
+
+上面的script会向 `http://example.com/` 服务器发送请求，其中url有个callback参数，参数值为三个字母组成的字符串foo
+非同域服务器后端可获取到字符串foo（foo其实是方法名 foo此时叫做回调方法，因为非同域服务器收到请求后，将响应数据`resp`返回给JavaScript, JavaScript将`resp`作为实参 放入foo方法的参数位置)  即服务器后端返回给前端JavaScript的字符串如下:
+
+（此时得到了  `http://example.com/ip?callback=foo` 返回的字符串 "包裹"成的如下结构的字符串）
+
+```
+foo({
+   "ip": "8.8.8.8"
+});
+```
+
+之后前端通过JavaScript调用回调方法(foo方法) 拿到了来自“非同域”的json数据`{"ip": "8.8.8.8"}`
