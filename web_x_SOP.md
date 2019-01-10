@@ -88,16 +88,18 @@ Content-Type: application/xml
 ### 实例 - JSON with Padding
  
 理解:
-json才是目的(json返回的是一串数据)，jsonp只是手段(jsonp返回的是脚本代码 随后调用了回调函数)
+json才是目的(json返回的是一串数据)，jsonp只是手段(jsonp返回的脚本代码 符合js语法 随后调用了回调函数)
 
-jsonp可以“跨域”的本质: <script> 标签可以请求不同域名下的资源.
+JSONP可以“跨域”的本质: <script> 标签可以请求不同域名下的资源.
  
 首先给body动态添加一个 <script>标签 内容如下:
 
 ```
 var script = document.createElement('script');
 script.setAttribute("type","text/javascript");
-script.src = 'http://example.com/ip?callback=foo';//告诉外部服务器 请返回指定格式的JS脚本  即foo({"ip": "8.8.8.8"}); 这是JSONP的根本原理要求的
+script.src = 'http://example.com/ip?callback=foo';//告诉外部服务器 请返回指定格式的JS脚本  即foo({"ip": "8.8.8.8"}); 
+//为什么不直接写成json数据`{"ip": "8.8.8.8"}`呢
+//这是JSONP的根本原理要求的:因为JSONP在js文件中 需要符合js语法.
 document.body.appendChild(script);
 
 //foo 为一个本地方法 也是回调函数
