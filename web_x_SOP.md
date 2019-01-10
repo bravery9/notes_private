@@ -35,9 +35,9 @@ Two URLs have the same origin if the protocol, port (if specified), and host.
 * 其他解决办法
   * JSONP - 只支持GET method (padding指的就是callback函数)
   * Web Sockets
-  * HTML5 API `postMessage`
+  * HTML5 API `window.postMessage`方法 允许跨窗口通信 不论这两个窗口是否同源
 
-### CORS实例
+### 实例 - CORS
 
 Request:
 
@@ -85,18 +85,22 @@ Content-Type: application/xml
 
 只有 `http://bar.other` 返回的HTTP响应头`Access-Control-Allow-Origin` 明确指定允许 `http://foo.example` 操作 `http://bar.other` 的资源时，`http://foo.example` 网站的客户端脚本JavaScript 才有权(通过AJAX技术)对 `http://bar.other` 上的资源进行读写操作。
 
-### 实例 - JSON with padding
+### 实例 - JSON with Padding
+ 
+理解:
+json才是目的(json返回的是一串数据)，jsonp只是手段(jsonp返回的是脚本代码 随后调用了回调函数)
 
 jsonp可以“跨域”的本质: <script> 标签可以请求不同域名下的资源.
  
-首先给body动态添加一个 <script> 内容如下:
- 
+首先给body动态添加一个 <script>标签 内容如下:
+
 ```
 var script = document.createElement('script');
 script.setAttribute("type","text/javascript");
-script.src = 'http://example.com/ip?callback=foo';
+script.src = 'http://example.com/ip?callback=foo';//告诉外部服务器 请返回指定格式的JS脚本  即foo({"ip": "8.8.8.8"}); 这是JSONP的根本原理要求的
 document.body.appendChild(script);
 
+//foo 为一个本地方法 也是回调函数
 function foo(data) {
 console.log('Your public IP address is: ' + data.ip);
 };
@@ -113,4 +117,18 @@ foo({
 });
 ```
 
-之后前端通过JavaScript调用回调方法(foo方法) 拿到了来自“非同域”的json数据`{"ip": "8.8.8.8"}`
+之后前端通过JavaScript执行回调方法(foo方法) 就拿到了来自“非同域”的json数据`{"ip": "8.8.8.8"}`
+
+
+### 实例 - jQuery的JSON with Padding
+
+```
+$.ajax({
+    url:"http://www.B.com/open.php?callback=?",
+    dataType:"jsonp",
+    success:function(data){
+        console.log(data);
+        //ToDo..
+    }
+});    
+```
