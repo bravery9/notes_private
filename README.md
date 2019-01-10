@@ -5,11 +5,6 @@ ________________________________________________/
 - [MyProject我的项目](#myproject)
 - [MyNotes我的笔记](#mynotes)
 - [Security安全](#security)
-    + [工具_CTF](#工具_ctf)
-    + [工具_web](#工具_web)
-    + [工具_反编译_Decompiler](#工具_反编译_Decompiler)
-    + [工具_二进制_debug_pwn](#工具_二进制_debug_pwn)
-    + [工具_二进制_fuzz](#工具_二进制_fuzz)
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
     + [website_mail匿名邮箱](#website_mail匿名邮箱)
@@ -69,72 +64,13 @@ ________________________________________________/
 |[red - AntiVirus Evasion](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
 |[web - 爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
-|[基础 - 浏览器的同源策略(same-origin policy) 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
+|[基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac.md)|z_command_Mac.md|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
 
 ---
 
-## Security
-
-
-|名称|属性|运行环境|描述|
-|:-------------:|--|--|-----|
-|[metasploit-framework](http://github.com/rapid7/metasploit-framework)|Ruby #RAT|Linux/Mac OS/windows|必备的功能强大的渗透测试框架|
-
-web修复方案
-[OS Command Injection Defense Cheat Sheet - OWASP](https://www.owasp.org/index.php/OS_Command_Injection_Defense_Cheat_Sheet)
-
-
-#### 工具_CTF
-
-|名称|描述|
-|:-------------:|--|
-|https://github.com/zardus/ctf-tools|3k★ CTF工具集 包含类型:binary forensics crypto web stego misc|
-
-
-知识_CTF
-
-|名称|描述|
-|:-------------:|--|
-|https://ctf-wiki.github.io/ctf-wiki/|#CTF知识 wiki知识库|
-|http://www.garykessler.net/library/file_sigs.html|#CTF知识 各种文件头部hex值 真实文件格式|
-
-#### 工具_web
-
-|名称|描述|
-|:-------------:|--|
-|[sqlmap](https://github.com/sqlmapproject/sqlmap)| Automatic SQL injection and database takeover tool|
-|[upload-fuzz-dic-builder](https://github.com/c0ny1/upload-fuzz-dic-builder)| #fuzz 生成字典 尝试突破文件上传限制|
-
-#### 工具_反编译_Decompiler
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[Luyten](https://github.com/deathmarine/Luyten)|Java|2k★ Java Decompiler [Gui] |
-
-
-#### 工具_二进制_debug_pwn
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[gdbgui](https://github.com/cs01/gdbgui)|/|6k★ 基于浏览器可视化gdb调试 [下载安装ubuntu14.04+](https://gdbgui.com/downloads.html)|
-|[peda](https://github.com/longld/peda)|python|6k★ Python Exploit Development Assistance for GDB|
-|[pwntools](https://github.com/Gallopsled/pwntools)|python2.7(best Ubuntu)|4k★ CTF framework and exploit development library|
-|[heap-viewer](https://github.com/danigargu/heap-viewer)|python| [IDA Pro plugin] examine the glibc heap, focused on exploit development|
-|[cea-sec/miasm](https://github.com/cea-sec/miasm)|python|2k★ (PE/ELF)Reverse engineering framework|
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|http://syscalls.kernelgrok.com/|syscalls|系统调用参考 主要用sys_execve|
-|http://shell-storm.org/shellcode/|shellcode|各种平台下的shellcode包括:BSD/Cisco/FreeBSD/Linux/OSX/Windows|
-
-
-#### 工具_二进制_fuzz
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[halfempty](https://github.com/googleprojectzero/halfempty)|C|[projectZero] testcase minimization tool.|
+# Security
 
 #### 工具_防御与分析
 
