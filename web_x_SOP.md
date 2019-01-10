@@ -32,9 +32,9 @@ Two URLs have the same origin if the protocol, port (if specified), and host.
 
 某浏览器访问了两个网站:http://evil.com 与 http://foo.com
 
-http://evil.com的客户端脚本JavaScript想要操作http://foo.com的资源,
+http://evil.com 的客户端脚本JavaScript 想要操作 http://foo.com 的资源,
 
-只有http://foo.com明确返回HTTP响应头允许http://evil.com操作http://foo.com的资源时:
+只有http://foo.com 明确返回HTTP响应头允许 http://evil.com 操作 http://foo.com 的资源时:
 
 ```
 Access-Control-Allow-Origin: http://evil.com
@@ -45,8 +45,53 @@ Access-Control-Allow-Origin: *
 http://evil.com网站的客户端脚本JavaScript 才有权(通过AJAX技术)对 http://foo.com上的资源进行读写操作。
 
 
+
 ### 如何允许跨源访问
 
 使用 CORS 允许跨源访问
 
 [Cross-Origin Resource Sharing (CORS) | Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+
+### CORS实例
+
+Request:
+
+foo -> bar
+
+`Origin`表示该CORS Request是`Origin`中的网站(通常通过JavaScript)发起的。
+
+从该请求可看出是从 `Referer`/`Origin` 中的 `http://foo.example` 对 目标主机`Host: bar.other`发起请求：
+```
+GET /resources/public-data/ HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Referer: http://foo.example/examples/access-control/simpleXSInvocation.html
+Origin: http://foo.example
+```
+
+
+Response:
+
+foo <- bar
+
+```
+HTTP/1.1 200 OK
+Date: Mon, 01 Dec 2008 00:23:53 GMT
+Server: Apache/2.0.61 
+Access-Control-Allow-Origin: *
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: application/xml
+
+[XML Data]
+```
+
+可见`bar.other`响应中的`Access-Control-Allow-Origin: *` 代表它的资源可以被任何域（包括foo.example）发出的requset访问。
+
+如果`bar.other`响应中是`Access-Control-Allow-Origin: http://foo.example` 代表它的资源只可以被来自`http://foo.example`发出的requset访问。
