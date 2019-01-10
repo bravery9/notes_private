@@ -1,10 +1,7 @@
 ### 简介
 
-[Same-origin policy | Mozilla](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
-
-[浏览器的同源策略 | Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
-
-浏览器的同源策略规定：非同源的 客户端脚本(主要指JavaScript) 在没明确授权的情况下，不能读写非同源的资源。
+[浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)[(Same-origin policy)](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+规定：非同源的 客户端脚本(主要指JavaScript) 在没明确授权的情况下，不能读写非同源的资源。
 
 * 资源包括(客户端安全威胁都是围绕这些资源进行)
   * HTTP消息头
@@ -31,9 +28,10 @@ Two URLs have the same origin if the protocol, port (if specified), and host.
 
 ### 如何允许跨源访问
 
-使用 CORS 允许跨源访问
-
-[Cross-Origin Resource Sharing (CORS) | Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+* 根本解决方法(W3C标准)
+  * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)跨域资源共享 - 允许任何http method的跨源AJAX请求. [CORS详情详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+* 其他解决办法
+  * JSONP - 只支持GET method
 
 ### CORS实例
 
