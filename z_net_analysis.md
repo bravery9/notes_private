@@ -8,20 +8,6 @@
 
 [rshipp/awesome-malware-analysis: A curated list of awesome malware analysis tools and resources.](https://github.com/rshipp/awesome-malware-analysis)
 
-
-### 知名博客
-
-[Malware-Traffic-Analysis.net](https://www.malware-traffic-analysis.net/)
-
-此博客专注于 与恶意软件感染相关的网络流量(network traffic related to malware infections)
-
-其中每个博文基本都有相关的流量文件（.pcap files）和 恶意软件样本(malware samples)
-
- 
-[Malware-Traffic-Analysis.net - 流量分析练习Traffic Analysis Exercises](https://www.malware-traffic-analysis.net/training-exercises.html)
-
-下载的zip文件解压密码为`infected`
-
 ### Wireshark筛选
 
 * 常用筛选示例
@@ -50,3 +36,25 @@
 * 筛选条件 - 协议
  * 选中某协议 `tcp` `udp` `dns` `http` `icmp` `ssl` `ftp` `smtp` `msnms` `arp` ...
  * 排除某协议 `!ssl` `not ssl`
+
+### Wireshark插件
+
+[pentesteracademy/patoolkit: PA Toolkit is a collection of traffic analysis plugins focused on security](https://github.com/pentesteracademy/patoolkit)
+
+* WiFi (WiFi network summary, Detecting beacon, deauth floods etc.)
+* HTTP (Listing all visited websites, downloaded files)
+* HTTPS (Listing all websites opened on HTTPS)
+* ARP (MAC-IP table, Detect MAC spoofing and ARP poisoning)
+* DNS (Listing DNS servers used and DNS resolution, Detecting DNS Tunnels)检测DNS隧道
+
+### 知名的流量分析博客
+
+[Malware-Traffic-Analysis.net](https://www.malware-traffic-analysis.net/)
+
+此博客专注于 与恶意软件感染相关的网络流量(network traffic related to malware infections)
+
+其中每个博文基本都有相关的流量文件（.pcap files）和 恶意软件样本(malware samples)
+ 
+[Malware-Traffic-Analysis.net - 流量分析练习Traffic Analysis Exercises](https://www.malware-traffic-analysis.net/training-exercises.html)
+
+下载的zip文件解压密码为`infected`
