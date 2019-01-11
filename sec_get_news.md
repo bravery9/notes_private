@@ -43,6 +43,7 @@
 | Recent vulnerabilities - Vulmon||
 | Blog – SentinelOne||
 |Threat Research(FireEye.com)|https://www.fireeye.com/blog/threat-research/_jcr_content.feed|
+|360 Technology Blog(360核心安全)|http://blogs.360.cn/rss.html|
 |Thomas Orlita's blog|https://blog.thomasorlita.cz/feed/|
 |[RedTeam] Outflank Blog|https://outflank.nl/blog/feed/|
 |[RedTeam] Threat Express|http://threatexpress.com/feed/|
