@@ -58,6 +58,8 @@ ________________________________________________/
 |[实践 - github泄露扫描工具的搭建过程](sec_github_scan.md)|sec_github_scan.md|
 |[实践 - 信息搜集 Domain_IP_Google](sec_info_gathering.md)|sec_info_gathering.md|
 |[实践 - SQLi sqlmap常用参数 tamper详解](sec_sqlmap.md)|sec_Sqlmap.md|
+|[实践 - msfvenom - msf的payload生成器](sec_msfvenom.md)|sec_msfvenom.md|
+|[实践 - burp基础_插件_技巧](web_x_burp.md)|web_x_burp.md|
 |[red - 构建高适应性的C2基础设施](sec_C2.md)|sec_C2.md|
 |[red - RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
 |[red - RAT - Multi_platform](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
