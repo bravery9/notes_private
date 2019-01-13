@@ -6,7 +6,8 @@
 
 ### tamper详解
 
-根据 [sqlmap_tamper.csv](files/sqlmap_tamper.csv) 中的 数据库类型 与 绕过方式，选择合适的tamper(或自写脚本)
+
+根据 [tamper脚本分类汇总 sqlmap_tamper.csv](files/sqlmap_tamper.csv) 中的 数据库类型 与 绕过方式，可选择合适的tamper(或自写脚本)
 
 ### 加快测试速度
 
