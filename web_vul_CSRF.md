@@ -5,16 +5,17 @@ Cross-Site Request Forgery(CSRF)，跨站请求伪造攻击。
 
 ### 分类及攻击方式
 
-*  http method - get请求
+* http method - get请求
   * `http://pay.com/to?name=hacker&moneynumb=100`
-  * 攻击:设法让victim发出该get请求(社工诱骗访问该url等方法)
+  * 攻击:设法让victim的浏览器发出该get请求(社工诱骗访问该url等方法)
 * http method - other
   * POST 请求的参数在post body中:`name=hacker&moneynumb=100`
-  * 攻击:设法让victim发出该post请求(社工诱骗访问含有js的页面发出该post请求、其他漏洞如XSS构造并发送该请求等方法)
+  * 攻击:设法让victim的浏览器发出该post请求(社工诱骗访问含有js的页面发出该post请求、其他漏洞如XSS构造并发送该请求等方法)
 
-危害:
-* 未授权操作(数据增删改操作)
-* CSRF蠕虫(社交网络)
+
+* CSRF危害
+  * 执行未授权操作(数据增删改操作)
+  * CSRF蠕虫(社交网络)
 
 常见攻击场景:转账过程、新建账号、修改密码、账号信息设置 等
 
