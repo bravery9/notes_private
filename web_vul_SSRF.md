@@ -79,9 +79,7 @@ ssrf
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
 
-### 利用方式
-  
-绕过技巧
+### 绕过技巧
   * 使用@绕过不严谨的过滤 `a.com@10.10.10.10` `a.com:b@10.10.10.10`
   * IP地址变形 - 进制转换 `127.0.0.1 => 2130706433`
   * 域名解析 `10.100.21.7 => http://10.100.21.7.xip.io 或 http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
