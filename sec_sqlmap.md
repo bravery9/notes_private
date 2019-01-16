@@ -6,8 +6,19 @@
 
 ### tamper详解
 
-
 根据 [tamper脚本分类汇总 sqlmap_tamper.csv](files/sqlmap_tamper.csv) 中的 数据库类型 与 绕过方式，可选择合适的tamper(或自写脚本)
+
+
+### 常用参数 - 强制ssl
+
+待测网站通常是https协议 
+
+可能出现404`[CRITICAL] page not found (404)`
+
+加上参数即可`--force-ssl`
+
+（在Host头最后加上`:443`这种办法一般可行但有局限性，实测中有8443端口的https无法用该方法解决）
+
 
 ### 加快测试速度
 
@@ -18,7 +29,7 @@
 --dbms "Microsoft Access"
 ```
 
-### 设置proxy代理流量
+### 常用参数 - 设置proxy代理流量
 
 格式为：`(http|https|socks4|socks5)://address:port`
 
@@ -27,7 +38,7 @@
 --proxy=socks5://127.0.0.1:1080
 ```
 
-### 设置user-agent避免指纹
+### 常用参数 - 设置user-agent避免指纹
 
 随机user-agent
 ```
@@ -39,7 +50,7 @@
 --user-agent "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Droid Build/FRG22D) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
 ```
 
-### 用*标记注入点
+### 常用参数 - 用*标记注入点
 
 针对情况：伪静态 等不识别的格式
 
@@ -49,8 +60,7 @@ sqlmap -u xxx.com/index.php/Index/view/id/40*.html --dbs
 
 -r 也是在请求包文件中的参数值后面加*号
 
-### OS命令执行
-
+### 参数 - OS命令执行
 
 前提1：数据库为MySQL/PostgreSQL/Microsoft SQL Server
 前提2：当前用户有权限使用特定的函数. 在sqlmap中查看权限用 `--privileg`
