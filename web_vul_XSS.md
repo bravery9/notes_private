@@ -65,14 +65,8 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ...
 ```
 
+### 防御/修复
 
-防御:
-
-将可能的输出进行 html实体字符编码 变为 只能用来显示的`Html实体(Html Entity)`
-
-`.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
-
-其他参考:
-[DOM based XSS Prevention Cheat Sheet - OWASP](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
-
-
+* [XSS](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
+  * [DOM Based XSS](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
+    * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
