@@ -18,3 +18,14 @@ BApp安装bypassWAF后，
 在`scope`里指定：工具范围 url范围 参数范围
 
 这里只需要在`URL scope`里增加一个`Any`即可
+
+### burpsuite扩展 - NoPE Proxy
+
+安装：
+
+[summitt/Burp-Non-HTTP-Extension: Non-HTTP Protocol Extension (NoPE) Proxy and DNS for Burp Suite.](https://github.com/summitt/Burp-Non-HTTP-Extension)
+
+使用参考：
+
+[Burpsuite抓取非HTTP流量 - FreeBuf](https://www.freebuf.com/articles/network/158589.html)
+
