@@ -14,9 +14,9 @@
   * XSSpayload位置:只发生在浏览器端 (一定不会在HTTP request 和 HTTP response中)
   * 原理:手工构造XSSpayload并由 浏览器的DOM解析过程 触发(该触发过程与http的请求响应没有直接关系 HTTP request 与HTTP response 一定看不到payload)
 
-### DOM Based XSS - demo
+### DOM Based XSS - 实例
 
-构造场景
+构造DOM Based XSS场景 只需要前端即可
 
 1.html
 ```
@@ -71,4 +71,8 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 将可能的输出进行 html实体字符编码 变为 只能用来显示的`Html实体(Html Entity)`
 
 `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
+
+其他参考:
+[DOM based XSS Prevention Cheat Sheet - OWASP](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
+
 
