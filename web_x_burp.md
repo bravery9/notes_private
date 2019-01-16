@@ -15,10 +15,12 @@
 Brupsuite的宏(Macros)是一个预先定义好的HTTP请求序列，这个序列中可以包含一个或多个HTTP请求。
 
 在Burpsuite的会话管理规则（Session Handling Rules）中使用宏，可以完成多种任务 如：
-* 利用宏发送登录请求 实现无验证码的自动登录 获取新的有效cookie(扫描/测试时可确保cookie有效 后续扫描请求能被正常执行)
+* 利用宏获取新的有效cookie
+  * 利用宏发送登录请求 无验证码的自动登录 保证 扫描/测试时 cookie有效 后续扫描请求能正常执行
+  * 可保证Intruder多次发送请求的有效性
 * 绕过CSRF token
   * 发送 HTTP请求1 获取 响应1 中的CSRF Token值(或其它)，用于后续 HTTP请求2 的输入参数 
-* 利用宏获取新的有效cookie 可保证Intruder多次发送请求的有效性
+
 
 使用参考：
 
