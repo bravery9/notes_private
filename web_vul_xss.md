@@ -4,17 +4,17 @@
 
 ### 分类
 
-* 反射型
+* 反射型(Reflected XSS)
   * XSSpayload位置:必然每次都在HTTP request 和 HTTP response中
   * 原理:后端未严格过滤,导致HTTP response中的部分内容由HTTP request中的参数值(XSSpayload)控制
-* 存储型
+* 存储型(Stored XSS)
   * XSSpayload位置:初次攻击时XSSpayload必然会在HTTP request中(后端将含有XSSpayload的数据保存到数据库) 初次的HTTP response中未必有XSSpayload
   * 原理:XSSpayload已经存储到数据库中,再次被读取时将XSSpayload输出到浏览器前端触发。存储型XSS通常影响更大
-* DOM型
-  * XSSpayload位置:必然每次都不在HTTP request 和 HTTP response中
+* DOM型(DOM Based XSS)
+  * XSSpayload位置:只发生在浏览器端 (一定不会在HTTP request 和 HTTP response中)
   * 原理:手工构造XSSpayload并由 浏览器的DOM解析过程 触发(该触发过程与http的请求响应没有直接关系 HTTP request 与HTTP response 一定看不到payload)
 
-### DOM XSS
+### DOM Based XSS - demo
 
 构造场景
 
