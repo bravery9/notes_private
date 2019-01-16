@@ -47,7 +47,7 @@
 |Thomas Orlita's blog|https://blog.thomasorlita.cz/feed/|
 |[RedTeam] Outflank Blog|https://outflank.nl/blog/feed/|
 |[RedTeam] Threat Express|http://threatexpress.com/feed/|
-|[RedTeam] SpecterOps Team([最强红队成员](https://specterops.io/who-we-are/the-team) |https://posts.specterops.io/feed|
+|[RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) |https://posts.specterops.io/feed|
 
 
 |名称|属性|描述|
