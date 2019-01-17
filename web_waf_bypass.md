@@ -42,7 +42,7 @@
   * 该步骤得到了 CDN提供的`CNAME`
 * 3、配置DDoS高防IP，在源站域名中填入CDN提供的CNAME，或者（未启用CDN，高防IP直接回源至WAF情况下）Web应用防火墙提供的CNAME。
   * 该步骤得到了 高防IP服务提供的`CNAME`
-* 4、在DNS解析处，修改DNS配置，将域名解析指向高防IP服务生成的CNAME
+* 4、修改DNS解析的配置，将域名解析指向 高防IP服务提供的`CNAME`
   * 配置完成
 
 ### WAF/CDN 根本绕过方式
