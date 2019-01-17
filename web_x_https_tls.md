@@ -66,9 +66,7 @@ PKI包括:
   * 证明PKI遵循其自身程序的证书策略。其目的是让外人分析PKI的可信度。
   * certificate policy stating the PKI's requirements concerning its procedures. Its purpose is to allow outsiders to analyze the PKI's trustworthiness.
 
-证书颁发机构(CA,[Certificate authority](https://en.wikipedia.org/wiki/Certificate_authority)):颁发数字证书的受信任的实体。CA是发布数字证书以确保实体的公钥真正属于该实体的第三方。
-
-公钥证书([Public key certificate](https://en.wikipedia.org/wiki/Public_key_certificate)):(即数字证书)由CA颁发
+证书颁发机构(CA,[Certificate authority](https://en.wikipedia.org/wiki/Certificate_authority)):作为一个受信任的第三方,颁发数字证书(digital certificates)即 公钥证书([Public key certificate](https://en.wikipedia.org/wiki/Public_key_certificate)),以确保某实体的公钥真正属于该实体。
 
 [X.509](https://en.wikipedia.org/wiki/X.509):在密码学中X.509是定义公钥证书格式的标准。
 
