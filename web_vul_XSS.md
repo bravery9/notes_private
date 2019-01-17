@@ -65,8 +65,15 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ...
 ```
 
-### 防御/修复
+### 防御
 
+修复方案
 * [XSS](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
   * [DOM Based XSS](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
     * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
+
+### 防御 - XSS filter
+
+XSS filter:浏览器自带的XSS防御机制.
+
+搜索绕过方法 `chrome xss filter bypass`
