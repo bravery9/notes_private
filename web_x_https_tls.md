@@ -15,7 +15,7 @@
   * 对称加密的优点:速度快
 
 
-* 非对称加密(Asymmetrical Encryption)
+* 非对称加密(Asymmetrical Encryption) 即 公钥加密([Public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography))
   * 2个密钥
     * 公钥 公开的 主要用来加密消息
       * 使用公钥加密的消息只能使用私钥解密  即 私钥是唯一可以解密【公钥加密的消息】的密钥
@@ -27,7 +27,8 @@
 
 ### 非对称加密的安全性的原理
 
-非对称加密算法 - RSA
+非对称加密算法 - [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+
 RSA算法安全性的核心是:基于n的两个质数分解难题. 即对极大整数n做因数分解的难度等同于RSA的安全性.(n=p×q ,n为极大整数,且p和q都为质数 如13和61)
 
 ### 非对称加密应用 - 数字签名(Digital signatures)
@@ -46,9 +47,30 @@ RSA算法安全性的核心是:基于n的两个质数分解难题. 即对极大�
 
 ### 非对称加密应用 - 数字证书(Digital certificates)
 
-数字证书:也称为公钥证书，由CA颁发
-证书颁发机构(CA):受信任的第三方，它发布数字证书以确保实体的公钥真正属于该实体
+公钥基础架构(PKI,[Public key infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure)):用于创建，存储和分发数字证书的系统，用于验证特定公钥是否属于某个实体。PKI创建将公钥映射到实体的数字证书，将这些证书安全地存储在中央存储库中，并在需要时撤消证书。
 
+PKI包括:
+* certificate authority (CA)
+  * 存储 颁发 签名 数字证书
+  * stores, issues and signs the digital certificates)
+* registration authority (RA)
+  * 验证(请求将其数字证书存储在CA的)实体的身份
+  * which verifies the identity of entities requesting their digital certificates to be stored at the CA
+* central directory
+  * 中央目录，一个安全的地方，可存储和索引密钥
+  * a secure location in which to store and index keys
+* certificate management system
+  * 证书管理系统 用于管理对存储证书的访问 或要颁发的证书的交付
+  * managing things like the access to stored certificates or the delivery of the certificates to be issued.
+* certificate policy
+  * 证明PKI遵循其自身程序的证书策略。其目的是让外人分析PKI的可信度。
+  * certificate policy stating the PKI's requirements concerning its procedures. Its purpose is to allow outsiders to analyze the PKI's trustworthiness.
+
+证书颁发机构(CA,[Certificate authority](https://en.wikipedia.org/wiki/Certificate_authority)):颁发数字证书的受信任的实体。CA是发布数字证书以确保实体的公钥真正属于该实体的第三方。
+
+公钥证书([Public key certificate](https://en.wikipedia.org/wiki/Public_key_certificate)):(即数字证书)由CA颁发
+
+[X.509](https://en.wikipedia.org/wiki/X.509):在密码学中X.509是定义公钥证书格式的标准。
 
 ### TLS handshake
 
