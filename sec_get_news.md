@@ -21,6 +21,7 @@
 |:-------------:|-----|
 | KitPloit - PenTest Tools!|https://feeds.feedburner.com/PentestTools|
 | 腾讯安全玄武实验室||
+|先知安全技术社区|https://xz.aliyun.com/feed|
 | 安全客-有思想的安全新媒体||
 | Malwarebytes Labs||
 | 绿盟科技博客||
