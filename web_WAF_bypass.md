@@ -23,7 +23,7 @@
 * Open-source 开源
   * ModSecurity
 
-### WEB应用安全部署架构 - 最佳方式
+### WEB应用-安全部署架构
 
 ```
 高防IP（DDoS防护） ->  CDN（静态资源加速） -> Web应用防火墙（中间层，应用层防护） -> 源站（ECS/SLB/VPC/IDC…）
@@ -51,3 +51,7 @@
 
 * DNS history records - 该域名DNS解析的历史记录中的A记录 可能是真实ip
   * 工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
+
+### 绕过WAF规则
+
+[Ekultek/WhatWaf: Detect and bypass web application firewalls and protection systems](https://github.com/Ekultek/WhatWaf)
