@@ -13,6 +13,7 @@
 |https://viewdns.info/iphistory/?domain=qq.com|DNS解析历史(IP History) 该网站不支持查询子域名的历史IP|
 |http://www.domaincrawler.com/qq.com|综合查询 whois/Mailserver(s)/subdomains|
 |https://censys.io/ipv4/104.93.196.220/table|根据tls证书获取域名 443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names|
+[https://url.fht.im/domain_search?domain=qq.com|基于大数据 [查看被搜索引擎收录的URL](https://url.fht.im/url_search?domain=v.qq.com)|
 |other tools| |
 |https://dns.google.com/query?name=qq.com|Google Public DNS 查询dns解析|
 |https://www.ipip.net/ip.html | 查国内ip的比较精确的物理位置|
