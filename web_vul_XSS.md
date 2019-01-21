@@ -65,17 +65,17 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ...
 ```
 
-### 防御
+### SDL防御与修复
 
-修复方案
-* [XSS](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
+防御/修复方案
+* 需求分析阶段(了解产品背景和技术架构 并给出相应的建议)
+  * 建议使用成熟的前端框架`Vue` `React`
+  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/)
+  * API接口 - 建议显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
+* 测试阶段
+  * [XSS](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
   * [DOM Based XSS](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
     * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
-  * API接口
-    * 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
+  * API接口 - 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
 
-### 防御 - XSS filter
-
-XSS filter:浏览器自带的XSS防御机制.
-
-搜索绕过方法 `chrome xss filter bypass`
+XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `chrome xss filter bypass`
