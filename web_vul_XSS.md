@@ -71,6 +71,8 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 * [XSS](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
   * [DOM Based XSS](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
     * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
+  * API接口
+    * 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
 
 ### 防御 - XSS filter
 
