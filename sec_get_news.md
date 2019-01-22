@@ -28,7 +28,7 @@
 | 腾讯安全响应中心||
 | Hacking Articles||
 | Tencent XuanwuLab Security Daily News Push||
-| jetlib.sec||
+| jetlib.sec| 信息过多 https://sec.jetlib.com/?media=rss|
 | 360 Technology Blog||
 | 知道创宇|https://www.seebug.org/ |
 | 知道创宇 Papers - Last paper |https://paper.seebug.org/|
@@ -42,6 +42,7 @@
 | c0d3p1ut0s||
 | Hacking Articles||
 | Recent vulnerabilities - Vulmon||
+|Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
 | Blog – SentinelOne||
 |Threat Research(FireEye.com)| https://www.fireeye.com/blog/threat-research/_jcr_content.feed |
 |PortSwigger Web Security Blog(burpsuite公司)|https://portswigger.net/blog/rss|
