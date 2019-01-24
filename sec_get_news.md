@@ -48,6 +48,7 @@
 |PortSwigger Web Security Blog(burpsuite公司)|https://portswigger.net/blog/rss|
 |360 Technology Blog(360核心安全)|http://blogs.360.cn/rss.html|
 |Thomas Orlita's blog|https://blog.thomasorlita.cz/feed/|
+|Strategic Cyber LLC(cobaltstrike blog)|https://blog.cobaltstrike.com/feed/|
 |[RedTeam] Outflank Blog|https://outflank.nl/blog/feed/|
 |[RedTeam] Threat Express|http://threatexpress.com/feed/|
 |[RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) |https://posts.specterops.io/feed|
