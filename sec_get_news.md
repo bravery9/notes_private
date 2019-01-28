@@ -52,7 +52,7 @@
 |[RedTeam] Outflank Blog|https://outflank.nl/blog/feed/|
 |[RedTeam] Threat Express|http://threatexpress.com/feed/|
 |[RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) |https://posts.specterops.io/feed|
-
+|[RedTeam] harmj0y|http://www.harmj0y.net/blog/feed/|
 
 |名称|属性|描述|
 |:-------------:|--|-----|
