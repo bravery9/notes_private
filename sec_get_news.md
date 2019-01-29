@@ -19,40 +19,39 @@
 
 |标题|rss地址|
 |:-------------:|-----|
-| KitPloit - PenTest Tools!|https://feeds.feedburner.com/PentestTools|
+| Security Research & Defense(Microsoft.com) | https://blogs.technet.microsoft.com/srd/feed/|
+| Threat Research(FireEye.com) | [Threat Research Blog](https://www.fireeye.com/blog/threat-research/_jcr_content.feed) |
+| KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
+| PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
 | 腾讯安全玄武实验室||
+| Tencent XuanwuLab Security Daily News Push||
 |先知安全技术社区|https://xz.aliyun.com/feed|
+| 360 CERT ||
+| 360 Technology Blog(360核心安全) | http://blogs.360.cn/rss.html|
 | 安全客-有思想的安全新媒体||
 | Malwarebytes Labs||
-| 绿盟科技博客||
-| 腾讯安全响应中心||
 | Hacking Articles||
-| Tencent XuanwuLab Security Daily News Push||
 | jetlib.sec| 信息过多 https://sec.jetlib.com/?media=rss|
 | 360 Technology Blog||
 | 知道创宇|https://www.seebug.org/ |
 | 知道创宇 Papers - Last paper |https://paper.seebug.org/|
 | Seebug 最新漏洞||
-| FreeBuf互联网安全新媒体平台||
 | Seebug 近期最热漏洞||
-| 独自等待-信息安全博客||
-| US Blog RSS Feed||
-| KitPloit - PenTest Tools!||
-| 360 CERT||
+| 腾讯安全响应中心||
+| FreeBuf互联网安全新媒体平台||
+| 绿盟科技博客||
+| US Blog RSS Feed ||
 | c0d3p1ut0s||
 | Hacking Articles||
 | Recent vulnerabilities - Vulmon||
-|Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
-| Blog – SentinelOne||
-|Threat Research(FireEye.com)| https://www.fireeye.com/blog/threat-research/_jcr_content.feed |
-|PortSwigger Web Security Blog(burpsuite公司)|https://portswigger.net/blog/rss|
-|360 Technology Blog(360核心安全)|http://blogs.360.cn/rss.html|
-|Thomas Orlita's blog|https://blog.thomasorlita.cz/feed/|
-|Strategic Cyber LLC(cobaltstrike blog)|https://blog.cobaltstrike.com/feed/|
-|[RedTeam] Outflank Blog|https://outflank.nl/blog/feed/|
-|[RedTeam] Threat Express|http://threatexpress.com/feed/|
-|[RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) |https://posts.specterops.io/feed|
-|[RedTeam] harmj0y|http://www.harmj0y.net/blog/feed/|
+| Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
+| Blog – SentinelOne ||
+| Thomas Orlita's blog| https://blog.thomasorlita.cz/feed/|
+| Strategic Cyber LLC(cobaltstrike blog)| https://blog.cobaltstrike.com/feed/|
+| [RedTeam] Outflank Blog| https://outflank.nl/blog/feed/|
+| [RedTeam] Threat Express| http://threatexpress.com/feed/|
+| [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
+| [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
 
 |名称|属性|描述|
 |:-------------:|--|-----|
