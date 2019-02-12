@@ -21,11 +21,15 @@
 |:-------------:|-----|
 | Security Research & Defense(Microsoft.com) | https://blogs.technet.microsoft.com/srd/feed/|
 | Threat Research(FireEye.com) | [Threat Research Blog](https://www.fireeye.com/blog/threat-research/_jcr_content.feed) |
-| KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
-| PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
+| Unit42 (Paloalto威胁分析团队) | http://feeds.feedburner.com/Unit42 |
+| [RedTeam] Strategic Cyber LLC(cobaltstrike blog)| https://blog.cobaltstrike.com/feed/|
+| [RedTeam] Outflank Blog| https://outflank.nl/blog/feed/|
+| [RedTeam] Threat Express| http://threatexpress.com/feed/|
+| [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
+| [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
 | 腾讯安全玄武实验室||
 | Tencent XuanwuLab Security Daily News Push||
-|先知安全技术社区|https://xz.aliyun.com/feed|
+| 先知安全技术社区 | https://xz.aliyun.com/feed |
 | 360 CERT ||
 | 360 Technology Blog(360核心安全) | http://blogs.360.cn/rss.html|
 | 安全客-有思想的安全新媒体||
@@ -40,6 +44,8 @@
 | 腾讯安全响应中心||
 | FreeBuf互联网安全新媒体平台||
 | 绿盟科技博客||
+| PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
+| KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
 | US Blog RSS Feed ||
 | c0d3p1ut0s||
 | Hacking Articles||
@@ -47,11 +53,6 @@
 | Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
 | Blog – SentinelOne ||
 | Thomas Orlita's blog| https://blog.thomasorlita.cz/feed/|
-| Strategic Cyber LLC(cobaltstrike blog)| https://blog.cobaltstrike.com/feed/|
-| [RedTeam] Outflank Blog| https://outflank.nl/blog/feed/|
-| [RedTeam] Threat Express| http://threatexpress.com/feed/|
-| [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
-| [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
 
 |名称|属性|描述|
 |:-------------:|--|-----|
