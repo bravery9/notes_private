@@ -46,10 +46,11 @@
 | 绿盟科技博客||
 | Research – Check Point Blog | https://blog.checkpoint.com/category/research/feed/ |
 | PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
+| Hacking Articles||
 | KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
 | US Blog RSS Feed ||
 | c0d3p1ut0s||
-| Hacking Articles||
+| Malware-Traffic-Analysis.net(流量分析知名博客) | https://www.malware-traffic-analysis.net/blog-entries.rss |
 | Recent vulnerabilities - Vulmon||
 | Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
 | Blog – SentinelOne ||
