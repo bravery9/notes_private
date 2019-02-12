@@ -5,26 +5,30 @@
 分析工具
 * Wireshark
 * Security Onion
+* 恶意软件分析工具与资源list [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 
-[rshipp/awesome-malware-analysis: A curated list of awesome malware analysis tools and resources.](https://github.com/rshipp/awesome-malware-analysis)
+### Wireshark - 筛选
 
-### Wireshark筛选
-
+* 官方文档 [Wireshark User’s Guide](https://www.wireshark.org/docs/wsug_html_chunked/)
 * 常用筛选示例
+  * 查看所有web流量 `(http.request) or (ssl.handshake.type == 1)` 查看HTTP请求的URL + HTTPS(SSL/TLS)流量中使用的域名
   * http GET数据包`http.request.method==GET`
-  * 关注某主机 发到 / 来自 10.3.1.1 的数据包`host 10.3.1.1`
-  
+  * http 包的内容(包含header url responseCode ...) `http contains "User-Agent: "`
+  * http URL地址特征 `http.request.uri == "/logo.png"`
+  * 关注域名解析 `(dns.qry.name contains microsoft)`
+  * 关注某主机 发到 / 来自 某ip 的数据包 `host 10.3.1.1` `ip.addr == 192.168.10.1`
   
 * 逻辑条件组合(适用于对各种筛选条件进行逻辑组合)
   * 与 `and`
   * 或 `or`
-  * 非 `!(表达式)` `not(表达式)`
+  * 非 `!(表达式)` `not(表达式)` **注意格式**
   * 等于`eq` `==`
+  * 包含某字符串 `contains`
 * 筛选条件 - ip地址
   * 目的ip地址 `ip.dst==192.168.101.8` `dst host 192.168.101.8`
   * 源ip地址`ip.src==1.1.1.1` `src host 1.1.1.1`
-  * 发到 / 来自 10.3.1.1 的数据包 `host 10.3.1.1`
-  * 发到 / 来自所有解析为 www.1.com 的 IP 地址的数据包 `host www.1.com`
+  * 发到 / 来自 某ip 的数据包 `host 10.3.1.1` `ip.addr == 192.168.10.1`
+  * 发到 / 来自 某域名解析的IP地址的数据包 `host www.1.com`
 * 筛选条件 - 端口
   * 源端口 或 目的端口为 80 的数据包`tcp.port==80`
   * 目的端口为 80 的数据包`tcp.dstport==80`
@@ -37,7 +41,7 @@
  * 选中某协议 `tcp` `udp` `dns` `http` `icmp` `ssl` `ftp` `smtp` `msnms` `arp` ...
  * 排除某协议 `!ssl` `not ssl`
 
-### Wireshark插件
+### Wireshark - 插件
 
 [pentesteracademy/patoolkit: PA Toolkit is a collection of traffic analysis plugins focused on security](https://github.com/pentesteracademy/patoolkit)
 
