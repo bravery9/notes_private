@@ -1,6 +1,6 @@
 ### 流量分析
 
-流量分析(traffic analysis)：根据"流量"发现 恶意软件特征:mining/APT/..malware
+流量分析(traffic analysis)：根据"流量"发现 恶意软件特征 mining/APT/..
 
 分析工具
 * Wireshark
