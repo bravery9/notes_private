@@ -44,6 +44,7 @@
 | 腾讯安全响应中心||
 | FreeBuf互联网安全新媒体平台||
 | 绿盟科技博客||
+| Research – Check Point Blog | https://blog.checkpoint.com/category/research/feed/ |
 | PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
 | KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
 | US Blog RSS Feed ||
