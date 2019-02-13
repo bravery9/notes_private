@@ -48,6 +48,7 @@
 | PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
 | Hacking Articles||
 | KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
+| Trend Micro Simply Security | http://feeds.trendmicro.com/TrendMicroSimplySecurity |
 | US Blog RSS Feed ||
 | c0d3p1ut0s||
 | Malware-Traffic-Analysis.net(流量分析知名博客) | https://www.malware-traffic-analysis.net/blog-entries.rss |
