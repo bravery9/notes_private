@@ -97,10 +97,12 @@ ________________________________________________/
 |[cea-sec/ivre](https://github.com/cea-sec/ivre)|端口扫描|web界面友好|
 |[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|主机扫描|python+shell / kali_linux|Automate Pentest Tool|
 |[Sn1per](https://github.com/1N3/Sn1per)|主机扫描|python+shell / kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
-[ttarvis/glasgo](https://github.com/ttarvis/glasgo)|Golang代码静态分析|golang / all | A Security Scanner for Go|
-[ajinabraham/NodeJsScan](https://github.com/ajinabraham/NodeJsScan)|node.js代码静态分析|node.js|Node.js应用程序的静态安全代码扫描程序|
+|[ttarvis/glasgo](https://github.com/ttarvis/glasgo)|Golang代码静态分析|golang / all | A Security Scanner for Go|
+|[ajinabraham/NodeJsScan](https://github.com/ajinabraham/NodeJsScan)|node.js代码静态分析|node.js|Node.js应用程序的静态安全代码扫描程序|
+|[jeffzh3ng/Fuxi-Scanner](https://github.com/jeffzh3ng/Fuxi-Scanner)|端口扫描 PoC扫描 资产管理|python3|Network Security Vulnerability Scanner|
 
 #### Payload_dictionary_字典
+
 |名称|描述|
 |:-------------:|-----|
 |https://github.com/danielmiessler/SecLists/tree/master/Passwords|弱口令字典|
