@@ -6,7 +6,7 @@ ALL,1,"apostrophemask.py
 'MScgQU5EIFNMRUVQKDUpIw=='",,,
 ,3,multiplespaces.py,围绕SQL关键字添加多个空格,"('1 UNION SELECT foobar')
 '1    UNION     SELECT   foobar'",,,
-,4,space2plus.py,用+替换空格,"('SELECT id FROM users')
+,4,space2plus.py,"把 空格 替换为 + ,"('SELECT id FROM users')
 'SELECT+id+FROM+users'
 ",,,
 ,5,nonrecursivereplacement.py,"双重查询语句。取代predefined SQL关键字with表示 
@@ -19,10 +19,10 @@ suitable for替代（例如  .replace（“SELECT”、”"")） filters","('1 U
 '-1 UNION SELECT'",,,
 ,8,securesphere.py,追加特制的字符串,"('1 AND 1=1')
 ""1 AND 1=1 and '0having'='0having'""",,,
-MSSQL,1,space2hash.py,绕过过滤‘=’ 替换空格字符（”），（’ – ‘）后跟一个破折号注释，一个随机字符串和一个新行（’ n’）,"'1 AND 9227=9227' 
+MSSQL,1,space2hash.py,把 空格 替换为 符号#(即%23) 跟 一个随机字符串 再跟 一个\n(即%0A),"'1 AND 9227=9227' 
 '1--nVNaVoPYeva%0AAND--ngNvzqu%0A9227=9227'",,,
 ,2,"equaltolike.py
-","like 代替等号
+","把 = 替换为 like
 ","* Input: SELECT * FROM users WHERE id=1 
 2 * Output: SELECT * FROM users WHERE id LIKE 1",,,
 ,3,space2mssqlblank.py(mssql),空格替换为其它空符号,"Input: SELECT id FROM users
