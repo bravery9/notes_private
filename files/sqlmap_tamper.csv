@@ -1,16 +1,15 @@
 支持的数据库,编号,脚本名称,作用,实现方式,测试通过的数据库类型和版本,,
 ALL,1,"apostrophemask.py
-",用utf8代替引号,"(""1 AND '1'='1"") 
+",把 单引号' 替换为 utf8全宽度等价物  (即 ' 替换为 %EF%BC%87) ,"(""1 AND '1'='1"") 
 '1 AND %EF%BC%871%EF%BC%87=%EF%BC%871'",,,
-,2,base64encode.py,用base64编码替换,"(""1' AND SLEEP(5)#"")
+,2,base64encode.py,把 全部payload字符 替换为 它们经过base64编码后的字符  原文:Base64-encodes all characters in a given payload ,"(""1' AND SLEEP(5)#"")
 'MScgQU5EIFNMRUVQKDUpIw=='",,,
-,3,multiplespaces.py,围绕SQL关键字添加多个空格,"('1 UNION SELECT foobar')
+,3,multiplespaces.py,SQL关键字字符串的前后 添加多个空格   原文"Adds multiple spaces (' ') around SQL keywords ,"('1 UNION SELECT foobar')
 '1    UNION     SELECT   foobar'",,,
 ,4,space2plus.py,把 空格 替换为 + ,"('SELECT id FROM users')
 'SELECT+id+FROM+users'
 ",,,
-,5,nonrecursivereplacement.py,"双重查询语句。取代predefined SQL关键字with表示 
-suitable for替代（例如  .replace（“SELECT”、”"")） filters","('1 UNION SELECT 2--')
+,5,nonrecursivereplacement.py(sqlmap 1.3.1.25中已删除该脚本),"把 SQL关键字字符串 替换为 对应的两次重复字符串（例如某网站只进行一次 将SQL关键字SELECT替换为空 而不是递归替换SQL关键字 所以这个网站可用该脚本进行注入 该脚本适用于非常弱的自定义过滤器","('1 UNION SELECT 2--')
 '1 UNIOUNIONN SELESELECTCT 2--'",,,
 ,6,space2randomblank.py,"代替空格字符（“”）从一个随机的空
 白字符可选字符的有效集","('SELECT id FROM users')
