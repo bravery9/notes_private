@@ -6,7 +6,7 @@ ALL,1,"apostrophemask.py
 'MScgQU5EIFNMRUVQKDUpIw=='",,,
 ,3,multiplespaces.py,围绕SQL关键字添加多个空格,"('1 UNION SELECT foobar')
 '1    UNION     SELECT   foobar'",,,
-,4,space2plus.py,"把 空格 替换为 + ,"('SELECT id FROM users')
+,4,space2plus.py,把 空格 替换为 + ,"('SELECT id FROM users')
 'SELECT+id+FROM+users'
 ",,,
 ,5,nonrecursivereplacement.py,"双重查询语句。取代predefined SQL关键字with表示 
