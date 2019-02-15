@@ -7,9 +7,10 @@
 ### tamper详解
 
 tampers是sqlmap自带的绕过WAF的脚本，可查看所有tampers:
+
 `python sqlmap.py --list-tampers`
 
-我总结了一份 [tamper脚本分类汇总 sqlmap_tamper.csv](files/sqlmap_tamper.csv) 
+2019.2.15 我更新并总结了 [tamper脚本分类汇总 sqlmap_tamper.csv](files/sqlmap_tamper.csv) 
 
 可根据实际情况中的 数据库类型 选择合适的tamper(或自写脚本)实现绕过WAF进行SQL注入
 
