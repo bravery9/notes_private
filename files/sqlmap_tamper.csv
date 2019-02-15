@@ -4,7 +4,7 @@ ALL,1,"apostrophemask.py
 '1 AND %EF%BC%871%EF%BC%87=%EF%BC%871'",,,
 ,2,base64encode.py,把 全部payload字符 替换为 它们经过base64编码后的字符  原文:Base64-encodes all characters in a given payload ,"(""1' AND SLEEP(5)#"")
 'MScgQU5EIFNMRUVQKDUpIw=='",,,
-,3,multiplespaces.py,SQL关键字字符串的前后 添加多个空格   原文"Adds multiple spaces (' ') around SQL keywords ,"('1 UNION SELECT foobar')
+,3,multiplespaces.py,SQL关键字字符串的前后 添加多个空格 ,"('1 UNION SELECT foobar')
 '1    UNION     SELECT   foobar'",,,
 ,4,space2plus.py,把 空格 替换为 + ,"('SELECT id FROM users')
 'SELECT+id+FROM+users'
