@@ -69,9 +69,9 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 
 防御/修复方案
 * 需求分析阶段(了解产品背景和技术架构 并给出相应的建议)
-  * 建议使用成熟的前端框架`Vue` `React`
-  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/)
-  * API接口 - 建议显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
+  * 建议使用成熟的前端框架 `Vue` `React`
+  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单
+  * API接口 - 建议显式规定response的MIME类型 即 `Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
   * 在`Set-Cookie: `中增加
     * `; secure` 仅允许HTTPS协议中传输cookie
     * `; HttpOnly` 当客户端脚本代码读取cookie 则浏览器返回一个空字符串
