@@ -62,7 +62,7 @@
 |[OWASP](https://www.owasp.org/index.php/Main_Page)|知识库|自由开放的软件安全社区|
 |-|知识库|OWASP web测试指南V4 [owasp-testing-guide-v4(中文)](https://kennel209.gitbooks.io/owasp-testing-guide-v4/content/zh/index.html)|
 |-|知识库|#反序列化安全# [Deserialization Cheat Sheet](https://www.owasp.org/index.php/Deserialization_Cheat_Sheet)|
-|[每日安全 - 腾讯安全玄武实验室出品](https://sec.today/)|/|腾讯安全玄武实验室出品|
+|[每日安全 - 腾讯安全玄武实验室出品](https://sec.today/)|/|实时安全技术信息推送 https://sec.today/pulses/|
 
 
  效果如图
