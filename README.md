@@ -70,6 +70,7 @@ ________________________________________________/
 |[red - webshell管理](sec_webshell.md)|sec_webshell.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
 |[基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
+|[基础 - 二进制 pwn 逆向 反编译](bin_x_pwn.md)|bin_x_pwn.md|
 |[爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac.md)|z_command_Mac.md|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
