@@ -71,3 +71,11 @@ x@xsec.io
 ```
 
 ![效果图.png (2862×1234)](https://camo.githubusercontent.com/6f66528be6b1a80300ba103995f71a69fb629335/68747470733a2f2f696d61676573322e696d67626f782e636f6d2f39372f65342f5676776f364450555f6f2e706e67)
+
+
+### web安全测试
+
+测试这个web系统发现
+* 有CSRF漏洞 实际意义不大
+* 无sql注入漏洞 所有sql查询均使用了orm框架 [go-xorm/xorm](https://github.com/go-xorm/xorm) 支持 mysql,postgres,tidb,sqlite3,mssql,oracle
+* 无XSS漏洞
