@@ -53,3 +53,10 @@
 |:-------------:|-----|
 |https://www.irongeek.com/homoglyph-attack-generator.php|外观相似的替换字符 常用于钓鱼|
 |https://emkei.cz/|在线发送伪造邮件(可用于钓鱼 如伪造邮件发送者xx@163.com发送到目标的qq邮箱)|
+
+
+防御工具
+
+|名称|描述|
+|:-------------:|-----|
+|http://spf.myisp.ch/|#防御 SPF Record Checker. 邮件服务器SPF配置检查.|
