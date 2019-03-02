@@ -11,7 +11,7 @@ ________________________________________________/
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
     + [website_威胁分析引擎_防御](#website_威胁分析引擎_防御)
-    + [website_安全工具](#website_安全工具)
+    + [website_破解hash](#website_破解hash)
 - [Development开发](#development)
     + [必备网站](#必备网站)
     + [Awesome & cheat sheets](#awesome_and_cheat_sheets)
@@ -162,13 +162,11 @@ ________________________________________________/
 |[VirusTotal](https://www.virustotal.com/)|威胁分析引擎|分析可疑文件和URL 以检测恶意软件类型|
 [ThreatMiner.org](https://www.threatminer.org/)|威胁分析引擎|威胁情报的数据挖掘（有2008至今的APT报告pdf） Search for domains, IPs, MD5|SHA1|SHA256, email address or APTnotes(aptnotes:), ssl(ssl:), user-agent(ua:), AV family(av:), filename (filename:), URI (uri:), registry (reg:), mutex (mutex:)...|
 
-#### website_安全工具
+#### website_破解hash
 |名称|描述|
 |:-------------:|-----|
-|http://spf.myisp.ch/|#防御 邮件服务器SPF配置检查|
-|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |crack在线破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
-|[Objectif Sécurité - Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|crack在线破解 NTLM|
-
+|[Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|[瑞士] 在线破解 crack NTLM. 不错|
+|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
 
 ---
 
