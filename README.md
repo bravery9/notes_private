@@ -246,7 +246,7 @@ ________________________________________________/
 |[GoRequest](https://github.com/parnurzeal/gorequest)|Golang|all| 2k★ Simplified HTTP client (inspired by nodejs SuperAgent)|
 |[asciimoo/searx](https://github.com/asciimoo/searx)|python3|Debian/Ubuntu| 4k★ About 70 supported search engines. 搜索引擎. No user tracking/profiling.  https://asciimoo.github.io/searx/|
 |[httplib2](https://github.com/httplib2/httplib2)|python|/|#基本库 社区维护的HTTP client library 特性包括:所有Methods 授权Authentication 持久连接Keep-Alive 缓存Caching  压缩Compression(gzip/deflate)|
-|[puppeteer](https://github.com/GoogleChrome/puppeteer)|js| 38k★ [google] Headless Chrome Node API |
+|[puppeteer](https://github.com/GoogleChrome/puppeteer)|js|/| 38k★ [google] Headless Chrome Node API |
 
 #### CMS
 
