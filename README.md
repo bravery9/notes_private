@@ -71,7 +71,8 @@ ________________________________________________/
 |[red - webshell主控端及后渗透操作](sec_webshell.md)|sec_webshell.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
 |[基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
-|[基础 - 二进制 pwn 逆向 反编译](bin_x_pwn.md)|bin_x_pwn.md|
+|[笔记 - linux下的二进制程序pwn](note_bin_pwn.md)|note_bin_pwn.md|
+|[笔记 - android应用安全](note_sec_android.md)|note_sec_android.md|
 |[笔记 - Docker学习笔记](note_Docker.md)|note_Docker.md|
 |[笔记 - Redis学习笔记](note_DB_redis.md)|note_DB_redis.md|
 |[爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
