@@ -38,7 +38,7 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
       * AWS(Aws keys, ssh keys and [more](https://medium.com/@madrobot/ssrf-server-side-request-forgery-types-and-ways-to-exploit-it-part-1-29d034c27978))
       * Google Cloud
   * 攻击内网其他主机
-    * 高危漏洞(SQLi、Struts2...)
+    * 高危漏洞(SQLi、Struts2、Redis未授权、MongoDB未授权...)
   * 读取文件
     * 类型1 支持了URL Schema(file等协议)
       * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
