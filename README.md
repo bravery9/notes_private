@@ -71,6 +71,7 @@ ________________________________________________/
 |[red - webshell主控端及后渗透操作](sec_webshell.md)|sec_webshell.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
 |[基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
+|[笔记 - GDB学习笔记](note_bin_GDB.md)|note_bin_GDB.md|
 |[笔记 - linux下的二进制程序pwn](note_bin_pwn.md)|note_bin_pwn.md|
 |[笔记 - android应用安全](note_sec_android.md)|note_sec_android.md|
 |[笔记 - Docker学习笔记](note_Docker.md)|note_Docker.md|
