@@ -15,24 +15,27 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
 攻击者通过控制Requset1中的参数值，发送Requset1到存在SSRF漏洞的Server1，以Server1为"跳板"发出Requset2,通常根据判断Response2的情况(内容、响应时间等),来实现探测内网主机(IP/port/service...)等利用方式
 
 
-造成SSRF的前提:服务端提供了与其他服务器交互的功能
-造成SSRF的原因:交互时 没有对目标地址做过滤与限制
+造成SSRF的网络环境前提:web服务端所在的服务器能够与其他服务器是网络可达的
 
-造成SSRF的常见场景:
-* 从指定URL地址获取资源(下载、分享、url跳转)
-  * 资源存在形式:图片.png、图标.ico、网页.html、文本.txt
+造成SSRF的直接原因:web后端没有对http请求传来的"参数"做过滤与限制
+
+触发过程:http请求中带有参数值"URL地址" 传给web后端且后端未严格过滤参数值 根据参数值去获取资源
+
+资源存在形式:图片.png、图标.ico、网页.html、文本.txt
+
+造成SSRF的常见场景: 下载、分享、url跳转...
 
 ### 漏洞影响
 
 * 内网
   * 探测内网(IP/port/service...)
     * ip 探测内网存活主机
-    * service 如数据库类的服务
+    * service 端口开放情况 如数据库类的服务
     * Cloud Instances 如果含有SSRF漏洞的Web应用运行在云实例 可以尝试获取云服务商提供的让内部主机查询自身的元数据
       * AWS(Aws keys, ssh keys and [more](https://medium.com/@madrobot/ssrf-server-side-request-forgery-types-and-ways-to-exploit-it-part-1-29d034c27978))
       * Google Cloud
   * 攻击内网其他主机
-    * web漏洞(SQLi,XSS...)
+    * 高危漏洞(SQLi、Struts2...)
   * 读取文件
     * 类型1 支持了URL Schema(file等协议)
       * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
