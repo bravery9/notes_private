@@ -4,7 +4,7 @@ SSRF (Server Side Request Forgery)
 
 ### 原理
 
-
+"隔山打牛"
 ```
 Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> Server2
      /\                           |        /\                        \/ 
@@ -15,15 +15,18 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
 攻击者通过控制Requset1中的参数值，发送Requset1到存在SSRF漏洞的Server1，以Server1为"跳板"发出Requset2,通常根据判断Response2的情况(内容、响应时间等),来实现探测内网主机(IP/port/service...)等利用方式
 
 
-造成SSRF的网络环境前提:web服务端所在的服务器能够与其他服务器是网络可达的
-
-造成SSRF的直接原因:web后端没有对http请求传来的"参数"做过滤与限制
-
-触发过程:http请求中带有参数值"URL地址" 传给web后端且后端未严格过滤参数值 根据参数值去获取资源
-
-资源存在形式:图片.png、图标.ico、网页.html、文本.txt
-
-造成SSRF的常见场景: 下载、分享、url跳转...
+* 造成SSRF的网络环境前提
+  * web服务端所在的服务器与其他服务器是网络可达的
+* 造成SSRF的直接原因
+  * web后端没有对http请求传来的"参数"做过滤与限制
+* 存在SSRF漏洞的设计
+  * http请求中带有"URL地址"参数值 传给web后端且不经过未严格过滤参数值 就去访问"URL地址"参数值 获取资源(图片.png、图标.ico、网页.html、文本.txt..而攻击者会尝试获取其他资源等方式进行SSRF漏洞利用)
+* 造成SSRF的常见场景
+  * 资源下载
+  * 分享
+  * url跳转
+  * web在线代理
+  * ...
 
 ### 漏洞影响
 
