@@ -42,7 +42,8 @@ ________________________________________________/
 |笔记标题|描述|
 |:-------------:|-----|
 |[实践 - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)|sec_get_news.md|
-|[net - 流量分析_wireshark筛选_附恶意样本](z_net_analysis.md)|z_net_analysis.md|
+|[net - 流量分析 wireshark](net_wireshark.md)|net_wireshark.md|
+|[net - 流量分析 suricata 规则](net_suricata)|net_suricata.md|
 |[web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)|web_code_audit_PHP.md|
 |[web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)|web_code_audit_Python.md|
 |[web - vul - SQLi_原理_利用方式_修复方案](web_vul_sqli.md)|web_vul_sqli.md|
@@ -72,11 +73,11 @@ ________________________________________________/
 |[red - webshell主控端及后渗透操作](sec_webshell.md)|sec_webshell.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
 |[基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
-|[笔记 - GDB学习笔记](note_bin_GDB.md)|note_bin_GDB.md|
-|[笔记 - linux下的二进制程序pwn](note_bin_pwn.md)|note_bin_pwn.md|
+|[笔记 - pwn linux下的二进制程序pwn](note_bin_pwn.md)|note_bin_pwn.md|
+|[笔记 - GDB](note_bin_GDB.md)|note_bin_GDB.md|
+|[笔记 - Docker](note_Docker.md)|note_Docker.md|
+|[笔记 - Redis](note_DB_redis.md)|note_DB_redis.md|
 |[笔记 - android应用安全](note_sec_android.md)|note_sec_android.md|
-|[笔记 - Docker学习笔记](note_Docker.md)|note_Docker.md|
-|[笔记 - Redis学习笔记](note_DB_redis.md)|note_DB_redis.md|
 |[爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac.md)|z_command_Mac.md|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
