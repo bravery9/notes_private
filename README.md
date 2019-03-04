@@ -15,6 +15,7 @@ ________________________________________________/
 - [Development开发](#development)
     + [必备网站](#必备网站)
     + [Awesome & cheat sheets](#awesome_and_cheat_sheets)
+    + [开源图书](#开源图书)
     + [web应用开发-基础框架](#web应用开发-基础框架)
     + [web前端](#web前端)
     + [web系统](#web系统)
@@ -187,9 +188,18 @@ ________________________________________________/
 |[a13xp0p0v/linux-kernel-defence-map](https://github.com/a13xp0p0v/linux-kernel-defence-map)|linux内核防御图|
 |[niklongstone/regular-expression-cheat-sheet](https://github.com/niklongstone/regular-expression-cheat-sheet)|Regular Expression Cheat Sheet - PCRE|
 
+#### 开源图书
+
+|Golang-Books|Description|
+|:-------------:|-----|
+|[Go语言圣经](https://books.studygolang.com/gopl-zh/)|[备份链接](https://www.ctolib.com/docs//sfile/gopl-zh-github-com-master/preface.html)|
+|[advanced-go-programming-book](https://github.com/chai2010/advanced-go-programming-book/blob/master/SUMMARY.md)| 《Go语言高级编程》涵盖CGO、Go汇编语言、RPC实现、Protobuf插件实现、Web框架实现、分布式系统等|
+|[go2-book](https://github.com/chai2010/go2-book/blob/master/SUMMARY.md)|《Go2编程指南》重点讲解Go2新特性|
+
+
 #### web应用开发-基础框架
 
-|名称|属性|描述|
+|框架名称|属性|描述|
 |:-------------:|--|-----|
 |[Spring Framework](https://github.com/spring-projects/spring-framework)|Java|23k★ create enterprise applications in a wide range of scenarios and architectures. |
 |[Spring Boot](https://github.com/spring-projects/spring-boot)|Java|28k★ Spring Boot makes it easy to create Spring-powered, production-grade applications and services with absolute minimum fuss. |
@@ -215,11 +225,13 @@ ________________________________________________/
 |[phacility/phabricator](https://github.com/phacility/phabricator)|CodeReview系统 PHP|11k★ Open software engineering platform(可用作CodeReview系统)|
 
 #### 中间件
+
 |名称|属性|描述|
 |:-------------:|--|-----|
 [mholt/caddy](https://github.com/mholt/caddy)|Golang|20k★ 跨平台 易部署的中间件 自动开启https配置 HTTP/2 web server|
 
 #### 学习项目
+
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[Go Data Structures](https://github.com/emirpasic/gods)|Golang|5k★ Go数据结构 Containers/Sets/Lists/Stacks/Maps/Trees/Comparators/Iterators/…|
