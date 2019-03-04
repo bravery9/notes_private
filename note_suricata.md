@@ -1,3 +1,10 @@
+### 规则集
+
+|规则集名|描述|
+|:-------------:|-----|
+|[ptresearch/AttackDetection](https://github.com/ptresearch/AttackDetection)|Suricata PT Open Ruleset|
+
+
 ### Suricata默认规则集 - Emerging Threats Ruleset
 
 * Emerging Threats Ruleset
@@ -8,9 +15,6 @@
 ET官方对规则类型的[解释说明](https://doc.emergingthreats.net/bin/view/Main/EmergingFAQ#What_is_the_general_intent_of_ea)
 
 
-
-
-
 |规则名|更新频率|描述|
 |:-------------:|-----|-----|
 |Attack-Response Rules||捕获成功攻击后的响应. 如"id=root" 或 错误信息 |
@@ -19,3 +23,7 @@ ET官方对规则类型的[解释说明](https://doc.emergingthreats.net/bin/vie
 |DOS Rules||inbound DOS 以及 outbound指标(IoC)|
 |DROP Rules|daily|主要是专业垃圾邮件发送者|
 |DShield Rules||[DShield](http://www.dshield.org)公布的顶级攻击者|
+|Exploit Rules||检测exploits如windows exploit. 而sql注入等漏洞的检测不在这里|
+|Game Rules||检测网络游戏 如Starcraft等 都是无害的流量|
+|Malware Rules||恶意软件规则 最重要的规则|
+|P2P Rules|||
