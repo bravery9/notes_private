@@ -27,6 +27,7 @@
 | [RedTeam] Threat Express| http://threatexpress.com/feed/|
 | [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
 | [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
+| [RedTeam] Dirk-jan Mollema(researcher)|https://dirkjanm.io/feed.xml|
 | 腾讯安全玄武实验室||
 | Tencent XuanwuLab Security Daily News Push||
 | 先知安全技术社区 | https://xz.aliyun.com/feed |
