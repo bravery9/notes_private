@@ -1,12 +1,3 @@
->https://www.microsoft.com/en-us/SDL/process/training.aspx
-
->[绿盟科技SDL实践](http://blog.nsfocus.net/nsfocus-adsl/)
-
->[Secure Development Lifecycle - Juniper Networks](https://www.juniper.net/us/en/security/sdl/)
-
->[sdlchina-web SDL流程简介 SDL规范文档 SDL落地方案](https://github.com/SecurityPaper/SecurityPaper-web/tree/master/_posts)
-
-
 ### 定义
 
 安全开发生命周期（Security Development Lifecycle,SDL）
@@ -48,15 +39,36 @@
   * 推行安全编码规范 - 提高研发同学的编码安全性
   * 服务器配置安全规范培训 - 提高运维同学线上部署的实施规范性
 * 2.安全需求 与 安全设计
+  * 作用 : 从设计上全面规避逻辑缺陷
   * 认证安全设计解决方案
   * 权限安全设计解决方案
   * 关键操作安全设计方案(支付、密码重置等)
   * 安全和隐私风险评估
   * 威胁建模 分析攻击面
-  * 作用 - 从设计上全面规避逻辑缺陷
-* 3.研发
+* 3.研发安全
   * 使用经过验证的开发环境(代码仓库...)
   * 通过IDE插件实现实时代码检查并提醒(不安全函数、语言特性及框架可能引发的安全缺陷等)
   * 静态代码分析工具
   * 自研代码分析工具
   * 其他商业产品
+* 4.安全测试
+  * 作用 : 保证应用层安全的测试覆盖率 应用上线前的安全测试
+  * 渗透测试 - 发现攻击面
+  * 黑盒安全扫描 - 安全自动化扫描平台
+  * 白盒代码审计
+* 5.线上安全评估
+  * 作用 : 完全模拟攻击者 通过任何可能的攻击路径进行安全自测 并提供防御方案
+  * 基础环境的安全评估CheckList
+  * 应用层的安全评估CheckList
+  * 信息管理层面的安全评估CheckList
+  * 创建应急响应计划
+  * 安全产品部署(WAF IDS...)
+* 6.应急响应
+  * 作用 : 第一时间感知漏洞 并 对受影响的资产进行处置与防御 尽量减小对业务造成的影响
+  * 确定业务资产 执行应急响应计划 收集漏洞与情报
+
+### 其他参考
+* https://www.microsoft.com/en-us/SDL/process/training.aspx
+* [绿盟科技SDL实践](http://blog.nsfocus.net/nsfocus-adsl/)
+* [Secure Development Lifecycle - Juniper Networks](https://www.juniper.net/us/en/security/sdl/)
+
