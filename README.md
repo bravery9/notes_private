@@ -41,6 +41,7 @@ ________________________________________________/
 
 |笔记标题|描述|
 |:-------------:|-----|
+|[SDL - 安全开发生命周期 实践与意义](sdl.md)|sdl.md|
 |[实践 - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)|sec_get_news.md|
 |[net - 流量分析 wireshark](net_wireshark.md)|net_wireshark.md|
 |[net - 流量分析 suricata 规则](net_suricata)|net_suricata.md|
@@ -56,7 +57,6 @@ ________________________________________________/
 |[Proxy - 代理工具_tcp_udp_http_https_VPN_Socks5](sec_proxy.md)|sec_proxy.md #socks5 #内网穿透|
 |[blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)|blockchain_SmartContracts.md|
 |[blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)|blockchain_mining.md|
-|[SDL - 安全开发生命周期 实践与意义](sdl.md)|sdl.md|
 |[实践 - 钓鱼Phishing_无文件攻击](sec_Phishing.md)|sec_Phishing.md|
 |[实践 - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)|sec_mac_encryption_one_liner.md|
 |[实践 - github泄露扫描工具的搭建过程](sec_github_scan.md)|sec_github_scan.md|
