@@ -48,10 +48,7 @@
 |[kgretzky/evilginx2](https://github.com/kgretzky/evilginx2)|Golang|linux|MITM attack framework used for phishing.|
 
 
-
-#### 工具
-
-攻击类
+在线邮箱
 
 |名称|描述|
 |:-------------:|--|
@@ -63,7 +60,7 @@
 |https://www.irongeek.com/homoglyph-attack-generator.php| #辅助工具 外观相似的替换字符 常用于钓鱼|
 
 
-防御类
+防御检测
 
 |名称|描述|
 |:-------------:|-----|
