@@ -7,7 +7,6 @@ ________________________________________________/
 - [Security安全](#security)
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
-    + [website_mail匿名邮箱](#website_mail匿名邮箱)
     + [website_exp引擎](#website_exp引擎)
     + [website_网络空间引擎](#website_网络空间引擎)
     + [website_威胁分析引擎_防御](#website_威胁分析引擎_防御)
@@ -118,17 +117,6 @@ ________________________________________________/
 |[dictionary/web_upload_filename_all.txt](https://github.com/1135/dictionary/blob/master/web_upload_filename_all.txt)|fuzz字典_web上传_文件名|
 |[Unleashing an Ultimate XSS Polyglot · 0xSobky/HackVault Wiki](https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot)|XSS payload|
 |[dictionary/web_markdown_xss_payload.txt](https://github.com/1135/dictionary/blob/master/web_markdown_xss_payload.txt)|markdwon XSS payload|
-
-#### website_mail匿名邮箱
-
-|名称|描述|
-|:-------------:|--|
-|https://emkei.cz/|在线发送伪造邮件(可用于钓鱼 如伪造邮件发送者xx@163.com发送到目标的qq邮箱)|
-|http://www.yopmail.com/zh/|临时邮箱 可随意进入xxx@yopmail.com收发邮件|
-|http://www.mailinator.com/|临时邮箱 可随意进入asd@mailinator.com收邮件|
-|https://10minutemail.net/|临时邮箱 十分钟邮箱 短期 每次邮箱地址不同 适用于注册小号|
-|https://protonmail.com/|匿名邮箱 瑞士的加密邮箱 长期 google验证码认证后可注册.[福布斯评价：唯一NSA 无法接近的邮件服务](http://www.forbes.com/sites/hollieslade/2014/05/19/the-only-email-system-the-nsa-cant-access/#5060612155ed) |
-
 
 #### website_exp引擎
 
