@@ -68,7 +68,7 @@ ________________________________________________/
 |[red - 构建高适应性的C2基础设施](sec_C2.md)|sec_C2.md|
 |[red - RAT - Windows - 远控_域渗透](sec_RAT.md)|sec_RAT.md #windows #RedTeam|
 |[red - 多维度实现免杀](sec_evasion.md)|sec_evasion.md #FUD #Evasion #python|
-|[red - 后渗透 - 持久化 信息搜集](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
+|[red - 后渗透 - 持久化 信息搜集 白利用](sec_RAT_post_exploitation.md)|sec_RAT_post_exploitation.md #linux #MacOS #backdoor|
 |[red - webshell主控端及后渗透操作](sec_webshell.md)|sec_webshell.md|
 |[基础 - 非对称加密_RSA_TLS_HTTPS_数字证书](web_x_https_tls.md)|#密码学 web_x_https_tls.md|
 |[基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)|web_x_SOP.md|
