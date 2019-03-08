@@ -80,7 +80,7 @@ XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是
 ### SDL防御与修复
 
 防御/修复方案
-* 需求分析阶段(了解产品背景和技术架构 并给出相应的建议)
+* 需求与设计阶段(了解产品背景和技术架构 并给出相应的建议)
   * 建议使用成熟的前端框架 `Vue` `React`
   * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单
   * API接口 - 建议显式规定response的MIME类型 即 `Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
@@ -88,8 +88,9 @@ XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是
     * `; secure` 仅允许HTTPS协议中传输cookie
     * `; HttpOnly` 当客户端脚本代码读取cookie 则浏览器返回一个空字符串
 * 测试阶段
-  * [XSS](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet)
-  * [DOM Based XSS](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet)
+  * 基本防御方案：为了保证输入的原生态，通常在输出点做实体编码、必要的过滤。
+  * XSS详细防御[Cross_Site_Scripting_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
+  * DOM_based_XSS详细防御[DOM_based_XSS_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md)
     * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
   * API接口 - 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
 
