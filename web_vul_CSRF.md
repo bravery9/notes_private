@@ -31,4 +31,4 @@ Cross-Site Request Forgery(CSRF)，跨站请求伪造攻击。
 * 验证来源域名 referer/Origin 这种办法有缺陷,只能防御"不被信任"的域 发起的CSRF攻击请求
   * 如果来自 **父、子、兄弟域名** 或 **CORS中被信任的域名** 的XSS漏洞构造产生了一个CSRF攻击请求 此时referer和Origin的值都是被信任的域 此时该方法无法防御
 
-[Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet - OWASP](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet)
+参考OWASP [Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md)
