@@ -69,6 +69,8 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 
 XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是XSS的利用方式。
 
+XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://github.com/s0md3v/JShell)、[xsshell](https://github.com/raz-varren/xsshell)、[JSShell](https://github.com/Den1al/JSShell)
+举例如下
 * 盗用身份 执行操作
   * 管理员 发起高权限操作 - 创建新账号 修改密码...
   * 普通用户 发起普通用户权限操作 - 评论、发帖、支付转账、刷量...
