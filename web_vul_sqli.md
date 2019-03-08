@@ -155,4 +155,4 @@ try {
 
 * 4. 数据库用户权限最小化(Least Privilege)
 
-OWASP防御SQL注入的参考 https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet
+参考OWASP [SQL_Injection_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md)
