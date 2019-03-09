@@ -1,11 +1,11 @@
 ### 基础 - Java 序列化与反序列化
 
-序列化的概念：把 Java对象 转换为 二进制字节序列 的过程。
-序列化的实现：ObjectOutputStream类的 writeObject() 方法。
-
-反序列化的概念：把 二进制字节序列 恢复为 Java对象 的过程。
-反序列化的实现：ObjectInputStream 类的 readObject() 方法。
-
+* 序列化
+  * 概念：把 Java对象 转换为 二进制字节序列 的过程
+  * 实现：ObjectOutputStream类的 writeObject() 方法
+* 反序列化
+  * 概念：把 二进制字节序列 恢复为 Java对象 的过程
+  * 实现：ObjectInputStream 类的 readObject() 方法
 
 ### 防御
 
