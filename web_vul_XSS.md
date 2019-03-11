@@ -65,6 +65,11 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ...
 ```
 
+### BypassXSS
+
+* [s0md3v/AwesomeXSS](https://github.com/s0md3v/AwesomeXSS)
+* [MyPapers/Bypassing-XSS-detection-mechanisms](https://github.com/s0md3v/MyPapers/tree/master/Bypassing-XSS-detection-mechanisms)
+
 ### 利用方式
 
 XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是XSS的利用方式。
@@ -78,12 +83,13 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 * 窃取表单凭据 - 类似键盘记录 记录或读取表单输入的内容
 * 构造钓鱼页面 - 窃取用户及管理员其他的凭证
 * 漏洞联合 - 使用XSS无交互地利用CSRF漏洞. 有的anti-CSRF机制只判断Referer的值(自身/兄弟/父子域名 则正常响应) 如果这些站有某处存在XSS则可无交互地利用CSRF漏洞
+* XSS蠕虫 - 在社交网站上可创建蠕虫式的XSS攻击 传播速度极快 影响极大
 * 使浏览器下载文件 - 结合社工方法欺骗用户 使其打开有危害的程序
 * 影响浏览器客户端行为 - 挖矿等
 * DOS攻击 - 自动注销 让用户无法登录 严重影响业务使用
-* 访问量大的网站 - 利用XSS对其他站点发起请求 DDoS攻击
+* DDOS攻击 - 对访问量大的网站则可用来对其他站点持续发送HTTP请求 进行DDoS攻击
 * 信息搜集 - 获取管理员网页前端代码
-* 传播非法内容 - 低俗 诋毁 广告 等
+* 传播非法内容 - 跳转或直接修改页面内容为非法内容. 如 广告 诋毁 等
 
 ### SDL防御与修复
 
