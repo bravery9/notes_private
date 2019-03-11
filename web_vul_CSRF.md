@@ -14,21 +14,24 @@ Cross-Site Request Forgery(CSRF)，跨站请求伪造攻击。
 * http method - get请求
   * `http://csrfurl.com/payto?name=hacker&moneynumb=100`
   * 攻击:设法让victim的浏览器发出该get请求
-     * 社工诱骗访问该url
-     * 其他漏洞 (如html注入、XSS) 插入代码`<img src="http://csrfurl.com/payto?name=hacker&moneynumb=100">`
+     * 社工诱骗victim点击该url
+     * 漏洞联合 - 无交互地利用CSRF漏洞
+       * XSS
+       * html注入 `<img src="http://csrfurl.com/payto?name=hacker&moneynumb=100">`
 * http method - other
   * POST 请求的参数在post body中:`name=hacker&moneynumb=100`
   * 攻击:设法让victim的浏览器发出该post请求
     * 转变为get更容易攻击 (可尝试将post请求改成get形式的请求 如果可以正常响应 则可以使用get请求进行csrf攻击)
-    * 社工诱骗访问含有js的页面发出该post请求
-    * 其他漏洞 (如XSS) 构造并发送该post请求
+    * 社工诱骗victim点击该url
+    * 漏洞联合 - 无交互地利用CSRF漏洞
+      * XSS - 构造并发送该Post请求
 
 ### 防御方法
 
 * web框架 - 启动CSRF防御功能
 * CSRF_TOKEN 如`One-time Token`
 * CAPTCHA 在表单里增加验证码并后端首先判断验证码是否正确（适用于仅对敏感功能处的修复）
-* 验证来源域名 referer/Origin 这种办法有缺陷,只能防御"不被信任"的域 发起的CSRF攻击请求
+* 验证来源域名 referer/Origin 这种办法有缺陷! 只能防御从"不被信任"的域发起的CSRF攻击 http请求
   * 如果来自 **父、子、兄弟域名** 或 **CORS中被信任的域名** 的XSS漏洞构造产生了一个CSRF攻击请求 此时referer和Origin的值都是被信任的域 此时该方法无法防御
 
 参考OWASP [Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md)
