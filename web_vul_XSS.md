@@ -76,7 +76,7 @@ XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是
 
 XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://github.com/s0md3v/JShell)、[xsshell](https://github.com/raz-varren/xsshell)、[JSShell](https://github.com/Den1al/JSShell)
 举例如下
-* 探测内网(主机存活ip列表 能打到内网则类似SSRF漏洞可对内网发起攻击...)
+* 探测内网(利用实时通信标准WebRTC 获取存活主机ip列表 甚至部分端口 能打到内网则类似SSRF漏洞 可对内网发起许多攻击... 如XSS可以利用redis未授权Getshell)
 * 盗用身份 执行操作
   * 管理员 发起高权限操作 - 创建新账号 修改密码...
   * 普通用户 发起普通用户权限操作 - 评论、发帖、支付转账、刷量...
@@ -89,7 +89,7 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 * DDOS攻击 - 对访问量大的网站则可用来对其他站点持续发送HTTP请求 进行DDoS攻击
 * 传播非法内容 - 跳转或直接修改页面内容为非法内容. 如 广告 诋毁 等
 * 使浏览器下载文件 - 结合社工方法欺骗用户 使其打开有危害的程序
-* 影响浏览器客户端行为 - 挖矿等
+* 挖矿等
 
 ### SDL防御与修复
 
