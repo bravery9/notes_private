@@ -5,12 +5,12 @@
 SQL injection主要是对用户请求中的输入参数过滤不严格造成的，如动态拼接字符串。
 
 ### 类型
-* boolean-based blind
-* time-based blind
-* error-based
-* UNION query-based
-* stacked queries
-* out-of-band
+* boolean-based blind 基于布尔的盲注
+* time-based blind 基于时间的盲注
+* error-based 基于报错
+* UNION query-based 基于联合查询
+* stacked queries 堆叠查询
+* out-of-band 带外
 
 ### 漏洞影响
 
