@@ -87,42 +87,41 @@ Content-Type: application/xml
 
 ### 实例 - JSON with Padding
  
-理解:
-json才是目的(json返回的是一串数据)，jsonp只是手段(jsonp返回的脚本代码 符合js语法 随后调用了回调函数)
-
-JSONP可以“跨域”的本质: <script> 标签可以请求不同域名下的资源.
+* 理解
+  * json是目的(json返回的是一串数据)
+  * JSONP只是手段(JSONP返回的脚本代码 符合js语法 随后调用了回调函数)
+  * JSONP可以“跨域”的本质: `<script>`标签可以请求不同域名下的资源.
  
-首先给body动态添加一个 <script>标签 内容如下:
+首先在站点A的前端 内容如下:
 
 ```
+//在body中动态添加一个 <script>标签
 var script = document.createElement('script');
 script.setAttribute("type","text/javascript");
-script.src = 'http://example.com/ip?callback=foo';//告诉外部服务器 请返回指定格式的JS脚本  即foo({"ip": "8.8.8.8"}); 
-//为什么不直接写成json数据`{"ip": "8.8.8.8"}`呢
-//这是JSONP的根本原理要求的:因为JSONP在js文件中 需要符合js语法.
+script.src = 'http://B.com/ip?callback=foo';//告诉外部的服务器B 请返回指定格式的JS脚本  如foo({"ip": "8.8.8.8"}); 
+//为什么不直接写成json数据`{"ip": "8.8.8.8"}`呢? 因为这是JSONP的根本原理要求的 因为JSONP在js文件中 需要符合js语法
 document.body.appendChild(script);
 
-//foo 为一个本地方法 也是回调函数
+//foo 为站点A中的一个本地方法. 当外部的服务器B 响应数据后 foo为接受数据的回调函数(callback)
 function foo(data) {
 console.log('Your public IP address is: ' + data.ip);
 };
 ```
 
-上面的script会向 `http://example.com/` 服务器发送请求，其中url有个callback参数，参数值为三个字母组成的字符串foo
-非同域服务器后端可获取到字符串foo（foo其实是方法名 foo此时叫做回调方法，因为非同域服务器收到请求后，将响应数据`resp`返回给JavaScript, JavaScript将`resp`作为实参 放入foo方法的参数位置)  即服务器后端返回给前端JavaScript的字符串如下:
+JSONP步骤分析:
+* A站点会向B站点发送GET请求 `http://B.com/ip?callback=foo` 其中参数名callback的参数值为foo 三个字母组成的字符串
+* 非同域服务器B的后端 接收到A的请求 得到来自A的字符串foo (foo其实是A页面中的回调函数的函数名)
+* B进行响应 目的是把数据返回给A站点的前端JavaScript. 响应内容为`foo({"ip": "8.8.8.8"});`
+* A站点的前端JavaScript执行响应内容 也就是把json数据`{"ip": "8.8.8.8"}`作为实参 传入A站点的前端本来就有的函数foo
 
-（此时得到了  `http://example.com/ip?callback=foo` 返回的字符串 "包裹"成的如下结构的字符串）
+就这样，A站点的前端就拿到了来自“非同域”的B站点的json格式的数据 `{"ip": "8.8.8.8"}`
 
-```
-foo({
-   "ip": "8.8.8.8"
-});
-```
-
-之后前端通过JavaScript执行回调方法(foo方法) 就拿到了来自“非同域”的json数据`{"ip": "8.8.8.8"}`
+通过JSONP的方式实现了跨域请求
 
 
 ### 实例 - jQuery的JSON with Padding
+
+jQuery可以使用匿名函数
 
 ```
 $.ajax({
