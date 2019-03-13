@@ -62,8 +62,8 @@ CSRF通过构造get/post等请求，设法使已登录用户victim不知情的�
   * CAPTCHA 增加验证码机制进行确认
   * 再次输入密码确认
   * 手机验证码确认
-* 校验来源域名 referer/Origin 这种办法即使实现严格且无误 也是不推荐的 因为有固有缺陷:
-  * 1.只能防御从"不被信任"的域发起的伪造的http请求（如果 **父、子、兄弟域名** 或 **CORS中被信任的域名** 有XSS漏洞 配合构造一个伪造请求 此时referer和Origin的值都是被信任的域 此时“校验来源域名”无法防御）
-  * 2.正常业务如果有302跳转 不携带Origin
+* 【不推荐】通过`Referer/Origin`校验来源域名
+  * 缺陷1.只能防御从"不被信任"的域发起的伪造的http请求（如果 **父、子、兄弟域名** 或 **CORS中被信任的域名** 有XSS漏洞 配合构造一个伪造请求 此时referer和Origin的值都是被信任的域 此时“校验来源域名”无法防御）
+  * 缺陷2.正常业务如果有302跳转 不携带Origin
 
 参考OWASP [Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md)
