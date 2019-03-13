@@ -1,43 +1,58 @@
 ### 简介
 
 Cross-Site Request Forgery(CSRF)，跨站请求伪造攻击。
+
 缩写为 CSRF/XSRF，也被称为one click attack/session riding
+
+### 原理
 
 "借刀杀人"
 
-* 原理 - CSRF通过构造get/post等请求，使已登录用户在不知情的情况下执行某种动作。
+CSRF通过构造get/post等请求，设法使已登录用户victim不知情的情况下，以受害者victim的身份发出"非其主观意愿的"HTTP请求。
 
-* 危害 - CSRF攻击主要用来以受害者victim的身份发送请求，让后端执行增删改操作(单一的CSRF攻击无法回显，即攻击者是无法查看到该伪造请求的响应结果)
+如通过"点击链接"等方式，以victim的身份将请求发给web后端，让后端执行增删改操作。
+
+* CSRF局限性:单一的CSRF攻击无法回显，即攻击者是无法查看到该伪造请求的响应结果。
+* CSRF扩展性:可联合其他漏洞(如XSS)进行攻击最大化。
+
+
+### CSRF分类+对应攻击方式
+
+* CSRF类型 - 伪造GET请求
+  * 构造请求 `http://csrfurl.com/payto?name=hacker&moneynumb=100`
+  * 攻击思路 设法让victim的浏览器发出该GET请求
+     * 社工诱骗
+       * 直接 使victim点击该url发出GET请求
+       * 间接 使victim访问第三方网站A 通过A的前端ajax实现跨域 访问该url发出GET请求
+     * 漏洞联合 - 无交互地利用CSRF漏洞
+       * XSS + CSRF 构造并发送GET请求
+       * html注入 实现CSRF `<img src="http://csrfurl.com/payto?name=hacker&moneynumb=100">`
+* CSRF类型 - 伪造POST请求
+  * 构造请求 注意POST请求的参数在请求的body中 `name=hacker&moneynumb=100`
+  * 攻击思路 设法让victim的浏览器发出该POST请求
+    * 转变为Get更容易攻击 (可尝试将post请求改成get形式的请求 如果可以正常响应 则可以使用get请求进行csrf攻击)
+    * 社工诱骗
+      * 间接 使victim访问第三方网站A 通过A的前端ajax实现跨域 访问该url发出POST请求
+    * 漏洞联合 - 无交互地利用CSRF漏洞
+      * XSS + CSRF  构造并发送该POST请求
+
+### 漏洞影响
 
 * 主要攻击场景(针对没有CSRF防御机制的网站)
   * 利用victim的身份进行操作
     * 修改管理员密码 - 使管理员点击构造的链接 即可修改其密码
     * 新建管理员账号 - 使管理员点击构造的链接 即可新增管理员
-  * 社交站点蠕虫 “向好友发送消息”的HTTP请求中没有设置CSRF-token请求头 则可结合XSS可构造出XSS+CSRF蠕虫 影响极大
+  * 漏洞联合
+    * XSS + CSRF
+      * 社交站点蠕虫 - 如果"向好友发送消息"的HTTP请求中没有设置CSRF-token请求头 则可结合XSS可构造出XSS+CSRF蠕虫 影响极大
+      * 拒绝服务 - 如果XSS能打到管理员后台 且管理员注销动作无CSRF防御机制 则可构造payload使管理员一登录就注销
 
-### 分类及攻击方式
+### 测试
 
-* http method - get请求
-  * `http://csrfurl.com/payto?name=hacker&moneynumb=100`
-  * 攻击:设法让victim的浏览器发出该get请求
-     * 社工诱骗 - 使victim点击该url. 或 使victim访问第三方网站通过ajax跨域访问该url.
-     * 漏洞联合 - 无交互地利用CSRF漏洞
-       * XSS
-       * html注入 `<img src="http://csrfurl.com/payto?name=hacker&moneynumb=100">`
-* http method - other
-  * POST 请求的参数在post body中:`name=hacker&moneynumb=100`
-  * 攻击:设法让victim的浏览器发出该post请求
-    * 转变为get更容易攻击 (可尝试将post请求改成get形式的请求 如果可以正常响应 则可以使用get请求进行csrf攻击)
-    * 社工诱骗victim点击该url
-    * 漏洞联合 - 无交互地利用CSRF漏洞
-      * XSS - 构造并发送该Post请求
-
-### 测试antiCSRF机制
-
-相同请求重放 - 即可判断token是否为每次动态生成 仅一次性有效 用后失效
-完全删除CSRFtoken值令其为空 - 即可判断后端是否验证token是否有效
-修改CSRFtoken值中一个字符 - 即可判断后端验证机制是否严谨
-HTTP方法由POST转换为GET - 即可判断后端验证机制是否严谨
+* 相同请求重放 - 即可判断token是否为每次动态生成 仅一次性有效 用后失效
+* 完全删除CSRFtoken值令其为空 - 即可判断后端是否验证token是否有效
+* 修改CSRFtoken值中一个字符 - 即可判断后端验证机制是否严谨
+* HTTP方法由POST转换为GET - 即可判断后端验证机制是否严谨
 
 ### 防御方法
 
