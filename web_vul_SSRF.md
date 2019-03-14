@@ -151,5 +151,8 @@ SSRF测试工具/利用工具
 ### 修复方式
 
 * 禁用协议 - 仅允许必要的协议 如http和https
-* 禁止30x跳转
-* 严格限制参数值(白名单)
+* 禁止跳转
+  * 301 redirect 永久性转移(Permanently Moved)
+  * 302 redirect 暂时性转移(Temporarily Moved)
+* 严格限制参数值内容-域名白名单
+* 严格限制参数值长度
