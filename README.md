@@ -7,12 +7,7 @@ ________________________________________________/
 - [Security安全](#security)
     + [工具_防御与分析](#工具_防御与分析)
     + [工具_扫描自动化](#工具_扫描自动化)
-    + [website_exp引擎](#website_exp引擎)
-    + [website_网络空间引擎](#website_网络空间引擎)
-    + [website_威胁分析引擎_防御](#website_威胁分析引擎_防御)
-    + [website_破解hash](#website_破解hash)
 - [Development开发](#development)
-    + [必备网站](#必备网站)
     + [Awesome & cheat sheets](#awesome_and_cheat_sheets)
     + [开源图书](#开源图书)
     + [web应用开发-基础框架](#web应用开发-基础框架)
@@ -21,7 +16,6 @@ ________________________________________________/
     + [学习项目](#学习项目)
     + [知识_books](#知识_books)
     + [其他工具](#其他工具)
-    + [CMS](#cms)
     
 ________________________________________________/
 
@@ -41,6 +35,7 @@ ________________________________________________/
 |笔记标题|描述|
 |:-------------:|-----|
 |[SDL - 安全开发生命周期 实践与意义](sdl.md)|sdl.md|
+|[SDL - API设计规范 CheckList](sdl_API.md)|sdl_API.md|
 |[实践 - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)|sec_get_news.md|
 |[net - 流量分析 wireshark](net_wireshark.md)|net_wireshark.md|
 |[net - 流量分析 suricata 规则](net_suricata)|net_suricata.md|
@@ -57,7 +52,7 @@ ________________________________________________/
 |[Proxy - 代理工具_tcp_udp_http_https_VPN_Socks5](sec_proxy.md)|sec_proxy.md #socks5 #内网穿透|
 |[blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)|blockchain_SmartContracts.md|
 |[blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)|blockchain_mining.md|
-|[实践 - Phishing 鱼叉邮件+无文件攻击](sec_Phishing.md)|sec_Phishing.md|
+|[实践 - Phishing 鱼叉邮件+无文件攻击](sec_Phishing.md)|sec_Phishing.md #钓鱼 |
 |[实践 - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)|sec_mac_encryption_one_liner.md|
 |[实践 - github泄露扫描工具的搭建过程](sec_github_scan.md)|sec_github_scan.md|
 |[实践 - 信息搜集 Domain_IP_Google](sec_info_gathering.md)|sec_info_gathering.md|
@@ -81,6 +76,7 @@ ________________________________________________/
 |[爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
 |[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac.md)|z_command_Mac.md|
 |[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
+|[网络空间引擎 + EXP搜索引擎 + 威胁分析引擎 + 开发类网站](websites_all.md)|正则调试 http调试 进制转换 hash破解|
 
 ---
 
@@ -119,50 +115,9 @@ ________________________________________________/
 |[Unleashing an Ultimate XSS Polyglot · 0xSobky/HackVault Wiki](https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot)|XSS payload|
 |[dictionary/web_markdown_xss_payload.txt](https://github.com/1135/dictionary/blob/master/web_markdown_xss_payload.txt)|markdwon XSS payload|
 
-#### website_exp引擎
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[exploit-db](https://www.exploit-db.com/)|exp引擎|Offensive Security’s Exploit Database Archive. /remote/webapps/local/dos/papers|
-|[sploitus.com](https://sploitus.com/)|exp引擎|Exploits.|
-
-#### website_网络空间引擎
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[Shodan.io](https://www.shodan.io/)|网络空间引擎|Shodan is the world's first search engine for Internet-connected devices.|
-|[Fofa.so](https://fofa.so/)|网络空间引擎|白帽汇 [规则列表](https://fofa.so/library)|
-|[Zoomeye](https://www.zoomeye.org/)|网络空间引擎|知道创宇|
-|[censys.io](https://censys.io/ipv4)|网络空间引擎|censys.io|
-
-#### website_威胁分析引擎_防御
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[360威胁分析平台](https://ti.360.net/)|威胁分析引擎|威胁情报 ip domain file url email|
-|[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|威胁情报 ip domain file url email|
-|[在线沙箱app.any.run](https://app.any.run/tasks/defe1b39-b4b6-4573-ba46-de2c425f670f)|威胁分析引擎|在线沙箱:提取ioc 下载样本 下载pcap文件 运行线程 DNS解析 http通信|
-|[VirusTotal](https://www.virustotal.com/)|威胁分析引擎|分析可疑文件和URL 以检测恶意软件类型|
-[ThreatMiner.org](https://www.threatminer.org/)|威胁分析引擎|威胁情报的数据挖掘（有2008至今的APT报告pdf） Search for domains, IPs, MD5|SHA1|SHA256, email address or APTnotes(aptnotes:), ssl(ssl:), user-agent(ua:), AV family(av:), filename (filename:), URI (uri:), registry (reg:), mutex (mutex:)...|
-
-#### website_破解hash
-|名称|描述|
-|:-------------:|-----|
-|[Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|[瑞士] 在线破解 crack NTLM. 不错|
-|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
-
 ---
 
 ## Development
-
-#### 必备网站
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/javascript/python/golang. 代码生成器:直接生成多种语言代码java/golang等|
-|[graphemica.com/](http://graphemica.com/)|characters|同一字符的各种编码情况下的表示 各种格式|
-|https://codebeautify.org/|encoder|进制转换 json xml Escape/Unescape sql...|
-|https://httpbin.org/|http debug|A simple HTTP Request & Response Service.|
 
 #### Awesome_and_cheat_sheets
 
