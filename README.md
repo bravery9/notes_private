@@ -36,7 +36,7 @@ ________________________________________________/
 |[SDL - API设计规范 CheckList](sdl_API.md)|sdl_API.md|
 |[实践 - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)|sec_get_news.md|
 |[net - 流量分析 wireshark](net_wireshark.md)|net_wireshark.md|
-|[net - 流量分析 suricata 规则](net_suricata)|net_suricata.md|
+|[net - 流量分析 suricata 规则](net_suricata.md)|net_suricata.md|
 |[web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)|web_code_audit_PHP.md|
 |[web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)|web_code_audit_Python.md|
 |[web - vul - SQLi_原理 利用方式 修复方案](web_vul_sqli.md)|web_vul_sqli.md|
@@ -85,19 +85,12 @@ ________________________________________________/
 
 |名称|属性|描述|
 |:-------------:|-----|-----|
-|[suricata](https://github.com/OISF/suricata) |流量解析| #强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
-[Security-Onion-Solutions/security-onion](https://github.com/Security-Onion-Solutions/security-onion)|流量解析|#一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
-
-
-|名称|属性|描述|
-|:-------------:|-----|-----|
 |[cuckoo](https://github.com/cuckoosandbox/cuckoo)|文件分析引擎|3k★ #行为分析 an automated dynamic malware analysis system|
 
 |名称|属性|描述|
 |:-------------:|-----|-----|
 |[Tencent/bk-cmdb](https://github.com/Tencent/bk-cmdb)|资产管理|2k★ 蓝鲸配置平台（蓝鲸CMDB）是一个基于运维场景设计的企业配置管理服务|
 |[SpiderLabs/owasp-modsecurity-crs](https://github.com/SpiderLabs/owasp-modsecurity-crs)|Web攻击检测规则|OWASP ModSecurity核心规则集 Web应用程序防火墙的通用攻击检测规则|
-
 
 #### 工具_代码审计
 
@@ -151,7 +144,6 @@ ________________________________________________/
 |[Spring Boot](https://github.com/spring-projects/spring-boot)|Java|28k★ Spring Boot makes it easy to create Spring-powered, production-grade applications and services with absolute minimum fuss. |
 |[ThinkPHP5 Framework](https://github.com/top-think/framework)|php|1k★ 中文web应用开发框架  |
 |[Vue.js](https://github.com/vuejs/vue)|js前端框架|120k★ A progressive, incrementally-adoptable JavaScript framework for building UI on the web.|
-
 
 #### web前端
 
