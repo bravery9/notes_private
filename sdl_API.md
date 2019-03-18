@@ -4,7 +4,7 @@
 
 身份认证 设计原则:使用成熟且安全的组件 不要造轮子
 
-* 使用标准的认证协议(如 JWT, OAuth). 不要使用Basic Auth
+* 使用标准的认证协议(如 [JWT](https://jwt.io/), [OAuth](https://oauth.net/)). 不要使用Basic Auth
 * 使用标准的 Authentication, token generating, password storing
 * 在登录中使用 Max Retry 和自动封禁功能
 * 加密所有的敏感数据
@@ -100,9 +100,5 @@ API访问授权标准 安全且开放
 
 #### 参考
 
-* [yosriady/api-development-tools](https://github.com/yosriady/api-development-tools) - A collection of useful resources for building RESTful HTTP+JSON APIs. 包括API规范，各语言的API实现
-
+* [yosriady/api-development-tools](https://github.com/yosriady/api-development-tools) - A collection of useful resources for building RESTful HTTP+JSON APIs. 包括API规范 API框架 API文档 API监控 API网关 API测试 以及 各语言的API实现.
 * [API-Security-Checklist](https://github.com/shieldfy/API-Security-Checklist/blob/master/README-zh.md)
-
-
-
