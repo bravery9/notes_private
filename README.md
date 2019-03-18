@@ -46,8 +46,6 @@ ________________________________________________/
 |[web - vul - Java反序列化 原理 利用方式 修复方案](web_vul_Deserialization.md)|Deserialization|
 |[web - 中间件常见问题修复方案 SSL slowhttpdos Tomcat](web_vul_mid_SSL_slowhttpdos.md)|web_vul_mid_SSL_slowhttpdos.md|
 |[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|z_web_webgoat.md|
-|[host - 主机扫描思路+扫描自动化](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
-|[Proxy - 代理工具_tcp_udp_http_https_VPN_Socks5](sec_proxy.md)|sec_proxy.md #socks5 #内网穿透|
 |[blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)|blockchain_SmartContracts.md|
 |[blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)|blockchain_mining.md|
 |[实践 - Phishing 鱼叉邮件+无文件攻击](sec_Phishing.md)|sec_Phishing.md #钓鱼 |
@@ -71,10 +69,13 @@ ________________________________________________/
 |[笔记 - Docker](note_Docker.md)|note_Docker.md|
 |[笔记 - Redis](note_DB_redis.md)|note_DB_redis.md|
 |[笔记 - android应用安全](note_sec_android.md)|note_sec_android.md|
-|[爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
-|[MacOS下的好用软件、快捷键、命令、技巧](z_command_Mac.md)|z_command_Mac.md|
-|[各系统的自动化操作](z_auto_operation.md)|z_auto_operation.md|
-|[网络空间引擎 + EXP搜索引擎 + 威胁分析引擎](sec_websites.md)|exploit regex调试 http调试 进制转换 hash破解|
+|[整理 - 爬虫分类 及 静态爬虫内容提取利器GraphQuery](z_web_crawl.md)|z_web_crawl.md|
+|[整理 - MacOS 好用软件 快捷键 命令 技巧](z_command_Mac.md)|z_command_Mac.md|
+|[整理 - Proxy tools](sec_proxy.md)|sec_proxy.md #socks5 #内网穿透 tcp udp http https VPN|
+|[整理 - 实现各系统的模拟操作](z_auto_operation.md)|z_auto_operation.md|
+|[整理 - 主机扫描思路+扫描自动化](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
+|[整理 - 网络空间引擎 EXP搜索引擎 威胁分析引擎](sec_websites.md)|exploit regex调试 http调试 进制转换 hash破解|
+|[整理 - 终端安全](sec_endpoint.md)|防火墙 开源软件|
 
 ---
 
