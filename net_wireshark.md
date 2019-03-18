@@ -2,10 +2,15 @@
 
 流量分析(traffic analysis)：根据"流量"发现 恶意软件特征 mining/APT/..
 
-分析工具
-* Wireshark
-* Security Onion
-* 恶意软件分析工具与资源list [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
+### 流量分析工具
+
+|名称|描述|
+|:-------------:|-----|
+|Wireshark||
+|[suricata](https://github.com/OISF/suricata) |强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
+[security-onion](https://github.com/Security-Onion-Solutions/security-onion)|一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
+
+恶意软件分析工具与资源 [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 
 ### Wireshark - 筛选
 
