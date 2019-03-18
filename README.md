@@ -48,7 +48,7 @@ ________________________________________________/
 |[web - vul - Java反序列化 原理 利用方式 修复方案](web_vul_Deserialization.md)|Deserialization|
 |[web - 中间件常见问题修复方案 SSL slowhttpdos Tomcat](web_vul_mid_SSL_slowhttpdos.md)|web_vul_mid_SSL_slowhttpdos.md|
 |[web - 靶场 - WebGoat8搭建及WriteUp](z_web_webgoat.md)|z_web_webgoat.md|
-|[host - 主机扫描思路_各种服务的攻击与防御](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
+|[host - 主机扫描思路+扫描自动化](host_sec_port_service_exp.md)|host_sec_port_service_exp.md|
 |[Proxy - 代理工具_tcp_udp_http_https_VPN_Socks5](sec_proxy.md)|sec_proxy.md #socks5 #内网穿透|
 |[blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)|blockchain_SmartContracts.md|
 |[blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)|blockchain_mining.md|
@@ -94,16 +94,12 @@ ________________________________________________/
 |[Tencent/bk-cmdb](https://github.com/Tencent/bk-cmdb)|资产管理|2k★ 蓝鲸配置平台（蓝鲸CMDB）是一个基于运维场景设计的企业配置管理服务|
 |[SpiderLabs/owasp-modsecurity-crs](https://github.com/SpiderLabs/owasp-modsecurity-crs)|Web攻击检测规则|OWASP ModSecurity核心规则集 Web应用程序防火墙的通用攻击检测规则|
 
-#### 工具_扫描自动化
+#### 工具_代码审计
 
 |名称|属性|编程语言/运行环境|描述|
 |:-------------:|--|--|-----|
-|[cea-sec/ivre](https://github.com/cea-sec/ivre)|端口扫描|web界面友好|
-|[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|主机扫描|python+shell / kali_linux|Automate Pentest Tool|
-|[Sn1per](https://github.com/1N3/Sn1per)|主机扫描|python+shell / kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
 |[ttarvis/glasgo](https://github.com/ttarvis/glasgo)|Golang代码静态分析|golang / all | A Security Scanner for Go|
 |[ajinabraham/NodeJsScan](https://github.com/ajinabraham/NodeJsScan)|node.js代码静态分析|node.js|Node.js应用程序的静态安全代码扫描程序|
-|[jeffzh3ng/Fuxi-Scanner](https://github.com/jeffzh3ng/Fuxi-Scanner)|端口扫描 PoC扫描 资产管理|python3|Network Security Vulnerability Scanner|
 
 #### Payload_dictionary_字典
 
