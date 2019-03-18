@@ -35,6 +35,15 @@
 |其他服务|Rsync|873|暴力枚举 - 命令行|ACL - iptables|
 
 
+### 工具_扫描自动化
+
+|名称|属性|编程语言/运行环境|描述|
+|:-------------:|--|--|-----|
+|[cea-sec/ivre](https://github.com/cea-sec/ivre)|端口扫描|web界面友好|
+|[Yuki-Chan-The-Auto-Pentest](https://github.com/Yukinoshita47/Yuki-Chan-The-Auto-Pentest)|主机扫描|python+shell / kali_linux|Automate Pentest Tool|
+|[Sn1per](https://github.com/1N3/Sn1per)|主机扫描|python+shell / kali_linux docker|Automated Pentest Recon Scanner.  kali`./install.sh`|
+|[jeffzh3ng/Fuxi-Scanner](https://github.com/jeffzh3ng/Fuxi-Scanner)|端口扫描 PoC扫描 资产管理|python3|Network Security Vulnerability Scanner 可直接导入基于pocsuite写的PoC脚本|
+
 ### 相关说明
 
 ```
