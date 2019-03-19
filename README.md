@@ -4,8 +4,8 @@ ________________________________________________/
 
 - [MyProject我的项目](#myproject)
 - [MyNotes我的笔记](#mynotes)
-    + [SDL - 安全开发生命周期 实践与意义](sdl.md)|sdl.md|
-    + [SDL - API设计规范 CheckList](sdl_API.md)|sdl_API.md|
+    + [SDL - 安全开发生命周期 实践与意义](sdl.md)
+    + [SDL - API设计规范 CheckList](sdl_API.md)
     + [net - 流量分析 wireshark](net_wireshark.md)
     + [net - 流量分析 suricata 规则](net_suricata.md)
     + [web - vul - SQLi_原理 利用方式 修复方案](web_vul_sqli.md)
