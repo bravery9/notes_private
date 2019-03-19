@@ -1,64 +1,53 @@
-# Content
+#### MyNotes我的笔记
 
-________________________________________________/
+ * [SDL - 安全开发生命周期 实践与意义](sdl.md)
+ * [SDL - API设计规范 CheckList](sdl_API.md)
+ * [net - 流量分析 wireshark](net_wireshark.md)
+ * [net - 流量分析 suricata 规则](net_suricata.md)
+ * [web - vul - SQLi_原理 利用方式 修复方案](web_vul_sqli.md)
+ * [web - vul - SSRF_原理 利用方式 修复方案](web_vul_SSRF.md)
+ * [web - vul - XSS  原理 利用方式 修复方案](web_vul_XSS.md)
+ * [web - vul - CSRF 原理 利用方式 修复方案](web_vul_CSRF.md)
+ * [web - vul - Java反序列化 原理 利用方式 修复方案 Deserialization](web_vul_Deserialization.md)
+ * [web - SQLi sqlmap常用参数 tamper详解](sec_sqlmap.md)
+ * [web - WEB应用安全部署架构_及 WAFbypass](web_WAF_bypass.md)
+ * [web - burp 设置 插件 技巧](web_x_burp.md)
+ * [web - burp Intruder的4种攻击方式](web_x_burp_Intruder.md)
+ * [web - 基础 - 密码学基础及其应用(RSA TLS HTTPS 数字证书)](web_x_https_tls.md)
+ * [web - 基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)
+ * [web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)
+ * [web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)
+ * [web - 中间件 - 常见问题 修复方案](web_vul_mid_SSL_slowhttpdos.md)
+ * [web - 整理 - 靶场WebGoat8的搭建 WriteUp](z_web_webgoat.md)
+ * [web - 整理 - 爬虫分类](z_web_crawl.md)
+ * [web - 整理 - web基础框架 应用 中间件 前端](web_apps.md)
+ * [Red - 构建高适应性的C2基础设施](sec_C2.md)
+ * [Red - 多维度实现免杀 (对抗 终端安全 流量分析 逆向分析 行为分析)](sec_evasion.md) 
+ * [Red - RAT - Windows - 远控_域渗透](sec_RAT.md)
+ * [Red - PostExploitation - 持久化 信息搜集 白利用 (linux MacOS backdoor)](sec_RAT_post_exploitation.md)
+ * [Red - web后渗透 webshell管理](sec_webshell.md)
+ * [Red - Phishing 鱼叉邮件+无文件攻击](sec_Phishing.md)
+ * [Red - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)
+ * [Red - msfvenom - msf的payload生成器](sec_msfvenom.md)
+ * [Red - Proxy tools 代理工具](sec_proxy.md)
+ * [Red - 信息搜集 - Domain_IP_Google](sec_info_gathering.md)
+ * [sec - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)
+ * [sec - github泄露扫描工具的搭建过程](sec_github_scan.md)
+ * [sec - 终端安全(防火墙 开源软件)](sec_endpoint.md)
+ * [sec - 主机扫描思路 扫描自动化](host_sec_port_service_exp.md)
+ * [sec - 网络空间引擎 EXP搜索引擎 威胁分析引擎](sec_websites.md)
+ * [笔记 - pwn linux下的二进制程序pwn](note_bin_pwn.md)
+ * [笔记 - GDB](note_bin_GDB.md)
+ * [笔记 - Docker](note_Docker.md)
+ * [笔记 - Redis](note_DB_redis.md)
+ * [笔记 - Android应用安全](note_sec_android.md)
+ * [笔记 - blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)
+ * [笔记 - blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)
+ * [笔记 - MacOS 好用软件 快捷键 命令 技巧](z_command_Mac.md)
+ * [笔记 - 实现各系统的模拟操作](z_auto_operation.md)
+ * [笔记 - Golang 学习项目 开源图书](note_Golang.md)
 
-- [MyProject我的项目](#myproject)
-- MyNotes我的笔记
-    + [SDL - 安全开发生命周期 实践与意义](sdl.md)
-    + [SDL - API设计规范 CheckList](sdl_API.md)
-    + [net - 流量分析 wireshark](net_wireshark.md)
-    + [net - 流量分析 suricata 规则](net_suricata.md)
-    + [web - vul - SQLi_原理 利用方式 修复方案](web_vul_sqli.md)
-    + [web - vul - SSRF_原理 利用方式 修复方案](web_vul_SSRF.md)
-    + [web - vul - XSS  原理 利用方式 修复方案](web_vul_XSS.md)
-    + [web - vul - CSRF 原理 利用方式 修复方案](web_vul_CSRF.md)
-    + [web - vul - Java反序列化 原理 利用方式 修复方案 Deserialization](web_vul_Deserialization.md)
-    + [web - SQLi sqlmap常用参数 tamper详解](sec_sqlmap.md)
-    + [web - WEB应用安全部署架构_及 WAFbypass](web_WAF_bypass.md)
-    + [web - burp 设置 插件 技巧](web_x_burp.md)
-    + [web - burp Intruder的4种攻击方式](web_x_burp_Intruder.md)
-    + [web - 基础 - 密码学基础及其应用(RSA TLS HTTPS 数字证书)](web_x_https_tls.md)
-    + [web - 基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)
-    + [web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)
-    + [web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)
-    + [web - 中间件 - 常见问题 修复方案](web_vul_mid_SSL_slowhttpdos.md)
-    + [web - 整理 - 靶场WebGoat8的搭建 WriteUp](z_web_webgoat.md)
-    + [web - 整理 - 爬虫分类](z_web_crawl.md)
-    + [web - 整理 - web基础框架 应用 中间件 前端](web_apps.md)
-    + [Red - 构建高适应性的C2基础设施](sec_C2.md)
-    + [Red - 多维度实现免杀 (对抗 终端安全 流量分析 逆向分析 行为分析)](sec_evasion.md) 
-    + [Red - RAT - Windows - 远控_域渗透](sec_RAT.md)
-    + [Red - PostExploitation - 持久化 信息搜集 白利用 (linux MacOS backdoor)](sec_RAT_post_exploitation.md)
-    + [Red - web后渗透 webshell管理](sec_webshell.md)
-    + [Red - Phishing 鱼叉邮件+无文件攻击](sec_Phishing.md)
-    + [Red - MacOS下的one_liner执行加密的payload](sec_mac_encryption_one_liner.md)
-    + [Red - msfvenom - msf的payload生成器](sec_msfvenom.md)
-    + [Red - Proxy tools 代理工具](sec_proxy.md)
-    + [Red - 信息搜集 - Domain_IP_Google](sec_info_gathering.md)
-    + [sec - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)
-    + [sec - github泄露扫描工具的搭建过程](sec_github_scan.md)
-    + [sec - 终端安全(防火墙 开源软件)](sec_endpoint.md)
-    + [sec - 主机扫描思路 扫描自动化](host_sec_port_service_exp.md)
-    + [sec - 网络空间引擎 EXP搜索引擎 威胁分析引擎](sec_websites.md)
-    + [笔记 - pwn linux下的二进制程序pwn](note_bin_pwn.md)
-    + [笔记 - GDB](note_bin_GDB.md)
-    + [笔记 - Docker](note_Docker.md)
-    + [笔记 - Redis](note_DB_redis.md)
-    + [笔记 - Android应用安全](note_sec_android.md)
-    + [笔记 - blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)
-    + [笔记 - blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)
-    + [笔记 - MacOS 好用软件 快捷键 命令 技巧](z_command_Mac.md)
-    + [笔记 - 实现各系统的模拟操作](z_auto_operation.md)
-    + [笔记 - Golang 学习项目 开源图书](note_Golang.md)
-    + [整理 - Awesome & cheat sheets](#awesome_and_cheat_sheets)
-    + [整理 - 知识_books](#知识_books)
-
-    
-________________________________________________/
-
-#### MyProject
-
-我的项目
+#### MyProject我的项目
 
 |项目名称|属性|描述|
 |:-------------:|--|-----|
@@ -84,7 +73,7 @@ ________________________________________________/
 |[niklongstone/regular-expression-cheat-sheet](https://github.com/niklongstone/regular-expression-cheat-sheet)|Regular Expression Cheat Sheet - PCRE|
 |[30-seconds-of-interviews-zh_CN](https://github.com/b3log/30-seconds-of-interviews-zh_CN)|#前端 常见面试问题集+答案|
 
-#### 知识_books
+#### 学习知识
 
 |名称|属性|描述|
 |:-------------:|--|-----|
