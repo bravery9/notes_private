@@ -17,12 +17,14 @@
 
 #### web系统
 
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[filebrowser](https://github.com/filebrowser/filebrowser)|云盘系统 Golang|4k★ A stylish web-based file manager|
-|[nextcloud](https://github.com/nextcloud/server)|云盘系统 PHP|5k★ a safe home for all your data. 多客户端：web、ios、android |
-|[gitea](https://github.com/go-gitea/gitea)|git系统 Golang|9k★ 独立二进制包,无障碍开启self-hosted git service(自托管git服务). all platforms which Go supports!|
-|[phacility/phabricator](https://github.com/phacility/phabricator)|CodeReview系统 PHP|11k★ Open software engineering platform(可用作CodeReview系统)|
+
+|名称|属性|运行环境|描述|
+|:-------------:|--|--|-----|
+|[asciimoo/searx](https://github.com/asciimoo/searx)|python3|Debian/Ubuntu| 4k★ About 70 supported search engines. 搜索引擎. No user tracking/profiling.  https://asciimoo.github.io/searx/|
+|[filebrowser](https://github.com/filebrowser/filebrowser)|Golang|/|4k★ #云盘系统 A stylish web-based file manager|
+|[nextcloud](https://github.com/nextcloud/server)|PHP|/|5k★ #云盘系统 a safe home for all your data. 多客户端：web、ios、android |
+|[gitea](https://github.com/go-gitea/gitea)|Golang|/|9k★ #git系统 独立二进制包,无障碍开启自托管git服务.|
+|[phacility/phabricator](https://github.com/phacility/phabricator)|PHP|/|11k★ #CodeReview Open software engineering platform|
 
 
 #### web中间件
