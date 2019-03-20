@@ -32,7 +32,8 @@
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[avet](https://github.com/govolution/avet)|C+shell+python|[仅针对Windows exe] AntiVirus Evasion Tool 运行于kali2|
+|[EgeBalci/Amber](https://github.com/EgeBalci/Amber)|go+asm|#仅针对 Windows Reflective PE packer. 将PE文件打包成reflective payloads 可以无文件执行 像shellcode一样加载并执行自身|
+|[avet](https://github.com/govolution/avet)|C+shell+python|#仅针对Windows AntiVirus Evasion Tool 运行于kali2|
 |[Veil-Evasion](https://github.com/Veil-Framework/Veil-Evasion)|shell+C+python2.7|[可针对Windows exe] generate metasploit payloads that bypass common anti-virus solutions|
 |[GreatSCT](https://github.com/GreatSCT/GreatSCT)|python3|免杀工具|
 |[ASWCrypter](https://github.com/AbedAlqaderSwedan1/ASWCrypter)|shell+python|An Bash&Python Script For Generating Payloads that Bypasses All Antivirus so far FUD.实测无法过360ZhuDongFangyu|
