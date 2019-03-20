@@ -19,7 +19,7 @@
 * 现代远控
   * 针对大中型网络
   * 功能更多更强，尤其是内网横向渗透方面(oneliner/网络协议/内网渗透/bypassuac...)
-
+  * 可生成多种形式的payload 尤其是shellcode形式
 
 ### 远程控制 - 传统远程控制
 
@@ -78,11 +78,9 @@
 |[CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)|python+powershell|Kali/Debian/Ubuntu/MacOS[Installation](https://github.com/byt3bl33d3r/CrackMapExec/wiki/Installation)| 2k★ #域渗透 域渗透利器|
 |[sRDI](https://github.com/monoxgas/sRDI)|powershell|windows|Shellcode implementation of Reflective DLL Injection. Convert DLLs to position independent shellcode|
 
-
 * Cobalt Strike资料
-  * [cobalt strike 快速上手 [ 一 ] - klion's blog](https://klionsec.github.io/2017/09/23/cobalt-strike/)
-  * [Cobalt Strike学习笔记 - FreeBuf](https://www.freebuf.com/sectool/133369.html)
-  * [深入研究cobalt strike malleable C2配置文件 - 先知社区](https://xz.aliyun.com/t/2796)
+  * [渗透利器Cobalt Strike - 第1篇 功能及使用 - 先知社区](https://xz.aliyun.com/t/3975)
+  * [渗透利器Cobalt Strike - 第2篇 APT级的全面免杀与企业纵深防御体系的对抗 - 先知社区](https://xz.aliyun.com/t/4191)
 
 * Windows域渗透
   * [Windows domain - Wikipedia](https://en.wikipedia.org/wiki/Windows_domain)
