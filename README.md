@@ -25,7 +25,7 @@
  * [Red - 信息搜集 - Domain_IP_Google](sec_info_gathering.md)
  * [Red - webshell管理](sec_webshell.md)
  * [Red - 基础 - Windows远控分类介绍 域渗透](sec_RAT.md)
- * [Red - 多维度的免杀 免杀软件 无文件攻击 (对抗 终端安全 流量分析 逆向分析 行为分析)](sec_evasion.md) 
+ * [Red - 多维度的免杀 无文件攻击 (对抗 终端安全 流量分析 逆向分析 行为分析)](sec_evasion.md) 
  * [Red - 后渗透 - 持久化 信息搜集 白利用 (linux MacOS backdoor PostExploitation)](sec_RAT_post_exploitation.md)
  * [Red - 构建高适应性的C2基础设施](sec_C2.md)
  * [Red - msfvenom - msf的payload生成器](sec_msfvenom.md)
