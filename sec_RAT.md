@@ -5,7 +5,6 @@
 |[Red-Team-Infrastructure-Wiki](https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki)|红队基础设施Wiki(构建稳定C2)|
 |[infosecn1nja/Red-Teaming-Toolkit](https://github.com/infosecn1nja/Red-Teaming-Toolkit)|red team tools.(infosecn1nja是Empire的作者)|
 |[infosecn1nja/AD-Attack-Defense](https://github.com/infosecn1nja/AD-Attack-Defense)|Active Directory Security For Red & Blue Team|
-|红队攻防揭秘|微信公众号|
 |[Awesome-Red-Teaming](https://github.com/yeyintminthuhtut/Awesome-Red-Teaming)|List of Awesome Red Teaming Resources|
 |https://attack.mitre.org/|真实世界用到的、系统化的网络攻击技术|
 
