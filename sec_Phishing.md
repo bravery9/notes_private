@@ -20,6 +20,12 @@
 |邮件|邮件中的Office文档的宏执行恶意payload|windows系统|Microsoft Office documents containing malicious macros|
 |邮件|邮件中的超链接可以跳转到钓鱼网站|任意系统|获取目标的 登录口令 身份凭证|
 
+
+更多可参考项目 [SocialEngineeringPayloads](https://github.com/bhdresh/SocialEngineeringPayloads)
+ 用于凭证窃取和鱼叉式网络钓鱼攻击。
+
+
+  
 #### 钓鱼文案 - 标题
 
 * 社会高度关注的热点
@@ -33,8 +39,8 @@
 #### 钓鱼文案 - 内容
 
 * 案例1 [针对银行钓鱼事件的分析 - FreeBuf](https://www.freebuf.com/articles/web/129079.html)
-  * 官方风格:钓鱼页面上所有的联系电话，都为Santander银行的真实电话，整个页面的布局也完全与银行的界面类似
-  * 诱导内容:警告用户的计算机上的安全模块已过期，如果不及时更新到最新版本，银行将向他们发出246.67BRL的罚单（约$80.00）
+  * 官方风格:钓鱼页面上的字体 页面布局 联系电话 都极力模仿Santander银行的风格
+  * 诱导理由:警告用户的计算机上的安全模块已过期，如果不及时更新到最新版本，银行将向他们发出246.67BRL的罚单（约$80.00）
   * 触发场景:点击图片(超链接) 跳进钓鱼站点
 
 #### 实践 - 邮件钓鱼全过程
