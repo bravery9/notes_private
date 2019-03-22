@@ -3,9 +3,9 @@
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[MiSecurity/x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
+|[michenriksen/gitrob](https://github.com/michenriksen/gitrob)|Golang|allReconnaissance tool for GitHub organizations|
 
-
-### 搭建过程
+### x-patrol搭建过程
 
 进入 https://github.com/MiSecurity/x-patrol/releases
 
