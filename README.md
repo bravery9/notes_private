@@ -45,7 +45,7 @@
  * [笔记 - MacOS 好用软件 快捷键 命令 技巧](z_command_Mac.md)
  * [笔记 - 实现各系统的模拟操作](z_auto_operation.md)
  * [笔记 - Golang 学习项目 开源图书](note_Golang.md)
- * [笔记 - Mechine Learning](note_mechine_learning.md)
+ * [笔记 - Machine Learning 机器学习](note_mechine_learning.md)
 
 #### MyProject我的项目
 
@@ -78,7 +78,6 @@
 |名称|属性|描述|
 |:-------------:|--|-----|
 |[Java-Guide](https://github.com/Snailclimb/Java-Guide)|非代码|Java学习指南 一份涵盖大部分Java程序员所需要掌握的核心知识|
-|[tensorflow_cookbook](https://github.com/nfmcclure/tensorflow_cookbook)|python #ML|3k★ Code for Tensorflow Machine Learning Cookbook |
 |[Linux kernel map](http://www.makelinux.net/kernel_map/)|linux|linux内核学习 交互式操作 美国网站|
 |[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
 |[PDFs_books](https://github.com/tongxurt/pdfs)|pdf|网络是怎样连接的_户根勤.pdf Linux内核设计与实现(第三版中文高清带目录).pdf|
