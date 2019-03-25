@@ -22,6 +22,15 @@
   * 异常检测
   * ...
 
+
 * 参考
   * [机器学习术语表  | Google Developers](https://developers.google.com/machine-learning/glossary/)
   * [Education – Google AI](https://ai.google/education/)
+
+### 学习项目
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[tensorflow_cookbook](https://github.com/nfmcclure/tensorflow_cookbook)|python #ML|3k★ Code for Tensorflow Machine Learning Cookbook |
+
+
