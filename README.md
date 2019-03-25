@@ -45,7 +45,7 @@
  * [笔记 - MacOS 好用软件 快捷键 命令 技巧](z_command_Mac.md)
  * [笔记 - 实现各系统的模拟操作](z_auto_operation.md)
  * [笔记 - Golang 学习项目 开源图书](note_Golang.md)
- * [笔记 - Machine Learning 机器学习](note_mechine_learning.md)
+ * [笔记 - Machine Learning 机器学习](note_machine_learning.md)
 
 #### MyProject我的项目
 
