@@ -56,6 +56,7 @@
 
 
 ### 常用快捷键
+
 官网 - Mac 键盘快捷键 https://support.apple.com/zh-cn/HT201236
 
 `option + command + L` 打开下载文件夹
@@ -211,8 +212,8 @@ last | grep reboot #查看开机时间记录
 `^blah^foo^`将上一条命令中所有的 blah 都替换为 foo
 
 
+### 程序员相关
 
-### 程序员相关[powerful]
 必备软件包管理工具Homebrew
 * 可安装程序多 并且一直更新  官网 https://brew.sh/
 * 干净  通过Homebrew安装的软件全都在目录`/usr/local/Cellar` 保持系统内置的依赖库和自带软件不变
@@ -272,42 +273,30 @@ $ vim /usr/local/etc/proxychains.conf
  https://github.com/feross/SpoofMAC
 
 * iterm2 取代原生终端   官方文档http://www.iterm2.com/documentation.html
-
  * 修改配色
 Perferences - Profiles 选项卡 - Colors
 最右下角有几种内置的配色方案：黑色风格，白色风格，深蓝风格...
-
  * 双击复制文本
 比如输入ping wiki.com  双击ip即可复制
-
  * cmd + f
 输入一个开头，tab可自动“智能”补全
 点击放大镜 可支持 正则表达式
-
-
  * 一键隐藏／显示
 Perferences - Keys 选项卡
 左下角有 `show/hide iTerm2 with a system-wide hotkey`
 勾选 推荐为`cmd\\`
-
  * 标记/跳转
 标记 ：在某一行按下 Cmd + Shift + M
 跳回行：刚才设置的那一行 Cmd + Shift + J
-
  * 剪贴板历史纪录
 Cmd + Shift + H
 显示（使用命令行过程中）所有的复制粘贴的内容列表
-
  *  曾经执行的命令
 Cmd + Option + B
 界面上显示一个时间轴，按下键盘的左右箭头控制时间轴上的点，查看当时的命令
-
  * 多窗口搜索
 Cmd + Option + E
  搜索，最匹配关键词的窗口会高亮显示，按回车键切换到高亮窗口。
-
-
-
 
 
 
@@ -335,6 +324,15 @@ fn+上下左右方向键可以实现PageUP/PageDown/Home/End的功能
 
 
 
+### zip命令
+
+* zip命令
+  * -e 指定解密zip包的口令
+  * -r 对文件夹进行压缩
+* zip实操
+  * 文件  -压缩->  普通zip包 `zip backup.zip 1.png`
+  * 文件  -压缩->  加密zip包 `zip -e backup.zip 1.png`
+  * 文件夹 -压缩->  普通zip包 `ip -r aaa.zip notes`
 
 ### open命令
 
@@ -354,9 +352,6 @@ open -a TextEdit a.txt
 open http://news.sina.com.cn
 
 
-
-
-
 ### time命令
 
 如果你想知道在终端执行的某个程序耗时多久，对CPU等的使用情况，可以输入：
@@ -367,8 +362,6 @@ time python fib.py
 real 0m0.005s
 user 0m0.001s
 sys 0m0.003s
-
-
 
 
 
