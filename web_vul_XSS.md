@@ -98,9 +98,9 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
   * 建议使用成熟的前端框架 `Vue` `React`
   * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单
   * API接口 - 建议显式规定response的MIME类型 即 `Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
-  * 在`Set-Cookie: `中增加
-    * `; secure` 仅允许HTTPS协议中传输cookie
-    * `; HttpOnly` 当客户端脚本代码读取cookie 则浏览器返回一个空字符串
+  * Cookie安全设计参考 - [Security Cookies Whitepaper](https://www.netsparker.com/security-cookies-whitepaper//?utm_source=twitter.com&utm_medium=social&utm_content=security+cookies+whitepaper&utm_campaign=netsparker+social+media)
+    * 如在`Set-Cookie: `中增加  `; secure` 仅允许HTTPS协议中传输cookie
+    * 如在`Set-Cookie: `中增加  `; HttpOnly` 当客户端脚本代码读取cookie 则浏览器返回一个空字符串
 * 测试阶段
   * 基本防御方案：为了保证输入的原生态，通常在输出点做实体编码、必要的过滤。
   * XSS详细防御[Cross_Site_Scripting_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
