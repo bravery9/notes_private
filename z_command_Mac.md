@@ -13,6 +13,7 @@
 * Paragon NTFS 14（￥139）收费 据说体验较好
 
 ### 高效桌面
+
 * HazeOver（专注于一个窗口，其他地方都变暗一些，可调整暗度）【自用】
 
 * Bartender  （把状态栏上的一些应用图标收入一个“省略号图标”）
@@ -30,7 +31,7 @@
 
 * paw 强大的REST API分析调试工具
 
-* f.lux 自动护眼
+* [Keka - macOS 压缩文件管理器](https://www.keka.io/zh-cn/) 【自用】 支持常见压缩/解压文件格式 zip 7z rar ...
 
 * sublime text3 编辑器【自用】
 
