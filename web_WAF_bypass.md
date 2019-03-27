@@ -2,7 +2,7 @@
 
 [Web application firewall](https://en.wikipedia.org/wiki/Web_application_firewall)
 
-* Appliance - 设备
+* Appliance - 设备 硬件WAF
   * Barracuda Networks WAF
   * Citrix Netscaler Application Firewall
   * F5 Big-IP ASM
@@ -11,7 +11,7 @@
   * Penta Security WAPPLES
   * Radware AppWall
   * Sophos XG Firewall
-* Cloud - 云
+* Cloud - 云WAF
   * Alibaba Cloud
   * Amazon Web Services AWS WAF
   * Cloudbric
@@ -20,7 +20,7 @@
   * Fastly
   * Imperva Incapsula
   * Radware
-* Open-source 开源
+* Open-source 开源WAF
   * ModSecurity
 
 ### WEB应用-安全部署架构
@@ -47,11 +47,11 @@
 
 ### WAF/CDN 根本绕过方式
 
-找到真实IP - 直接对源站的真实ip发起请求,流量不经过WAF/CDN
+* 针对没有"回源IP防护"的站点
+  * 找到源站IP - 直接对源站的真实ip发起请求,流量不经过WAF/CDN
+  * DNS history records - 该域名DNS解析的历史记录中的A记录 可能是源站IP
+    * 工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
 
-* DNS history records - 该域名DNS解析的历史记录中的A记录 可能是真实ip
-  * 工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
-
-### 绕过WAF规则
+### WAF规则的绕过
 
 [Ekultek/WhatWaf: Detect and bypass web application firewalls and protection systems](https://github.com/Ekultek/WhatWaf)
