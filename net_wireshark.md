@@ -67,3 +67,15 @@
 [Malware-Traffic-Analysis.net - 流量分析练习Traffic Analysis Exercises](https://www.malware-traffic-analysis.net/training-exercises.html)
 
 下载的zip文件解压密码为`infected`
+
+### 确定受影响主机的信息
+
+* 确定被感染主机的信息(系统信息、IP地址、MAC地址、计算机名、系统帐户名)
+  * [对恶意软件Dridex的流量分析 - FreeBuf互联网安全新媒体平台](https://www.freebuf.com/articles/es/195832.html)
+  * 通过HTTP中的User-Agent中Windows NT字符串代表不同版本的Microsoft Windows：
+    * Windows NT 5.1：Windows XP
+    * Windows NT 6.0：Windows Vista
+    * Windows NT 6.1：Windows 7
+    * Windows NT 6.2：Windows 8
+    * Windows NT 6.3：Windows 8.1
+    * Windows NT 10.0：Windows 10
