@@ -45,12 +45,46 @@
 * 4、修改DNS解析的配置，将域名解析指向 高防IP服务提供的`CNAME`
   * 配置完成
 
-### WAF/CDN 根本绕过方式
+### 基础概念
 
-* 针对没有"回源IP防护"的站点
+接入WAF后，WAF代理了公网所有的客户端请求(过滤访问流量)，将过滤后的访问流量导向源站业务端口
+
+所以源站业务端口收到的访问流量都是来自WAF的IP(而真实的客户端IP地址在HTTP请求头部的X-Forwarded-For字段中)
+
+其中"WAF的源IP"就是回源IP地址（Return Source IP Address)
+
+正确设置如下，此时则只有先经过WAF，从WAF出口的流量才可以访问到源站的业务端口。
+
+允许WAF的IP段访问源站的业务端口(80/443):
+```
+规则方向：入方向
+授权策略：允许
+协议类型：TCP
+授权类型：地址段访问
+端口范围：80/443
+授权对象：所有Web应用防火墙回源IP段
+优先级：1
+```
+
+禁止公网IP访问源站的业务端口(80/443):
+```
+规则方向：入方向
+授权策略：拒绝
+协议类型：TCP
+端口范围：80/443
+授权类型：地址段访问
+授权对象：0.0.0.0/0
+优先级：100
+```
+
+### WAF/CDN 根本绕过方式 - 攻击源站IP
+
+* 针对没有设置"回源IP防护"的站点 可找到源站IP 直接攻击
   * 找到源站IP - 直接对源站的真实ip发起请求,流量不经过WAF/CDN
-  * DNS history records - 该域名DNS解析的历史记录中的A记录 可能是源站IP
-    * 工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
+  * DNS history records - 该域名DNS解析的历史记录中的A记录 可能是源站IP. 参考工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
+* 修复方案: 设置"回源IP防护" 以避免攻击者直接攻击源站IP （设置如下2个策略）
+  * 1.允许WAF的IP段访问源站的业务端口(80/443)
+  * 2.禁止公网IP访问源站的业务端口(80/443)
 
 ### WAF规则的绕过
 
