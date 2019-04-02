@@ -1,17 +1,14 @@
->https://danielmiessler.com/study/tcpdump/#basics
-
-
 ### tcpdump
-
 
 网络分析工具
 network analysis tool
 
 对于希望彻底了解TCP / IP的人来说，必须牢牢掌握这个功能强大的应用程序。
 
-
+>参考 https://danielmiessler.com/study/tcpdump/#basics
 
 #### 基本选项
+
 ```
 -i any : Listen on all interfaces just to see if you’re seeing any traffic.
 -i eth0 : Listen on the eth0 interface.
@@ -35,23 +32,12 @@ network analysis tool
 #### 表达式Expressions
 
 
-Expressions allow you to trim out various types of traffic and find exactly what you’re looking for.
+表达式用来筛选流量
 
-Mastering the expressions and learning to combine them creatively is what makes one truly powerful with tcpdump.
-
-表达式允许您删除各种类型的流量，并准确找到您正在寻找的内容。
-
-掌握表达并学习如何创造性地将它们结合起来，这使得tcpdump成为真正强大的。
-
-
-主要有3种类型的表达式：type dir proto
-
-Type选项：host net port
-
-Direction选项：src dst 二者组合
-
-Proto(col)选项：tcp，udp，icmp等
-
+* 主要有3种类型的表达式
+  * Type - type `host net port`
+  * Direction - dir `src dst 二者都有`
+  * Protocol - proto `tcp udp icmp ...`
 
 #### 例子Examples
 
