@@ -71,23 +71,15 @@ site:apple.com -paper -music -inurl:https -inurl:.edu
 site:apple.com -site:www.apple.com -inurl:support
 ```
 
-[优化网页搜索 - Google 搜索帮助](https://support.google.com/websearch/answer/2466433)
+* 例1 子域名搜集
+  * `site:<qq.com>`
+* 例2 web后台地址
+  * 语法 `管理 后台 登陆 用户名 帐号 密码 验证码 系统 inurl:manage|admin|login|system|portal`
+  * 语法 `site:github.com inurl:manage|admin|login|system|portal`
 
-[Advanced Searching in Google - Resources and Search Strategies](https://sites.google.com/site/resourcesandsearchstrategies/google/advanced-searching-in-google)
 
-[Google高级语法（非官方） - Google Guide](http://www.googleguide.com/or_operator.html)
-
-[ Google Hacking Database - exploit-db.com](https://www.exploit-db.com/google-hacking-database)
-
-**例1 找web后台**
-
-```
-管理 后台 登陆 用户名 帐号 密码 验证码 系统 inurl:manage|admin|login|system|portal
-site:github.com inurl:manage|admin|login|system|portal
-```
-
-**例2 找子域名**
-
-```
-site:<qq.com>
-```
+* 权威参考
+  * [优化网页搜索 - Google 搜索帮助](https://support.google.com/websearch/answer/2466433)
+  * [Advanced Searching in Google - Resources and Search Strategies](https://sites.google.com/site/resourcesandsearchstrategies/google/advanced-searching-in-google)
+  * [Google高级语法（非官方） - Google Guide](http://www.googleguide.com/or_operator.html)
+  * [ Google Hacking Database - exploit-db.com](https://www.exploit-db.com/google-hacking-database)
