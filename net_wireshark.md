@@ -17,7 +17,7 @@
 
 
 * Wireshark 直接输入筛选语法
-* tshark 使用`-Y`指定filter的筛选语法 如`tshark -r 1.pcap -Y 'http.request.method==GET'`
+* tshark 使用`-Y`指定读取/显示filter的筛选语法 如`tshark -r 1.pcap -Y 'http.request.method==GET'` 注意并不是捕获流量的筛选语法
 
 * 常用筛选示例
   * 查看所有web流量 `(http.request) or (ssl.handshake.type == 1)` 查看HTTP请求的URL + HTTPS(SSL/TLS)流量中使用的域名
