@@ -13,13 +13,26 @@
 
 恶意软件分析工具与资源 [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 
-### Wireshark/tshark - 筛选
+### Wireshark/tshark - capture filter
 
 
-* Wireshark 直接输入筛选语法
-* tshark 使用`-Y`指定读取/显示filter的筛选语法 如`tshark -r 1.pcap -Y 'http.request.method==GET'` 注意并不是捕获流量的筛选语法
+* 通过capture filter设置捕获条件 从而只捕获想要捕获的流量
+  * Wireshark 抓包前 直接在capture filter框输入筛选表达式
+  * tshark 使用`-f`指定display filter的筛选表达式 如`tshark -f "predef:MyPredefinedHostOnlyFilter"`
+* 常用的捕获表达式 - Capture filter expression
+  * 关注某主机 只捕获该ip的流量 `host 172.18.5.4`
+  * 关注网段 只捕获该ip范围内的"进+出"流量(to&from) `net 192.168.0.0/24` 或`net 192.168.0.0 mask 255.255.255.0`
+  * 关注网段 只捕获该ip范围内的"出"流量(from) `src net 192.168.0.0/24`
+  * 只捕获指定端口的流量 如DNS (port 53) traffic `port 53`
+  * 捕获某主机的非http且非smtp流量 `host www.example.com and not port 80 and not port 25`
+  
+### Wireshark/tshark - display filter
 
-* 常用筛选示例
+* 通过display filter设置筛选条件 从而只显示出想要显示的流量
+  * Wireshark 抓包后 直接在display filter框输入筛选表达式
+  * tshark 使用`-Y`指定display filter的筛选表达式 如`tshark -r 1.pcap -Y 'http.request.method==GET'`
+
+* 常用筛选表达式 - Display filter expression
   * 查看所有web流量 `(http.request) or (ssl.handshake.type == 1)` 查看HTTP请求的URL + HTTPS(SSL/TLS)流量中使用的域名
   * http GET数据包`http.request.method==GET`
   * http 包的内容(包含header url responseCode ...) `http contains "User-Agent: "`
