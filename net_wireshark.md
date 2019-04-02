@@ -6,16 +6,19 @@
 
 |名称|描述|
 |:-------------:|-----|
-|Wireshark|图形化|
-|tshark|命令行|
+|Wireshark|图形化 官方文档[Wireshark User’s Guide](https://www.wireshark.org/docs/wsug_html_chunked/)|
+|tshark|命令行 官方文档[tshark](https://www.wireshark.org/docs/man-pages/tshark.html) |
 |[suricata](https://github.com/OISF/suricata) |强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
 [security-onion](https://github.com/Security-Onion-Solutions/security-onion)|一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
 
 恶意软件分析工具与资源 [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 
-### Wireshark - 筛选
+### Wireshark/tshark - 筛选
 
-* 官方文档 [Wireshark User’s Guide](https://www.wireshark.org/docs/wsug_html_chunked/)
+
+* Wireshark 直接输入筛选语法
+* tshark 使用`-Y`指定filter的筛选语法 如`tshark -r 1.pcap -Y 'http.request.method==GET'`
+
 * 常用筛选示例
   * 查看所有web流量 `(http.request) or (ssl.handshake.type == 1)` 查看HTTP请求的URL + HTTPS(SSL/TLS)流量中使用的域名
   * http GET数据包`http.request.method==GET`
@@ -47,6 +50,20 @@
  * 选中某协议 `tcp` `udp` `dns` `http` `icmp` `ssl` `ftp` `smtp` `msnms` `arp` ...
  * 排除某协议 `!ssl` `not ssl`
 
+### 确定受影响主机的信息
+
+* 确定被感染主机的信息(系统信息、IP地址、MAC地址、计算机名、系统帐户名)
+  * [对恶意软件Dridex的流量分析 - FreeBuf互联网安全新媒体平台](https://www.freebuf.com/articles/es/195832.html)
+  * 通过HTTP请求中的User-Agent判断设备类型、系统版本
+    * Windows NT 5.1：Windows XP
+    * Windows NT 6.0：Windows Vista
+    * Windows NT 6.1：Windows 7
+    * Windows NT 6.2：Windows 8
+    * Windows NT 6.3：Windows 8.1
+    * Windows NT 10.0：Windows 10
+    * Android设备 - User-Agent中通常有系统版本(如Android 7.1.2)和设备型号(如LM-X210APM)
+    * Apple设备 - User-Agent中只能看到系统版本(如iOS 12.1.3)和设备类型(如iPhone/iPad/iPod) 而无法判断设备型号(如iPhone型号)
+
 ### Wireshark - 插件
 
 [pentesteracademy/patoolkit: PA Toolkit is a collection of traffic analysis plugins focused on security](https://github.com/pentesteracademy/patoolkit)
@@ -68,17 +85,3 @@
 [Malware-Traffic-Analysis.net - 流量分析练习Traffic Analysis Exercises](https://www.malware-traffic-analysis.net/training-exercises.html)
 
 下载的zip文件解压密码为`infected`
-
-### 确定受影响主机的信息
-
-* 确定被感染主机的信息(系统信息、IP地址、MAC地址、计算机名、系统帐户名)
-  * [对恶意软件Dridex的流量分析 - FreeBuf互联网安全新媒体平台](https://www.freebuf.com/articles/es/195832.html)
-  * 通过HTTP请求中的User-Agent判断设备类型、系统版本
-    * Windows NT 5.1：Windows XP
-    * Windows NT 6.0：Windows Vista
-    * Windows NT 6.1：Windows 7
-    * Windows NT 6.2：Windows 8
-    * Windows NT 6.3：Windows 8.1
-    * Windows NT 10.0：Windows 10
-    * Android设备 - User-Agent中通常有系统版本(如Android 7.1.2)和设备型号(如LM-X210APM)
-    * Apple设备 - User-Agent中只能看到系统版本(如iOS 12.1.3)和设备类型(如iPhone/iPad/iPod) 而无法判断设备型号(如iPhone型号)
