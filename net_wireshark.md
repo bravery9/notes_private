@@ -6,7 +6,8 @@
 
 |名称|描述|
 |:-------------:|-----|
-|Wireshark||
+|Wireshark|图形化|
+|tshark|命令行|
 |[suricata](https://github.com/OISF/suricata) |强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
 [security-onion](https://github.com/Security-Onion-Solutions/security-onion)|一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
 
@@ -72,10 +73,12 @@
 
 * 确定被感染主机的信息(系统信息、IP地址、MAC地址、计算机名、系统帐户名)
   * [对恶意软件Dridex的流量分析 - FreeBuf互联网安全新媒体平台](https://www.freebuf.com/articles/es/195832.html)
-  * 通过HTTP中的User-Agent中Windows NT字符串代表不同版本的Microsoft Windows：
+  * 通过HTTP请求中的User-Agent判断设备类型、系统版本
     * Windows NT 5.1：Windows XP
     * Windows NT 6.0：Windows Vista
     * Windows NT 6.1：Windows 7
     * Windows NT 6.2：Windows 8
     * Windows NT 6.3：Windows 8.1
     * Windows NT 10.0：Windows 10
+    * Android设备 - User-Agent中通常有系统版本(如Android 7.1.2)和设备型号(如LM-X210APM)
+    * Apple设备 - User-Agent中只能看到系统版本(如iOS 12.1.3)和设备类型(如iPhone/iPad/iPod) 而无法判断设备型号(如iPhone型号)
