@@ -5,24 +5,28 @@
 ### 分类
 
 * 反射型(Reflected XSS)
-  * 原理:后端未严格过滤,导致HTTP response中的部分内容由HTTP request中的参数值(XSSpayload)控制
-  * XSSpayload位置:必然每次都在HTTP request 和 HTTP response中
-  * 检测方法1:使用自动化方法(脚本等)构造并发送HTTP request(含有XSSpayload),并查看HTTP response的内容，即可确定是否存在Reflected XSS
-  * 检测方法2:使用浏览器(headless)构造并发送HTTP request(含有XSSpayload),根据headless调试进行判断，如果执行成功则存在DOM Based XSS
+  * 原理 - 后端未严格过滤,导致HTTP response中的部分内容由HTTP request中的参数值(XSSpayload)控制
+  * XSSpayload位置 - 必然每次都在HTTP request 和 HTTP response中
+  * 检测方法1 - 自动化方法(脚本) - 构造并发送HTTP request(含有XSSpayload),并查看HTTP response的内容，即可确定是否存在Reflected XSS
+  * 检测方法2 - 浏览器(headless) - 构造并发送HTTP request(含有XSSpayload),根据headless调试进行判断，如果执行成功则存在DOM Based XSS
 * 存储型(Stored XSS)
-  * 原理:XSSpayload已经存储到数据库中,再次被读取时将XSSpayload输出到浏览器前端触发。存储型XSS通常影响更大
-  * XSSpayload位置:初次攻击时XSSpayload必然会在HTTP request中(后端将含有XSSpayload的数据保存到数据库) 初次的HTTP response中未必有XSSpayload
-  * 检测方法1:构造并发送HTTP request(含有XSSpayload)完成第一次输入后,通过浏览器访问若干个可能解析该XSSpayload的页面，如果执行成功则存在Stored XSS
-  * 检测方法2:构造并发送HTTP request(含有XSSpayload)完成第一次输入后,通过脚本等自动化方法访问可能解析该XSSpayload的URL，根据HTTP response的内容如果含有XSSpayload则存在Stored XSS
+  * 原理 - 初次攻击时发送的HTTP request使后端将XSSpayload存储到数据库中,再次访问页面时后端将HTTP response(含有XSSpayload)返回给浏览器前端，XSSpayload执行
+  * XSSpayload位置 - 初次攻击时XSSpayload必然会在HTTP request中(后端将含有XSSpayload的数据保存到数据库) 初次的HTTP response中未必有XSSpayload
+  * 检测方法1 - 自动化方法(脚本)
+    * 存储 - 构造并发送HTTP request(含有XSSpayload)完成第一次输入
+    * 判断 - 通过脚本等自动化方法访问可能解析该XSSpayload的URL，根据HTTP response的内容如果含有XSSpayload则存在Stored XSS
+  * 检测方法2  - 浏览器(headless)
+    * 存储 - 构造并发送HTTP request(含有XSSpayload)完成第一次输入
+    * 判断 - 通过浏览器(headless)访问若干个可能解析该XSSpayload的页面，根据headless调试进行判断，如果确认执行成功则存在Stored XSS
 * DOM型(DOM Based XSS)
-  * 原理:手工构造XSSpayload并由 浏览器的DOM解析过程 触发(与HTTP的请求响应没有直接关系. HTTP request 与 HTTP response的内容中一定没有XSSpayload)
-  * XSSpayload位置:只发生在浏览器端 (一定不会在HTTP request 和 HTTP response中)
-  * 检测方法1:根据该页面的前端代码，在浏览器的URL等处构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据浏览器即可判断，如果执行成功则存在DOM Based XSS
-  * 检测方法2:根据该页面的前端代码，在浏览器(headless)的URL等处构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据headless调试进行判断，如果执行成功则存在DOM Based XSS
+  * 原理:"DOM型XSS"依赖DOM解析过程，所以必须手工构造XSSpayload并使浏览器端解析DOM，才能执行XSSpayload. 检测它也必须解析DOM.
+  * XSSpayload位置: 根据漏洞原理可看出 "DOM型XSS"与HTTP的请求响应没有直接关系. (所以HTTP request 与 HTTP response的内容中一定没有XSSpayload)
+    * 检测方法1  - 浏览器&开发者工具 - 查看经过js解析过的html代码，输入构造的数据并查看其前端解析，构造的payload执行成功则存在DOM Based XSS
+    * 检测方法2  - 使用浏览器(headless) - 根据该页面的前端代码设计缺陷，通常在浏览器(headless)的URL输入框构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据headless调试进行判断，如果确认执行成功则存在DOM Based XSS
 
 ### DOM Based XSS - 实例
 
-构造DOM Based XSS场景 只需要前端即可
+DOM Based XSS场景 只需要前端即可实现
 
 1.html
 ```
@@ -37,7 +41,9 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 </script>
 ```
 
-打开1.html 经过浏览器解析得到:
+
+打开1.html 通过浏览器的开发者工具 查看经过DOM解析(javascript执行后)的页面代码:
+
 ```
 <html><head></head>
 <body>
@@ -53,6 +59,7 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 </body>
 </html>
 ```
+
 可发现会弹出`alert(3)` `alert(1)`(无顺序)
 
 没有`alert(2)`
@@ -60,6 +67,7 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 因为使用`.innerHTML`写入以下这些HTML标签中时，不会解析`Html实体(Html Entity)` :
 
 如它们不会将 `&lt;` 解析为`<`
+
 ```
 <textarea>
 <title>
@@ -83,7 +91,7 @@ XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是
 XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://github.com/s0md3v/JShell)、[xsshell](https://github.com/raz-varren/xsshell)、[JSShell](https://github.com/Den1al/JSShell)
 举例如下
 * 探测内网(利用实时通信标准WebRTC 获取存活主机ip列表 甚至部分端口 能打到内网则类似SSRF漏洞 可对内网发起许多攻击... 如XSS可以利用redis未授权Getshell)
-* 盗用身份 执行操作
+* 盗用身份 进行读写(读取账户特有的信息/执行账户特有的操作)
   * 管理员 发起高权限操作 - 创建新账号 修改密码...
   * 普通用户 发起普通用户权限操作 - 评论、发帖、支付转账、刷量...
 * 窃取表单凭据 - 类似键盘记录 记录或读取表单输入的内容
