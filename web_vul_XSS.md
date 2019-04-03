@@ -24,6 +24,37 @@
     * 检测方法1  - 浏览器&开发者工具 - 查看经过js解析过的html代码，输入构造的数据并查看其前端解析，构造的payload执行成功则存在DOM Based XSS
     * 检测方法2  - 使用浏览器(headless) - 根据该页面的前端代码设计缺陷，通常在浏览器(headless)的URL输入框构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据headless调试进行判断，如果确认执行成功则存在DOM Based XSS
 
+### DOM
+
+* DOM (Document Object Model)  html中每一个元素都是"节点":
+  * 文档是一个文档节点
+  * 所有的HTML元素都是元素节点
+  * 所有的HTML属性都是属性节点
+  * 文本插入到HTML元素是文本节点
+  * 注释是注释节点
+
+
+浏览器访问 https://cn.bing.com/search?q=location#abc
+
+进入开发者模式 以下内容会受到用户输入影响(如果处理不当可能会有"DOM型XSS"):
+```
+得到完整URL
+location.href
+"https://cn.bing.com/search?q=location#abc"
+
+返回一个URL的锚部分 即 #号及之后的内容(如果URL中没有#号则返回空)
+location.hash
+"#abc"
+
+返回URL路径名 即第一个/号到?号之间的内容(如果URL中没有?号则是/号到#号之间的内容 如果URL中没有#号则是到URL结束之间的内容)
+location.pathname
+"/search"
+
+返回一个URL的查询部分 得到`?`之后到`#`之前的内容(如果URL中没有#号则是到URL结束之间的内容)
+location.search
+"?q=location"
+```
+
 ### DOM Based XSS - 实例
 
 DOM Based XSS场景 只需要前端即可实现
