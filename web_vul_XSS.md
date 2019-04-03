@@ -5,14 +5,20 @@
 ### 分类
 
 * 反射型(Reflected XSS)
-  * XSSpayload位置:必然每次都在HTTP request 和 HTTP response中
   * 原理:后端未严格过滤,导致HTTP response中的部分内容由HTTP request中的参数值(XSSpayload)控制
+  * XSSpayload位置:必然每次都在HTTP request 和 HTTP response中
+  * 检测方法1:使用自动化方法(脚本等)构造并发送HTTP request(含有XSSpayload),并查看HTTP response的内容，即可确定是否存在Reflected XSS
+  * 检测方法2:使用浏览器(headless)构造并发送HTTP request(含有XSSpayload),根据headless调试进行判断，如果执行成功则存在DOM Based XSS
 * 存储型(Stored XSS)
-  * XSSpayload位置:初次攻击时XSSpayload必然会在HTTP request中(后端将含有XSSpayload的数据保存到数据库) 初次的HTTP response中未必有XSSpayload
   * 原理:XSSpayload已经存储到数据库中,再次被读取时将XSSpayload输出到浏览器前端触发。存储型XSS通常影响更大
+  * XSSpayload位置:初次攻击时XSSpayload必然会在HTTP request中(后端将含有XSSpayload的数据保存到数据库) 初次的HTTP response中未必有XSSpayload
+  * 检测方法1:构造并发送HTTP request(含有XSSpayload)完成第一次输入后,通过浏览器访问若干个可能解析该XSSpayload的页面，如果执行成功则存在Stored XSS
+  * 检测方法2:构造并发送HTTP request(含有XSSpayload)完成第一次输入后,通过脚本等自动化方法访问可能解析该XSSpayload的URL，根据HTTP response的内容如果含有XSSpayload则存在Stored XSS
 * DOM型(DOM Based XSS)
+  * 原理:手工构造XSSpayload并由 浏览器的DOM解析过程 触发(与HTTP的请求响应没有直接关系. HTTP request 与 HTTP response的内容中一定没有XSSpayload)
   * XSSpayload位置:只发生在浏览器端 (一定不会在HTTP request 和 HTTP response中)
-  * 原理:手工构造XSSpayload并由 浏览器的DOM解析过程 触发(该触发过程与http的请求响应没有直接关系 HTTP request 与HTTP response 一定看不到payload)
+  * 检测方法1:根据该页面的前端代码，在浏览器的URL等处构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据浏览器即可判断，如果执行成功则存在DOM Based XSS
+  * 检测方法2:根据该页面的前端代码，在浏览器(headless)的URL等处构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据headless调试进行判断，如果执行成功则存在DOM Based XSS
 
 ### DOM Based XSS - 实例
 
