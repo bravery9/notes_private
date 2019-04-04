@@ -26,7 +26,7 @@ npm 包安装 按文件保存位置分类
   * 代码中通过`require()`引入本地安装的包
 * 全局安装 global - 将安装包放在 /usr/local 下或者你 node 的安装目录
   * `npm install <Module Name> -g`
-  * 可在命令行里直接使用模块
+  * 可在命令行里直接运行
   * 查看所有全局安装的模块`npm list -g`
 
 
@@ -59,7 +59,7 @@ cnpm i -g webpack-cli
 #安装
 npm install --global fkill-cli
 
-#命令行下运行
+#运行
 fkill
 ```
 
@@ -67,10 +67,9 @@ fkill
 例2 live-server(实现文件下载服务)
 ```
 #安装
-例2 下载安装live-server(实现文件下载服务)
 npm i live-server -g
 
-#命令行下运行
+#运行
 live-server
 ```
 
