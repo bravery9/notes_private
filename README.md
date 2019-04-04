@@ -39,6 +39,7 @@
  * [笔记 - GDB](note_bin_GDB.md)
  * [笔记 - Docker](note_Docker.md)
  * [笔记 - Redis](note_DB_redis.md)
+ * [笔记 - Node.js](note_node.md)
  * [笔记 - Android应用安全](note_sec_android.md)
  * [笔记 - blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)
  * [笔记 - blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)
