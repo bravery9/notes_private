@@ -57,14 +57,17 @@ CSRF通过构造get/post等请求，设法使已登录用户victim不知情的�
 ### SDL - 防御与修复方案
 
 * web框架 - 启动框架中成熟的CSRF防御功能
-* CSRF_TOKEN - 如`One-time Token`其位置不能在Cookie中 需要额外的HTTP请求header标明 如`X-CSRF-token:xxxx`
-* 二次验证 安全但影响用户体验（适用于仅对敏感功能处进行防御）
+  * 自定义HTTP请求头(Custom Request Headers)
+    * 如使用`X-CSRF-token:xxxx`标明CSRF_TOKEN的值(即使CSRF利用成功发出了携带Cookie的HTTP请求 但后端判断`X-CSRF-token`不存在则拒绝请求)
+  * One-time Token
+    * 如每次提交表单都包含字段`Token=xxxx`且每次值不同 后端可校验是否正确
+* 二次验证 - 安全但影响用户体验(适用于仅对敏感功能处进行防御)
   * CAPTCHA 增加验证码机制
   * 再次输入密码
   * 手机验证码
-* 后端Set-Cookie使用SameSite属性 (由Google引入的用于缓解CSRF攻击的cookie属性 其值为Strict或Lax)
+* Cookie安全 - 后端Set-Cookie使用SameSite属性 (由Google引入的用于缓解CSRF攻击的cookie属性 其值为Strict或Lax)
   * 如`Set-Cookie: JSESSIONID=xxx; SameSite=Strict`则从其他站对目标站web后端发起的http请求(CSRF) 不会携带`JSESSIONID`这一Cookie字段
-* 【不推荐】通过`Referer/Origin`校验来源域名
+* (不推荐)通过`Referer/Origin`校验来源域名
   * 缺陷1.只能防御从"不被信任"的域发起的伪造的http请求（如果 **父、子、兄弟域名** 或 **CORS中被信任的域名** 有XSS漏洞 配合构造一个伪造请求 此时referer和Origin的值都是被信任的域 此时“校验来源域名”无法防御）
   * 缺陷2.正常业务如果有302跳转 不携带Origin
 
