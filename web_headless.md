@@ -26,7 +26,7 @@ Accept-Encoding: gzip, deflate
 
 Puppeteer is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol.
 
-Puppeteer是一个提供高级API的node库，能够通过DevTools协议控制headless Chrome/Chromium
+Puppeteer是一个提供高级API[(查看官方API文档)](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)的node库，能够通过DevTools协议控制headless Chrome/Chromium
 
 Puppeteer由Chrome DevTools team维护
 
