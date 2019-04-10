@@ -22,13 +22,13 @@ npm install <Module Name>
 
 npm 包安装 按文件保存位置分类
 * 本地安装 local - 将安装包放在当前目录下的node_modules目录 (无该目录则创建)
-  * `npm install <Module Name>`
+  * 本地安装命令 `npm install <Module Name>`
   * 代码中通过`require()`引入本地安装的包
 * 全局安装 global - 将安装包放在 /usr/local 下或者你 node 的安装目录
-  * `npm install <Module Name> -g`
-  * 可在命令行里直接运行
-  * 查看所有全局安装的模块`npm list -g`
-
+  * 全局安装命令 `npm install <Module Name> -g`
+  * 查看全局模块命令 `npm list -g`
+  * 命令行程序 可在命令行里直接运行
+  * 运行代码找不到模块 则需指明全局模块路径 Mac下为`export NODE_PATH=/usr/local/lib/node_modules`
 
 例1 本地安装
 ```
