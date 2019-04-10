@@ -136,9 +136,8 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 * 使浏览器下载文件 - 结合社工方法欺骗用户 使其打开有危害的程序
 * 挖矿等
 
-### SDL防御与修复
+### SDL - 防御与修复方案
 
-防御/修复方案
 * 需求与设计阶段(了解产品背景和技术架构 并给出相应的建议)
   * 建议使用成熟的前端框架 `Vue` `React`
   * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单
