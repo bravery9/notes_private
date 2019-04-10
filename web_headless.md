@@ -28,7 +28,9 @@ Puppeteer is a Node library which provides a high-level API to control headless 
 
 Puppeteer是一个提供高级API的node库，能够通过DevTools协议控制headless Chrome/Chromium
 
-* Puppeteer能在headless模式下模拟任何的人为操作 应用非常广泛
+Puppeteer由Chrome DevTools team维护
+
+* Puppeteer能在headless模式下模拟大部分的人为操作 应用非常广泛
   * Web自动化操作  包括 登录 注销...
   * Web自动化测试  包括 QA测试 安全测试...
   * 爬虫 模拟正常浏览器访问 可以解析javascript
