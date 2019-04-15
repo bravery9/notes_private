@@ -142,7 +142,7 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 
 * 需求与设计阶段(了解产品背景和技术架构 并给出相应的建议)
   * 建议使用成熟的前端框架 `Vue` `React`
-  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单
+  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单 (实测 Google开发的CSP安全评估工具[CSP Evaluator](https://csp-evaluator.withgoogle.com/))
   * API接口 - 建议显式规定response的MIME类型 即 `Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
   * Cookie安全设计参考 - [Security Cookies Whitepaper](https://www.netsparker.com/security-cookies-whitepaper//?utm_source=twitter.com&utm_medium=social&utm_content=security+cookies+whitepaper&utm_campaign=netsparker+social+media)
     * 如在`Set-Cookie: `中增加  `; secure` 仅允许HTTPS协议中传输cookie
