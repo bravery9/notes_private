@@ -67,22 +67,19 @@
 |[Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)|Awesome-Hacking|
 |[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言基本语法 CheatSheet|
 |[Awesome-Go](https://github.com/avelino/awesome-go)|37k★ Awesome-Go|
-[Awesome-cryptography](https://github.com/sobolevn/awesome-cryptography)|2k★ 密码学资源|
-|[BruceDone/awesome-crawler](https://github.com/BruceDone/awesome-crawler)|3k★ 各语言爬虫 web crawler|
-|[mre/awesome-static-analysis](https://github.com/mre/awesome-static-analysis)|4k★ 各语言静态分析工具Static analysis tools for all programming languages|
-|[coreb1t/awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ #pentesting |
-|[rshipp/awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ #流量分析 A curated list of awesome malware analysis tools and resources.|
-|[a13xp0p0v/linux-kernel-defence-map](https://github.com/a13xp0p0v/linux-kernel-defence-map)|linux内核防御图|
+|[Awesome-cryptography](https://github.com/sobolevn/awesome-cryptography)|2k★ 密码学资源|
+|[Awesome-crawler](https://github.com/BruceDone/awesome-crawler)|3k★ 各语言爬虫 web crawler|
+|[Awesome-static-analysis](https://github.com/mre/awesome-static-analysis)|4k★ 各语言静态分析工具Static analysis tools for all programming languages|
+|[Awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ #pentesting |
+|[Awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ #流量分析 A curated list of awesome malware analysis tools and resources.|
 |[niklongstone/regular-expression-cheat-sheet](https://github.com/niklongstone/regular-expression-cheat-sheet)|Regular Expression Cheat Sheet - PCRE|
-|[30-seconds-of-interviews-zh_CN](https://github.com/b3log/30-seconds-of-interviews-zh_CN)|#前端 常见面试问题集+答案|
 
 #### 学习知识
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[Java-Guide](https://github.com/Snailclimb/Java-Guide)|非代码|Java学习指南 一份涵盖大部分Java程序员所需要掌握的核心知识|
-|[Linux kernel map](http://www.makelinux.net/kernel_map/)|linux|linux内核学习 交互式操作 美国网站|
 |[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
-|[PDFs_books](https://github.com/tongxurt/pdfs)|pdf|网络是怎样连接的_户根勤.pdf Linux内核设计与实现(第三版中文高清带目录).pdf|
 |[CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)|md|40k★ Computer Science Learning Notes 算法 操作系统 网络 面向对象 数据库 Java 系统设计 工具 编码实践 后记|
 |[free-programming-books](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md)|md|110k★ WEB服务器 操作系统 数据库 大数据 编程语言|
+|[30-seconds-of-interviews-zh_CN](https://github.com/b3log/30-seconds-of-interviews-zh_CN)|非代码|#前端 常见面试问题集+答案|
+|[Java-Guide](https://github.com/Snailclimb/Java-Guide)|非代码|Java学习指南 一份涵盖大部分Java程序员所需要掌握的核心知识|
