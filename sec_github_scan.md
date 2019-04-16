@@ -1,17 +1,3 @@
-### 手工扫描-github高级语法
-
-* 编程语言 `language:java`
-* 搜索个人 `user:1135`
-* 搜索组织 `org:spring-cloud`
-* 仓库的名称 `in:name 关键词`
-* 仓库的描述 `in:descripton 关键词`
-* 仓库的README文件 `in:readme 关键词`
-* star数量筛选 `stars:>300`
-* 仓库的size(KB) `size:>=1024`
-* 最近一次更新时间(只看积极维护项目) `pushed:>2019-01-03`
-* 创建日期 `created:>2019-01-03`
-* license类别 `license:apache-2.0`
-
 ### 自动化-github泄露扫描系统
 
 |名称|属性|运行环境|描述|
