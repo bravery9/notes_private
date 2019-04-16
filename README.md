@@ -53,7 +53,7 @@
 
 |项目名称|属性|描述|
 |:-------------:|--|-----|
-|[1135/1135-CobaltStrike-ToolKit](https://github.com/1135/1135-CobaltStrike-ToolKit)|/|CobaltStrike相关:C2通信流量的定义|
+|[1135/1135-CobaltStrike-ToolKit](https://github.com/1135/1135-CobaltStrike-ToolKit)|/|CobaltStrike相关:使用Malleable C2 Files定义通信流量实现流量免杀|
 |[1135/EquationExploit](https://github.com/1135/EquationExploit)|Java C++|在Windows下针对网段批量利用永恒之蓝漏洞(MS-17010 EternalBlue) |
 |[1135/VulSpider](https://github.com/1135/VulSpider)|python2|后台持续运行，获取最新漏洞及每日简报，发送邮件给安全人员|
 |[1135/python_demos](https://github.com/1135/python_demos)|python2|python demos|
