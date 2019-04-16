@@ -53,12 +53,13 @@
 
 |项目名称|属性|描述|
 |:-------------:|--|-----|
+|[1135/1135-CobaltStrike-ToolKit](https://github.com/1135/1135-CobaltStrike-ToolKit)|/|CobaltStrike相关:C2通信流量的定义|
 |[1135/EquationExploit](https://github.com/1135/EquationExploit)|Java C++|在Windows下针对网段批量利用永恒之蓝漏洞(MS-17010 EternalBlue) |
 |[1135/VulSpider](https://github.com/1135/VulSpider)|python2|后台持续运行，获取最新漏洞及每日简报，发送邮件给安全人员|
-|[1135/Applescript_demos](https://github.com/1135/Applescript_demos)|applescript|苹果脚本示例，在Mac下使用苹果脚本实现发送iMessage短信|
-|[1135/python_demos](https://github.com/1135/python_demos)|python2|python code|
-|[1135/Go_demos](https://github.com/1135/Go_demos)|golang|golang code|
+|[1135/python_demos](https://github.com/1135/python_demos)|python2|python demos|
+|[1135/Go_demos](https://github.com/1135/Go_demos)|golang|golang demos|
 |[1135/dictionary](https://github.com/1135/dictionary)|txt|字典收集 包括user/name/pass/web|
+|[1135/Applescript_demos](https://github.com/1135/Applescript_demos)|applescript|苹果脚本示例，在Mac下使用苹果脚本实现发送iMessage短信|
 
 #### Awesome_and_cheat_sheets
 
