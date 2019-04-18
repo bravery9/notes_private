@@ -40,9 +40,10 @@ var express = require('express');
 ```
 
 
-例2 指定npm仓库(国内镜像)
+例2 指定npm仓库为 [国内镜像](https://npm.taobao.org/)
+
 ```
-指定仓库 从国内镜像下载 cnpm
+指定国内镜像仓库
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #以后都可使用cnpm代替npm  如下载安装以下常用包 (i 是 install 的缩写)
@@ -86,4 +87,31 @@ brew install yarn
 如果你用了node多版本管理软件，如nvm(Node Version Manager)，则应排除安装Node.js(以便使用 nvm 的 Node.js 版本)
 ```
 brew install yarn --without-node
+```
+
+项目-初始化:
+```
+yarn init
+#生成package.json文件 存储了项目的有关信息:项目名称、维护者信息、代码托管地址、"项目依赖"
+```
+
+项目-安装依赖包:
+Yarn会从package.json中读取依赖并将依赖信息存储到yarn.lock中
+```
+yarn install
+yarn install --force #重新下载
+```
+
+项目-更新依赖包:
+会更新package.json和yarn.lock文件
+```
+yarn upgrade [package]
+yarn upgrade [package]@[version]
+yarn upgrade [package]@[tag]
+```
+
+项目-删除依赖包:
+会更新package.json和yarn.lock 文件
+```
+yarn remove [package]
 ```
