@@ -14,19 +14,15 @@ Mac下通过Homebrew安装npm
 brew install npm
 ```
 
-
-使用npm安装 Node.js 模块:
-```
-npm install <Module Name>
-```
-
 npm 包安装 按文件保存位置分类
-* 本地安装 local - 将安装包放在当前目录下的node_modules目录 (无该目录则创建)
-  * 本地安装命令 `npm install <Module Name>`
+* local - 将安装包放在当前目录下的node_modules目录 (无该目录则创建)
+  * 本地 安装模块 `npm install <Module Name>`
+  * 本地 删除模块 `npm uninstall <Module Name>`
   * 代码中通过`require()`引入本地安装的包
-* 全局安装 global - 将安装包放在 /usr/local 下或者你 node 的安装目录
-  * 全局安装命令 `npm install <Module Name> -g`
-  * 查看全局模块命令 `npm list -g`
+* global - 将安装包放在 /usr/local 下或者你 node 的安装目录
+  * 全局 安装模块 `npm install -g <Module Name>`
+  * 全局 删除模块 `npm uninstall -g <Module Name>`
+  * 查看全局模块 `npm list -g`
   * 命令行程序 可在命令行里直接运行
   * 运行代码找不到模块 则需指明全局模块路径 Mac下为`export NODE_PATH=/usr/local/lib/node_modules`
 
@@ -95,6 +91,12 @@ yarn init
 #生成package.json文件 存储了项目的有关信息:项目名称、维护者信息、代码托管地址、"项目依赖"
 ```
 
+项目-添加依赖包:
+```
+yarn add [pkg-name] #会自动安装最新版本
+yarn add jquery@2.1.4 #指定版本
+```
+
 项目-安装依赖包:
 Yarn会从package.json中读取依赖并将依赖信息存储到yarn.lock中
 ```
@@ -106,7 +108,8 @@ yarn install --force #重新下载
 会更新package.json和yarn.lock文件
 ```
 yarn upgrade [package]
-yarn upgrade [package]@[version]
+yarn upgrade –latest [package] #更新到最新版本
+yarn upgrade [package]@[version] #指定版本
 yarn upgrade [package]@[tag]
 ```
 
@@ -114,4 +117,7 @@ yarn upgrade [package]@[tag]
 会更新package.json和yarn.lock 文件
 ```
 yarn remove [package]
+yarn remove [pkg-name1] [pkg-name2]
 ```
+
+yarn.lock 作用:记录了统一依赖信息(版本),不同环境只需运行 yarn install可安装对应依赖包。
