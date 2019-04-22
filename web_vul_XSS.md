@@ -37,6 +37,8 @@
 
 #### DOM-XSS 输入源
 
+参考Google Code [domxsswiki](https://github.com/wisec/domxsswiki)
+
 外部可控参数 即用户输入能够影响以下参数(如果处理不当可能会有"DOM型XSS")
 ```
 document.URL
