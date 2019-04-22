@@ -36,7 +36,27 @@
 
 浏览器访问 https://cn.bing.com/search?q=location#abc
 
-进入开发者模式 以下内容会受到用户输入影响(如果处理不当可能会有"DOM型XSS"):
+进入开发者模式 用户输入可控的参数如下(如果处理不当可能会有"DOM型XSS"):
+
+```
+document.URL
+document.documentURI
+document.baseURI
+location
+location.href
+location.search
+location.hash
+location.pathname
+document.cookie
+document.referrer
+window.name
+history.pushState()
+history.replaceState()
+localStorage
+sessionStorage
+```
+
+实例：
 ```
 得到完整URL
 location.href
@@ -55,7 +75,8 @@ location.search
 "?q=location"
 ```
 
-### DOM Based XSS - 实例
+
+### DOM Based XSS - 实例1 恐怖的innerHTML
 
 DOM Based XSS场景 只需要前端即可实现
 
