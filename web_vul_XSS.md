@@ -169,7 +169,9 @@ XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是
 
 XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://github.com/s0md3v/JShell)、[xsshell](https://github.com/raz-varren/xsshell)、[JSShell](https://github.com/Den1al/JSShell)
 举例如下
-* 探测内网(利用实时通信标准WebRTC 获取存活主机ip列表 甚至部分端口 能打到内网则类似SSRF漏洞 可对内网发起许多攻击... 如XSS可以利用redis未授权Getshell)
+* 探测内网/攻击内网
+  * 探测内网 - 利用实时通信标准WebRTC 获取存活主机ip列表 甚至端口 进而识别服务、web系统类型与版本（如发现内网confluence系统）
+  * 攻击内网 - 根据探测结果(或对所有内网ip)发起漏洞利用攻击流量（利用web系统漏洞：confluence系统命令执行等；利用常见服务漏洞：redis未授权Getshell)
 * 盗用身份 进行读写(读取账户特有的信息/执行账户特有的操作)
   * 管理员 发起高权限操作 - 创建新账号 修改密码...
   * 普通用户 发起普通用户权限操作 - 评论、发帖、支付转账、刷量...
