@@ -36,7 +36,7 @@ Two URLs have the same origin if the protocol, port (if specified), and host.
   * JSONP - 只支持GET method (padding指的就是callback函数)
   * HTML5 API `window.postMessage`方法 允许跨窗口通信 不论这两个窗口是否同源
   * Web Sockets
-  * 利用location.hash来进行传值(缺点:数据直接暴露在url中 数据容量有限制 数据类型有限制)
+  * 利用location.hash跨域传值(缺点:数据直接暴露在url中 数据容量有限制 数据类型有限制)
   * [window.name实现的跨域数据传输](http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html)
   * flash
 
