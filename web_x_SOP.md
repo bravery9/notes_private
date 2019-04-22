@@ -30,14 +30,17 @@ Two URLs have the same origin if the protocol, port (if specified), and host.
 
 ### 如何允许跨源访问-方案
 
-* 根本解决方法(W3C标准)
+* 实现跨域的根本方法(W3C标准)
   * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)跨域资源共享 - 允许任何http method的跨源AJAX请求. [CORS详情详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
-* 其他解决办法
+* 实现跨域的其他办法
   * JSONP - 只支持GET method (padding指的就是callback函数)
-  * Web Sockets
   * HTML5 API `window.postMessage`方法 允许跨窗口通信 不论这两个窗口是否同源
+  * Web Sockets
+  * 利用location.hash来进行传值(缺点:数据直接暴露在url中 数据容量有限制 数据类型有限制)
+  * [window.name实现的跨域数据传输](http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html)
+  * flash
 
-### 实例 - CORS
+### 实例1 - CORS
 
 Request:
 
@@ -85,7 +88,7 @@ Content-Type: application/xml
 
 只有 `http://bar.other` 返回的HTTP响应头`Access-Control-Allow-Origin` 明确指定允许 `http://foo.example` 操作 `http://bar.other` 的资源时，`http://foo.example` 网站的客户端脚本JavaScript 才有权(通过AJAX技术)对 `http://bar.other` 上的资源进行读写操作。
 
-### 实例 - JSON with Padding
+### 实例2 - JSON with Padding
  
 * 理解
   * json是目的(json返回的是一串数据)
@@ -119,7 +122,7 @@ JSONP步骤分析:
 通过JSONP的方式实现了跨域请求
 
 
-### 实例 - jQuery的JSON with Padding
+### 实例3 - JSON with Padding(jQuery实现)
 
 jQuery可以使用匿名函数
 
