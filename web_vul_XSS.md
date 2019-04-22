@@ -33,11 +33,11 @@
   * 文本插入到HTML元素是文本节点
   * 注释是注释节点
 
+### DOM-XSS
 
-浏览器访问 https://cn.bing.com/search?q=location#abc
+#### DOM-XSS 输入源
 
-进入开发者模式 用户输入可控的参数如下(如果处理不当可能会有"DOM型XSS"):
-
+外部可控参数 即用户输入能够影响以下参数(如果处理不当可能会有"DOM型XSS")
 ```
 document.URL
 document.documentURI
@@ -54,10 +54,10 @@ history.pushState()
 history.replaceState()
 localStorage
 sessionStorage
-```
 
-实例：
-```
+
+实例：浏览器开启开发者模式 访问 https://cn.bing.com/search?q=location#abc
+
 得到完整URL
 location.href
 "https://cn.bing.com/search?q=location#abc"
@@ -75,8 +75,33 @@ location.search
 "?q=location"
 ```
 
+#### DOM-XSS 触发
 
-### DOM Based XSS - 实例1 恐怖的innerHTML
+可能导致DOM based XSS漏洞的函数
+
+```
+eval
+Function
+setTimeout
+setInterval
+setImmediate
+execScript
+crypto.generateCRMFRequest
+ScriptElement.src
+ScriptElement.text
+ScriptElement.textContent
+ScriptElement.innerText
+anyTag.onEventName
+document.write
+document.writeln
+anyElement.innerHTML
+Range.createContextualFragment
+window.location
+document.location
+```
+
+
+#### DOM-XSS 实例1 恐怖的innerHTML
 
 DOM Based XSS场景 只需要前端即可实现
 
