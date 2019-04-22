@@ -169,12 +169,12 @@ XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是
 
 XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://github.com/s0md3v/JShell)、[xsshell](https://github.com/raz-varren/xsshell)、[JSShell](https://github.com/Den1al/JSShell)
 举例如下
-* 探测内网/攻击内网
-  * 探测内网 - 利用实时通信标准WebRTC 获取存活主机ip列表 甚至端口 进而识别服务、web系统类型与版本（如发现内网confluence系统）
-  * 攻击内网 - 根据探测结果(或对所有内网ip)发起漏洞利用攻击流量（利用web系统漏洞：confluence系统命令执行等；利用常见服务漏洞：redis未授权Getshell)
 * 盗用身份 进行读写(读取账户特有的信息/执行账户特有的操作)
   * 管理员 发起高权限操作 - 创建新账号 修改密码...
   * 普通用户 发起普通用户权限操作 - 评论、发帖、支付转账、刷量...
+* 探测内网 - 利用实时通信标准WebRTC 获取存活主机ip列表 甚至端口 进而识别服务、web系统类型与版本（如发现内网confluence系统）
+* 攻击内网 - 根据探测结果(或对所有内网ip)发起漏洞利用攻击流量（利用web系统漏洞：confluence系统命令执行等；利用常见服务漏洞：redis未授权Getshell)
+* 获取cookie - 利用管理员或普通用户的身份 读取账户特有的信息/执行账户特有的操作
 * 窃取表单凭据 - 类似键盘记录 记录或读取表单输入的内容
 * 构造钓鱼页面 - 窃取用户及管理员其他的凭证
 * 漏洞联合 - 使用XSS无交互地利用CSRF漏洞. 有的anti-CSRF机制只判断Referer的值(自身/兄弟/父子域名 则正常响应) 如果这些站有某处存在XSS则可无交互地利用CSRF漏洞
