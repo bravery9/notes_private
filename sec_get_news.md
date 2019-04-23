@@ -58,6 +58,7 @@
 | Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
 | Blog – SentinelOne ||
 | Thomas Orlita's blog| https://blog.thomasorlita.cz/feed/|
+| Somdev Sangwan(XSStrike AwesomeXSS author) | https://somdev.me/feed |
 
 |名称|属性|描述|
 |:-------------:|--|-----|
