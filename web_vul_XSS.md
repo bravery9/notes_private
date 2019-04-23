@@ -168,24 +168,35 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是XSS的利用方式。
 
 XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://github.com/s0md3v/JShell)、[xsshell](https://github.com/raz-varren/xsshell)、[JSShell](https://github.com/Den1al/JSShell)
+
 举例如下
-* 盗用身份 进行读写(读取账户特有的信息/执行账户特有的操作)
+* 获取Cookie - 如果没有`HttpOnly`则可获取Cookie 从而盗用账户身份(读取账户特有的信息/执行账户特有的操作)
   * 管理员 发起高权限操作 - 创建新账号 修改密码...
   * 普通用户 发起普通用户权限操作 - 评论、发帖、支付转账、刷量...
 * 探测内网 - 利用实时通信标准WebRTC 获取存活主机ip列表 甚至端口 进而识别服务、web系统类型与版本（如发现内网confluence系统）
 * 攻击内网 - 根据探测结果(或对所有内网ip)发起漏洞利用攻击流量（利用web系统漏洞：confluence系统命令执行等；利用常见服务漏洞：redis未授权Getshell)
-* 获取cookie - 利用管理员或普通用户的身份 读取账户特有的信息/执行账户特有的操作
-* 窃取表单凭据 - 类似键盘记录 记录或读取表单输入的内容
-* 构造钓鱼页面 - 窃取用户及管理员其他的凭证
-* 漏洞联合 - 使用XSS无交互地利用CSRF漏洞. 有的anti-CSRF机制只判断Referer的值(自身/兄弟/父子域名 则正常响应) 如果这些站有某处存在XSS则可无交互地利用CSRF漏洞
+* XSStoRCE - 使用node.js作为web后端 或 基于node.js的桌面应用框架(如Electron) 都可能通过XSS实现RCE
 * XSS蠕虫 - 在社交网站上可创建蠕虫式的XSS攻击 传播速度极快 影响极大
-* 获取前端代码 - 如管理员后台系统 修改密码处的html代码中有对应的字段名 可根据代码构造请求 以实现新增或修改管理员账号密码
-* DOS攻击 - 自动注销 让用户无法登录 严重影响业务使用
+* 漏洞联合 - 使用XSS绕过CSRF保护机制 无交互地利用CSRF漏洞
+  * 方法1 构造携带CSRFtoken的请求:使用JavaScript找到CSRFtoken并发出"合法"POST请求
+  * 方法2 利用后端CSRF验证缺陷:有的anti-CSRF机制只判断Referer的值(Referer是 自身/兄弟/父子域名 则认为是合法请求)
+* 键盘记录 - 记录所有按键
+* 强制下载文件(渗透内网) - 通过社工方法进行欺骗 编造理由 使其下载并打开恶意程序("xx程序必须更新才能使用")
+* 构造钓鱼页面 - 通过社工方法进行欺骗 编造理由 窃取各种凭证("WiFi固件更新，请重新输入您的凭据以进行身份验证" "重新登录域账号")
+* 污染页面内容 - 直接修改页面内容为恶意内容. 如 广告(利用存储型XSS漏洞实现Ad-Jacking) 诋毁 等
+* 获取表单输入 - 窃取表单输入框的内容(如口令输入框)
+* 获取前端代码 - 如管理员后台系统的前端代码中 有对应的字段名 可根据代码构造请求 以构造请求 新增管理员账号
+* 重定向 - Redirecting
+* 虚拟币挖矿 - 利用javascript实现Crypto Mining
+* DOS攻击 - 利用javascript发起注销请求 使用户cookie失效从而无法登录 严重影响业务
 * DDoS攻击 - 对其他站点进行应用层DDoS攻击 如持续发送HTTP请求
-* 传播非法内容 - 跳转或直接修改页面内容为非法内容. 如 广告 诋毁 等
-* 使浏览器下载文件 - 结合社工方法欺骗用户 使其打开有危害的程序
-* 挖矿
-* 桌面应用XSStoRCE - 基于node.js的桌面应用框架(如Electron)都可能存在XSStoRCE 
+* 获取浏览器信息 - 获取浏览器名称及版本 已安装的插件及版本
+* 获取系统信息 - 系统类型 语言 屏幕分辨率
+* 获取web storage数据 - (HTML5) 通过`window.localStorage()`和`window.webStorage()`访问该站点的`web storage`数据 
+* 获取网页截图 - (HTML5)
+* 获取录音数据 - (HTML5) 需要授权 Recording Audio
+* 获取摄像数据 - (HTML5) 需要授权 webcam
+* 获取地理位置 - (HTML5) 需要授权 访问受害者的Geo-location
 * ...
 
 ### SDL - 防御与修复方案
