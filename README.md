@@ -16,7 +16,6 @@
  * [web - 基础 - 密码学基础及其应用(RSA TLS HTTPS 数字证书)](web_x_https_tls.md)
  * [web - 基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)
  * [web - 代码审计 - PHP_例1_命令执行漏洞](web_code_audit_PHP.md)
- * [web - 代码审计 - Python_例1_命令执行漏洞](web_code_audit_Python.md)
  * [web - 中间件 - 常见问题 修复方案](web_vul_mid_SSL_slowhttpdos.md)
  * [web - 整理 - 靶场WebGoat8的搭建 WriteUp](z_web_webgoat.md)
  * [web - 整理 - 爬虫分类](z_web_crawl.md)
