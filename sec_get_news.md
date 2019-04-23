@@ -47,6 +47,7 @@
 | 绿盟科技博客||
 | Research – Check Point Blog | https://blog.checkpoint.com/category/research/feed/ |
 | PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
+| acunetix blog | https://www.acunetix.com/blog/feed/ |
 | Hacking Articles||
 | KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
 | Trend Micro Simply Security | http://feeds.trendmicro.com/TrendMicroSimplySecurity |
