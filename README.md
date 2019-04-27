@@ -60,6 +60,17 @@
 |[1135/dictionary](https://github.com/1135/dictionary)|txt|字典收集 包括user/name/pass/web|
 |[1135/Applescript_demos](https://github.com/1135/Applescript_demos)|applescript|苹果脚本示例，在Mac下使用苹果脚本实现发送iMessage短信|
 
+### Red-Team
+
+|名称|描述|
+|:-------------:|--|
+|https://ired.team/| Red Teaming Experiments |
+|https://attack.mitre.org/| ATT&CK™ 真实世界用到的、系统化的网络攻击技术|
+|[Red-Team-Infrastructure-Wiki](https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki)|红队基础设施Wiki(构建稳定C2)|
+|[infosecn1nja/Red-Teaming-Toolkit](https://github.com/infosecn1nja/Red-Teaming-Toolkit)|red team tools.(infosecn1nja是Empire的作者)|
+|[infosecn1nja/AD-Attack-Defense](https://github.com/infosecn1nja/AD-Attack-Defense)|Active Directory Security For Red & Blue Team|
+|[Awesome-Red-Teaming](https://github.com/yeyintminthuhtut/Awesome-Red-Teaming)|List of Awesome Red Teaming Resources|
+
 #### Awesome_and_cheat_sheets
 
 |名称|描述|
