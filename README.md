@@ -60,7 +60,7 @@
 |[1135/dictionary](https://github.com/1135/dictionary)|txt|字典收集 包括user/name/pass/web|
 |[1135/Applescript_demos](https://github.com/1135/Applescript_demos)|applescript|苹果脚本示例，在Mac下使用苹果脚本实现发送iMessage短信|
 
-### Red-Team
+#### Red-Team
 
 |名称|描述|
 |:-------------:|--|
@@ -89,7 +89,7 @@
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[Annotated Nginx Source（中文）](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
+|[Annotated Nginx Source](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
 |[CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)|md|40k★ Computer Science Learning Notes 算法 操作系统 网络 面向对象 数据库 Java 系统设计 工具 编码实践 后记|
 |[free-programming-books](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md)|md|110k★ WEB服务器 操作系统 数据库 大数据 编程语言|
 |[30-seconds-of-interviews-zh_CN](https://github.com/b3log/30-seconds-of-interviews-zh_CN)|非代码|#前端 常见面试问题集+答案|
