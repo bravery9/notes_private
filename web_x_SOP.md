@@ -37,11 +37,12 @@
   * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)跨域资源共享 - 允许任何http method的跨源AJAX请求. [CORS详情详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 * 实现跨域的其他办法
   * JSONP - 只支持GET method (padding指的就是callback函数) 且无法双向传输数据
-  * HTML5 API `window.postMessage`方法 允许跨窗口通信 不论这两个窗口是否同源
+  * `window.postMessage(message，targetOrigin)` - 该HTML5方法可从当前window对象向其他的window对象发送消息 不论这两个窗口是否同源
   * Web Sockets
-  * 利用location.hash跨域传值(缺点:数据直接暴露在url中 数据容量有限制 数据类型有限制)
-  * window.name实现跨域数据传输 window对象的name参数可以在多标签内共享 http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html)
+  * `location.hash`与iframe 跨域传值 - 数据容量有限制 数据类型有限制
+  * `window.name`与iframe 跨域数据传输 - window对象的name参数可以在多标签内共享
   * flash
+
 
 ### 实例1 - CORS
 
@@ -140,7 +141,7 @@ $.ajax({
 });    
 ```
 
-### 实例4 - 利用window.name实现跨域
+### 实例4 - 利用window.name与iframe实现跨域
 
 跨域传输数据原理：window对象的name参数可以在多标签内共享
 
@@ -183,3 +184,48 @@ b.com的b.html的内容:
     window.name = 'happy';
 </script>
 ```
+### 实例5 - window.postMessage
+
+`window.postMessage(message，targetOrigin)` - 该HTML5方法可从当前window对象向其他的window对象发送消息 不论这两个窗口是否同源
+
+`message` 为要发送的消息，类型只能为字符串
+`targetOrigin` 用来限定接收消息的那个 window 对象所在的域 (可以使用通配符`*`不限定域)
+
+
+a.com的a.html发送数据:
+```
+<iframe src="http://b.com/b.html" id="myIframe" onload="test()" style="display: none;">
+<script>
+    function test() {
+        var iframe = document.getElementById('myIframe');
+        var win = iframe.contentWindow; // 获取 http://b.com/b.html 页面的 window 对象
+        win.postMessage('a.com a.html says: hello............', '*');   // 通过 postMessage 向 http://b.com/b.html 发送消息
+    }
+</script>
+```
+
+
+b.com的b.html接收数据:
+接收消息的 window 对象，监听自身的 message 事件，消息内容储存在该事件对象的 data 属性中
+`window.onmessage`
+```
+<script type="text/javascript">
+    // 注册 message 事件用来接收消息
+    window.onmessage = function(e) {
+        e = e || event; // 获取事件对象
+        console.log(e.data); // 通过 data 属性得到发送来的消息
+    }
+</script>
+```
+
+
+### 实例6 - location.hash与iframe
+
+html中的锚链接
+```
+<a href='#简介'>click</a>
+```
+
+如在本页面中跳转到"简介": 开发者模式输入 `location.hash="#简介"`
+
+
