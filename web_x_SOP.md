@@ -3,41 +3,44 @@
 [浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)[(Same-origin policy)](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
 规定：非同源的 客户端脚本(主要指JavaScript) 在没明确授权的情况下，不能读写非同源的资源。
 
-* 资源包括(客户端安全威胁都是围绕这些资源进行)
-  * HTTP消息头
+* 非同源的资源(客户端安全威胁都是围绕这些资源进行)
+  * HTTP header
   * 整个DOM树(Document Object Model)
   * 浏览器存储 如Cookies、Flash Cookies、localStorage...
-* “例外”
-  * `<link>`标签 `<img>`标签 `<script>`标签 中的`href`属性/`src`属性 可"获取展示"异域的CSS/JavaScript/图片(其实并不能真正读取资源的内容)
-  
+* "例外" 跨域资源嵌入
+  * 说明 - 可以在当前域下进行"跨域资源嵌入" 来"展示"非当前域的资源 如CSS/JavaScript/图片
+  * 原理 - 因为浏览器限制了非同域资源的权限 如非同域JavaScript不能真正 读 写 非同域的资源
+  * 举例
+    * `<link>`标签 通常使用href属性来指定css资源. (因为浏览器下载css文件的同时 不会停止对当前Document的处理) 如`<link href="common.css" rel="stylesheet"/>`
+    * `<img>`标签 嵌入跨域图片. 通常使用src属性来指定资源 支持图片格式PNG,JPEG,GIF,BMP,SVG...
+    * `<script>`标签 嵌入跨域脚本. 通常使用src属性来指定资源. 浏览器解析到该元素时 会暂停其他资源的下载和处理(直到该资源加载且执行结束后才会继续) 下载资源并应用到当前Document中. 如`<script src ="test.js"></script>`
+    * `<iframe>`标签 通常使用src属性来指定资源 会下载资源并应用到当前Document中
+
 ### 同源策略的意义
 
-同源策略限制了非同源的客户端脚本的行为。
+同源策略限制了非同源的客户端脚本的权限。
 
 * 如果浏览器没有同源策略:
-  * 例1 当你登录Gmail网站同时也打开这另一个网站E，网站E的JavaScript可以跨域读取你的Gmail网站的cookie，即获取到了Gmail的登录权限。
-  * 例2 当你访问了Evil.com 它使用JavaScript拦截其他站点的表单从而捕获数据,发出request到receive.com 从而盗取信息)
+  * 例1 访问mail.com并登录mailA账户 的同时也访问了另一个网站E.com，网站E.com的JavaScript可以跨域读取mail.com的cookie，即获取到了mailA账户在mail.com的登录权限
+  * 例2 访问Evil.com 该站点使用JavaScript获取mail.com的表单输入框的内容 从而捕获用户输入的数据 并很容易将数据发到Evil.com 盗取对应内容
 
 ### 判断是否同源
 
-Two URLs have the same origin if the protocol, port (if specified), and host.
-
-* 三者必须相同才能算同源
-  * protocol `http`与`https`互为非同源
-  * host 域名完全相同`www.a.com`与`sub.a.com`与`a.com`互为非同源
-  * port 端口完全相同 `:80`与`:443`与`:8080`互为非同源
-
+* 两个url有相同的protocol host port则同源
+  * protocol 协议必须完全相同 如`http`与`https`互为非同源
+  * host 域名必须完全相同 如`www.a.com`与`sub.a.com`与`a.com` 三者互为非同源
+  * port 端口必须完全相同 如`:80`与`:443`与`:8080` 三者互为非同源
 
 ### 如何允许跨源访问-方案
 
 * 实现跨域的根本方法(W3C标准)
   * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)跨域资源共享 - 允许任何http method的跨源AJAX请求. [CORS详情详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 * 实现跨域的其他办法
-  * JSONP - 只支持GET method (padding指的就是callback函数)
+  * JSONP - 只支持GET method (padding指的就是callback函数) 且无法双向传输数据
   * HTML5 API `window.postMessage`方法 允许跨窗口通信 不论这两个窗口是否同源
   * Web Sockets
   * 利用location.hash跨域传值(缺点:数据直接暴露在url中 数据容量有限制 数据类型有限制)
-  * [window.name实现的跨域数据传输](http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html)
+  * window.name实现跨域数据传输 window对象的name参数可以在多标签内共享 http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html)
   * flash
 
 ### 实例1 - CORS
@@ -93,7 +96,7 @@ Content-Type: application/xml
 * 理解
   * json是目的(json返回的是一串数据)
   * JSONP只是手段(JSONP返回的脚本代码 符合js语法 随后调用了回调函数)
-  * JSONP可以“跨域”的本质: `<script>`标签可以请求不同域名下的资源.
+  * JSONP可以"跨域"的本质: `<script>`标签可以请求不同域名下的资源.
  
 首先在站点A的前端 内容如下:
 
@@ -135,4 +138,48 @@ $.ajax({
         //ToDo..
     }
 });    
+```
+
+### 实例4 - 利用window.name实现跨域
+
+跨域传输数据原理：window对象的name参数可以在多标签内共享
+
+如a.com的a.html中创建iframe标签并设置地址外域，在外域设置window.name，再跳转回本域，此时还能获取到外域设置的window.name，此时就达到了跨域的目的。
+
+a.com的a.html的内容:
+```
+<script type="text/javascript">
+    var state = 0, 
+    iframe = document.createElement('iframe'),//创建iframe元素
+    loadfn = function() {
+        if (state === 1) {
+            var data = iframe.contentWindow.name; // 读取到外域b.com的资源、数据
+            alert(data);    //弹出'happy'
+        } else if (state === 0) {
+            state = 1;
+            iframe.contentWindow.location = "http://a.com/proxy.html"; // proxy.html(内容为空 仅起中转作用)
+        }  
+    };
+    iframe.src = 'http://b.com/b.html';//设置a.com页面下的iframe元素 src属性的值为http://b.com/b.html
+    if (iframe.attachEvent) {
+        iframe.attachEvent('onload', loadfn);
+    } else {
+        iframe.onload  = loadfn;
+    }
+    document.body.appendChild(iframe);
+</script>
+```
+
+a.com的proxy.html的内容:
+(内容为空 仅起中转作用)
+
+
+b.com的b.html的内容:
+```
+<script type="text/javascript">
+    // 需要传输的数据
+    // 数据格式可以自定义:json 字符串...
+    // 数据量：一般为2M，Firefox下约32M
+    window.name = 'happy';
+</script>
 ```
