@@ -35,12 +35,14 @@ SSRFserver -> attacker      【4】程序逻辑如果将req2的真实响应内�
 * SSRF漏洞利用的条件
   * 网络可达 - web服务端所在的服务器与其他服务器是网络可达的
 * 造成SSRF的常见场景 
+  * 文件处理与渲染
+    * 图片处理 如ImageMagick CVE-2016-3718  如[PhantomJS Image Rendering](https://buer.haus/2017/06/29/escalating-xss-in-phantomjs-image-rendering-to-ssrflocal-file-read/)
+    * 视频音频 ffmpeg
+  * web在线代理
   * 资源下载（如图片)
   * 分享
   * url跳转
-  * 网页转码(将网页内容变为适应手机屏幕的格式)
-  * 文件及编码处理(ffmpeg、ImageMagic)
-  * web在线代理
+  * 网页转码 (将网页内容变为适应手机屏幕的格式)
   * ...
 
 ### 漏洞影响
@@ -57,7 +59,7 @@ SSRFserver -> attacker      【4】程序逻辑如果将req2的真实响应内�
   * 读取文件
     * 类型1 支持了URL Schema(file等协议)
       * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
-    * 类型2
+    * 类型2 组件漏洞
       * ImageMagick CVE-2016-3718
       * discuz x2.5/x3.0/x3.1/x3.2 SSRF漏洞
       * Ffmpeg文件读取漏洞 CVE-2016-1897  CVE-2016-1898
