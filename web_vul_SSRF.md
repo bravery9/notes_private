@@ -2,17 +2,31 @@
 
 SSRF (Server Side Request Forgery) 
 
+### 分类
+
+* Basic SSRF - 攻击者能够看到真实响应内容(【3】为真实响应 【4】响应的内容与它完全相同)
+* Blind SSRF - 攻击者无法看到真实响应内容(【3】为真实响应 【4】响应的内容固定不变) 需要通过其他方式观察响应 进行判断
+  * HTTP response status - HTTP响应的状态码(200 500)
+  * HTTP response time - HTTP往返时间间隔的长短(得到HTTP响应时间点-发起HTTP请求的时间点)
+  
 ### 原理
 
 "隔山打牛"
+
 ```
 Attacker --【1】req1-payload-->  Server1(存在SSRF漏洞) ---【2】req2--> Server2
-     /\                           |        /\                        \/ 
-     |                           \/        |                          | 
-     '----<----【4】resp1----<----'        '---<---【3】resp2----<-----' 
+     /\                           |        /\                         \/ 
+     |                           \/         |                         | 
+     '-----<----【4】resp----<----'         '---<----【3】resp----<----' 
 ```
 
-攻击者通过控制Requset1中的参数值，发送Requset1到存在SSRF漏洞的Server1，以Server1为"跳板"发出Requset2,通常根据判断Response2的情况(内容、响应时间等),来实现探测内网主机(IP/port/service...)等利用方式
+```
+流量走向                      流程说明
+attacker -> SSRFserver      【1】攻击者发送Requset1到存在SSRF漏洞的Server.  req1:https://x.com/?url=http://<internal_hostname>:<port>/
+SSRFserver -> internalServer【2】SSRFserver为"跳板" 发出Requset2.          req2:http://<internal_hostname>:<port>/
+internalServer -> SSRFserver【3】SSRFserver得到req2的真实响应内容.
+SSRFserver -> attacker      【4】程序逻辑如果将req2的真实响应内容返回给攻击者则为Basic SSRF，否则为Blind SSRF.
+```
 
 * SSRF漏洞产生的条件
   * SSRF漏洞产生的条件 - 任何能够使server发起网络请求的功能 都可能存在SSRF
