@@ -197,6 +197,7 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 * 获取录音数据 - (HTML5) 需要授权 Recording Audio
 * 获取摄像数据 - (HTML5) 需要授权 webcam
 * 获取地理位置 - (HTML5) 需要授权 访问受害者的Geo-location
+* 结合具体功能 - 通过“动态生成PDF”功能的XSS 读取本地文件 [Local File Read via XSS in Dynamically Generated PDF](https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html)
 * ...
 
 ### SDL - 防御与修复方案
