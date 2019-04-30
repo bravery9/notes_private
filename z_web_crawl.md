@@ -1,13 +1,14 @@
 ### 爬虫的分类
 
+
+按类型
+* 静态页面爬虫 (不能解析JavaScript) 如[1135/VulSpider](https://github.com/1135/VulSpider)
+* 动态页面爬虫 (能够解析JavaScript) 如puppeteer模块调用headless chrome 如[1135/VulSpiderX](https://github.com/1135/VulSpiderX)
+
 按架构
 * 单任务版
 * 并发版
 * 分布式版
-
-按类型
-* 静态页面爬虫 (不能解析JavaScript)
-* 动态页面爬虫 (能够解析JavaScript 如selenium模拟浏览器)
 
 
 ### 爬虫相关项目
