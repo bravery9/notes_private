@@ -10,6 +10,7 @@
 |tshark|命令行 官方文档[tshark](https://www.wireshark.org/docs/man-pages/tshark.html) |
 |[suricata](https://github.com/OISF/suricata) |强大的网络威胁检测引擎 real time IDS, IPS, network security monitoring (NSM) and offline pcap processing.|
 [security-onion](https://github.com/Security-Onion-Solutions/security-onion)|一个liunx系统镜像 内含 Elasticsearch, Logstash, Kibana, Snort, Suricata, Bro, Wazuh, Sguil, Squert, CyberChef, NetworkMiner, and many other security tools. |
+|Zeek(Bro)| Network Security Monitor https://www.zeek.org/|
 
 恶意软件分析工具与资源 [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 
