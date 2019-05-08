@@ -8,6 +8,7 @@
  * [web - vul - SSRF_原理 利用方式 修复方案](web_vul_SSRF.md)
  * [web - vul - XSS  原理 利用方式 修复方案](web_vul_XSS.md)
  * [web - vul - CSRF 原理 利用方式 修复方案](web_vul_CSRF.md)
+ * [web - vul - Path Traversal 原理 利用方式 修复方案]( web_vul_PathTraversal.md)
  * [web - vul - Java反序列化 原理 利用方式 修复方案 Deserialization](web_vul_Deserialization.md)
  * [web - SQLi sqlmap常用参数 tamper详解](sec_sqlmap.md)
  * [web - WEB应用安全部署架构_及 WAFbypass](web_WAF_bypass.md)
