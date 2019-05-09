@@ -102,3 +102,22 @@ while(pathname.indexOf("/../") != -1) {
 		pathname = pathname.replace("/../",""); //fix for path traversal bug
 	}
 ```
+
+
+---
+
+另外，看下node自带的fs模块的readFile函数
+
+1.读取普通文件
+```
+# 1.读取普通文件 将文件内容转化为文本 输出
+var mypath = "/Users/xxx/Downloads/../../../etc/passwd";fs.readFile(mypath,function(err,data){console.log(data.toString())})
+```
+
+2.读取符号链接文件
+
+创建符号链接文件 `ln -s ../1.txt symfile`
+```
+# 2.读取一个名为symfile的符号链接文件 实际上可以读取到1.txt的内容
+var mypath = "/Users/xxx/Downloads/symfile";fs.readFile(mypath,function(err,data){console.log(data.toString())})
+```
