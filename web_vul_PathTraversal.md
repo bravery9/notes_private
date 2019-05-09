@@ -1,12 +1,13 @@
 ### 简介
 
-* 目录穿越 Directory traversal/ 路径穿越 Path traversal
-* 漏洞原理:攻击者通过可控的输入，以"参数值"、"畸形文件"等形式，将构造的"路径"传递给后端逻辑，实现路径穿越。
+* 漏洞名称:目录穿越(Directory traversal)  路径穿越(Path traversal)
+* 漏洞原理:攻击者通过可控的输入，通过"参数值"、"构造的符号链接文件"、"构造的压缩文件"等形式，将构造的"路径"传递给后端逻辑，实现路径穿越。
 * 漏洞危害:任意文件读取、写入、删除、覆盖、修改...
+* 漏洞案例: [CVE - directory traversal](https://www.cvedetails.com/vulnerability-list/opdirt-1/directory-traversal.html)
 
-### 测试方法
+### 基础知识
 
-构造payload系统相关
+系统相关
 
 | |root directory|directory separator|
 |:-------------:|--|-----|
@@ -39,6 +40,7 @@ cat ./.././1.txt
 cat ././../././1.txt
 ```
 
+### 测试方法
 
 Encoding and double encoding:
 
@@ -146,3 +148,10 @@ var mypath = "/Users/xxx/Downloads/../../../etc/passwd";fs.readFile(mypath,funct
 # 2.读取一个名为symfile的符号链接文件 实际上可以读取到1.txt的内容
 var mypath = "/Users/xxx/Downloads/symfile";fs.readFile(mypath,function(err,data){console.log(data.toString())})
 ```
+
+### 案例2 - 解压过程目录穿越
+
+CVE-2017-5946 [Rubyzip Directory traversal vulnerability](https://github.com/rubyzip/rubyzip/issues/315)
+
+修复 [diff](https://github.com/rubyzip/rubyzip/commit/ce4208fdecc2ad079b05d3c49d70fe6ed1d07016)
+
