@@ -10,6 +10,8 @@
  * [web - vul - CSRF 原理 利用方式 修复方案](web_vul_CSRF.md)
  * [web - vul - Path Traversal 原理 利用方式 修复方案]( web_vul_PathTraversal.md)
  * [web - vul - Deserialization反序列化 原理 利用方式 修复方案](web_vul_Deserialization.md)
+ * [web - vul - Open Redirection 原理 利用方式 修复方案](web_vul_OpenRedirection.md)
+ * [web - vul - Clickjacking 原理 利用方式 修复方案](web_vul_ClickJacking.md)
  * [web - SQLi sqlmap常用参数 tamper详解](sec_sqlmap.md)
  * [web - WEB应用安全部署架构_及 WAFbypass](web_WAF_bypass.md)
  * [web - burp 设置 插件 技巧](web_x_burp.md)
