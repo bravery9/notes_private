@@ -24,7 +24,7 @@
     * 检测方法1  - 浏览器&开发者工具 - 查看经过js解析过的html代码，输入构造的数据并查看其前端解析，构造的payload执行成功则存在DOM Based XSS
     * 检测方法2  - 使用浏览器(headless) - 根据该页面的前端代码设计缺陷，通常在浏览器(headless)的URL输入框构造XSSpayload并访问，使前端解析并执行该XSSpayload，根据headless调试进行判断，如果确认执行成功则存在DOM Based XSS
 
-### DOM
+### 基础知识 - DOM
 
 * DOM (Document Object Model)  html中每一个元素都是"节点":
   * 文档是一个文档节点
@@ -33,9 +33,11 @@
   * 文本插入到HTML元素是文本节点
   * 注释是注释节点
 
-### DOM-XSS
+### DOM-XSS详细分析
 
-#### DOM-XSS 输入源
+输入 -> 触发
+
+#### 1.输入源
 
 参考Google Code [domxsswiki](https://github.com/wisec/domxsswiki)
 
@@ -77,7 +79,7 @@ location.search
 "?q=location"
 ```
 
-#### DOM-XSS 触发
+#### 2.触发
 
 可能导致DOM based XSS漏洞的函数
 
@@ -103,7 +105,7 @@ document.location
 ```
 
 
-#### DOM-XSS 实例1 恐怖的innerHTML
+#### 3.实例 - innerHTML
 
 DOM Based XSS场景 只需要前端即可实现
 
@@ -158,12 +160,13 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ...
 ```
 
-### BypassXSS
+### XSS绕过方式
 
+BypassXSS
 * [s0md3v/AwesomeXSS](https://github.com/s0md3v/AwesomeXSS)
 * [MyPapers/Bypassing-XSS-detection-mechanisms](https://github.com/s0md3v/MyPapers/tree/master/Bypassing-XSS-detection-mechanisms)
 
-### 利用方式
+### XSS利用方式
 
 XSS可以插入Javascript代码，所以JavaScript能实现的任何功能都是XSS的利用方式。
 
