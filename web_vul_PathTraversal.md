@@ -68,11 +68,11 @@ Web容器对form和URL中的"百分比编码"执行一级解码(one level of dec
 #### payload - 压缩文件
 
 * 压缩文件 解压过程实现目录穿越
-  * 压缩文件中的文件名 - 使用标准库生成压缩包 其中的文件名带有`../`
-    * [CVE-2001-1267](https://www.cvedetails.com/cve/CVE-2001-1267/) GNU tar 1.13.19及更早版本中的目录遍历漏洞 文件名包含`..`的tar文件 在压缩包提取过程中 覆盖任意文件
-    * [CVE-2001-1268](https://www.cvedetails.com/cve/CVE-2001-1268/)Info-ZIP UnZip 5.42及更早版本中的目录遍历漏洞 允许攻击者通过提取的文件名中的`..` 在压缩包提取过程中 覆盖任意文件
-    * [CVE-2016-10173](https://github.com/halostatue/minitar/issues/16) Minitar允许攻击者通过提取文件名中的`..`在压缩包提取过程中 覆盖任意文件
-    * [CVE-2017-5946](https://github.com/rubyzip/rubyzip/issues/315) Rubyzip Directory traversal vulnerability 修复[diff](https://github.com/rubyzip/rubyzip/commit/ce4208fdecc2ad079b05d3c49d70fe6ed1d07016)
+  * 压缩文件中的文件名 - 压缩包中的文件名带有`..` 在压缩包提取过程中 覆盖任意文件
+    * [CVE-2001-1267](https://www.cvedetails.com/cve/CVE-2001-1267/) GNU tar 1.13.19及更早版本中的目录遍历漏洞
+    * [CVE-2001-1268](https://www.cvedetails.com/cve/CVE-2001-1268/)Info-ZIP UnZip 5.42及更早版本中的目录遍历漏洞
+    * [CVE-2016-10173](https://github.com/halostatue/minitar/issues/16) Minitar目录遍历漏洞
+    * [CVE-2017-5946](https://github.com/rubyzip/rubyzip/issues/315) Rubyzip目录遍历漏洞 修复[diff](https://github.com/rubyzip/rubyzip/commit/ce4208fdecc2ad079b05d3c49d70fe6ed1d07016)
     * ...
   * 压缩文件中的文件为符号链接文件 - 期望通过解压symlinks文件 得到其指向的真实文件的内容
     * zip压缩包 成功 解压得到了symlinks文件指向的真实文件的内容
