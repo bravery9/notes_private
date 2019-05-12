@@ -44,9 +44,8 @@ cat ././../././1.txt
 
 #### payload - 参数值
 
-Encoding and double encoding:
-
 ```
+# Encoding and double encoding
 %2e%2e%2f represents ../
 %2e%2e/ represents ../
 ..%2f represents ../ 
@@ -55,12 +54,8 @@ Encoding and double encoding:
 ..%5c represents ..\ 
 %252e%252e%255c represents ..\ 
 ..%255c represents ..\
-```
 
-URL encoding
-
-Web容器对form和URL中的"百分比编码"执行一级解码(one level of decoding)
-```
+# Web容器对form和URL中的"百分比编码"执行一级解码(one level of decoding)
 ..%c0%af represents ../ 
 ..%c1%9c represents ..\ 
 ```
