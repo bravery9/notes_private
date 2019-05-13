@@ -1,7 +1,7 @@
 ### 简介
 
 * 漏洞名称:目录穿越(Directory traversal)  路径穿越(Path traversal)
-* 漏洞原理:攻击者通过可控的输入，通过"参数值"、"构造的符号链接文件"、"构造的压缩文件"等形式，将构造的"路径"传递给后端逻辑，实现路径穿越。
+* 漏洞原理:攻击者通过可控的输入，通过"参数值"、"构造的压缩文件"等形式，将构造的"路径"传递给后端逻辑，实现路径穿越。
 * 漏洞危害:任意文件读取、写入、删除、覆盖、修改...
 * 漏洞案例: [CVE - directory traversal](https://www.cvedetails.com/vulnerability-list/opdirt-1/directory-traversal.html)
 * 常见场景
