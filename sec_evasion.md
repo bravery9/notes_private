@@ -41,7 +41,7 @@
     * 局限:使用CDN，可能需要实名认证(可考虑以其他身份注册)
   * 2.白域名方法 - 借用知名网站 通常仅支持HTTP协议通信
     * 逃避原理:将"命令数据"加密处理发布在知名网站 即可实现被控端通过知名域名获取C2命令 避免流量特征告警 避免溯源分析
-      * 国内 可被公开访问的页面 `weibo` `users.qzone.qq.com:80/fcg-bin/cgi_get_portrait.fcg?uins=550067654`
+      * 国内 可被公开访问的页面 `weibo.com` `users.qzone.qq.com`
       * 国外 可被公开访问的页面 `google、twitter、pastbin、telegram ...`
    	* 局限:使用知名站点，可能需要实名认证(可考虑以其他身份注册)
   * 3.DGA域名 - DGA域名生成算法
