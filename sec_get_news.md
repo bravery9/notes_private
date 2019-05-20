@@ -10,13 +10,7 @@
 
 ### 信息来源1 - RSS订阅
 
-安装Slack客户端(PC/mobile)
-
-访问 https://YOURNAME.slack.com/apps/manage
-
-搜索 RSS
-
-设置订阅以下网站的RSS地址即可（可随时增删）
+订阅以下rss地址
 
 |标题|rss地址|
 |:-------------:|-----|
@@ -65,7 +59,20 @@
 |[每日安全 - 腾讯安全玄武实验室出品](https://sec.today/)|/|实时安全技术信息推送 https://sec.today/pulses/|
 
 
- 效果如图
+
+
+
+
+
+使用Slack客户端(PC/mobile) 订阅RSS:
+
+访问 https://YOURNAME.slack.com/apps/manage
+
+搜索 RSS
+
+设置订阅以下网站的RSS地址即可（可随时增删）
+
+效果如图：
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
 
 ### 信息来源2 - 自写爬虫邮件推送
