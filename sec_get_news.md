@@ -4,10 +4,11 @@
 * 广度 对安全会有更系统的认识
 
 ### 获取新资讯的模式
+
 * 被动接收为主 (营造环境/建立机制 让资讯主动展示在眼前 避免了不必要的消耗)
 * 主动获取为辅（主动获取略耗费精力时间 需要按需获取)
 
-### 我的方案 - 主要使用Slack的RSS订阅
+### 信息来源1 - RSS订阅
 
 安装Slack客户端(PC/mobile)
 
@@ -28,8 +29,6 @@
 | [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
 | [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
 | [RedTeam] Dirk-jan Mollema(researcher)|https://dirkjanm.io/feed.xml|
-| 腾讯安全玄武实验室||
-| Tencent XuanwuLab Security Daily News Push||
 | 先知安全技术社区 | https://xz.aliyun.com/feed |
 | 360 CERT ||
 | 360 Technology Blog(360核心安全) | http://blogs.360.cn/rss.html|
@@ -37,25 +36,23 @@
 | Malwarebytes Labs||
 | Hacking Articles||
 | jetlib.sec| 信息过多 https://sec.jetlib.com/?media=rss|
-| 360 Technology Blog||
+| [360 Technology Blog 核心安全技术博客](http://blogs.360.cn/)|http://blogs.360.cn/rss|
 | 知道创宇|https://www.seebug.org/ |
 | 知道创宇 Papers - Last paper |https://paper.seebug.org/|
-| Seebug 最新漏洞||
-| Seebug 近期最热漏洞||
-| 腾讯安全响应中心||
-| FreeBuf互联网安全新媒体平台||
-| 绿盟科技博客||
+| Seebug 最新漏洞 | https://www.seebug.org/rss/new/|
+| Seebug 近期最热漏洞 | https://www.seebug.org/rss/hot/|
+| 腾讯安全响应中心 | https://security.tencent.com/index.php/feed/blog/0|
+| FreeBuf | https://www.freebuf.com/feed|
+| 绿盟科技博客 | http://blog.nsfocus.net/feed/|
 | Research – Check Point Blog | https://blog.checkpoint.com/category/research/feed/ |
 | PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
 | acunetix blog | https://www.acunetix.com/blog/feed/ |
 | Hacking Articles||
 | KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
 | Trend Micro Simply Security | http://feeds.trendmicro.com/TrendMicroSimplySecurity |
-| US Blog RSS Feed ||
-| c0d3p1ut0s||
-| Malware-Traffic-Analysis.net(流量分析知名博客) | https://www.malware-traffic-analysis.net/blog-entries.rss |
-| Recent vulnerabilities - Vulmon||
-| Blog – NotSoSecure | https://www.notsosecure.com/blog/feed/|
+| www.nccgroup.trust - US Blog RSS Feed |https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/us-blog-rss-feed/|
+| Malware-Traffic-Analysis.net(流量分析) | https://www.malware-traffic-analysis.net/blog-entries.rss |
+| [Blog - NotSoSecure](https://www.notsosecure.com/blog/) | https://www.notsosecure.com/blog/feed/|
 | Blog – SentinelOne ||
 | Thomas Orlita's blog| https://blog.thomasorlita.cz/feed/|
 | Somdev Sangwan(XSStrike AwesomeXSS author) | https://somdev.me/feed |
@@ -71,11 +68,12 @@
  效果如图
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
 
-### 补充方案 - 自写爬虫邮件推送
+### 信息来源2 - 自写爬虫邮件推送
 
 * 邮件推送(自写爬虫爬取无法rss订阅的网站)
-[1135/VulSpider: 本程序在后台持续运行，获取最新漏洞及每日简报，发送邮件给安全人员。](https://github.com/1135/VulSpider)
+  * [1135/VulSpider: 本程序在后台持续运行，获取最新漏洞及每日简报，发送邮件给安全人员。](https://github.com/1135/VulSpider)
+  * [1135/VulSpiderX: 本程序在后台持续运行，通过headless chrome获取hackerone最新漏洞，发送邮件给安全人员。](https://github.com/1135/VulSpiderX)
 
-![all](https://images2.imgbox.com/c4/de/EhWf7z3R_o.png)
-
-* twitter等其他途径获取
+效果如图
+![all](https://github.com/1135/notes/blob/master/imgs/vulspider.png?raw=true)
+![all](https://github.com/1135/notes/blob/master/imgs/vulspiderX.png?raw=true)
