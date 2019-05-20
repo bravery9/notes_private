@@ -1,11 +1,22 @@
-### 自动化-github泄露扫描系统
+### 企业信息泄露的源头
+
+* 信息泄露源头
+  * 代码仓库类 - 如github
+  * 网盘类 - 如百度网盘
+  * 内部wiki系统
+  * 内部IM系统
+  * 个人笔记 - 印象笔记
+  * ...
+
+
+### 自动化-github信息泄露发现系统
 
 |名称|属性|运行环境|描述|
 |:-------------:|--|--|-----|
 |[MiSecurity/x-patrol](https://github.com/MiSecurity/x-patrol/)|Golang|all|MiSecurity|
 |[michenriksen/gitrob](https://github.com/michenriksen/gitrob)|Golang|allReconnaissance tool for GitHub organizations|
 
-### x-patrol搭建过程
+**x-patrol 搭建过程**
 
 进入 https://github.com/MiSecurity/x-patrol/releases
 
@@ -73,9 +84,7 @@ x@xsec.io
 ![效果图.png (2862×1234)](https://camo.githubusercontent.com/6f66528be6b1a80300ba103995f71a69fb629335/68747470733a2f2f696d61676573322e696d67626f782e636f6d2f39372f65342f5676776f364450555f6f2e706e67)
 
 
-### web安全测试
-
-测试这个web系统发现
-* 有CSRF漏洞 实际意义不大
-* 无sql注入漏洞 所有sql查询均使用了orm框架 [go-xorm/xorm](https://github.com/go-xorm/xorm) 支持 mysql,postgres,tidb,sqlite3,mssql,oracle
-* 无XSS漏洞
+* web安全测试结果
+  * 有CSRF漏洞 实际意义不大
+  * 无sql注入漏洞 所有sql查询均使用了orm框架 [go-xorm/xorm](https://github.com/go-xorm/xorm) 支持 mysql,postgres,tidb,sqlite3,mssql,oracle
+  * 无XSS漏洞
