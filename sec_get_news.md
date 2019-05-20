@@ -14,8 +14,8 @@
 
 |标题|rss地址|
 |:-------------:|-----|
-| Security Research & Defense(Microsoft.com) | https://blogs.technet.microsoft.com/srd/feed/|
 | Threat Research(FireEye.com) | [Threat Research Blog](https://www.fireeye.com/blog/threat-research/_jcr_content.feed) |
+| Security Research & Defense(Microsoft.com) | https://blogs.technet.microsoft.com/srd/feed/|
 | Unit42 (Paloalto威胁分析团队) | http://feeds.feedburner.com/Unit42 |
 | [RedTeam] Strategic Cyber LLC(cobaltstrike blog)| https://blog.cobaltstrike.com/feed/|
 | [RedTeam] Outflank Blog| https://outflank.nl/blog/feed/|
@@ -23,20 +23,19 @@
 | [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
 | [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
 | [RedTeam] Dirk-jan Mollema(researcher)|https://dirkjanm.io/feed.xml|
-| 先知安全技术社区 | https://xz.aliyun.com/feed |
-| 360 CERT ||
+| 360 CERT | https://cert.360.cn/daily/feed |
 | 360 Technology Blog(360核心安全) | http://blogs.360.cn/rss.html|
-| 安全客-有思想的安全新媒体||
-| Malwarebytes Labs||
+| 安全客 | https://api.anquanke.com/data/v1/rss|
+| Malwarebytes Labs | https://blog.malwarebytes.com/feed/|
 | Hacking Articles||
 | jetlib.sec| 信息过多 https://sec.jetlib.com/?media=rss|
-| [360 Technology Blog 核心安全技术博客](http://blogs.360.cn/)|http://blogs.360.cn/rss|
 | 知道创宇|https://www.seebug.org/ |
 | 知道创宇 Papers - Last paper |https://paper.seebug.org/|
 | Seebug 最新漏洞 | https://www.seebug.org/rss/new/|
 | Seebug 近期最热漏洞 | https://www.seebug.org/rss/hot/|
 | 腾讯安全响应中心 | https://security.tencent.com/index.php/feed/blog/0|
 | FreeBuf | https://www.freebuf.com/feed|
+| 先知安全技术社区 | https://xz.aliyun.com/feed |
 | 绿盟科技博客 | http://blog.nsfocus.net/feed/|
 | Research – Check Point Blog | https://blog.checkpoint.com/category/research/feed/ |
 | PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
@@ -63,16 +62,10 @@
 
 
 
+如 使用Slack客户端(PC/mobile) 进行订阅:
 
-使用Slack客户端(PC/mobile) 订阅RSS:
+访问 https://YOURNAME.slack.com/apps/manage 并搜索 RSS安装，添加上述RSS地址即可。效果如图：
 
-访问 https://YOURNAME.slack.com/apps/manage
-
-搜索 RSS
-
-设置订阅以下网站的RSS地址即可（可随时增删）
-
-效果如图：
 ![slack](https://images2.imgbox.com/04/ec/AVZP9xil_o.png)
 
 ### 信息来源2 - 自写爬虫邮件推送
