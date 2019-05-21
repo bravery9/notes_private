@@ -15,10 +15,10 @@
 
 #### 钓鱼方式
 
-|攻击形式|攻击payload|针对目标环境|描述|
+|攻击形式|payload|针对目标环境|描述|
 |:-------------:|--|--|-----|
-|邮件|邮件中的Office文档的宏执行恶意payload|windows系统|Microsoft Office documents containing malicious macros|
-|邮件|邮件中的超链接可以跳转到钓鱼网站|任意系统|获取目标的 登录口令 身份凭证|
+|邮件|Microsoft Office文档(宏)|windows|邮件附件为构造的Microsoft Office文档 打开执行宏(payload)|
+|邮件|钓鱼网站|all|邮件正文中的超链接是钓鱼网站 接受目标人物输入的信息|
 
 
 更多可参考项目 [SocialEngineeringPayloads](https://github.com/bhdresh/SocialEngineeringPayloads)
@@ -60,11 +60,11 @@
   * 使用swaks发送钓鱼邮件 官方使用说明 http://jetmore.org/john/code/swaks/latest/doc/ref.txt
   * Mac `brew install swaks`
 * 发送钓鱼邮件（测试）
-  * 按需修改"源文件"与"命令行"中的收件人与发件人。
+  * 按需修改"源文件"与"命令行"中的收件人与发件人
   * 命令 `swaks --to shoujian@a.net --from fajian@a.net --data /Users/x/Downloads/mail2755.eml.txt`
-  * 效果查看 自己查看发送效果是否符合心意
+  * 效果查看 自己查看发送效果是否足够真实
 * 发送钓鱼邮件（实战）
-  * 按需修改"源文件"与"命令行"中的收件人与发件人。
+  * 按需修改"源文件"与"命令行"中的收件人与发件人
 
 #### 钓鱼的工具
 
