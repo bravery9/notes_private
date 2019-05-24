@@ -4,9 +4,16 @@ DLL Hijacking
 
 [【微步在线报告】“海莲花”攻击 - 白利用 0检出](https://m.threatbook.cn/detail/1397?from=groupmessage&isappinstalled=0)
 
+### 方式
+
+7种不同的DLL注入方式 [injectAllTheThings](https://github.com/fdiskyou/injectAllTheThings)
+
+[详细解释文章 - 看雪学院](https://mp.weixin.qq.com/s/mNLxblONujByW16r9tC6yQ)
+
 ### 测试
 
-[Cybereason/siofra](https://github.com/Cybereason/siofra)
+
+使用[siofra](https://github.com/Cybereason/siofra)检测xx.exe的DLL能否被劫持
 
 ```
 # 文件扫描模式 对父程序xx.exe进行扫描 枚举它所依赖的dll文件 并检测能否DLL Hijacking
