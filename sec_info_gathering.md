@@ -1,4 +1,4 @@
-### github高级语法
+### 信息搜集 - github高级语法
 
 * 编程语言 `language:java`
 * 搜索个人 `user:1135`
@@ -12,7 +12,7 @@
 * 创建日期 `created:>2019-01-03`
 * license类别 `license:apache-2.0`
 
-### 搜索引擎 - Google常规语法
+### 信息搜集 - Google常规语法
 
 以下语法均经过实测 2019.3
 ```
@@ -70,7 +70,7 @@ site:apple.com -site:www.apple.com -inurl:support
   * [ Google Hacking Database - exploit-db.com](https://www.exploit-db.com/google-hacking-database)
 
 
-### IP/Domain搜集
+### 信息搜集 - IP/Domain
 
 |域名相关工具|描述|
 |:-------------:|-----|
@@ -98,3 +98,8 @@ site:apple.com -site:www.apple.com -inurl:support
 |https://whoer.net/ | web匿名性自测 (通过webRTC等技术获取内网ip) |
 |http://www.ifconfig.io/ | 得到自身外网IP|
 |https://osintframework.com/|OSINT Framework( 自动化工具[Photon: Incredibly fast crawler designed for OSINT.](https://github.com/s0md3v/Photon))|
+
+
+### 更多
+
+[jivoi/awesome-osint](https://github.com/jivoi/awesome-osint)
