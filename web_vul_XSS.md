@@ -104,12 +104,23 @@ window.location
 document.location
 ```
 
+#### 3.实例 - 使用anyElement.innerHTML写入html代码实现DOM based XSS
 
-#### 3.实例 - innerHTML
 
-DOM Based XSS场景 只需要前端即可实现
+初步了解 innerHTML innerText outerHTML
+```
+<div id="test">
+   <span style="color:red">test1</span> test2
+</div>
 
-1.html
+//console
+//test.innerHTML为<span style="color:red">test1</span> test2
+//test.innerText为test1 test2
+//test.outerHTML为<div id="test"><span style="color:red">test1</span> test2</div>
+```
+
+
+构造1.html
 ```
 <a id=a></a>
 <title id=b></title>
@@ -123,8 +134,9 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ```
 
 
-打开1.html 通过浏览器的开发者工具 查看经过DOM解析(javascript执行后)的页面代码:
+打开1.html
 
+通过浏览器的开发者工具 查看经过DOM解析(javascript执行后)的页面代码:
 ```
 <html><head></head>
 <body>
@@ -141,13 +153,9 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 </html>
 ```
 
-可发现会弹出`alert(3)` `alert(1)`(无顺序)
+发现 弹出`alert(3)` `alert(1)`(无顺序) 而没有`alert(2)`
 
-没有`alert(2)`
-
-因为使用`.innerHTML`写入以下这些HTML标签中时，不会解析`Html实体(Html Entity)` :
-
-如它们不会将 `&lt;` 解析为`<`
+因为使用`.innerHTML`写进以下这些HTML标签中时，不会解析`Html实体(Html Entity)`  如不会将 `&lt;` 解析为`<` :
 
 ```
 <textarea>
