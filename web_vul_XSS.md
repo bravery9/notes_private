@@ -79,6 +79,10 @@ location.search
 "?q=location"
 ```
 
+实际测试发现
+
+chrome浏览器的`document.URL`是经过url编码的字符.即`location.pathname` `location.search` `location.hash`都是经过URL编码的字符.
+
 #### 2.触发
 
 可能导致DOM based XSS漏洞的函数
@@ -104,8 +108,10 @@ window.location
 document.location
 ```
 
-#### 3.实例 - 使用anyElement.innerHTML写入html代码实现DOM based XSS
 
+#### DOM based XSS 实例1 - 从anyElement.innerHTML触发
+
+anyElement.innerHTML可以写入html代码.
 
 初步了解 innerHTML innerText outerHTML
 ```
@@ -118,9 +124,12 @@ document.location
 //test.innerText为test1 test2
 //test.outerHTML为<div id="test"><span style="color:red">test1</span> test2</div>
 ```
+可知使用 .innerHTML .outerHTML 能够读取/写入元素中的html代码
+
+而.innerText不可能读取/写入元素中的html代码 只能读取/写入纯文本
 
 
-构造1.html
+构造poc1.html
 ```
 <a id=a></a>
 <title id=b></title>
@@ -134,7 +143,7 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ```
 
 
-打开1.html
+打开poc1.html
 
 通过浏览器的开发者工具 查看经过DOM解析(javascript执行后)的页面代码:
 ```
