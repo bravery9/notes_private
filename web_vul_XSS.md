@@ -43,23 +43,30 @@
 
 外部可控参数 即用户输入能够影响以下参数(如果处理不当可能会有"DOM型XSS")
 ```
+# URL
 document.URL
 document.documentURI
 document.baseURI
+
+# URL各部分
 location
 location.href
 location.search
 location.hash
 location.pathname
+
+# 其他
 document.cookie
 document.referrer
 window.name
+window.postMessage
 history.pushState()
 history.replaceState()
 localStorage
 sessionStorage
+```
 
-
+```
 实例：浏览器开启开发者模式 访问 https://cn.bing.com/search?q=location#abc
 
 得到完整URL
@@ -81,7 +88,10 @@ location.search
 
 实际测试发现
 
-chrome浏览器的`document.URL`是经过url编码的字符.即`location.pathname` `location.search` `location.hash`都是经过URL编码的字符.
+* 输入:chrome浏览器的`document.URL`是经过url编码的字符.即`location.pathname` `location.search` `location.hash`都是经过URL编码的字符.
+* 处理:可以使用`xx.com/pathname#javascript:alert(1)`不需要进行URL解码.
+* 触发:HTML标签的属性 有些属性支持 javascipt:[code] 伪协议
+   * 1.chrome测试通过 - 写到a标签的`href`属性 点击触发. `<a href=javascript:alert(1)>click</a>`
 
 #### 2.触发
 
