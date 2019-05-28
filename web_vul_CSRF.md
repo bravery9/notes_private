@@ -22,7 +22,7 @@ CSRF通过构造get/post等请求，设法使已登录用户victim不知情的�
    * 3.利用任意第三方域名的XSS漏洞 - 使victim访问攻击者可控的第三方网站`https://3.com` 该第三方站点上用javascript构造GET请求(通过img标签 使victim发出GET请求) POST请求(构造目标站的表单数据并自动提交 使victim发出POST请求)
    * html注入漏洞 (参考通过XSS间接利用CSRF)
 * 漏洞联合 - 通过已有的CSRF漏洞 利用self-XSS漏洞(变废为宝)
-  * 原理 - 事实上self-XSS漏洞无法直接使对方触发，然而通过已有的CSRF漏洞构造"触发该self-XSS漏洞的"请求，对方触发CSRF漏洞即触发XSS漏洞
+  * 利用过程 - 事实上self-XSS漏洞无法直接使对方触发，然而通过已有的CSRF漏洞构造"触发该self-XSS漏洞的"请求，对方触发CSRF漏洞即触发XSS漏洞
 
 #### 利用任意第三方域名的XSS漏洞 发出GET请求
 
