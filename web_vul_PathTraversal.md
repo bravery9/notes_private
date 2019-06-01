@@ -3,24 +3,27 @@
 * 漏洞名称:目录穿越(Directory traversal)  路径穿越(Path traversal)
 * 漏洞原理:攻击者通过可控的输入，通过"参数值"、"构造的压缩文件"等形式，将构造的"路径"传递给后端逻辑，实现路径穿越。
 * 漏洞案例: [CVE - directory traversal](https://www.cvedetails.com/vulnerability-list/opdirt-1/directory-traversal.html)
-* 常见场景
-  * 压缩文件上传 -（后台)管理员使用zip文件恢复配置
-  * 普通文件上传 - 因为后端逻辑可能直接拼接路径 所以尝试构造文件名实现目录穿越 `../filename.txt`
-  * 文件新建/修改/删除 - 因为后端逻辑可能直接拼接路径 所以尝试构造文件名实现目录穿越 `../filename.txt`
 
 ### 漏洞危害
 
-* 漏洞危害:任意文件读取、写入、删除、覆盖、修改...
-  * 信息搜集 - 通过读取文件获取敏感信息
-    * 登录信息 获取登录用户名 `/etc/passwd`
-    * 登录信息 获取登录口令密文 `/etc/shadow` 可使用rainbow table破解得到明文
-    * 登录信息 获取ssh私有钥匙 `~/.ssh/id_rsa`
-    * 域名信息 获取域名及ip 可能有内网相关信息 `/etc/hosts`
-    * ACL信息 ssh的ACL `/etc/hosts.allow`中的IP被允许登录该主机ssh  而`/etc/hosts.deny`中的IP被禁止登录该主机的ssh
-    * ACL信息  获取IPv4的ACL策略`/etc/sysconfig/iptables` IPv6的ACL策略`/etc/sysconfig/ip6tables`
-    * 日志信息 WEB日志等
-    * 更多参考 [dictionary/file_linux_info.txt](https://github.com/1135/dictionary/blob/master/file_linux_info.txt)
- 
+* 漏洞危害:任意文件 写入(新建+覆盖) 修改 读取 删除.即CURD操作
+  * 例1 新建文件 - 即上传压缩文件功能. 当（后台)管理员使用zip文件恢复配置 如果解压模块未考虑`../` 直接解压 则存在目录穿越漏洞. 可构造压缩包进行利用
+  * 例2 新建文件 - 即上传文件功能. 如果后端未考虑`../` 直接拼接路径与文件名 则存在目录穿越漏洞. 可构造文件名进行利用 `../filename.txt`覆盖任意文件
+  * 例3 读取文件 - 即下载文件功能. 如果后端未考虑`../` 直接拼接路径与文件名 则存在目录穿越漏洞. 可构造文件名进行利用 `../filename.txt`读取任意文件
+  * 例4 修改文件 - 即编辑文件名功能. 同上.
+  
+### 漏洞利用
+
+* 信息搜集 - 通过读取文件获取敏感信息
+  * 登录信息 获取登录用户名 `/etc/passwd`
+  * 登录信息 获取登录口令密文 `/etc/shadow` 可使用rainbow table破解得到明文
+  * 登录信息 获取ssh私有钥匙 `~/.ssh/id_rsa`
+  * 域名信息 获取域名及ip 可能有内网相关信息 `/etc/hosts`
+  * ACL信息  获取ssh的ACL信息 `/etc/hosts.allow`中的IP被允许登录该主机ssh  而`/etc/hosts.deny`中的IP被禁止登录该主机的ssh
+  * ACL信息  获取IPv4的ACL策略`/etc/sysconfig/iptables` IPv6的ACL策略`/etc/sysconfig/ip6tables`
+  * 日志信息 WEB日志等
+  * 更多参考 [dictionary/file_linux_info.txt](https://github.com/1135/dictionary/blob/master/file_linux_info.txt)
+
 ### 基础知识
 
 系统相关
