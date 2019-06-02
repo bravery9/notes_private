@@ -31,11 +31,13 @@
 
 |名称|属性|描述|
 |:-------------:|--|-----|
-|[360威胁分析平台](https://ti.360.net/)|威胁分析引擎|威胁情报 ip domain file url email|
-|[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|威胁情报 ip domain file url email|
-|[在线沙箱app.any.run](https://app.any.run/tasks/defe1b39-b4b6-4573-ba46-de2c425f670f)|威胁分析引擎|在线沙箱:提取ioc 下载样本 下载pcap文件 运行线程 DNS解析 http通信|
-|[VirusTotal](https://www.virustotal.com/)|威胁分析引擎|分析可疑文件和URL 以检测恶意软件类型|
-[ThreatMiner.org](https://www.threatminer.org/)|威胁分析引擎|威胁情报的数据挖掘（有2008至今的APT报告pdf） Search for domains, IPs, MD5|SHA1|SHA256, email address or APTnotes(aptnotes:), ssl(ssl:), user-agent(ua:), AV family(av:), filename (filename:), URI (uri:), registry (reg:), mutex (mutex:)...|
+|[VirusTotal](https://www.virustotal.com/)|威胁分析引擎|分析可疑文件 filehash ip domain url|
+|[奇安信威胁情报中心](https://ti.qianxin.com/)|威胁分析引擎|威胁情报 分析可疑文件 filehash ip domain url|
+|[微步在线威胁情报](https://x.threatbook.cn/nodev4/vb4/list)|威胁分析引擎|分析可疑文件 filehash ip domain url email|
+|[ThreatMiner.org](https://www.threatminer.org/)|威胁分析引擎|威胁情报的数据挖掘（2008至今的APT报告pdf） Search for domains, IPs, MD5 SHA1 SHA256, email address or APTnotes(aptnotes:), ssl(ssl:), user-agent(ua:), AV family(av:), filename (filename:), URI (uri:), registry (reg:), mutex (mutex:)...|
+|[OPSWAT MetaDefender Cloud](https://metadefender.opswat.com/)|威胁分析引擎|Vulnerability, CDR and Antivirus APIs. 分析可疑文件 filehash ip domain url|
+|[VirSCAN.org](http://virscan.org/)|威胁分析引擎|分析可疑文件|
+|[在线沙箱app.any.run](https://app.any.run/tasks/defe1b39-b4b6-4573-ba46-de2c425f670f)|在线沙箱|在线沙箱:提取ioc 下载样本 下载pcap文件 运行线程 DNS解析 http通信|
 
 #### website_破解hash
 
