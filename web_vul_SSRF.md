@@ -118,10 +118,10 @@ ssrf
   * IP地址变形 - 进制转换 `127.0.0.1 => 2130706433`
   * 域名解析 - `10.100.21.7 => http://10.100.21.7.xip.io 或 http://www.10.100.21.7.xip.name`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
   * DNS重绑定 DNS Rebinding
-    * 攻击者提交参数给后端
-    * 后端验证:对hack.cn进行第1次域名解析 得到了合法的外网ip(hack.cn的DNS服务器设置为TTL=0) 该域名对应的ip非内网 域名验证通过
+    * 攻击者提交参数值`hack.com`给后端
+    * 后端验证:对`hack.com`进行第1次域名解析 得到了合法的外网ip(hack.com的DNS服务器设置为TTL=0) 该域名对应的ip非内网 域名验证通过
     * 攻击者修改域名解析:(此时攻击者利用短暂的时间差 修改域名解析的ip为内网ip)
-    * 后端逻辑继续运行:后端的程序逻辑继续使用刚才的域名hack.cn(由于hack.cn的DNS服务器设置的TTL为0 后端只能第2次对hack.cn进行域名解析)
+    * 后端逻辑继续运行:后端的程序逻辑继续使用刚才的域名hack.com(由于hack.com的DNS服务器设置的TTL为0 后端只能第2次对hack.com进行域名解析)
     * 后端使用了解析得到的内网ip
   * 短网址跳转 -  永久重定向(301)到内网地址 `http://10.10.116.11 => http://t.cn/RwbLKDx`[有道翻译SSRF修复不完整再通内网](https://www.secpulse.com/archives/50153.html)
   * JS跳转
