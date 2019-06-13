@@ -2,13 +2,8 @@
 
 DLL Hijacking
 
-[【微步在线报告】“海莲花”攻击 - 白利用 0检出](https://m.threatbook.cn/detail/1397?from=groupmessage&isappinstalled=0)
-
-### 方式
-
-7种不同的DLL注入方式 [injectAllTheThings](https://github.com/fdiskyou/injectAllTheThings)
-
-[详细解释文章 - 看雪学院](https://mp.weixin.qq.com/s/mNLxblONujByW16r9tC6yQ)
+* DLL注入方式 - 7种不同的DLL注入方式 [injectAllTheThings](https://github.com/fdiskyou/injectAllTheThings) 与对应的[详细解释](https://mp.weixin.qq.com/s/mNLxblONujByW16r9tC6yQ)
+* 案例 - [【微步在线报告】“海莲花”攻击 - 白利用 0检出](https://m.threatbook.cn/detail/1397?from=groupmessage&isappinstalled=0)
 
 ### 测试
 
