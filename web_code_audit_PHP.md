@@ -20,13 +20,17 @@
 * 搜索 输入输出点 - 紧跟来自用户的输入的逻辑走向 查看页面输出内容是否可控
   * 超全局变量 `$_GET $_POST $_SERVER $_SESSION $_COOKIE`等
 
-### 实例1 PHP代码-系统命令执行漏洞
+### 实例1 PHP-命令执行漏洞
 
 #### 设计
 
 程序设计时就需要尽量避免使用命令执行函数。
 
-#### 函数【执行系统命令的函数】
+传入【执行系统命令的函数】的参数，如果直接或间接源自用户输入、或可自定义，必须进行严格的过滤/转义。
+
+如果此处没有正确实现，则可能存在命令注入。
+
+#### 函数
 
 PHP中【执行系统命令的函数】，它们只有略微差别：
  ```
@@ -40,12 +44,61 @@ PHP中【执行系统命令的函数】，它们只有略微差别：
 | backticks (``) | No              | Yes (string)   | No             |
 +----------------+-----------------+----------------+----------------+
  ```
+ 
 
-传入【执行系统命令的函数】的参数如果来自用户输入，必须进行严格的过滤/转义（如果此处没有正确实现，则可能存在命令注入）。
+【执行程序的函数】
 
-#### 修复方案
+[pcntl_exec()](https://www.php.net/manual/en/function.pcntl-exec.php)
+```
+pcntl_exec()
 
-使用PHP自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg
+定义
+(PHP 4 >= 4.2.0, PHP 5, PHP 7)
+pcntl_exec — Executes specified program in current process space
+void pcntl_exec ( string $path [, array $args [, array $envs ]] )
+
+如
+<?php
+$handle = popen("/bin/ls", "r");
+?>
+```
+
+
+[popen()](https://www.php.net/manual/en/function.popen.php)
+```
+popen()
+
+(PHP 4, PHP 5, PHP 7)
+popen — Opens process file pointer
+
+popen ( string $command , string $mode ) : resource
+Opens a pipe to a process executed by forking the command given by command.
+
+当mode为'r'时，返回的文件指针等于命令的STDOUT
+当mode为'w'时，返回的文件指针等于命令的STDIN
+```
+
+
+[proc_open()](https://www.php.net/manual/zh/function.proc-open.php)
+```
+(PHP 4 >= 4.3.0, PHP 5, PHP 7)
+
+proc_open — Execute a command and open file pointers for input/output
+
+proc_open() is similar to popen() but provides a much greater degree of control over the program execution.
+proc_open() 类似popen() 但可对程序执行做更大程度的控制
+
+proc_open ( string $cmd , array $descriptorspec , array &$pipes [, string $cwd = NULL [, array $env = NULL [, array $other_options = NULL ]]] ) : resource
+```
+
+
+#### 修复与防御
+
+
+* 1.使用转义函数 - 使用PHP自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg 这2个函数的具体实现参考[331行](https://github.com/php/php-src/blob/321c0cc3493998f731f0666127c093eff4e119eb/ext/standard/exec.c)
+  * escapeshellcmd  防止用户利用shell下的一些字符（如# ; 反单引号 等）构造其他命令
+  * escapeshellarg  防止用户输入的内容逃逸出"参数值"的位置转而变成一个"参数选项"
+
 ```
 <?php
 system(escapeshellcmd('pwd '.escapeshellarg("-L")));
@@ -54,12 +107,33 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
 ?>
 ```
 
-#### 修复原理
-
-* escapeshellcmd  防止用户利用shell下的一些字符（如# ; `等）构造其他命令
-* escapeshellarg  防止用户输入的内容逃逸出"参数值"的位置转而变成一个"参数选项"
+* 2. 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
 
 
-escapeshellarg和escapeshellcmd 的C具体实现 331行
-https://github.com/php/php-src/blob/321c0cc3493998f731f0666127c093eff4e119eb/ext/standard/exec.c
 
+
+### 实例2 PHP-代码执行漏洞
+
+* 代码执行函数
+  * eval()
+  * assert()
+  * preg_replace()
+  * $
+* 文件包含函数
+  * 本地文件包含
+  * 远程文件包含
+
+### 函数
+
+```
+# 代码执行函数 - 查找关键字 eval assert preg_replace 等
+find /xxcms -type f -name "*.php" | xargs grep -n 'eval'
+
+# 文件包含函数 - 查找关键字 include require require_once
+find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
+```
+
+#### 修复与防御
+
+* 1. 设计上禁止使用代码执行函数
+* 2. 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
