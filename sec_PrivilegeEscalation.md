@@ -15,7 +15,7 @@
 |MS17-010 (Eternal Blue)|系统漏洞提权|/|/|
 |[Win10Pcap-Exploit)](https://github.com/Rootkitsmm/Win10Pcap-Exploit)|应用程序提权|win10|Exploit Win10Pcap Driver to enable some Privilege in our process token ( local Privilege escalation)|
 
-参考 [PayloadsAllTheThings/Windows - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#token-impersonation-rottenpotato)
+详细参考 [PayloadsAllTheThings/Windows - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#token-impersonation-rottenpotato)
 
 
 ### linux
@@ -27,4 +27,4 @@
 |CVE-2010-4258 (Full Nelson)|Kernel Exploits||Full Nelson|
 |CVE-2012-0056 (Mempodipper)|Kernel Exploits||Mempodipper|
 
-参考[PayloadsAllTheThings/Linux - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md)
+详细参考 [PayloadsAllTheThings/Linux - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md)
