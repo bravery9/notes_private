@@ -92,10 +92,56 @@ proc_open ( string $cmd , array $descriptorspec , array &$pipes [, string $cwd =
 ```
 
 
+【回调函数】
+
+使用回调函数可以调用任意函数.
+
+1. [call_user_func()](https://www.php.net/manual/en/function.call-user-func.php)
+2. [call_user_func_array()](https://www.php.net/manual/zh/function.call-user-func-array.php)
+3. [array_map()](hhttps://www.php.net/manual/en/function.array-map.php) 为数组的每个元素应用回调函数
+4. [array_walk()] 使用用户自定义函数 对数组中的每个元素做回调处理
+5. [array_filter()]() 依次将数组中的每个值传递到 callback函数
+6. [create_function()](https://www.php.net/manual/en/function.create-function.php) PHP 7.2.0之后 没有此函数 已被弃用
+7. usort()
+8. ob_start()
+9. 可变函数$var(args)
+
+
+
+1. [call_user_func()](https://www.php.net/manual/en/function.call-user-func.php)
+```
+(PHP 4, PHP 5, PHP 7)
+call_user_func ( callable $callback [, mixed $... ] ) : mixed
+
+
+# 正常示例:
+
+<?php
+function welcome($name)
+{
+    echo "hello $name <br>";
+}
+call_user_func('welcome', "tom");
+call_user_func('welcome', "jack");
+//输出 hello tom  hello jack 
+?>
+
+# 利用:
+
+<?php
+	call_user_func($_GET['a1'],$_GET['a2']);
+?>
+
+
+xxx.php?a1=system&a2=whoami    //命令执行
+xxx.php?a1=assert&a2=phpinfo() //代码执行
+```
+
+
 #### 修复与防御
 
 
-* 1.使用转义函数 - 使用PHP自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg 这2个函数的具体实现参考[331行](https://github.com/php/php-src/blob/321c0cc3493998f731f0666127c093eff4e119eb/ext/standard/exec.c)
+* [1] 使用转义函数 - 使用PHP自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg 这2个函数的具体实现参考[331行](https://github.com/php/php-src/blob/321c0cc3493998f731f0666127c093eff4e119eb/ext/standard/exec.c)
   * escapeshellcmd  防止用户利用shell下的一些字符（如# ; 反单引号 等）构造其他命令
   * escapeshellarg  防止用户输入的内容逃逸出"参数值"的位置转而变成一个"参数选项"
 
@@ -107,7 +153,7 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
 ?>
 ```
 
-* 2. 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
+* [2] 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
 
 
 
@@ -135,5 +181,5 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 
 #### 修复与防御
 
-* 1. 设计上禁止使用代码执行函数
-* 2. 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
+* [1] 设计上禁止使用代码执行函数
+* [2] 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
