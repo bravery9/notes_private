@@ -81,6 +81,7 @@
 
 |名称|描述|
 |:-------------:|-----|
+|[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)|8k★ 持续更新的好资源 useful payloads and bypass for Web and Pentest|
 |[Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)|Awesome-Hacking|
 |[Awesome-CheatSheet](https://github.com/wxyyxc1992/Awesome-CheatSheet)|全栈 多语言基本语法 CheatSheet|
 |[Awesome-Go](https://github.com/avelino/awesome-go)|37k★ Awesome-Go|
