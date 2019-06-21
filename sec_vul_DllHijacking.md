@@ -4,11 +4,14 @@ DLL Hijacking
 
 DLL注入方式 - 7种不同的DLL注入方式 [injectAllTheThings](https://github.com/fdiskyou/injectAllTheThings) 与对应的[详细解释](https://mp.weixin.qq.com/s/mNLxblONujByW16r9tC6yQ)
 
+### 作用
+
 * DLL Hijacking的作用
   * 执行shellocde 且免杀效果好
     * 案例 - [【微步在线报告】“海莲花”攻击 - 白利用 0检出](https://m.threatbook.cn/detail/1397?from=groupmessage&isappinstalled=0)
   * BypassUAC
   * windows提权
+  * 权限维持(替换常用程序dll)
   * ...
 
 ### 测试
