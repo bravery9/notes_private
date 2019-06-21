@@ -146,12 +146,14 @@ SSRF测试工具/利用工具
 
 ### 修复方式
 
+* 如果有非法字符return false
 * 禁用协议 - 仅允许必要的协议 如http和https
 * 禁止重定向(Redirect)
   * 301 redirect 永久性转移(Permanently Moved)
   * 302 redirect 暂时性转移(Temporarily Moved)
-* 严格限制参数值内容-域名白名单
+* 严格限制参数值内容-"关键字白名单"
 * 严格限制参数值长度
+* ...
 
 
 -------
