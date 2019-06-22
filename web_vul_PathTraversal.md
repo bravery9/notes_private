@@ -379,3 +379,12 @@ var mypath = "/Users/xxx/Downloads/../../../etc/passwd";fs.readFile(mypath,funct
 # 但这通常只被认为是预期行为(expected behavior)，除非存在确实能够影响的攻击场景 如可以上传指定的symlinks
 var mypath = "/Users/xxx/Downloads/symfile";fs.readFile(mypath,function(err,data){console.log(data.toString())})
 ```
+
+
+#### 修复与防御
+
+* 限制web应用可访问的目录
+  * PHP 在配置文件php.ini中指定open_basedir的值，如windows下用`;`分割`open_basedir = D:\soft\sites\www.a.com\;` linux下用`：`分割`/home/wwwroot/tp5/:/tmp/:/var/tmp/:/proc/`
+* web应用设计-避免路径可控（尤其关注"文件操作类"的功能与函数）
+* web应用设计-循环替换"某些字符串"为空 如`..` `./` `.\` `\\` `//`
+* web应用设计-使用成熟的压缩解压操作库 避免文件解压过程中出现路径穿越漏洞
