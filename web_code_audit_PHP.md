@@ -12,6 +12,10 @@
 ### 思路
 
 * 搜索 危险函数 - 尝试利用
+  * 命令执行类
+  * 代码执行类
+  * 文件包含类
+  * ...
 
 * 搜索 自定义安全过滤函数 - 尝试绕过
   * 常见的自定义函数名 `RemoveXSS`
@@ -140,7 +144,7 @@ xxx.php?a1=assert&a2=phpinfo() //代码执行
 
 #### 修复与防御
 
-
+修复命令执行漏洞
 * [1] 使用转义函数 - 使用PHP自带的2个函数专门对命令字符串进行转义:escapeshellcmd和escapeshellarg 这2个函数的具体实现参考[331行](https://github.com/php/php-src/blob/321c0cc3493998f731f0666127c093eff4e119eb/ext/standard/exec.c)
   * escapeshellcmd  防止用户利用shell下的一些字符（如# ; 反单引号 等）构造其他命令
   * escapeshellarg  防止用户输入的内容逃逸出"参数值"的位置转而变成一个"参数选项"
@@ -163,11 +167,26 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
 * 代码执行函数
   * eval()
   * assert()
-  * preg_replace()
+  * [preg_replace()](https://php.net/preg_replace) php7.0不再支持\e参数
   * $
-* 文件包含函数
-  * 本地文件包含
-  * 远程文件包含
+* 文件包含函数 (使用文件包含函数，被包含的文件无论是什么后缀，都会被当作php文件进行解析)
+  * include()
+  * include_once()
+  * require()
+  * require_once()
+
+
+* 任意文件包含漏洞 分类
+  * LFI(Local File Inclusion) 本地文件包含:如果文件包含函数中的参数值"文件路径"可控，通常存在"本地文件包含"漏洞
+  * RFI(Remote File Inclusion)远程文件包含
+    * 前置利用条件:在php.ini中必须开启2个选项才可能进行远程文件包含 `allow_url_fopen = On` (默认为On); `allow_url_include = On`(php>=5.2则默认Off)
+* 任意文件包含漏洞 利用方式
+  * php伪协议 - `php://input` 前置利用条件为php.ini中`allow_url_include = On`  利用:POST url`xx.php?file=php://input`  POST body:`<? phpinfo();?>`
+  * php伪协议 - `php://filter` 无前置利用条件  利用:`xx.php?file=php://filter/read=convert.base64-encode/resource=index.php` 或 `index.php?file=php://filter/convert.base64-encode/resource=index.php`
+  * php伪协议 - `phar://` 前置利用条件为php版本>=5.3.0  利用:将内容为`<?php phpinfo(); ?>`的文件phpinfo.txt压缩为test.zip 访问绝对路径`xx.php?file=phar://D:/phpStudy/WWW/fileinclude/test.zip/phpinfo.txt`或相对路径`xx.php?file=phar://test.zip/phpinfo.txt`（test.zip和xx.php在同一目录下）
+  * php伪协议 - `zip://` 前置利用条件为php版本>=5.3.0  利用:将内容为`<?php phpinfo(); ?>`的文件phpinfo.txt压缩为test.zip 只能访问绝对路径`xx.php?file=phar://D:/phpStudy/WWW/fileinclude/test.zip%23phpinfo.txt` 注意需使用`%23`
+  * ...
+
 
 ### 函数
 
