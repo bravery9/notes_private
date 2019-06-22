@@ -358,8 +358,8 @@ while(pathname.indexOf("/../") != -1) {
 
 ---
 
-为什么不用`\`测试？
-因为node库中 url.parse函数 会把\转换为/ 参考node自带库中url.parse的定义 https://github.com/nodejs/node/blob/master/lib/url.js
+为什么只用`/`测试 而不用`\`测试？
+因为在这个例子中用到node库中url.parse函数 它会把`\`转换为`/` 参考node自带库中url.parse的定义 https://github.com/nodejs/node/blob/master/lib/url.js
 
 
 #### 实测总结 - node自带的fs模块的readFile函数
@@ -386,5 +386,5 @@ var mypath = "/Users/xxx/Downloads/symfile";fs.readFile(mypath,function(err,data
 * 限制web应用可访问的目录
   * PHP 在配置文件php.ini中指定open_basedir的值，如windows下用`;`分割`open_basedir = D:\soft\sites\www.a.com\;` linux下用`：`分割`/home/wwwroot/tp5/:/tmp/:/var/tmp/:/proc/`
 * web应用设计-避免路径可控（尤其关注"文件操作类"的功能与函数）
-* web应用设计-循环替换"某些字符串"为空 如`..` `./` `.\` `\\` `//`
+* web应用设计-循环替换"某些字符串"为空 如`..` `./` `.\` `\\` `//` 并 使用编程语言函数获取"将要解压的文件夹路径"的"规范路径名" 并判断它是否以预期设计的合法的"目的文件夹"开头
 * web应用设计-使用成熟的压缩解压操作库 避免文件解压过程中出现路径穿越漏洞
