@@ -28,11 +28,11 @@
 
 #### 设计
 
-程序设计时就需要尽量避免使用命令执行函数。
+程序设计时就需要尽量避免使用"执行系统命令的函数"。
 
-传入【执行系统命令的函数】的参数，如果直接或间接源自用户输入、或可自定义，必须进行严格的过滤/转义。
+如果"执行系统命令的函数"中有变量值是直接或间接源自用户输入、或可自定义，必须进行严格的过滤/转义。
 
-如果此处没有正确实现，则可能存在命令注入。
+如果此处没有正确实现，则可能存在"命令注入"漏洞。
 
 #### 函数
 
@@ -161,8 +161,13 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
 
 
 
-
 ### 实例2 PHP-代码执行漏洞
+
+#### 设计
+
+设计上禁止使用"能够代码执行的函数"。
+
+#### 函数
 
 * 代码执行函数
   * eval()
@@ -176,6 +181,8 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
   * require_once()
 
 
+### 测试
+
 * 任意文件包含漏洞 分类
   * LFI(Local File Inclusion) 本地文件包含:如果文件包含函数中的参数值"文件路径"可控，通常存在"本地文件包含"漏洞
   * RFI(Remote File Inclusion)远程文件包含
@@ -188,8 +195,8 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
   * ...
 
 
-### 函数
 
+从项目代码中查找关键字
 ```
 # 代码执行函数 - 查找关键字 eval assert preg_replace 等
 find /xxcms -type f -name "*.php" | xargs grep -n 'eval'
@@ -200,5 +207,31 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 
 #### 修复与防御
 
-* [1] 设计上禁止使用代码执行函数
+* [1] 设计上禁止使用"能够代码执行的函数"
 * [2] 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
+
+
+### 实例3 PHP-路径穿越漏洞
+
+#### 设计
+
+程序设计时就需要尽量避免"路径"可控。
+
+如果"路径"中有变量直接或间接源自用户输入、或可自定义，必须进行严格的过滤/转义。
+
+如果此处没有正确实现，则可能存在"目录穿越"漏洞。
+
+#### 函数
+
+* 文件操作类
+  * [unlink()](https://www.php.net/manual/zh/function.unlink.php) 文件删除函数。此处如果存在目录穿越漏洞则可实现任意文件删除，删除install.lock文件可实现重新安装进而getshell
+  * ...
+
+#### 修复与防御
+
+
+* 限制web应用可访问的目录
+  * PHP 在配置文件php.ini中指定open_basedir的值，如windows下用`;`分割`open_basedir = D:\soft\sites\www.a.com\;` linux下用`：`分割`/home/wwwroot/tp5/:/tmp/:/var/tmp/:/proc/`
+* web应用设计-避免路径可控（尤其关注"文件操作类"的功能与函数）
+* web应用设计-循环替换"某些字符串"为空 如`..` `./` `.\` `\\` `//` 并 使用编程语言函数获取"将要解压的文件夹路径"的"规范路径名" 并判断它是否以预期设计的合法的"目的文件夹"开头
+* web应用设计-使用成熟的压缩解压操作库 避免文件解压过程中出现路径穿越漏洞
