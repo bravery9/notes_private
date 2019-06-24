@@ -126,13 +126,49 @@ Get-LocalGroupMember Administrateurs | ft Name, PrincipalSource
 Network Enumeration
 # ---------------
 # List all network interfaces, IP, and DNS.
-# 列出所有网络接口 IP DNS
+# 列出所有网卡 IP DNS
 
 ipconfig /all
+如结果
+Windows IP Configuration
+   Host Name . . . . . . . . . . . . : b33f
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+Ethernet adapter Bluetooth Network Connection:
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Bluetooth Device (Personal Area Network)
+   Physical Address. . . . . . . . . : 0C-84-DC-62-60-29
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   
+Ethernet adapter Local Area Connection:
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
+   Physical Address. . . . . . . . . : 00-0C-29-56-79-35
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::5cd4:9caf:61c0:ba6e%11(Preferred)
+   IPv4 Address. . . . . . . . . . . : 192.168.0.104(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : Saturday, January 11, 2014 3:53:55 PM
+   Lease Expires . . . . . . . . . . : Sunday, January 12, 2014 3:53:55 PM
+   Default Gateway . . . . . . . . . : 192.168.0.1
+   DHCP Server . . . . . . . . . . . : 192.168.0.1
+   DHCPv6 IAID . . . . . . . . . . . : 234884137
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-18-14-24-1D-00-0C-29-56-79-35
+   DNS Servers . . . . . . . . . . . : 192.168.0.1
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
 
 # 第三方脚本
 Get-NetIPConfiguration | ft InterfaceAlias,InterfaceDescription,IPv4Address
 Get-DnsClientServerAddress -AddressFamily IPv4 | ft
+
+
+
 # ---------------
 # List current routing table
 # 列出当前路由表
@@ -146,6 +182,9 @@ Get-NetRoute -AddressFamily IPv4 | ft DestinationPrefix,NextHop,RouteMetric,ifIn
 # ---------------
 # List the ARP table
 # 列出ARP表
+
+# arp -A displays the ARP (Address Resolution Protocol) cache table for all available interfaces.
+# arp -A 显示所有可用网卡的ARP（地址解析协议）缓存表
 
 arp -A
 
@@ -180,6 +219,14 @@ $f=New-object -comObject HNetCfg.FwPolicy2;$f.rules |  where {$_.action -eq "0"}
 
 netsh firewall set opmode disable
 netsh advfirewall set allprofiles state off
+
+# ---------------
+# 列出驱动程序
+# This can be useful sometimes as some 3rd party drivers, even by reputable companies, contain more holes
+than Swiss cheese. This is only possible because ring0 exploitation lies outside most peoples expertise.
+# 这有时很有用，列出第三方驱动程序，即使是信誉良好的公司也可能包含不少漏洞，比如Swiss cheese。因为ring0开发不在大多数人的专业知识之内。
+
+DRIVERQUERY
 
 # ---------------
 # List all network shares
