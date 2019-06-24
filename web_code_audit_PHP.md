@@ -7,7 +7,7 @@
 
 ### 思路
 
-* 掌握概况
+* 掌握项目代码概况
   * 白盒：安装并查看项目文件夹 确定基本设计架构与功能
   * 黑盒：访问基本功能，得到HTTP请求与响应中的URL、参数值等，有助于定位到对应代码行
 
@@ -17,18 +17,16 @@
   * 文件包含类
   * ...
 
-* 搜索 PHP变量
-  * 
 
 * 搜索 自定义安全过滤函数 - 尝试绕过
   * 常见的自定义函数名 `RemoveXSS`
   * 正则函数 `preg_replace`
 
 * 搜索 输入输出点 - 紧跟来自用户的输入的逻辑走向 查看页面输出内容是否可控
-  * 输入：超全局变量 `$_GET $_POST $_SERVER $_SESSION $_COOKIE`等  项目自定义变量-请求处理相关`requset`等
-  * 入库：`insert` `mysql_escape_string`  项目自定义变量-数据库操作相关 `db` `database`等
+  * 输入：超全局变量 `$_GET $_POST $_SERVER $_SESSION $_COOKIE`等  项目自定义变量名-请求处理相关`requset`等
+  * 入库：`insert` `mysql_escape_string`  项目自定义变量名-数据库操作相关 `db` `database`等
   * 出库：`query`
-  * 输出：`echo print printf sprintf print_r var_dump die`  项目自定义变量-响应处理相关`resp`等
+  * 输出：`echo print printf sprintf print_r var_dump die`  项目自定义变量名-响应处理相关`resp`等
 
 
 ### 实例1 PHP-命令执行漏洞
@@ -236,7 +234,7 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
   * 文件读取[file_get_contents()](https://www.php.net/manual/zh/function.file-get-contents.php) 文件读取，常用于下载
   * 文件读写[fopen](https://www.php.net/manual/zh/function.fopen.php) — 打开文件或者 URL。 模式可选 读/写/读写
   * 文件删除[unlink()](https://www.php.net/manual/zh/function.unlink.php) 文件删除函数。如果此处存在目录穿越漏洞，可实现任意文件删除。常常删除install.lock文件实现重新安装进而getshell
-  * 文件上传[move_uploaded_file()](https://www.php.net/manual/zh/function.move-uploaded-file.php)文件上传函数。如果此处存在目录穿越漏洞，可实现任意文件上传/覆盖
+  * 文件上传[move_uploaded_file()](https://www.php.net/manual/zh/function.move-uploaded-file.php) 将上传的文件移动到新位置。如果此处存在目录穿越漏洞，可实现任意文件上传/覆盖
   * ...
 
 #### 修复与防御
