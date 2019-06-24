@@ -14,7 +14,7 @@
  * [web - vul - Clickjacking 原理 利用方式 修复方案](web_vul_ClickJacking.md)
  * [web - SQLi sqlmap常用参数 tamper详解](sec_sqlmap.md)
  * [web - WEB应用安全部署架构_及 WAFbypass](web_WAF_bypass.md)
- * [web - 基础 - 密码学基础及其应用(RSA TLS HTTPS 数字证书)](web_x_https_tls.md)
+ * [web - 基础 - 密码学基础及应用(TLS 数字证书) 非对称加密RSA](web_x_https_tls.md)
  * [web - 基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)
  * [web - 代码审计 - PHP 思路和实践](web_code_audit_PHP.md)
  * [web - 中间件 - 常见问题 修复方案](web_vul_mid_SSL_slowhttpdos.md)
