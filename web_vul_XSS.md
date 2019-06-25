@@ -90,8 +90,10 @@ location.search
 
 * 输入:chrome浏览器的`document.URL`是经过url编码的字符.即`location.pathname` `location.search` `location.hash`都是经过URL编码的字符.
 * 处理:可以使用`xx.com/pathname#javascript:alert(1)`不需要进行URL解码.
-* 触发:HTML标签的属性 有些属性支持 javascipt:[code] 伪协议
+* 触发:HTML标签的属性 有些属性支持 `javascipt:` 伪协议
    * 1.chrome测试通过 - 写到a标签的`href`属性 点击触发. `<a href=javascript:alert(1)>click</a>`
+   * ...
+
 
 #### 2.触发
 
@@ -196,7 +198,7 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 ### XSS绕过方式
 
 BypassXSS
-* [s0md3v/AwesomeXSS](https://github.com/s0md3v/AwesomeXSS)
+* [s0md3v/AwesomeXSS](https://github.com/s0md3v/AwesomeXSS#awesome-bypassing)
 * [MyPapers/Bypassing-XSS-detection-mechanisms](https://github.com/s0md3v/MyPapers/tree/master/Bypassing-XSS-detection-mechanisms)
 
 ### XSS利用方式
