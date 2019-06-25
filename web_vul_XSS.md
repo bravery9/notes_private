@@ -121,22 +121,28 @@ document.location
 
 #### DOM based XSS 实例1 - 从anyElement.innerHTML触发
 
-anyElement.innerHTML可以写入html代码.
+* 对某元素内的"HTML代码"的读`outerHTML` 写`innerHTML` 
+* 对某元素内的"纯文本"的读 `outerText` 写 `innerText`
 
-初步了解 innerHTML innerText outerHTML
 ```
 <div id="test">
    <span style="color:red">test1</span> test2
 </div>
 
-//console
-//test.innerHTML为<span style="color:red">test1</span> test2
-//test.innerText为test1 test2
-//test.outerHTML为<div id="test"><span style="color:red">test1</span> test2</div>
-```
-可知使用 .innerHTML .outerHTML 能够读取/写入元素中的html代码
+//使用 .innerHTML .outerHTML 能够读取/写入元素中的html代码
+//在console下测试：
 
-而.innerText不可能读取/写入元素中的html代码 只能读取/写入纯文本
+//test.innerHTML
+//输出为<span style="color:red">test1</span> test2
+
+//test.innerText
+//输出为test1 test2
+
+//test.outerHTML
+//输出为<div id="test"><span style="color:red">test1</span> test2</div>
+```
+
+可知 `anyElement.innerHTML`可以将html代码写入该元素
 
 
 构造poc1.html
