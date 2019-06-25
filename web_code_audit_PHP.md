@@ -179,12 +179,26 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
   * assert()
   * [preg_replace()](https://php.net/preg_replace) php7.0不再支持\e参数
   * $
+
+#### 修复与防御
+
+* [1] 设计上禁止使用"能够代码执行的函数"
+* [2] 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
+
+
+### 实例3 文件包含漏洞
+
+#### 设计
+
+文件包含函数禁止使用"变量"作为参数值。
+
+#### 函数
+
 * 文件包含函数 (使用文件包含函数，被包含的文件无论是什么后缀，都会被当作php文件进行解析)
   * include()
   * include_once()
   * require()
   * require_once()
-
 
 #### 测试
 
@@ -198,7 +212,7 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
   * php伪协议 - `php://filter` 无前置利用条件  利用:`xx.php?file=php://filter/read=convert.base64-encode/resource=index.php` 或 `index.php?file=php://filter/convert.base64-encode/resource=index.php`
   * php伪协议 - `phar://` 前置利用条件为php版本>=5.3.0  利用:将内容为`<?php phpinfo(); ?>`的文件phpinfo.txt压缩为test.zip 访问绝对路径`xx.php?file=phar://D:/phpStudy/WWW/fileinclude/test.zip/phpinfo.txt`或相对路径`xx.php?file=phar://test.zip/phpinfo.txt`（test.zip和xx.php在同一目录下）
   * php伪协议 - `zip://` 前置利用条件为php版本>=5.3.0  利用:将内容为`<?php phpinfo(); ?>`的文件phpinfo.txt压缩为test.zip 只能访问绝对路径`xx.php?file=phar://D:/phpStudy/WWW/fileinclude/test.zip%23phpinfo.txt` 注意需使用`%23`
-  * ... 更多利用方式 与 危害(LFI to RCE) 参考[PayloadsAllTheThings/File Inclusion](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion)
+  * ... 更多利用方式(LFI/RFI导致代码执行、LFI to RCE) 参考[PayloadsAllTheThings/File Inclusion](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion)
 
 
 从项目代码中查找关键字
@@ -212,11 +226,10 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 
 #### 修复与防御
 
-* [1] 设计上禁止使用"能够代码执行的函数"
-* [2] 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
+文件包含函数禁止使用"变量"作为参数值。
 
 
-### 实例3 PHP-路径穿越漏洞
+### 实例4 PHP-路径穿越漏洞
 
 #### 设计
 
@@ -247,7 +260,7 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 * web应用设计-使用成熟的压缩解压操作库 避免文件解压过程中出现路径穿越漏洞
 
 
-### 类型4 正则表达式的PCRE回溯次数限制导致绕过判断
+### 类型5 正则表达式的PCRE回溯次数限制导致绕过判断
 
 #### 设计
 
