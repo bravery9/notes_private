@@ -186,7 +186,7 @@ echo escapeshellcmd('pwd $#;` '.escapeshellarg("-L;id"));//输出为pwd \$\#\;\`
 * [2] 禁用PHP函数 - 使用php配置文件php.ini实现禁用某些危险的PHP函数 如`disable_functions =system,passthru,shell_exec,exec,popen`
 
 
-### 实例3 文件包含漏洞
+### 实例3 PHP-文件包含漏洞
 
 #### 设计
 
@@ -260,7 +260,7 @@ find /xxcms -type f -name "*.php" | xargs grep -n 'include \$'
 * web应用设计-使用成熟的压缩解压操作库 避免文件解压过程中出现路径穿越漏洞
 
 
-### 类型5 正则表达式的PCRE回溯次数限制导致绕过判断
+### 实例5 PHP-正则表达式的PCRE回溯次数限制导致绕过判断
 
 #### 设计
 
