@@ -374,6 +374,14 @@ echo "/tmp/" > /etc/ld.so.conf.d/exploit.conf && ldconfig -l /tmp/vulnlib.so
 * Docker
 * LXC/LXD
 
+
+#### root进程
+
+* 以root权限运行的进程
+  * MySQL UDF提权
+  * redis 未授权 - 利用crontab写定时任务 getshell(该shell继承redis权限)
+  * ...
+
 #### Kernel Exploits
 
 利用linux内核漏洞提权
