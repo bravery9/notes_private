@@ -4,6 +4,11 @@ DLL Hijacking
 
 DLL注入方式 - 7种不同的DLL注入方式 [injectAllTheThings](https://github.com/fdiskyou/injectAllTheThings) 与对应的[详细解释](https://mp.weixin.qq.com/s/mNLxblONujByW16r9tC6yQ)
 
+Visual Studio 2017 实现各种代码注入 [theevilbit/injection](https://github.com/theevilbit/injection)
+
+直接从内存加载DLL[Reflective DLL Injection - Red Teaming Experiments](https://ired.team/offensive-security/code-injection-process-injection/reflective-dll-injection)
+
+
 ### 作用
 
 * DLL Hijacking的作用
@@ -206,6 +211,7 @@ Options:
                         directory
 ```
 
-### 其他资料
+### 检测
 
-Visual Studio 2017 实现各种代码注入 [theevilbit/injection](https://github.com/theevilbit/injection)
+* procmon
+* [volatility](https://github.com/volatilityfoundation/volatility/wiki/Command-Reference-Mal)的Malfind插件专门用来检测代码注入(可以检测Reflective DLL Injection)
