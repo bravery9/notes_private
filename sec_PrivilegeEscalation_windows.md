@@ -3,7 +3,7 @@
 提权(Privilege Escalation) 
 
 权限提升 (EoP, Elevation of Privilege)
- 
+
 本地提权(LPE, Local Privilege Escalation)
 
 
@@ -479,7 +479,7 @@ Invoke-SessionGopher -AllDomain -o
 Invoke-SessionGopher -AllDomain -u domain.com\adm-arvanaghi -p s3cr3tP@ss
 ```
 
-### EoP - Processes Enumeration and Tasks
+#### EoP - Processes Enumeration and Tasks
 
 进程枚举 和 任务
 ```
