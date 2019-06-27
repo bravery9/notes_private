@@ -13,9 +13,7 @@
 
 拿到Windows主机首先判断是否有Sysmon  检测方法参考 [Red Teaming Experiments](https://ired.team/offensive-security/enumeration-and-discovery/detecting-sysmon-on-the-victim-host)
 
-
-
-* 如何判断当前Windows主机是否有Sysmon
+* 检测Sysmon的方法:
   * 1 “进程名” - 可被修改 如果不存在名为"Sysmon"的进程，不表示Sysmon必定不存在。
   * 2 “服务名称与描述” 可被修改 如果不存在相关服务，不表示Sysmon必定不存在。
   * 3 Windows事件(Windows Events) 
@@ -767,6 +765,4 @@ $ computer = "<hostname>"
 
 
 详细参考 [PayloadsAllTheThings/Windows - Privilege Escalation.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#token-impersonation-rottenpotato)
-
-
 
