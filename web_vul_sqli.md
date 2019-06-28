@@ -21,12 +21,12 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
 
 * Attacks case
   * 时间型盲注漏洞 只需利用 条件语法(Condition syntax) 与延时函数 就能判断出执行结果True/False 根据结果判断逐个字符 从而得到数据库中的具体数据
-    * [Time-Based Blind SQL Injection Attacks](http://www.sqlinjection.net/time-based/)
+    * 参考[Time-Based Blind SQL Injection Attacks](http://www.sqlinjection.net/time-based/) 和 [Timing-based Blind SQL Attacks](https://hackernoon.com/timing-based-blind-sql-attacks-bd276dc618dd)
       * MySQL`SLEEP(time)` `BENCHMARK(count, expr)`
       * SQL Server`WAIT FOR DELAY 'hh:mm:ss'` `WAIT FOR TIME 'hh:mm:ss'`
       * Oracle
-    * [Timing-based Blind SQL Attacks – Hacker Noon](https://hackernoon.com/timing-based-blind-sql-attacks-bd276dc618dd)
       * Postgres`SELECT CASE WHEN secret = 'secret' THEN pg_sleep(5) ELSE NULL END FROM apps WHERE id = 1 ;`
+      * ...
     * 自写脚本实现自动化获取(用二分法加速判断)
 
 ```
@@ -81,7 +81,7 @@ test.get_content() #获取第一列第一个字段内容
 ```
 //JAVA
 PreparedStatement()
-/(Hibernate
+//Hibernate
 createQuery()
 ```
 
