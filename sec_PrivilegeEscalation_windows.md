@@ -634,23 +634,39 @@ C:\Users\%USERNAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows
 EoP - 不带引号的服务路径
 ```
 # ---------------
+# 原理:
+# Abusing misconfigured services
+# 滥用错误配置的服务
 
 # The Microsoft Windows Unquoted Service Path Enumeration Vulnerability. 
-# Microsoft Windows未加引号的服务路径枚举漏洞。 
+# Microsoft Windows未加引号的服务路径枚举漏洞
 
 # All Windows services have a Path to its executable. If that path is unquoted and contains whitespace or other separators, then the service will attempt to access a resource in the parent path first.
-# 所有Windows服务都有一个可执行文件的路径。如果该路径未加引号并包含空格或其他分隔符，则服务将首先尝试访问父路径中的资源。
+# 所有Windows服务都有一个可执行文件的路径。如果该路径未加引号并包含空格或其他分隔符，则服务将"首先"尝试访问父路径中的资源。
 
+
+# 根据Windows处理CreateProcess这个API调用的方式来看，如果某个服务的"二进制文件的路径"没有用引号括起来，并且路径中有空白符号(空格等)或其他分隔符号，可能被用来提权。
+# 参考https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-createprocessa
+
+
+# 例如 某个服务的二进制文件的路径为 C:\Program Files\sub dir\program name 可见这一路径没有被引号括住并且路径中含有空格 Windows尝试路径的顺序为：
+
+C:\Program.exe
+C:\Program Files\sub.exe
+C:\Program Files\sub dir\program.exe
+c:\program files\sub dir\program name.exe
+
+# ---------------
+# 实践:
+
+# cmd命令 查看哪个服务的二进制文件没有被引号括住(如果该服务的权限高 则可能利用该错误配置进行Windows提权)
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """
 
+# Powershell命令 参考https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject
 gwmi -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name
 
 # Metasploit provides the exploit : exploit/windows/local/trusted_service_path
-
-
-# 例如 对于 C:\Program Files\something\legit.exe 这一路径 Windows将首先尝试以下路径：
-C:\Program.exe
-C:\Program Files.exe
+# Metasploit提供了一个模块: exploit/windows/local/trusted_service_path
 ```
 
 
