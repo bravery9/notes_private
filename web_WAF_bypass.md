@@ -83,13 +83,18 @@
 
 * 针对没有设置"回源IP防护"的站点 可找到源站IP 直接攻击
   * 找到源站IP - 直接对源站的真实ip发起请求,流量不经过WAF/CDN
-    * 方式1 DNS history records - 该域名DNS解析的历史记录中的A记录 可能是源站IP. 参考工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
-    * 方式2 查找相关域名 如子域名、该公司其他域名 的IP和历史IP
-    * 方式3 与其他服务(非web服务)进行交互 如邮件服务可能获取到源站IP
+    * 方式1 DNS history records - 查看该域名DNS解析的历史记录 主要是A记录 (可能是该站点最开始没上WAF/CDN时的源站IP) 参考工具[vincentcox/bypass-firewalls-by-DNS-history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)
+    * 方式2 查找相关域名的A记录 - 如子域名、该公司其他域名的当前A记录 历史的A记录
+    * 方式3 其他服务 - 与该域名的其他服务(非web)进行交互 如邮件服务可能获取到源站IP
 * 修复方案: 在源站上正确设置"回源IP防护" 以避免攻击者直接攻击源站IP 策略如下
   * 1.允许WAF的IP段访问源站的业务端口(80/443)
   * 2.禁止公网IP访问源站的业务端口(80/443)
 
-### WAF规则的绕过
+### WAF - 绕过规则
 
-[Ekultek/WhatWaf: Detect and bypass web application firewalls and protection systems](https://github.com/Ekultek/WhatWaf)
+* WAF识别
+  * [Ekultek/WhatWaf: Detect and bypass web application firewalls and protection systems](https://github.com/Ekultek/WhatWaf)
+* 绕过规则
+  * 分块传输
+  * `multipart/form-data`
+  * ...
