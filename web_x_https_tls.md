@@ -4,6 +4,7 @@
 
 >[传输层安全 - Transport Layer Security - Wikipedia](https://en.wikipedia.org/wiki/Transport_Layer_Security)
 
+>TLS 1.2 [RFC 5246 - The Transport Layer Security (TLS) Protocol Version 1.2](https://tools.ietf.org/html/rfc5246)
 
 ### 加密
 
@@ -70,18 +71,55 @@ PKI包括:
 
 [X.509](https://en.wikipedia.org/wiki/X.509):在密码学中X.509是定义公钥证书格式的标准。
 
+### SSL/TLS协议的基本过程
+
+* 握手阶段(TLS handshake)
+  * 1 客户端向服务器端索要公钥 并验证
+  * 2 双方协商生成一个"对话密钥"
+* 通信阶段
+  * 3 双方使用"对话密钥"对消息加密 实现加密通信
+
 ### TLS handshake
 
-* TLS握手对象
+* TLS/SSL握手对象
   * TLS client(浏览器)
   * TLS server(Web Server)
 
-* TLS握手过程
+* TLS/SSL握手过程("握手阶段"涉及四次通信，都是"明文"通信)
   * 1.确认当前TLS server(Web Server)使用的TLS协议的版本
   * 2.选择加密算法(Select cryptographic algorithms)
   * 3.二者交换数字证书并验证数字证书 从而验证了彼此的身份(Authenticate each other by exchanging and validating digital certificates.)
-  * 4.二者使用使用非对称加密技术生成共享的密钥 用于对称加密(Use asymmetric encryption techniques to generate a shared secret key.)
+  * 4.二者使用使用非对称加密技术生成一个共享的密钥 即对称加密的密钥(Use asymmetric encryption techniques to generate a shared secret key.)
 
-* TLS握手结果
-  * 二者有了一个密钥(对称加密密钥,能够用于与对方通信时对messages进行加密). 
-  * 即 TLS握手使TLS client(浏览器)能够与TLS server(Web Server)建立二者间交流数据的密钥(对称加密密钥).
+```
+ Client                                               Server
+
+# TLS/SSL握手过程("握手阶段"涉及四次通信，都是"明文"通信)
+
+                              握手过程 第?次通信
+      ClientHello                  ----1---->
+
+
+                                                      ServerHello
+                                                     Certificate*
+                                               ServerKeyExchange*
+                                              CertificateRequest*
+                                   <----2----      ServerHelloDone
+
+
+      Certificate*
+      ClientKeyExchange
+      CertificateVerify*
+      [ChangeCipherSpec]
+      Finished                     -----3--->
+
+
+                                               [ChangeCipherSpec]
+                                   <----4----             Finished
+
+
+# TLS/SSL握手结果:seesion key
+# 最后协商的结果是:二者有了同一个对称加密密钥(session key,会话密钥).用于二者互相通信时对messages进行对称加密.
+# 即 TLS握手使TLS client(浏览器)能够与TLS server(Web Server)这二者间建立了交流数据必需的密钥(对称加密的密钥).
+      Application Data             <------->     Application Data
+```
