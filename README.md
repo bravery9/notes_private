@@ -3,7 +3,7 @@
  * [SDL - 安全开发生命周期 实践与意义](sdl.md)
  * [SDL - API设计规范 CheckList](sdl_API.md)
  * [net - 流量分析 基础 抓包实践(wireshark/Tshark)](net_wireshark.md)
- * [net - 流量分析 IDS原理 规则(suricata)](net_suricata.md)
+ * [net - 流量分析 IDS/IPS 原理 引擎 规则(suricata)](net_suricata.md)
  * [web - vul - SQLi_原理 利用方式 修复方案](web_vul_sqli.md)
  * [web - vul - SSRF_原理 利用方式 修复方案](web_vul_SSRF.md)
  * [web - vul - XSS  原理 利用方式 修复方案](web_vul_XSS.md)
