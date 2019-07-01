@@ -71,29 +71,32 @@ PKI包括:
 
 公钥证书的格式的标准:在密码学中[X.509](https://en.wikipedia.org/wiki/X.509)是定义公钥证书格式的标准。
 
-### SSL/TLS协议的基本过程
+### SSL/TLS 基本过程
 
 * 握手阶段(TLS handshake)
   * 1 客户端向服务器端索要公钥 并验证
   * 2 双方协商生成一个"对话密钥"
-* 通信阶段
-  * 3 双方使用"对话密钥"对消息加密 实现加密通信
 
-### TLS handshake
+### SSL/TLS连接建立过程 (重点是TLS handshake)
 
-* TLS/SSL握手对象
-  * TLS client(浏览器)
-  * TLS server(Web Server)
+* TCP 3次握手过程(成功之后进行TLS握手)
+  * SYN
+  * SYN ACK
+  * ACK
+* TLS/SSL握手过程(TLS handshake)  "握手阶段"涉及的四次通信都是"明文"传输,概述如下
+  * (1).确认当前TLS server(Web Server)使用的TLS协议的版本号、加密算法的种类等信息
+  * (2).选择加密算法(Select cryptographic algorithms)
+  * (3).二者交换数字证书并验证数字证书 从而验证了彼此的身份(Authenticate each other by exchanging and validating digital certificates.)
+  * (4).二者使用使用非对称加密技术生成一个共享的密钥 即对称加密的密钥(Use asymmetric encryption techniques to generate a shared secret key.)
+* TLS/SSL通信
+  * SSL 的握手后，TLS Client和TLS Server双方使用相同的对称密钥"对话密钥"对消息加密，实现加密通信.同时进行通讯完整性的检验
 
-* TLS/SSL握手过程("握手阶段"涉及四次通信，都是"明文"通信)
-  * 1.确认当前TLS server(Web Server)使用的TLS协议的版本
-  * 2.选择加密算法(Select cryptographic algorithms)
-  * 3.二者交换数字证书并验证数字证书 从而验证了彼此的身份(Authenticate each other by exchanging and validating digital certificates.)
-  * 4.二者使用使用非对称加密技术生成一个共享的密钥 即对称加密的密钥(Use asymmetric encryption techniques to generate a shared secret key.)
 
 ```
       Client                                            Server
 
+# TCP 3次握手过程(成功之后进行TLS握手)
+# TLS/SSL握手对象: TLS client(浏览器) 和 TLS server(Web Server)
 # TLS/SSL握手过程("握手阶段"涉及四次通信，都是"明文"通信)
 
                               握手过程 第?次通信
