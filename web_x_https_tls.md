@@ -46,7 +46,7 @@ RSA算法安全性的核心是:基于n的两个质数分解难题. 即对极大�
   * message完整性 传输过程中消息未修改
   * 身份验证(只有发送人才知道私钥，所以谁提供了私钥，谁就被认为是发送人)
 
-### 非对称加密应用 - 数字证书(Digital certificates)
+### 非对称加密应用 - 数字证书(Digital certificates
 
 公钥基础架构(PKI,[Public key infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure)):用于创建，存储和分发数字证书的系统，用于验证特定公钥是否属于某个实体。PKI创建将公钥映射到实体的数字证书，将这些证书安全地存储在中央存储库中，并在需要时撤消证书。
 
@@ -69,7 +69,7 @@ PKI包括:
 
 证书颁发机构(CA,[Certificate authority](https://en.wikipedia.org/wiki/Certificate_authority)):作为一个受信任的第三方,颁发数字证书(digital certificates)即 公钥证书([Public key certificate](https://en.wikipedia.org/wiki/Public_key_certificate)),以确保某实体的公钥真正属于该实体。
 
-[X.509](https://en.wikipedia.org/wiki/X.509):在密码学中X.509是定义公钥证书格式的标准。
+公钥证书的格式的标准:在密码学中[X.509](https://en.wikipedia.org/wiki/X.509)是定义公钥证书格式的标准。
 
 ### SSL/TLS协议的基本过程
 
@@ -92,7 +92,7 @@ PKI包括:
   * 4.二者使用使用非对称加密技术生成一个共享的密钥 即对称加密的密钥(Use asymmetric encryption techniques to generate a shared secret key.)
 
 ```
- Client                                               Server
+      Client                                            Server
 
 # TLS/SSL握手过程("握手阶段"涉及四次通信，都是"明文"通信)
 
