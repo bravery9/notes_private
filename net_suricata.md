@@ -27,11 +27,11 @@
 ### Suricata的数据包获取
 
 * Packet acquisition
-  * High performance capture
+  * High performance capture - 高性能捕获
     * AF_PACKET - experimental eBPF and XDP modes available
     * PF_RING
     * NETMAP
-  * Standard capture
+  * Standard capture - 标准捕获
     * PCAP
     * NFLOG (netfilter integration)
   * IPS mode
@@ -44,9 +44,7 @@
     * Napatech
     * Tilera
 
-### Suricata的引擎
-
-协议解析引擎、检测引擎...
+### Suricata的流量解析引擎
 
 * TCP/IP engines
   * Scalable flow engine - 可扩展的流量引擎
@@ -89,9 +87,12 @@
     * decompress flash files
     * and many more
 
+
+### Suricata的检测引擎
+
 * Detection engine
   * Protocol keywords
-  * Multi-tenancy per vlan or capture device
+  * Multi-tenancy per vlan or capture device - 每个VLAN或捕获设备的多租户
   * xbits – flowbits extension
   * PCRE support
     * substring capture for logging in EVE
@@ -103,17 +104,18 @@
     * file name and extension
     * file MD5/SHA1/SHA256 checksum — scales up to millions of checksums
   * multiple pattern matcher algorithms that can be selected
-  * extensive tuning options
-  * live rule reloads — use new rules w/o restarting Suricata
+  * extensive tuning options - 广泛的调优选项
+  * live rule reloads — use new rules w/o restarting Suricata  实时规则重新加载-使用新规则而不重新启动Suricata
   * delayed rules initialization
-  * Lua scripting for custom detection logic
+  * Lua scripting for custom detection logic - 用于自定义检测逻辑的Lua脚本
   * Hyperscan integration
+
 
 ### Suricata的输出与筛选
 
 * Outputs
   * Eve log, all JSON alert and event output
-  * Lua output scripts for generating your own output formats
+  * Lua output scripts for generating your own output formats - 自定义输出格式
   * Redis support
   * HTTP request logging
   * TLS handshake logging
@@ -140,18 +142,13 @@
 
 |规则集名称|资源地址|
 |:-------------:|-----|
+|Emerging Threats Ruleset|Suricata默认规则集.BSD协议开源 由安全社区维护 https://rules.emergingthreats.net/open/suricata/rules/|
+|Emerging Threats Pro Ruleset|收费规则集.由Proofpoint/ET研究团队维护|
 |Suricata PT Open Ruleset|[ptresearch/AttackDetection](https://github.com/ptresearch/AttackDetection)|
-|Emerging Threats Ruleset|https://rules.emergingthreats.net/open/suricata/rules/|
 
-### Suricata默认规则集 - Emerging Threats Ruleset
-
-* Emerging Threats Ruleset
-  * BSD协议开源 由安全社区维护
-* Emerging Threats Pro Ruleset
-  * 收费规则集 由Proofpoint/ET研究团队维护
+### Suricata规则类型
 
 ET官方对规则类型的[解释说明](https://doc.emergingthreats.net/bin/view/Main/EmergingFAQ#What_is_the_general_intent_of_ea)
-
 
 |规则名|更新频率|描述|
 |:-------------:|-----|-----|
