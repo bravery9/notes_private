@@ -18,6 +18,32 @@
   * 配置文件可读(YAML config file)
   * ...
 
+* IP Reputation - IP信誉
+  * loading of large amounts host based reputation data - 加载大量基于主机的信誉数据
+  * matching on reputation data in the rule language using the “iprep” keyword - 使用关键字iprep匹配规则语言中的"信誉数据"
+  * live reload support - 支持实时重新加载
+  * supports CIDR ranges - 支持使用CIDR表示IP范围
+
+### Suricata的数据包获取
+
+* Packet acquisition
+  * High performance capture
+    * AF_PACKET - experimental eBPF and XDP modes available
+    * PF_RING
+    * NETMAP
+  * Standard capture
+    * PCAP
+    * NFLOG (netfilter integration)
+  * IPS mode
+    * Netfilter based on Linux (nfqueue) - fail open support
+    * ipfw based on FreeBSD and NetBSD
+    * AF_PACKET based on Linux
+    * NETMAP
+  * Capture cards and specialized devices
+    * Endace
+    * Napatech
+    * Tilera
+
 ### Suricata的引擎
 
 协议解析引擎、检测引擎...
@@ -63,7 +89,6 @@
     * decompress flash files
     * and many more
 
-
 * Detection engine
   * Protocol keywords
   * Multi-tenancy per vlan or capture device
@@ -83,6 +108,8 @@
   * delayed rules initialization
   * Lua scripting for custom detection logic
   * Hyperscan integration
+
+### Suricata的输出与筛选
 
 * Outputs
   * Eve log, all JSON alert and event output
@@ -104,6 +131,10 @@
   * Signal based Log rotation
   * Flow logging
 
+* Alert/Event filtering - 警报/事件的筛选
+  * per rule alert filtering and thresholding - 每个规则的警报进行过滤和和阈值设置
+  * global alert filtering and thresholding - 全局警报过滤和阈值设置
+  * per host/subnet thresholding and rate limiting settings - 每个主机/子网阈值和速率限制设置
 
 ### Suricata规则集
 
