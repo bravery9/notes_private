@@ -2,6 +2,8 @@
 
 跨站脚本攻击(Cross Site Scripting)
 
+[HackerOne上已公开的各种XSS漏洞](https://hackerone.com/hacktivity?order_direction=DESC&order_field=popular&filter=type%3Apublic&querystring=XSS)
+
 ### 分类
 
 * 反射型(Reflected XSS)
