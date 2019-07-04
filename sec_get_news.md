@@ -25,6 +25,7 @@
 | [RedTeam] Dirk-jan Mollema(researcher)|https://dirkjanm.io/feed.xml|
 | 360 CERT | https://cert.360.cn/daily/feed |
 | 360 Technology Blog(360核心安全) | http://blogs.360.cn/rss.html|
+| 360 netlab |https://blog.netlab.360.com/rss/|
 | 安全客 | https://api.anquanke.com/data/v1/rss|
 | Malwarebytes Labs | https://blog.malwarebytes.com/feed/|
 | Hacking Articles||
@@ -49,6 +50,7 @@
 | Blog – SentinelOne ||
 | Thomas Orlita's blog| https://blog.thomasorlita.cz/feed/|
 | Somdev Sangwan(XSStrike AwesomeXSS author) | https://somdev.me/feed |
+| Nytro (个人博客 web 二进制 Defcon BlackHat) |https://nytrosecurity.com/feed/|
 
 |名称|属性|描述|
 |:-------------:|--|-----|
