@@ -36,7 +36,7 @@
     * 局限:文件落地
   * 其他
 * 对抗-流量分析
-  * 1.白域名方法 - Domain Fronting 通常仅支持HTTP协议通信
+  * 1.白域名方法 - "Domain Fronting" 通常仅支持HTTP协议通信
     * 逃避原理:借用CDN实现"隐藏"C2服务器的真实ip 避免溯源分析  C2流量 -> CDN ip -> C2 Server ip
     * 局限:使用CDN，可能需要实名认证(可考虑以其他身份注册)
   * 2.白域名方法 - 借用知名网站 通常仅支持HTTP协议通信
@@ -47,6 +47,9 @@
   * 3.DGA域名 - DGA域名生成算法
     * 逃避原理:使用dga可以试图连接多个C2域名 从而避免"单一C2域名/ip特征被当作IoC后引发报警"这一报警机制(黑名单) 大大增加了C2架构稳定性
     * 局限:dga生成的域名可能被机器学习识别为恶意的.  dga需要注册不止一个域名. 可被持续追溯得到多个C2服务器ip.
+  * 4.DNS over HTTPS
+    * 逃避原理:通过https在线查询DNS记录(A TXT ...) 获取C2 server的IP. 参考实际案例[Godlua Backdoor分析报告](https://blog.netlab.360.com/an-analysis-of-godlua-backdoor/)
+    * 局限:单次查询的数据传输量有限
   * 其他
 * 对抗-行为分析
   * 1.指定特定的运行条件
