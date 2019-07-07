@@ -22,7 +22,6 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
     * 参考[Time-Based Blind SQL Injection Attacks](http://www.sqlinjection.net/time-based/) 和 [Timing-based Blind SQL Attacks](https://hackernoon.com/timing-based-blind-sql-attacks-bd276dc618dd)
       * MySQL`SLEEP(time)` `BENCHMARK(count, expr)`
       * SQL Server`WAIT FOR DELAY 'hh:mm:ss'` `WAIT FOR TIME 'hh:mm:ss'`
-      * Oracle
       * Postgres `pg_sleep(5)` 如`SELECT CASE WHEN secret = 'secret' THEN pg_sleep(5) ELSE NULL END FROM apps WHERE id = 1 ;`
       * ...
 
@@ -363,6 +362,11 @@ try {
 * 3. 白名单输入验证(White List Input Validation) 
 
 如`order by`和`limit`子句，无法使用"绑定变量"(bind variable)，就需要"白名单输入验证"
+
+思路:判断用户传递的值 是否为该表中的其中一个列名.
+
+hibernate框架 防御排序注入(order by)原理:判断用户传递的值是否为实体类的属性.
+
 
 * 4. 数据库用户权限最小化(Least Privilege)
 
