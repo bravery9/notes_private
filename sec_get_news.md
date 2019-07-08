@@ -23,6 +23,7 @@
 | [RedTeam] SpecterOps Team[最强红队了解一下](https://specterops.io/who-we-are/the-team) | https://posts.specterops.io/feed|
 | [RedTeam] harmj0y| http://www.harmj0y.net/blog/feed/|
 | [RedTeam] Dirk-jan Mollema(researcher)|https://dirkjanm.io/feed.xml|
+| DEVCORE 戴夫寇爾(台湾知名安全公司)| https://devco.re/rss |
 | 360 CERT | https://cert.360.cn/daily/feed |
 | 360 Technology Blog(360核心安全) | http://blogs.360.cn/rss.html|
 | 360 netlab |https://blog.netlab.360.com/rss/|
