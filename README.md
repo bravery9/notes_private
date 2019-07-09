@@ -16,7 +16,7 @@
  * [web - WEB应用安全部署架构_及 WAFbypass](web_WAF_bypass.md)
  * [web - 基础 - 密码学基础及应用(TLS 数字证书) 非对称加密RSA](web_x_https_tls.md)
  * [web - 基础 - 浏览器的同源策略 跨域方案 CORS JSONP](web_x_SOP.md)
- * [web - 基础 - HTTP协议 HTTP/2](sec_HTTP.md)
+ * [web - 基础 - HTTP协议 HTTP/2](web_HTTP.md)
  * [web - 代码审计 - PHP 思路和实践](web_code_audit_PHP.md)
  * [web - 中间件 - 常见问题 修复方案](web_vul_mid_SSL_slowhttpdos.md)
  * [web - 整理 - 靶场WebGoat8的搭建 WriteUp](z_web_webgoat.md)
