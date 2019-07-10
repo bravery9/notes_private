@@ -24,3 +24,14 @@ Elasticsearch是分布式搜索和分析引擎.是Elastic Stack的核心
 分布式部署:通常一个Elasticsearch cluster(集群)包含了多个Elasticsearch instance.
 
 节点:集群通过一个唯一的名称作为标识.节点通过设置"集群名称"就可以加入相应的集群.
+
+### Elastic Stack
+
+ELK Stack是一个经典的技术栈.
+
+Elastic Stack技术栈比ELK Stack更加灵活且强大,主要是轻量级数据发送器Beats等.
+
+* ELK Stack
+  * Elasticsearch 搜索和分析引擎.
+  * Logstash 负责数据的收集与发送. 同时从多个源中提取数据并可对数据进行转换，然后发送到Elasticsearch(或其他)存储
+  * Kibana 对Elasticsearch中的数据进行数据可视化.
