@@ -124,7 +124,7 @@ secure-file-priv = ""
 
 #### 无法使用"预编译语句"的情况 - `order by`
 
-# 为什么order by无法使用"预编译语句"?
+为什么order by无法使用"预编译语句"?
 ```
 # order by 的正常使用 如
 select aid,adenname from sea_myad order by adenname;
@@ -213,8 +213,9 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
 
 "参数化查询"(Parameterized Query 或 Parameterized Statement)的原理:强制开发人员先定义好所有SQL代码，然后将每个"实际参数"传入并查询。这种编码风格使数据库能够区分"代码"和"数据".
 
+PHP - Laravel框架的 Eloquent ORM
 
-PHP - [使用PDO(PHP Data Objects)](https://php.net/manual/en/book.pdo.php) 支持任意数据库
+PHP - 原生[使用PDO(PHP Data Objects)](https://php.net/manual/en/book.pdo.php) 支持任意数据库
 ```
 // PDO常用函数
 // PDOStatement::bindColumn — Bind a column to a PHP variable
