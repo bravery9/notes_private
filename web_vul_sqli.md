@@ -208,7 +208,7 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
 
 |字符|URL编码|描述|
 |:-------------:|--|-----|
-|\|%5c|常用来转义"非法"字符|
+|`\`|%5c|常用来转义"非法"字符|
 |'|%27|常用来改变SQL语句 将"数据"变为"代码"|
 
 * 关键概念
@@ -222,6 +222,7 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
 * 执行 - 数据库使用了GBK编码`set names gbk`  则得到`運'`
 
 同理:更多变形参考GBK编码表
+
 |payload|替换体|GBK解码结果|
 |:-------------:|--|-----|
 |%27|%df%27|運'|
