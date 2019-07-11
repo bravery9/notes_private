@@ -4,16 +4,28 @@
 pwn:通过二进制/系统调用等方式获得目标主机的shell.
 
 ### 系统保护机制
+
 |windows|linux|描述|
 |:-------------:|--|-----|
 |DEP|NX|将数据所在内存页标识为不可执行. 当程序溢出成功尝试执行shellcode会失败(当在数据页面上执行指令时CPU必定抛出异常)|
 |ASLR|PIE|地址随机化选项. 即程序每次运行的地址都不同|
+
+
+```
+# 关闭PIE
+sudo -s echo 0 > /proc/sys/kernel/randomize_va_space
+# 确认关闭
+cat /proc/sys/kernel/randomize_va_space
+```
+
+
 
 ### 检测ELF二进制文件的属性
 
 linux下使用[checksec.sh](https://github.com/slimm609/checksec.sh)检测ELF二进制可执行程序的属性/保护机制
 
 用gcc编译的一个ELF二进制程序默认(不加额外的参数改变编译设置)即开启所有的安全措施.
+
 
 ```
 # 下载
@@ -63,7 +75,9 @@ Partial RELRO   Canary found      NX enabled    No PIE          No RPATH   No RU
 |:-------------:|--|-----|
 |[gdbgui](https://github.com/cs01/gdbgui)|/|6k★ 基于浏览器可视化gdb调试 [下载安装ubuntu14.04+](https://gdbgui.com/downloads.html)|
 |[peda](https://github.com/longld/peda)|python|6k★ Python Exploit Development Assistance for GDB(包含checksec等)|
-|[pwntools](https://github.com/Gallopsled/pwntools)|python2.7(best Ubuntu)|4k★ CTF framework and exploit development library|
+|[pwntools](https://github.com/Gallopsled/pwntools)|python2.7(best Ubuntu)|4k★ CTF framework and exploit development library(写exp/poc的利器)|
+|[ROPgadget](https://github.com/JonathanSalwan/ROPgadget)|python|在二进制文件中搜索gadgets以便进行ROP利用|
+|[one_gadget](https://github.com/david942j/one_gadget)|Ruby|The best tool for finding one gadget RCE in libc.so.6  如快速寻找libc中的调用exec('bin/sh')的位置|
 |[heap-viewer](https://github.com/danigargu/heap-viewer)|python| [IDA Pro plugin] examine the glibc heap, focused on exploit development|
 |[cea-sec/miasm](https://github.com/cea-sec/miasm)|python|2k★ (PE/ELF)Reverse engineering framework|
 
