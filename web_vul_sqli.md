@@ -206,6 +206,8 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
 
 #### 宽字节注入
 
+##### 情况1 数据库使用了GBK编码
+
 |字符|URL编码|描述|
 |:-------------:|--|-----|
 |`\`|%5c|常用来转义"非法"字符|
@@ -215,11 +217,11 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
   * addslashes函数:会进行转义 如将`'`变为`\'` 使单引号仅作为字符(数据) 而无法更改SQL语句(代码).
   * GBK编码:是GB2312编码的超集,向下完全兼容GB2312
   * GBK编码取值范围:第一个字节129-254，第二个字节64-254
-
-* 输入 - 将payload中的单引号`%27`都替换为`%df%27` 以便利用宽字节特性绕过转义
-* 转义 - 输入的数据`%df%27` 经过addslashes函数转义后 变为`%df%5c%27`
-* 关键 - 从前向后解析 首先遇到2个字节`%df%5c` 因为它符合了GBK编码取值范围 会被转成一个汉字`運` 从而使`'`前的反斜杠`\`被吃掉
-* 执行 - 数据库使用了GBK编码`set names gbk`  则得到`運'`
+* 测试过程(数据库使用了GBK编码)
+  * 输入 - 将payload中的单引号`%27`都替换为`%df%27` 以便利用宽字节特性绕过转义
+  * 转义 - 输入的数据`%df%27` 经过addslashes函数转义后(单引号被反斜杠转义)  变为`%df%5c%27`
+  * 关键 - 从前向后解析 首先遇到2个字节`%df%5c` 因为它符合了GBK编码取值范围 会被转成一个汉字`運` 从而使`'`前的反斜杠`\`被吃掉
+  * 执行 - 数据库使用了GBK编码 `set names gbk`  则得到`運'`
 
 同理:更多变形参考GBK编码表
 
@@ -229,8 +231,21 @@ SELECT 1 from mysql.user order by 1 limit 0,1 into outfile '/tmp/s.php' LINES TE
 |%27|%de%27|轡'|
 |%27|%dd%27|輁'|
 
-
 自动化:使用sqlmap的tamper脚本`--tamper "unmagicquotes.py"` 进行自动转换 `%27` -> `%df%27`
+
+##### 情况2 数据库使用了UTF-8编码
+
+|字符|UTF8编码|GBK编码|
+|:-------------:|--|-----|
+|錦|0xe98ca6|0xe55c|
+
+
+如果数据库使用了UTF-8字符集`set names UTF-8`
+  * 输入 - 将payload中的单引号`%27`都替换为`%e5%5c%27` 以便利用宽字节特性绕过转义
+  * 转义 - 输入的数据`%e5%5c%27` 经过addslashes函数转义(反斜杠被反斜杠转义) 变为`%e5%5c%5c%27`
+  * 编码转换逻辑 - 为了使得SQL语句中的字符集一致为UTF-8，web应用程序会将用户输入的GBK字符转为UTF-8字符，转换函数 `iconv`或`mb_convert_encoding` 
+  * 编码转换 - 将GBK字符`%e5%5c%5c%27`经过转换得到 `%e9%8c%a6%5c%5c%27`  从前向后解析 因为`%e9%8c%a6`为UTF字符`錦`
+  * 执行 - `錦\\'` 使单引号不再是字符(数据) 能够改变SQL语句(代码)
 
 ### SDL - 防御与修复方案
 
