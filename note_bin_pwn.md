@@ -11,13 +11,21 @@ pwn:通过二进制/系统调用等方式获得目标主机的shell.
 |ASLR|PIE|地址随机化选项. 即程序每次运行的地址都不同|
 
 
+Fortify Source
+* linux保护机制
+  * Position Independent Code (PIE)
+  * NoeXecute (NX)
+
+* windows保护机制
+  * Address Space Layout Randomization (ASLR)
+  * Data Execution Prevention (DEP)
+
 ```
 # 关闭PIE
 sudo -s echo 0 > /proc/sys/kernel/randomize_va_space
 # 确认关闭
 cat /proc/sys/kernel/randomize_va_space
 ```
-
 
 
 ### 检测ELF二进制文件的属性
