@@ -9,16 +9,19 @@ pwn:通过二进制/系统调用等方式获得目标主机的shell.
 |:-------------:|--|-----|
 |DEP|NX|将数据所在内存页标识为不可执行. 当程序溢出成功尝试执行shellcode会失败(当在数据页面上执行指令时CPU必定抛出异常)|
 |ASLR|PIE|地址随机化选项. 即程序每次运行的地址都不同|
-
+|GS protection|Canary|防止栈溢出. 进程重启每次的Canary都不同|
 
 Fortify Source
 * linux保护机制
   * Position Independent Code (PIE)
   * NoeXecute (NX)
+  * Canary
 
 * windows保护机制
   * Address Space Layout Randomization (ASLR)
   * Data Execution Prevention (DEP)
+  * GS protection
+
 
 ```
 # 关闭PIE
