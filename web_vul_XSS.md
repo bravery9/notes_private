@@ -245,17 +245,36 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 ### SDL - 防御与修复方案
 
 * 需求与设计阶段(了解产品背景和技术架构 并给出相应的建议)
-  * 建议使用成熟的前端框架 `Vue` `React`
+  * 建议使用成熟的现代前端javascript框架 它们内置了非常好的XSS保护 如`Vue` `React`
   * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单 (实测 Google开发的CSP安全评估工具[CSP Evaluator](https://csp-evaluator.withgoogle.com/))
-  * API接口 - 建议显式规定response的MIME类型 即 `Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
+  * API接口 - 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
   * Cookie安全设计参考 - [Security Cookies Whitepaper](https://www.netsparker.com/security-cookies-whitepaper//?utm_source=twitter.com&utm_medium=social&utm_content=security+cookies+whitepaper&utm_campaign=netsparker+social+media)
     * 如在`Set-Cookie: `中增加  `; secure` 仅允许HTTPS协议中传输cookie
     * 如在`Set-Cookie: `中增加  `; HttpOnly` 当客户端脚本代码读取cookie 则浏览器返回一个空字符串
 * 测试阶段
-  * 基本防御方案：为了保证输入的原生态，通常在输出点做实体编码、必要的过滤。
   * XSS详细防御[Cross_Site_Scripting_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
   * DOM_based_XSS详细防御[DOM_based_XSS_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md)
     * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
-  * API接口 - 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
 
 XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `chrome xss filter bypass`
+
+#### XSS防御规则
+
+* HTML实体编码(HTML entity encoding) 适用情况:
+  * 1. 将"不受信任的数据"放在 HTML文档中时(the body of the HTML document)，如`<div>`标签内，需要做HTML实体编码
+  * 2. 将"不受信任的数据"放在 HTML属性中时，需要做HTML实体编码(开发人员给HTML属性值前后加上引号 防御效果更好)
+* HTML实体编码(HTML entity encoding) 无效情况:
+  * 1. 将"不受信任的数据"放在 `<script>`标签内的任何位置时，不用做HTML实体编码，因为对防御XSS无效!!
+  * 2. 将"不受信任的数据"放在 事件处理属性(event handler attribute)中时，如`onmouseover`，不用做HTML实体编码，因为对防御XSS无效!!
+  * 3. 将"不受信任的数据"放在 `CSS`中时，不用做HTML实体编码，因为对防御XSS无效!!
+  * 4. 将"不受信任的数据"放在 `URL`中时，不用做HTML实体编码，因为对防御XSS无效!!
+
+* XSS防御规则
+  * #0.除了允许的位置外，禁止放入"不受信任的数据"
+    * script中 `<script>...NEVER PUT UNTRUSTED DATA HERE...</script>`
+    * HTML注释中 `<!--...NEVER PUT UNTRUSTED DATA HERE...-->`
+    * HTML标签属性中 `<div ...NEVER PUT UNTRUSTED DATA HERE...=test />`
+    * HTML标签名称中`<NEVER PUT UNTRUSTED DATA HERE... href="/test" />`
+    * CSS中`<style>...NEVER PUT UNTRUSTED DATA HERE...</style>`
+    * 注意:永远禁止接受来自不受信任来源的JavaScript代码并运行它 没有任何防御方法可以解决这种情况 (如 名为`callback`的参数包含JavaScript代码段)
+
