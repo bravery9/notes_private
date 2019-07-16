@@ -29,20 +29,3 @@
 |[OPSWAT MetaDefender Cloud](https://metadefender.opswat.com/)|威胁情报|分析可疑文件 filehash ip domain url. 可搜索CVE 支持Antivirus APIs |
 |[VirSCAN.org](http://virscan.org/)|威胁情报|分析可疑文件|
 |[在线沙箱app.any.run](https://app.any.run/tasks/defe1b39-b4b6-4573-ba46-de2c425f670f)|在线沙箱|在线沙箱:提取ioc 下载样本 下载pcap文件 运行线程 DNS解析 http通信|
-
-
-#### website_常用开发工具
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[regex101.com](https://regex101.com/)|regex|在线调试正则 支持php/javascript/python/golang. 及代码生成器|
-|[graphemica.com/](http://graphemica.com/)|characters|同一字符的各种编码各种格式的表示|
-|https://codebeautify.org/|encoder|进制转换 json xml Escape/Unescape sql...|
-|https://httpbin.org/|http debug|A simple HTTP Request & Response Service.|
-
-#### website_破解hash
-
-|名称|描述|
-|:-------------:|-----|
-|[Ophcrack](https://www.objectif-securite.ch/en/ophcrack.php)|[瑞士] 在线破解 crack NTLM. 不错|
-|[onlinehashcrack.com](https://www.onlinehashcrack.com/) |破解 Hashes(NTLM/wordpress/MySQL). Wifi WPA(2). MS Office.|
