@@ -36,9 +36,11 @@
  * [Red - 构建高适应性的C2基础设施](sec_C2.md)
  * [Red - msfvenom - msf的payload生成器](sec_msfvenom.md)
  * [Red - 各种反弹shell方式](sec_ReverseShellCheatsheet.md)
- * [Red - webshell管理](sec_webshell.md)
- * [Red - Proxy tools 代理工具](sec_proxy.md)
+ * [Red - webshell管理工具与检测方法](sec_webshell.md)
+ * [Red - Proxy tools 代理类工具](sec_proxy.md)
  * [Red - 基础 - Windows远控](sec_RAT.md)
+ * [sec - 基础 - 字符与编码 格式转换](sec_encoder.md)
+ * [sec - 基础 - regex 正则表达式](sec_regex.md)
  * [sec - 获取最新安全资讯的意义、模式和具体方式](sec_get_news.md)
  * [sec - 企业信息泄露源 监测(github 云盘 等)](sec_info_scan.md)
  * [sec - 主机端口扫描 思路及自动化](host_sec_port_service_exp.md)
@@ -94,7 +96,6 @@
 |[Awesome-static-analysis](https://github.com/mre/awesome-static-analysis)|4k★ 各语言静态分析工具Static analysis tools for all programming languages|
 |[Awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ #pentesting |
 |[Awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ #流量分析 A curated list of awesome malware analysis tools and resources.|
-|[niklongstone/regular-expression-cheat-sheet](https://github.com/niklongstone/regular-expression-cheat-sheet)|Regular Expression Cheat Sheet - PCRE|
 
 #### 学习知识
 
