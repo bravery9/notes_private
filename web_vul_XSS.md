@@ -270,11 +270,29 @@ XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `c
   * 4. 将"不受信任的数据"放在 `URL`中时，不用做HTML实体编码，因为对防御XSS无效!!
 
 * XSS防御规则
-  * #0.除了允许的位置外，禁止放入"不受信任的数据"
+  * 规则#0 - 拒绝所有(deny all) 除了规则#1-5中允许的位置，其他全部禁止放入"不受信任的数据" 如以下位置
     * script中 `<script>...NEVER PUT UNTRUSTED DATA HERE...</script>`
     * HTML注释中 `<!--...NEVER PUT UNTRUSTED DATA HERE...-->`
     * HTML标签属性中 `<div ...NEVER PUT UNTRUSTED DATA HERE...=test />`
     * HTML标签名称中`<NEVER PUT UNTRUSTED DATA HERE... href="/test" />`
     * CSS中`<style>...NEVER PUT UNTRUSTED DATA HERE...</style>`
-    * 注意:永远禁止接受来自不受信任来源的JavaScript代码并运行它 没有任何防御方法可以解决这种情况 (如 名为`callback`的参数包含JavaScript代码段)
+    * 注意 永远禁止接受来自不受信任来源的JavaScript代码并运行它 没有任何防御方法可以解决这种情况 (如 名为`callback`的参数包含JavaScript代码段)
+  * 规则#1 - 将"不受信任的数据"放在HTML元素的Content之前，需要做HTML实体编码
+    * 将"不受信任的数据"放在 常见标签中时，需要做HTML实体编码 `div`, `p`, `b`, `td` ... 如`<body>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</body>`
+    * 注意 规范中推荐使用十六进制格式的HTML实体 除了XML中重要的5个字符(`&` `<` `>` `"` `'`) 以及正斜杠`/`  见附表1
+  * 规则#2 - 将"不受信任的数据"放在HTML元素的常见属性之前，需要做HTML实体编码
+    * 将"不受信任的数据"放在 典型的属性值(如`width`,`name`,`value`等)之前，需要做HTML实体编码
+    * 注意 本规则不应被用于 复杂的属性(如`href`,`src`,`style`等) 和 任何事件处理属性(如`onmouseover`等)
 
+
+
+附表1
+
+|字符|HTML实体|描述|
+|:---:|-----|-----|
+| & | `&amp;`||
+| < | `&lt;`||
+| > | `&gt;`||
+| " | `&quot;`||
+| ' | `&#x27;`|不推荐使用`&apos;` 因为它不在HTML规范 而在XML和XHTML规范中|
+| / | `&#x2F;`|`/`有助于结束一个HTML实体|
