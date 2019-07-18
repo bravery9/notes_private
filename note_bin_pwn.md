@@ -3,6 +3,11 @@
 
 pwn:通过二进制/系统调用等方式获得目标主机的shell.
 
+### 基本概念
+
+* Global Offset Table(GOT)
+* Procedure Linkage Table(PLT)
+
 ### 系统保护机制
 
 |windows|linux|描述|
