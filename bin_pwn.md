@@ -5,9 +5,15 @@ pwn:通过二进制/系统调用等方式获得目标主机的shell.
 
 ### 基本概念
 
-* ELF
-  * Global Offset Table(GOT)
-  * Procedure Linkage Table(PLT)
+
+ELF中 实现代码共享(通常以动态库的形式)的关键是PLT表和GOT表
+* Global Offset Table(GOT)
+  * 定义 - 存储地址的表 (存储在ELF文件的data section中)
+  * 功能 - 已经执行的程序在运行时通过GOT表来帮助寻找"全局变量的地址". 因为在编译时无法得知动态库(dynamic libraries)中的全局变量的偏移量,所以需要在运行时从GOT表中读取.
+  * 更新 - GOT表在进程引导(process bootstrap)过程中由动态链接器更新.
+* Procedure Linkage Table(PLT)
+  * 功能 - PLT包含了用于调用共享函数(shared functions)的跳板代码(trampoline code)
+
 
 ### 系统保护机制
 
