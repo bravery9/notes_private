@@ -1,4 +1,32 @@
-### Checklists - linux 提权之前必要信息搜集
+### Checklists - linux基本状态信息搜集
+
+
+#### 虚拟机检测
+
+```
+# check VM(virtual machine)
+# 如果有结果则为虚拟机
+cat /proc/cpuinfo | grep -q "hypervisor"
+```
+
+#### 连接管理
+
+```
+# Connected IP Addresses:
+# 查看与当前主机建立连接的IP  (以root权限执行命令)
+netstat -anpt | grep ESTABLISHED | awk '{ print $5 }' | cut -d: -f1 | sort -u
+
+# IP Addresses connected via SSH:
+# 查看与当前主机(通过SSH)建立连接的IP
+netstat -tnpa | grep 'ESTABLISHED.*sshd' | awk '{ print $5 }' | cut -d: -f1 | sort -u
+
+# Ban an IP Address:
+# 禁止源IP 1.1.1.1 对本机访问
+iptables -A INPUT -s 1.1.1.1 -j DROP
+```
+
+### Checklists - linux 提权方法
+
 
 #### 密码搜集
 
