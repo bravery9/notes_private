@@ -40,9 +40,9 @@
 | 先知安全技术社区 | https://xz.aliyun.com/feed |
 | 绿盟科技博客 | http://blog.nsfocus.net/feed/|
 | Research – Check Point Blog | https://blog.checkpoint.com/category/research/feed/ |
-| PortSwigger Web Security Blog(burpsuite公司) | https://portswigger.net/blog/rss |
+| PortSwigger(burpsuite公司) - Web Security Blog | https://portswigger.net/blog/rss |
+| PortSwigger(burpsuite公司) - The Daily Swig | https://portswigger.net/daily-swig/rss |
 | acunetix blog | https://www.acunetix.com/blog/feed/ |
-| Hacking Articles||
 | KitPloit - PenTest Tools! | https://feeds.feedburner.com/PentestTools |
 | Trend Micro Simply Security | http://feeds.trendmicro.com/TrendMicroSimplySecurity |
 | www.nccgroup.trust - US Blog RSS Feed |https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/us-blog-rss-feed/|
