@@ -262,7 +262,7 @@ XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `c
 
 * HTML实体编码(HTML entity encoding) 适用情况:
   * 1. 将"不受信任的数据"放在 HTML文档中时(the body of the HTML document)，如`<div>`标签内，需要做HTML实体编码
-  * 2. 将"不受信任的数据"放在 HTML属性中时，需要做HTML实体编码(开发人员给HTML属性值前后加上引号 防御效果更好)
+  * 2. 将"不受信任的数据"放在 HTML属性中时，需要做HTML实体编码(开发人员最好给HTML标签的属性的值,前后都加上引号)
 * HTML实体编码(HTML entity encoding) 无效情况:
   * 1. 将"不受信任的数据"放在 `<script>`标签内的任何位置时，不用做HTML实体编码，因为对防御XSS无效!!
   * 2. 将"不受信任的数据"放在 事件处理属性(event handler attribute)中时，如`onmouseover`，不用做HTML实体编码，因为对防御XSS无效!!
@@ -271,19 +271,27 @@ XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `c
 
 * XSS防御规则
   * 规则#0 - 拒绝所有(deny all) 除了规则#1-5中允许的位置，其他全部禁止放入"不受信任的数据" 如以下位置
-    * script中 `<script>...NEVER PUT UNTRUSTED DATA HERE...</script>`
-    * HTML注释中 `<!--...NEVER PUT UNTRUSTED DATA HERE...-->`
-    * HTML标签属性中 `<div ...NEVER PUT UNTRUSTED DATA HERE...=test />`
-    * HTML标签名称中`<NEVER PUT UNTRUSTED DATA HERE... href="/test" />`
-    * CSS中`<style>...NEVER PUT UNTRUSTED DATA HERE...</style>`
+    * `<script>...script标签中 永不放入不受信任的数据...</script>`
+    * `<!--...HTML注释中 永不放入不受信任的数据...-->`
+    * `<div ...HTML标签的属性的名称中 永不放入不受信任的数据...=test />`
+    * `<HTML标签名称中永不放入不受信任的数据... href="/test" />`
+    * `<style>...CSS中 永不放入不受信任的数据...</style>`
     * 注意 永远禁止接受来自不受信任来源的JavaScript代码并运行它 没有任何防御方法可以解决这种情况 (如 名为`callback`的参数包含JavaScript代码段)
-  * 规则#1 - 将"不受信任的数据"放在HTML元素的Content之前，需要做HTML实体编码
+  * 规则#1 - 将"不受信任的数据"放在 HTML元素的Content之前，需要做HTML实体编码
     * 将"不受信任的数据"放在 常见标签中时，需要做HTML实体编码 `div`, `p`, `b`, `td` ... 如`<body>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</body>`
     * 注意 规范中推荐使用十六进制格式的HTML实体 除了XML中重要的5个字符(`&` `<` `>` `"` `'`) 以及正斜杠`/`  见附表1
-  * 规则#2 - 将"不受信任的数据"放在HTML元素的常见属性之前，需要做HTML实体编码
-    * 将"不受信任的数据"放在 典型的属性值(如`width`,`name`,`value`等)之前，需要做HTML实体编码
-    * 注意 本规则不应被用于 复杂的属性(如`href`,`src`,`style`等) 和 任何事件处理属性(如`onmouseover`等)
-
+  * 规则#2 - 将"不受信任的数据"放在 HTML元素的常见的属性的值(如`width`,`name`,`value`等)之前，需要做HTML实体编码
+    * 反例 属性的值没有用引号包裹 很不安全 使用"能够跳出属性值的字符"跳出属性的值 `[space]` `%` `*` `+` `,` `-` `/` `;` `<` `=` `>` `^` `|` 
+    * 正例 属性的值被单引号或双引号`"`包裹 并对属性的值做HTML实体编码 `<div attr='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'>content`
+    * 防御方案 - 必须用引号包裹属性的值,并且属性的值需要做HTML实体编码:用`&#xHH;`转义`ASCII < 256`的所有字符(除了字母数字字符无法被转义) 即可转义"能够跳出属性值的字符"
+    * 注意 本规则不应被用于 复杂的属性(如`href`,`src`,`style`等) 和 任何事件处理属性(如`onmouseover`等) 参考规则#3
+  * 规则#3 - 将"不受信任的数据"放在 JavaScript的"数据值"之前,需要做`JavaScript Escape`
+    * 针对动态生成的JavaScript代码的情况: `<script>`脚本块 和 事件处理属性(event-handler attributes)
+    * 将"不受信任的数据"放在 JavaScript代码中 只能放在被引号括起来的"数据值"部分 (放在JavaScript代码中的其他地方可使数据变为代码)
+    * 正例 `<script>alert('...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...')</script>`
+    * 正例 变量赋值 `<script>x='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'</script>`
+    * 正例 事件处理属性`<div onmouseover="x='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'"</div>`
+    * 注意 将"不受信任的数据"放在 某些JavaScript函数中 永远不安全!! 即使做了`JavaScript Escape`也不行 如`<script>window.setInterval('...EVEN IF YOU ESCAPE UNTRUSTED DATA YOU ARE XSSED HERE...');</script>`
 
 
 附表1
