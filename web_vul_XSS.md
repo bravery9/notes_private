@@ -251,15 +251,12 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
   * Cookie安全设计参考 - [Security Cookies Whitepaper](https://www.netsparker.com/security-cookies-whitepaper//?utm_source=twitter.com&utm_medium=social&utm_content=security+cookies+whitepaper&utm_campaign=netsparker+social+media)
     * 如在`Set-Cookie: `中增加  `; secure` 仅允许HTTPS协议中传输cookie
     * 如在`Set-Cookie: `中增加  `; HttpOnly` 当客户端脚本代码读取cookie 则浏览器返回一个空字符串
-* 测试阶段
-  * XSS详细防御[Cross_Site_Scripting_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
-  * DOM_based_XSS详细防御[DOM_based_XSS_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md)
-    * 前端增加html实体编码处理 将`输出`编码为只能用来显示的`Html实体(Html Entity)` `.innerHTML=encodeHTML(<img src=@ onerror=alert(1) />)`
 
-XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `chrome xss filter bypass`
 
 #### XSS防御方法
 
+> 参考[Cross_Site_Scripting_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
+>[DOM_based_XSS_Prevention_Cheat_Sheet.md](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md)
 
 * HTML实体编码(HTML entity encoding) 用来防御XSS是远远不够的!!
   * 适用情况1. 将"不受信任的数据"放在 HTML文档中时(the body of the HTML document)，如`<div>`标签内，需要做HTML实体编码
@@ -299,7 +296,7 @@ XSS filter:浏览器自带的XSS防御机制(被动防御),搜索绕过方法 `c
 
 * XSS防御规则#2 - 将"不受信任的数据"放在 HTML元素的常见的属性的值(如`width`,`name`,`value`等)之前，需要做HTML实体编码
   * 反例 属性的值没有用引号包裹 很不安全 使用"能够跳出属性值的字符"跳出属性的值 `[space]` `%` `*` `+` `,` `-` `/` `;` `<` `=` `>` `^` `|` 
-  * 正例 属性的值被单引号或双引号`"`包裹 并对属性的值做HTML实体编码 `<div attr='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'>content`
+  * 正例 所有属性的值都应该被单引号或双引号`"`包裹 并对属性的值做HTML实体编码 `<div attr='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'>content`
   * 防御方案 - 必须用引号包裹属性的值,并且属性的值需要做HTML实体编码(用`&#xHH;`转义"除了字母数字字符之外的"所有`ASCII < 256`的字符 即可转义"能够跳出属性值的字符")
   * 注意 本规则不应被用于 复杂的属性(如`href`,`src`,`style`等) 和 任何事件处理属性(如`onmouseover`等) 参考规则#3
 * XSS防御规则#3 - 将"不受信任的数据"放在 JavaScript的"数据值"之前,需要做`JavaScript Escape`
@@ -335,3 +332,64 @@ var dataElement = document.getElementById('init_data');
 var initData = JSON.parse(dataElement.textContent);
 // 在JavaScript中直接转义/反转义JSON的另一种方法:JSON服务器端规范化输出(将Response中的JSON数据`<`转换为`\u003c`形式  再返回给浏览器)
 ```
+
+* XSS防御规则#4 - 将"不受信任的数据"放在 HTML样式属性值(Style Property Values)之前，进行CSS转义并严格验证
+  * 防御方案 - 将"不受信任的数据"放在stylesheet或`<style>`标签中时,只能放在属性的值中 (其他位置都不能放 尤其是复杂的属性 如`url`, `behavior`, 和自定义的`-moz-binding`),并用`\HH`转义"除了字母数字字符之外的"所有`ASCII < 256`的字符
+    * 注意 不能使用`\"`这种可被逃逸的简单的转义 (1.运行时引号字符可能被HTML属性解析器首先匹配 2.输入的`\"`可能被转义为`\\"`使双引号逃脱转义)
+    * 注意 所有属性的值都需要被引号包裹 - 否则很不安全 使用"能够跳出属性值的字符"跳出属性的值 `[space]` `%` `*` `+` `,` `-` `/` `;` `<` `=` `>` `^` `|` 
+    * 注意 建议使用严格的CSS编码(CSS encoding)和验证来防止"被引号包裹的属性"和"没被引号包裹的属性"的XSS攻击
+    * 注意 在带引号的字符串中的`</style>`也能够闭合样式块(style block)，因为HTML解析器比JavaScript解析器先运行
+  * 注意 将"不受信任的数据"放在 某些CSS内容中永远不安全!!即使做CSS Escape 也对防御XSS无效.
+    * 1. `URLs`必须保证只能以`http`开头(不能以`javascript`开头)
+      * 反例`{ background-url : "javascript:alert(1)"; }  // and all other URLs`
+    * 2. 属性的值不能以`expression`开头  因为IE的表达式属性(expression property)允许在此执行JavaScript
+      * 反例`css{ text-size: "expression(alert('XSS'))"; }   // only in IE.`
+
+
+正例
+```html
+<style>
+selector { property : ...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...; }
+</style>
+```
+
+```html
+<style>
+selector { property : "...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE..."; }
+</style>
+```
+
+```html
+<!-- 内联(Inline Styles) -->
+<span style="property : ...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...">text</span>
+
+<h1 style="color:blue;margin-left:30px;">This is a heading</h1>
+```
+
+* 防御规则#5 - 将"不受信任的数据"放在 HTML URL Parameter 之前进行URL转义(URL Escape)
+  * 防御方案 - 将"不受信任的数据"放在 HTML的GET参数的值之前，需要进行URL转义(URL Escape):使用`%HH`转义"除了字母数字字符之外的"所有`ASCII < 256`的字符
+    * 注意 所有属性的值都需要被引号包裹 - 否则很不安全 使用"能够跳出属性值的字符"跳出属性的值 `[space]` `%` `*` `+` `,` `-` `/` `;` `<` `=` `>` `^` `|` 
+    * 注意 URLs中禁止使用`data:` - 因为转义无法禁止攻击者使用`data:`使"数据"跳出URLs变为"代码"
+    * 注意 不要使用URL编码对"完整URL"或"相对URL"进行编码
+      * 输入验证 - 如果将"不受信任的数据"放在`href`, `src`等基于URL的属性(URL-based attributes)中，需要验证输入数据以确保它没有指向不期望的协议，尤其是`javascript:`
+      * 输出编码 - 像其他数据一样，URL的编码应该基于显示内容(输出)  例如`HREF=`中的值是用户驱动的URL 它应该被编码
+
+
+正例
+```html
+<a href="http://www.somesite.com?test=...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...">link</a >
+```
+
+```java
+// 输出编码 - 后端对href属性值中的URL进行编码
+String userURL = request.getParameter( "userURL" )
+boolean isValidURL = Validator.IsValidURL(userURL, 255); 
+if (isValidURL) {  
+    <a href="<%=encoder.encodeForHTMLAttribute(userURL)%>">link</a>
+}
+```
+
+
+#### 浏览器自带的XSS防御机制 XSS filter
+
+搜索绕过方法`chrome xss filter bypass`
