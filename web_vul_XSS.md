@@ -249,9 +249,10 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
     * ReactJS - 禁止使用[`dangerouslySetInnerHTML`](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml)函数
     * Angular (2+) - 禁止使用这样的函数[`bypassSecurityTrust{something}`](https://angular.io/guide/security#bypass-security-apis) (如 `bypassSecurityTrustHtml`, `bypassSecurityTrustStyle`, 等).  
     * Angular (2+) - 构建Angular模板必须使用`-prod`参数  即`ng build --prod`  以避免模板注入(template injection)
-  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是浏览器端的白名单机制(为Web应用程序的客户端资源创建源白名单，例如JavaScript, CSS, images等)
-    * 从Response Header中设置CSP 如 `Content-Security-Policy: default-src: 'self'; script-src: 'self' static.domain.tld`
-    * CSP安全评估工具 [CSP Evaluator](https://csp-evaluator.withgoogle.com/)由Google开发
+  * 建议使用内容安全策略(Content Security Policy)
+    * CSP本质 - 浏览器端的白名单机制(为Web应用的客户端资源创建源白名单，如JavaScript, CSS, images等)
+    * 设置CSP - Response Header 如`Content-Security-Policy: default-src: 'self'; script-src: 'self' static.domain.tld` 更多参考[Content Security Policy CSP Reference & Examples](https://content-security-policy.com/)
+    * CSP安全评估工具 - [CSP Evaluator](https://csp-evaluator.withgoogle.com/)由Google开发
   * 建议使用 自动转义模版系统(Auto-Escaping Template System) - Web应用框架的自动上下文转义功能(automatic contextual escaping functionality)
     * 如 [AngularJS strict contextual escaping](https://docs.angularjs.org/api/ng/service/$sce)
     * 如 [Go Templates](https://golang.org/pkg/html/template/)
@@ -286,10 +287,14 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
   * `<HTML标签名称中永不放入不受信任的数据... href="/test" />`
   * `<style>...CSS中 永不放入不受信任的数据...</style>`
   * 注意 永远禁止接受来自不受信任来源的JavaScript代码并运行它 没有任何防御方法可以解决这种情况 (如 名为`callback`的参数包含JavaScript代码段)
-* XSS防御规则#1 - 将"不受信任的数据"放在 HTML元素的Content之前，需要做HTML实体编码
-  * 将"不受信任的数据"放在 常见标签中时，需要做HTML实体编码 `div`, `p`, `b`, `td` ... 如`<body>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</body>`
-  * 注意 规范中推荐使用十六进制格式的HTML实体 除了XML中重要的5个字符(`&` `<` `>` `"` `'`) 以及正斜杠`/`  见附表1
 
+
+
+* XSS防御规则#1 - 将"不受信任的数据"放在 HTML元素的Content之前，需要做HTML实体编码
+  * 将"不受信任的数据"放在 常见标签中时，需要做HTML实体编码 `div`, `p`, `b`, `td` ...
+    * 如 `<body>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</body>`
+    * 注意 推荐使用十六进制格式的HTML实体 除了XML中重要的5个字符(`&` `<` `>` `"` `'`) 以及正斜杠`/`  见附表1
+    * 注意 在其他html上下文中 本规则远远不够 需参考其他规则!!
 
 附表1
 
@@ -397,6 +402,38 @@ if (isValidURL) {
     <a href="<%=encoder.encodeForHTMLAttribute(userURL)%>">link</a>
 }
 ```
+
+#### XSS防御规则总结
+
+| Data Type | Context                                  | Code Sample                                                                                                        | Defense                                                                                                                                                                                        |
+|-----------|------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| String    | HTML Body                                |  `<span>UNTRUSTED DATA </span>`                                                                          | HTML Entity Encoding (rule \#1).                                                                                                                                                               |
+| String    | Safe HTML Attributes                     | `<input type="text" name="fname" value="UNTRUSTED DATA ">`                                               | Aggressive HTML Entity Encoding (rule \#2), Only place untrusted data into a whitelist of safe attributes (listed below), Strictly validate unsafe attributes such as background, id and name. |
+| String    | GET Parameter                            | `<a href="/site/search?value=UNTRUSTED DATA ">clickme</a>`                                               | URL Encoding (rule \#5).                                                                                                                                                                       |
+| String    | Untrusted URL in a SRC or HREF attribute | `<a href="UNTRUSTED URL ">clickme</a> <iframe src="UNTRUSTED URL " />`                                   | Canonicalize input, URL Validation, Safe URL verification, Whitelist http and https URL's only (Avoid the JavaScript Protocol to Open a new Window), Attribute encoder.                        |
+| String    | CSS Value                                | `html <div style="width: UNTRUSTED DATA ;">Selection</div>`                                                   | Strict structural validation (rule \#4), CSS Hex encoding, Good design of CSS Features.                                                                                                        |
+| String    | Javascript Variable                      | `<script>var currentValue='UNTRUSTED DATA ';</script> <script>someFunction('UNTRUSTED DATA ');</script>` | Ensure JavaScript variables are quoted, JavaScript Hex Encoding, JavaScript Unicode Encoding, Avoid backslash encoding (`\"` or `\'` or `\\`).                                                 |
+| HTML      | HTML Body                                | `<div>UNTRUSTED HTML</div>`                                                                             | HTML Validation (JSoup, AntiSamy, HTML Sanitizer...).                                                                                                                                          |
+| String    | DOM XSS                                  | `<script>document.write("UNTRUSTED INPUT: " + document.location.hash );<script/>`                        | [DOM based XSS Prevention Cheat Sheet](DOM_based_XSS_Prevention_Cheat_Sheet.md)                                                                                                                |
+
+
+下面的HTML代码片段演示了"如何在各种不同的上下文中安全地渲染不受信任的数据"。
+
+**Safe HTML Attributes:** `align`, `alink`, `alt`, `bgcolor`, `border`, `cellpadding`, `cellspacing`, `class`, `color`, `cols`, `colspan`, `coords`, `dir`, `face`, `height`, `hspace`, `ismap`, `lang`, `marginheight`, `marginwidth`, `multiple`, `nohref`, `noresize`, `noshade`, `nowrap`, `ref`, `rel`, `rev`, `rows`, `rowspan`, `scrolling`, `shape`, `span`, `summary`, `tabindex`, `title`, `usemap`, `valign`, `value`, `vlink`, `vspace`, `width`.
+
+
+#### 输出编码规则总结
+
+输出编码规则(Output Encoding Rules):目的是将"不受信任的输入数据"转换为"安全格式"，从而输出(展示"数据")给用户,避免了在浏览器中执行"代码"
+
+
+| Encoding Type           | Encoding Mechanism                                                                                                                                                                                                                                                                                                               |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| HTML Entity Encoding    | Convert `&` to `&amp;`, Convert `<` to `&lt;`, Convert `>` to `&gt;`, Convert `"` to `&quot;`, Convert `'` to `&#x27;`, Convert `/` to `&#x2F;`                                                                                                                                                                                  |
+| HTML Attribute Encoding | Except for alphanumeric characters, escape all characters with the HTML  Entity `&#xHH;` format, including spaces. (**HH** = Hex Value)                                                                                                                                                                                              |
+| URL Encoding            | Standard percent encoding, see [here](http://www.w3schools.com/tags/ref_urlencode.asp). URL encoding should only be used to encode parameter values, not the entire URL or path fragments of a URL.                                                                                                                              |
+| JavaScript Encoding     | Except for alphanumeric characters, escape all characters with the `\uXXXX` unicode escaping format (**X** = Integer).                                                                                                                                                                                                               |
+| CSS Hex Encoding        | CSS escaping supports `\XX` and `\XXXXXX`. Using a two character escape can  cause problems if the next character continues the escape sequence.  There are two solutions (a) Add a space after the CSS escape (will be  ignored by the CSS parser) (b) use the full amount of CSS escaping  possible by zero padding the value. |
 
 
 #### 浏览器自带的XSS防御机制 XSS filter
