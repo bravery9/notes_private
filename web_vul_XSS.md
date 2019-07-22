@@ -245,8 +245,17 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
 ### SDL - 防御与修复方案
 
 * 需求与设计阶段(了解产品背景和技术架构 并给出相应的建议)
-  * 建议使用成熟的现代前端javascript框架 它们内置了非常好的XSS保护 如`Vue` `React`
-  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是白名单 (实测 Google开发的CSP安全评估工具[CSP Evaluator](https://csp-evaluator.withgoogle.com/))
+  * 建议使用成熟的现代javascript框架 它们内置了非常好的XSS保护 注意规范使用
+    * ReactJS - 禁止使用[`dangerouslySetInnerHTML`](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml)函数
+    * Angular (2+) - 禁止使用这样的函数[`bypassSecurityTrust{something}`](https://angular.io/guide/security#bypass-security-apis) (如 `bypassSecurityTrustHtml`, `bypassSecurityTrustStyle`, 等).  
+    * Angular (2+) - 构建Angular模板必须使用`-prod`参数  即`ng build --prod`  以避免模板注入(template injection)
+  * 建议使用内容安全策略(Content Security Policy) - [Content Security Policy CSP Reference & Examples](https://content-security-policy.com/) CSP本质是浏览器端的白名单机制(为Web应用程序的客户端资源创建源白名单，例如JavaScript, CSS, images等)
+    * 从Response Header中设置CSP 如 `Content-Security-Policy: default-src: 'self'; script-src: 'self' static.domain.tld`
+    * CSP安全评估工具 [CSP Evaluator](https://csp-evaluator.withgoogle.com/)由Google开发
+  * 建议使用 自动转义模版系统(Auto-Escaping Template System) - Web应用框架的自动上下文转义功能(automatic contextual escaping functionality)
+    * 如 [AngularJS strict contextual escaping](https://docs.angularjs.org/api/ng/service/$sce)
+    * 如 [Go Templates](https://golang.org/pkg/html/template/)
+  * 建议使用X-XSS-Protection响应头 - 现代浏览器默认开启 使用该Response Header使浏览器为当前页面强制重新开启XSS filter(如果用户禁用了XSS filter)
   * API接口 - 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
   * Cookie安全设计参考 - [Security Cookies Whitepaper](https://www.netsparker.com/security-cookies-whitepaper//?utm_source=twitter.com&utm_medium=social&utm_content=security+cookies+whitepaper&utm_campaign=netsparker+social+media)
     * 如在`Set-Cookie: `中增加  `; secure` 仅允许HTTPS协议中传输cookie
