@@ -410,11 +410,11 @@ if (isValidURL) {
 | String    | HTML Body                                |  `<span>UNTRUSTED DATA </span>`                                                                          | HTML Entity Encoding (rule \#1).                                                                                                                                                               |
 | String    | Safe HTML Attributes                     | `<input type="text" name="fname" value="UNTRUSTED DATA ">`                                               | 白名单HTML实体编码 (防御规则\#2), 只允许将"不受信任的数据"放入"白名单"(表格下附:安全的HTML属性),严格验证其他的(不安全的)HTML属性 如 `background` `id` `name` |
 | String    | GET Parameter                            | `<a href="/site/search?value=UNTRUSTED DATA ">clickme</a>`                                               | URL Encoding (防御规则\#5).                                                                                                                                                                       |
-| String    | Untrusted URL in a SRC or HREF attribute | `<a href="UNTRUSTED URL ">clickme</a> <iframe src="UNTRUSTED URL " />`                                   | Canonicalize input, URL Validation, Safe URL verification, Whitelist http and https URL's only (Avoid the JavaScript Protocol to Open a new Window), Attribute encoder.                        |
+| String    | "不受信任的数据"在`src`或`href`属性 | `<a href="UNTRUSTED URL ">clickme</a> <iframe src="UNTRUSTED URL " />`                                   | Canonicalize input, URL Validation, Safe URL verification, Whitelist http and https URL's only (Avoid the JavaScript Protocol to Open a new Window), Attribute encoder.                        |
 | String    | CSS Value                                | `html <div style="width: UNTRUSTED DATA ;">Selection</div>`                                                   | Strict structural validation (rule \#4), CSS Hex encoding, Good design of CSS Features.                                                                                                        |
 | String    | Javascript Variable                      | `<script>var currentValue='UNTRUSTED DATA ';</script> <script>someFunction('UNTRUSTED DATA ');</script>` | Ensure JavaScript variables are quoted, JavaScript Hex Encoding, JavaScript Unicode Encoding, Avoid backslash encoding (`\"` or `\'` or `\\`).                                                 |
 | HTML      | HTML Body                                | `<div>UNTRUSTED HTML</div>`                                                                             | HTML Validation (JSoup, AntiSamy, HTML Sanitizer...).                                                                                                                                          |
-| String    | DOM XSS                                  | `<script>document.write("UNTRUSTED INPUT: " + document.location.hash );<script/>`                        | [DOM based XSS Prevention Cheat Sheet](DOM_based_XSS_Prevention_Cheat_Sheet.md)                                                                                                                |
+| String    | DOM XSS                                  | `<script>document.write("UNTRUSTED INPUT: " + document.location.hash );<script/>`                        | [DOM based XSS Prevention Cheat Sheet](DOM_based_XSS_Prevention_Cheat_Sheet.md)  |
 
 
 **安全的HTML属性(Safe HTML Attributes)**
@@ -423,18 +423,18 @@ if (isValidURL) {
 
 `align`, `alink`, `alt`, `bgcolor`, `border`, `cellpadding`, `cellspacing`, `class`, `color`, `cols`, `colspan`, `coords`, `dir`, `face`, `height`, `hspace`, `ismap`, `lang`, `marginheight`, `marginwidth`, `multiple`, `nohref`, `noresize`, `noshade`, `nowrap`, `ref`, `rel`, `rev`, `rows`, `rowspan`, `scrolling`, `shape`, `span`, `summary`, `tabindex`, `title`, `usemap`, `valign`, `value`, `vlink`, `vspace`, `width`.
 
-#### 输出编码规则总结
+#### 输出编码 - 规则总结
 
-输出编码规则(Output Encoding Rules):目的是将"不受信任的输入数据"转换为"安全格式"，从而输出(展示"数据")给用户,避免了在浏览器中执行"代码"
+输出编码(Output Encoding)的作用:将"不受信任的输入数据"转换为"安全格式"，从而输出(展示"数据")给用户,避免了在浏览器中执行"代码"
 
 
-| Encoding Type           | Encoding Mechanism                                                                                                                                                                                                                                                                                                               |
-|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| HTML Entity Encoding    | Convert `&` to `&amp;`, Convert `<` to `&lt;`, Convert `>` to `&gt;`, Convert `"` to `&quot;`, Convert `'` to `&#x27;`, Convert `/` to `&#x2F;`                                                                                                                                                                                  |
-| HTML Attribute Encoding | Except for alphanumeric characters, escape all characters with the HTML  Entity `&#xHH;` format, including spaces. (**HH** = Hex Value)                                                                                                                                                                                              |
-| URL Encoding            | Standard percent encoding, see [here](http://www.w3schools.com/tags/ref_urlencode.asp). URL encoding should only be used to encode parameter values, not the entire URL or path fragments of a URL.                                                                                                                              |
-| JavaScript Encoding     | Except for alphanumeric characters, escape all characters with the `\uXXXX` unicode escaping format (**X** = Integer).                                                                                                                                                                                                               |
-| CSS Hex Encoding        | CSS escaping supports `\XX` and `\XXXXXX`. Using a two character escape can  cause problems if the next character continues the escape sequence.  There are two solutions (a) Add a space after the CSS escape (will be  ignored by the CSS parser) (b) use the full amount of CSS escaping  possible by zero padding the value. |
+| Encoding Type     | Encoding Mechanism |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| HTML Entity Encoding    | Convert `&` to `&amp;`, Convert `<` to `&lt;`, Convert `>` to `&gt;`, Convert `"` to `&quot;`, Convert `'` to `&#x27;`, Convert `/` to `&#x2F;`|
+| HTML Attribute Encoding | 必须用引号包裹属性的值,并且属性的值需要做HTML实体编码(用 十六进制Hex值的HTML实体编码`&#xHH;`转义"除了字母数字字符之外的"所有ASCII < 256的字符 即可转义"能够跳出属性值的字符").|
+| URL Encoding            | [Standard percent encoding](http://www.w3schools.com/tags/ref_urlencode.asp). URL编码应该只用来编码参数的值,不能对"整个URL"或"URL的path部分"进行编码. |
+| JavaScript Encoding     | 用unicode转义格式(escaping format) `\uXXXX` (X是整数) 转义"除了字母数字字符之外的"所有ASCII < 256的字符|
+| CSS Hex Encoding        | CSS转义(CSS escaping) 支持 `\XX` 和 `\XXXXXX`. Using a two character escape can  cause problems if the next character continues the escape sequence.  There are two solutions (a) Add a space after the CSS escape (will be  ignored by the CSS parser) (b) use the full amount of CSS escaping  possible by zero padding the value. |
 
 
 #### 浏览器自带的XSS防御机制 XSS filter
