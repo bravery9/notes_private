@@ -1,6 +1,8 @@
 ### 流量分析
 
-流量分析(traffic analysis)：根据"流量"发现 恶意软件特征 mining/APT/..
+网络流量分析(Network traffic analysis,NTA)是拦截，记录和分析网络流量通信模式以检测和响应"安全威胁"的过程。
+
+NTA is the process of intercepting, recording and analyzing network traffic communication patterns in order to detect and respond to security threats. 
 
 ### 流量分析工具
 
