@@ -1,6 +1,8 @@
-### Suricata简介
+### 简介
 
-参考官方[All features](https://suricata-ids.org/features/all-features/)
+Suricata - network threat detection engine
+
+参考Suricata官方 [All features](https://suricata-ids.org/features/all-features/)
 
 * 作用
   * 实时入侵检测 - real time intrusion detection (IDS)
