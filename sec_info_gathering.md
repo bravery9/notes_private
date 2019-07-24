@@ -3,9 +3,9 @@
 * 编程语言 `language:java`
 * 搜索个人 `user:1135`
 * 搜索组织 `org:spring-cloud`
-* 仓库的名称 `in:name 关键词`
-* 仓库的描述 `in:descripton 关键词`
-* 仓库的README文件 `in:readme 关键词`
+* 仓库的名称 `in:name can 仓库名`
+* 仓库的描述 `in:descripton 仓库描述`
+* 仓库的README文件 `in:readme 关键字`
 * star数量筛选 `stars:>300`
 * 仓库的size(KB) `size:>=1024`
 * 最近一次更新时间(只看积极维护项目) `pushed:>2019-01-03`
@@ -45,7 +45,7 @@ allintext:seo blog
 related:bilibili.com
 related:alipay.com
 
-查找具体文件
+查找具体文件类型
 filetype:pdf
 filetype:xls inurl:pass user
 ```
@@ -74,7 +74,8 @@ site:apple.com -site:www.apple.com -inurl:support
 
 |域名相关工具|描述|
 |:-------------:|-----|
-|https://www.virustotal.com/#/domain/qq.com| 综合查询 Whois/子域名/DNS解析历史(支持子域名) |
+|https://www.virustotal.com/#/domain/qq.com | 综合查询 Whois/子域名/DNS解析历史(支持子域名) |
+|https://crt.sh/?id=1656621355 |Subject Alternative Name (SAN) 是SSL标准`x509`中定义的一个扩展(一个使用了SAN字段的SSL证书 能支持多个不同域名的解析). 下载证书文件`.crt`或在线解析 可从证书文件中的`subjectAltName`下的`DNS:`看到该证书支持哪些域名|
 |https://findsubdomains.com/subdomains-of/qq.com|domain 子域名信息 Find subdomains online.|
 |https://dnsdumpster.com/|domain DNS枚举子域名信息 FREE domain research tool that can discover hosts related to a domain.|
 |https://viewdns.info/|Reverse Whois/IP/domain/DNS/MS/NS Lookup.|
@@ -102,4 +103,6 @@ site:apple.com -site:www.apple.com -inurl:support
 
 ### 更多
 
-[jivoi/awesome-osint](https://github.com/jivoi/awesome-osint)
+* [jivoi/awesome-osint](https://github.com/jivoi/awesome-osint)
+* 网盘搜索
+* 供应链攻击 - 渗透目标的上下游供应商 以获取信息
