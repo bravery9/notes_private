@@ -14,13 +14,16 @@
 
 ### 信息搜集 - Google常规语法
 
-以下语法均经过实测 2019.3
+以下语法均经过实测 2019.7
 ```
 使用引号搜索完全匹配的结果
 "tallest building"
 
 搜索未知字词
 "largest * in the world"
+
+邻近搜索(Proximity search) 必须包含两个关键字 并且 两个关键字之间相隔不超过X个单词
+apple AROUND(4) iphone
 
 搜素具体域名站点下的url
 site:so.com
@@ -29,13 +32,19 @@ url中存在具体字符的url
 inurl:"php?id="
 inurl:.edu
 
-url中存在具体关键字(所有关键字都必须存在 忽略符号 如/ )的url
+在url中 搜索具体关键字(必须包含所有关键字 不分大小写)
 allinurl:foo bar
 
-在html body中存在特定关键字(多个关键字之一的都符合)的url
+在html title中的信息
+intitle:"Index of"
+
+在html title中的信息(必须包含所有关键字 不分大小写)
+allintitle:apple iphone
+
+在html body中存在特定关键字(多个关键字之一)
 intext:seo blog
 
-在html body中存在特定关键字(allintext 多个关键字同时存在才行)的url
+在html body中存在特定关键字(必须包含所有关键字 不分大小写)
 allintext:seo blog
 
 搜索社交媒体 如
@@ -45,8 +54,10 @@ allintext:seo blog
 related:bilibili.com
 related:alipay.com
 
-查找具体文件类型
+查找具体文件类型(filetype与ext完全等价)
 filetype:pdf
+ext:pdf
+site:alipay.com filetype:doc|pdf
 filetype:xls inurl:pass user
 ```
 
@@ -84,7 +95,7 @@ site:apple.com -site:www.apple.com -inurl:support
 |http://www.domaincrawler.com/qq.com|综合查询 whois/Mailserver(s)/subdomains|
 |https://www.threatcrowd.org/ |Open Source Threat Intelligence. IP/Domain/mail|
 |https://censys.io/ipv4/104.93.196.220/table| 根据tls证书获取域名 443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names|
-[https://url.fht.im/domain_search?domain=qq.com| 基于大数据 [查看被搜索引擎收录的URL](https://url.fht.im/url_search?domain=v.qq.com)|
+|https://url.fht.im/domain_search?domain=qq.com| 基于大数据 [查看被搜索引擎收录的URL](https://url.fht.im/url_search?domain=v.qq.com)|
 
 ---
 
@@ -104,5 +115,7 @@ site:apple.com -site:www.apple.com -inurl:support
 ### 更多
 
 * [jivoi/awesome-osint](https://github.com/jivoi/awesome-osint)
-* 网盘搜索
 * 供应链攻击 - 渗透目标的上下游供应商 以获取信息
+* 针对成员个体 - 员工
+* web页面缓存 - 多年以前的缓存页面
+* 网盘搜索
