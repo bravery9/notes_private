@@ -14,19 +14,7 @@
 >[腾讯安全2018年高级持续性威胁（APT）研究报告 - 腾讯安全](https://s.tencent.com/research/report/623.html)
 2018年，鱼叉攻击依然是APT攻击的最主要方式，使用鱼叉结合社工类的方式，投递带有恶意文件的附件，诱使被攻击者打开。虽然该方式攻击成本极低，但是效果却出人意料的好。这也进一步体现了被攻击目标的人员的安全意识亟需加强。从曝光的APT活动来看，2018年使用鱼叉攻击的APT活动比例高达95%以上。
 
-#### 钓鱼方式
 
-|攻击形式|payload|针对目标环境|描述|
-|:-------------:|--|--|-----|
-|邮件|Microsoft Office文档(宏)|windows|邮件附件为构造的Microsoft Office文档 打开执行宏(payload)|
-|邮件|钓鱼网站|all|邮件正文中的超链接是钓鱼网站 接受目标人物输入的信息|
-
-
-更多可参考项目 [SocialEngineeringPayloads](https://github.com/bhdresh/SocialEngineeringPayloads)
- 用于凭证窃取和鱼叉式网络钓鱼攻击。
-
-
-  
 #### 钓鱼文案 - 标题
 
 * 社会高度关注的热点
@@ -57,9 +45,9 @@
   * 去除数据 - 其他不必要的数据（一些header）
   * 修改数据 - 修改邮件发件人、收件人。
   * 注意：如果此处修改邮件收件人为a@x.com 但在最后命令中指定发给b@x.com 则实际上b@x.com收到了一封邮件，但收件人中只有a@x.com
-* 安装软件
-  * 使用swaks发送钓鱼邮件 官方使用说明 http://jetmore.org/john/code/swaks/latest/doc/ref.txt
-  * Mac `brew install swaks`
+* 使用swaks发送钓鱼邮件
+  * 官方使用说明 http://jetmore.org/john/code/swaks/latest/doc/ref.txt
+  * Mac下安装swaks  `brew install swaks`
 * 发送钓鱼邮件（测试）
   * 按需修改"源文件"与"命令行"中的收件人与发件人
   * 命令 `swaks --to shoujian@a.net --from fajian@a.net --data /Users/x/Downloads/mail2755.eml.txt`
