@@ -126,7 +126,10 @@ docker run hello-world
 docker image ls
 ```
 
-#### docker run详细命令
+#### docker run
+
+
+运行镜像(创建新容器)
 
 ```
 docker run --help
@@ -249,7 +252,26 @@ docker logs my-nginx
 ```
 
 
-#### 镜像管理
+#### docker images
+
+查看当前已有的镜像
+```
+docker images --help
+
+Usage:	docker images [OPTIONS] [REPOSITORY[:TAG]]
+
+List images
+
+Options:
+  -a, --all             Show all images (default hides intermediate images)
+      --digests         Show digests
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print images using a Go template
+      --no-trunc        Don't truncate output
+  -q, --quiet           Only show numeric IDs
+```
+
+例如
 ```
 # 搜索镜像
 docker search nginx
@@ -259,11 +281,15 @@ docker pull nginx
 
 # 查看当前已有的镜像
 docker images
+
+# 查看当前已有的镜像 - 只显示容器ID
+docker images -q
 ```
 
 
-#### 容器管理
+#### docker container
 
+容器管理
 ```
 docker container --help
 
@@ -302,19 +328,24 @@ Run 'docker container COMMAND --help' for more information on a command.
 ```
 
 
-常用
+
+重启容器
+
+`docker restart --help` 等价于 `docker container restart --help`
 
 ```
-# 列出容器 - all
-docker container ls --all
+docker restart --help
 
-# 列出容器 - all in quiet mode
-docker container ls -aq
 
-# 列出容器 - 正在运行的容器
-docker container ls
+Usage:	docker container restart [OPTIONS] CONTAINER [CONTAINER...]
+
+Restart one or more containers
+
+Options:
+  -t, --time int   Seconds to wait for stop before killing the container (default 10)
 ```
 
+#### docker logs
 
 查看容器日志
 ```
@@ -343,9 +374,63 @@ docker logs my-nginx --tail 1
 
 ```
 
+#### docker ps
+
+查看当前已有的容器
+
+`docker ps [OPTIONS]` 等价于 `docker container ls [OPTIONS]`
+
+```
+docker container ls --help
+
+Usage:	docker container ls [OPTIONS]
+
+List containers
+
+Aliases:
+  ls, ps, list
+
+Options:
+  -a, --all             Show all containers (default shows just running)
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print containers using a Go template
+  -n, --last int        Show n last created containers (includes all states) (default -1)
+  -l, --latest          Show the latest created container (includes all states)
+      --no-trunc        Don't truncate output
+  -q, --quiet           Only display numeric IDs
+  -s, --size            Display total file sizes
+```
+
+
+例如
+
+```
+# 列出容器 - all
+docker ps -a
+docker container ls --all
+
+# 列出容器 - all in quiet mode
+docker container ls -aq
+
+# 列出容器 - 正在运行的容器
+docker container ls
+```
+
+#### docker stats
+
+查看容器状态
+```
+# 查看某个容器的状态
+docker stats my-nginx
+
+# 结果实时刷新
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT     MEM %               NET I/O             BLOCK I/O           PIDS
+6f80e11ffb06        my-nginx            0.00%               1.816MiB / 1.952GiB   0.09%               3.32kB / 2.72kB     0B / 0B             2
+```
 
 #### docker exec
 
+在容器中执行命令
 ```
 Usage:	docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 
@@ -362,14 +447,118 @@ Options:
   -w, --workdir string       Working directory inside the container
 ```
 
-建立与某容器的交互shell
+例:建立与某容器的交互shell
+```
+# 在交互式shell输入exit退出交互式shell  容器仍然在后台运行
+docker exec -it my-nginx /bin/bash
+
+# -w 指定在某个目录
+docker exec -w "/etc" -it my-nginx /bin/bash
+
+# -e 设置环境变量
 
 ```
-docker exec -it my-nginx /bin/bash
-# 在交互式shell输入exit退出交互式shell，但容器仍然在后台运行
 
-docker attach [OPTIONS] CONTAINER
-# 缺点:每次从容器的终端中输入exit则该container也退出了
+
+### docker attach
+
+```
+docker attach --help
+
+Usage:	docker attach [OPTIONS] CONTAINER
+
+Attach local standard input, output, and error streams to a running container
+
+Options:
+      --detach-keys string   Override the key sequence for detaching a container
+      --no-stdin             Do not attach STDIN
+      --sig-proxy            Proxy all received signals to the process (default true)
+```
+
+
+#### docker port
+
+查看容器的端口映射情况
+```
+Usage:	docker port CONTAINER [PRIVATE_PORT[/PROTO]]
+
+List port mappings or a specific mapping for the container
+
+
+# 查看某个容器内"所有端口"的映射情况
+docker port my-nginx
+80/tcp -> 0.0.0.0:8000
+
+# 查看某个容器内"某个端口"的映射情况
+docker port my-nginx 80
+```
+
+#### docker rm
+
+删除容器
+```
+Usage:	docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+Remove one or more containers
+
+Options:
+  -f, --force     Force the removal of a running container (uses SIGKILL)
+  -l, --link      Remove the specified link
+  -v, --volumes   Remove the volumes associated with the container
+```
+
+
+例如
+```
+# 强制删除正在运行的容器(使用SIGKILL)
+docker rm -f my-nginx
+
+# 删除指定的链接
+docker rm --link my-nginx
+
+# 删除卷 - 删除与容器关联的卷
+docker rm -v my-nginx
+```
+
+
+#### docker rmi
+
+删除镜像
+```
+Usage:	docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+Remove one or more images
+
+Options:
+  -f, --force      Force removal of the image
+      --no-prune   Do not delete untagged parents
+```
+
+
+
+#### docker diff
+
+查看容器中"文件"和"目录"的变化
+```
+Usage:  docker diff CONTAINER
+
+Inspect changes to files or directories on a container's filesystem
+```
+
+例如
+```
+docker diff my-nginx
+
+C /var
+C /var/cache
+C /var/cache/nginx
+A /var/cache/nginx/client_temp
+A /var/cache/nginx/fastcgi_temp
+A /var/cache/nginx/proxy_temp
+A /var/cache/nginx/scgi_temp
+A /var/cache/nginx/uwsgi_temp
+C /run
+A /run/nginx.pid
 ```
 
 
