@@ -8,6 +8,21 @@ Docker 从 17.03 版本之后分为2个版本
 * CE (Community Edition: 社区版)
 * EE (Enterprise Edition: 企业版)
 
+### 原理
+
+* C/S架构
+  * Client - 控制台
+  * Server - daemon
+  
+
+|对比项|Docker|VM|
+|:--:|----|----|
+|实现|Docker Engine|必须使用Hypervisor实现硬件资源的虚拟化|
+|操作系统|宿主机OS(共享)|在宿主机OS之上运行虚拟机Guest OS|
+|存储空间|小|大(.vmdk .vmi)|
+|部署速度|秒级|分钟级|
+|移植性|灵活轻便|与虚拟化技术的耦合度高|
+
 ### 配置
 
 Docker国内镜像源
@@ -27,9 +42,12 @@ chkconfig docker on        # 设置为开机启动
 
 ### 基本概念
 
-* images - 镜像
-* containers - 容器
-
+* repository - 仓库:存放镜像
+  * public repository - 公开仓库
+  * private repository - 私有仓库
+* images - 镜像:模板. 一个image可以生成多个容器(实例).
+* containers - 容器:用镜像创建的运行实例.独立的一个或一组应用.
+  * 不同容器之间相互隔离
 
 ### 命令
 
@@ -118,19 +136,11 @@ docker --version
 docker version
 # 详细信息
 docker info
-
-# 执行某个Docker镜像(如果镜像不存在 则自动pull该镜像)
-docker run hello-world
-
-# 列出所有Docker镜像
-docker image ls
 ```
 
 #### docker run
 
-
-运行镜像(创建新容器)
-
+使用镜像来创建一个新的容器
 ```
 docker run --help
 
@@ -238,7 +248,7 @@ Options:
 # 命令格式
 # docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
-# 使用nginx镜像 启动一个容器
+# 使用nginx镜像 启动一个新的容器(如果镜像不存在 则自动pull该镜像)
 docker run --name my-nginx -d -p 8000:80 nginx
 
 # 解释OPTIONS
@@ -273,17 +283,26 @@ Options:
 
 例如
 ```
-# 搜索镜像
+# 搜索镜像 (OFFICIAL代表该镜像由官方发布)
 docker search nginx
 
-# 拉取镜像
+# 拉取镜像 使用标签说明版本号 默认拉取最新版本 即:latest
 docker pull nginx
+docker pull nginx:latest
 
 # 查看当前已有的镜像
 docker images
 
-# 查看当前已有的镜像 - 只显示容器ID
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              e445ab08b2be        3 days ago          126MB
+httpd               latest              ee39f68eb241        2 weeks ago         154MB
+
+
+# 查看当前已有的镜像 - 只显示容器ID(便于与其他命令结合使用 写shell脚本等)
 docker images -q
+
+# 查看当前已有的镜像 - 显示 摘要信息 和 完整的IMAGE ID
+docker images -a --digests --no-trunc
 ```
 
 
@@ -345,34 +364,6 @@ Options:
   -t, --time int   Seconds to wait for stop before killing the container (default 10)
 ```
 
-#### docker logs
-
-查看容器日志
-```
-# 查看容器日志 -t 在每条日志数据之前显示"容器中"系统的时间戳 如2019-07-26T08:02:04.351634542Z
-docker logs my-nginx -t
-
-# 筛选 - 绝对时间 - 只查看某个具体时间点之后的日志
-docker logs my-nginx -t --since "2019-07-26T08:02:09.369242551Z"
-
-# 筛选 - 绝对时间 - 只查看某个具体时间点之前的日志
-docker logs my-nginx -t --until 2019-07-26T08:02:04.369242551Z
-
-
-# 筛选 - 相对时间 - 只查看"日志最早的时间点"到"50分钟之前的时间点"的日志
-docker logs my-nginx --until 50m
-
-# 筛选 - 相对时间 - 只查看"70分钟之前的时间点"到"现在时间点"的日志
-docker logs my-nginx -t --since 70m
-
-
-# 查看日志文件 最后1行的内容(通常是最早的内容)
-docker logs my-nginx --tail 1
-
-
-# 更多选项查看docker logs --help
-
-```
 
 #### docker ps
 
@@ -460,7 +451,7 @@ docker exec -w "/etc" -it my-nginx /bin/bash
 ```
 
 
-### docker attach
+#### docker attach
 
 ```
 docker attach --help
@@ -493,6 +484,57 @@ docker port my-nginx
 docker port my-nginx 80
 ```
 
+
+#### docker logs
+
+查看容器日志
+```
+# 查看容器日志 -t 在每条日志数据之前显示"容器中"系统的时间戳 如2019-07-26T08:02:04.351634542Z
+docker logs my-nginx -t
+
+# 筛选 - 绝对时间 - 只查看某个具体时间点之后的日志
+docker logs my-nginx -t --since "2019-07-26T08:02:09.369242551Z"
+
+# 筛选 - 绝对时间 - 只查看某个具体时间点之前的日志
+docker logs my-nginx -t --until 2019-07-26T08:02:04.369242551Z
+
+
+# 筛选 - 相对时间 - 只查看"日志最早的时间点"到"50分钟之前的时间点"的日志
+docker logs my-nginx --until 50m
+
+# 筛选 - 相对时间 - 只查看"70分钟之前的时间点"到"现在时间点"的日志
+docker logs my-nginx -t --since 70m
+
+
+# 查看日志文件 最后1行的内容(通常是最早的内容)
+docker logs my-nginx --tail 1
+
+
+# 更多选项查看docker logs --help
+
+```
+
+#### docker history
+
+查看已下载的某个镜像的历史
+```
+Usage:	docker history [OPTIONS] IMAGE
+
+Show the history of an image
+
+Options:
+      --format string   Pretty-print images using a Go template
+  -H, --human           Print sizes and dates in human readable format (default true)
+      --no-trunc        Don't truncate output
+  -q, --quiet           Only show numeric IDs
+```
+
+例如
+```
+docker history httpd
+```
+
+
 #### docker rm
 
 删除容器
@@ -507,10 +549,12 @@ Options:
   -v, --volumes   Remove the volumes associated with the container
 ```
 
-
 例如
 ```
-# 强制删除正在运行的容器(使用SIGKILL)
+# 删除容器
+docker rm CONTAINER1 CONTAINER1
+
+# 删除容器 - 强制删除正在运行的容器(使用SIGKILL)
 docker rm -f my-nginx
 
 # 删除指定的链接
@@ -534,7 +578,17 @@ Options:
       --no-prune   Do not delete untagged parents
 ```
 
+例如
+```
+# 删除镜像
+docker rmi 镜像名1 镜像名2
 
+# 删除镜像 - 强制删除
+docker rmi -f 镜像ID
+
+# 删除镜像 - 强制删除所有容器!!
+docker rmi -f $(docker images -qa)
+```
 
 #### docker diff
 
