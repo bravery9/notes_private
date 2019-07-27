@@ -48,6 +48,12 @@ chkconfig docker on        # 设置为开机启动
 * images - 镜像:模板. 一个image可以生成多个容器(实例).
 * containers - 容器:用镜像创建的运行实例.独立的一个或一组应用.
   * 不同容器之间相互隔离
+  * 查看容器 `docker ps`
+  * 启动容器 `docker start NAMEorID`
+  * 重启容器 `docker restart NAMEorID`
+  * 停止容器 `docker stop NAMEorID`
+  * 强停容器 `docker kill NAMEorID`
+  * 删除容器 `docker rm NAMEorID`
 
 ### 命令
 
@@ -140,7 +146,7 @@ docker info
 
 #### docker run
 
-使用镜像来创建一个新的容器
+使用镜像来创建一个新的容器 并运行该容器
 ```
 docker run --help
 
@@ -243,7 +249,7 @@ Options:
 ```
 
 
-例:使用nginx镜像创建容器
+例:使用nginx镜像创建容器 并运行该容器
 ```
 # 命令格式
 # docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -252,8 +258,8 @@ Options:
 docker run --name my-nginx -d -p 8000:80 nginx
 
 # 解释OPTIONS
-# --name my-nginx 给该容器命名
-# -d 在后台运行容器 并打印出容器ID
+# --name my-nginx 给该容器命名.  不使用该选项 则给该容器一个随机名
+# -d 在"后台"运行容器 并打印出容器ID
 # -p 8000:80 将容器中的端口暴露到物理机 访问物理机的8000端口 即访问容器的80端口
 
 
@@ -261,6 +267,25 @@ docker run --name my-nginx -d -p 8000:80 nginx
 docker logs my-nginx
 ```
 
+
+例:使用nginx镜像创建容器 并运行该容器 (交互式shell)
+```
+docker run -it 镜像ID
+docker run -it 镜像名
+
+# 情况1
+docker run -it nginx /bin/bash
+root@899b26e72d55:/#
+# 按ctrl+p+q 退出容器的shell  而不会停止容器(仍在后台运行)  之后可重新进入容器的shell
+docker attach 899b26
+# 或
+docker exec -it 899b26
+
+# 情况2
+docker run -it nginx /bin/bash
+root@899b26e72d55:/#
+# 终端中输入exit 则停止该容器
+```
 
 #### docker images
 
@@ -394,17 +419,23 @@ Options:
 
 
 例如
-
 ```
-# 列出容器 - all
-docker ps -a
-docker container ls --all
-
-# 列出容器 - all in quiet mode
-docker container ls -aq
-
 # 列出容器 - 正在运行的容器
+docker ps
+# 二者等价 可互相替换
 docker container ls
+
+# 列出容器 - 历史上最近一次创建过的容器(包括所有状态)
+docker ps -l
+
+# 列出容器 - 所有容器(正在运行+历史上曾经运行过的)
+docker ps -a
+
+# 列出容器 - 所有容器(正在运行+历史上运行过的)    quiet mode 只显示容器ID
+docker ps -aq
+
+# 列出容器 - 最近3个创建过的容器
+docker ps -n 3
 ```
 
 #### docker stats
@@ -447,9 +478,13 @@ docker exec -it my-nginx /bin/bash
 docker exec -w "/etc" -it my-nginx /bin/bash
 
 # -e 设置环境变量
-
 ```
 
+例:在容器899b中 执行一条命令 并返回结果
+```
+# 不进入容器 直接在物理机的命令行执行
+docker exec -t 899b ls /etc
+```
 
 #### docker attach
 
@@ -464,6 +499,33 @@ Options:
       --detach-keys string   Override the key sequence for detaching a container
       --no-stdin             Do not attach STDIN
       --sig-proxy            Proxy all received signals to the process (default true)
+```
+
+### docker cp
+
+从容器中复制文件 到物理机
+```
+docker cp --help
+
+Usage:	docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+	docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+
+Copy files/folders between a container and the local filesystem
+
+Options:
+  -a, --archive       Archive mode (copy all uid/gid information)
+  -L, --follow-link   Always follow symbol link in SRC_PATH
+```
+
+例如
+```
+# 容器 -> 物理机
+# 把容器899b26中的文件/tmp/1.txt  复制到 物理机~/Downloads/Mac.txt
+docker cp 899b26:/tmp/1.txt ~/Downloads/Mac.txt
+
+# 物理机 -> 容器
+# 把物理机的~/Downloads/Mac.txt  复制到 容器899b26中的/tmp/new.txt
+docker cp ~/Downloads/Mac.txt 899b26:/tmp/new.txt
 ```
 
 
@@ -484,11 +546,94 @@ docker port my-nginx
 docker port my-nginx 80
 ```
 
+#### docker inspect
+
+查看容器内的细节
+```
+docker inspect --help
+
+Usage:	docker inspect [OPTIONS] NAME|ID [NAME|ID...]
+
+Return low-level information on Docker objects
+
+Options:
+  -f, --format string   Format the output using the given Go template
+  -s, --size            Display total file sizes if the type is container
+      --type string     Return JSON for specified type
+```
+
+返回json字符串 内容包括:
+```
+"Id":
+"Created":
+"Path":
+"Args":
+"State":
+"Image":
+"ResolvConfPath":
+"HostnamePath":
+"HostsPath":
+"LogPath":
+"Name":
+"RestartCount":
+"Driver":
+"Platform":
+"MountLabel":
+"ProcessLabel":
+"AppArmorProfile":
+"ExecIDs":
+"HostConfig":
+"GraphDriver":
+"Mounts":
+"Config":
+"NetworkSettings":
+```
+
+
+
+#### docker top
+
+查看容器内的进程信息
+```
+docker top --help
+
+Usage:	docker top CONTAINER [ps OPTIONS]
+
+Display the running processes of a container
+```
+
+例如
+```
+docker top f53079bb4f54
+
+PID                 USER                TIME                COMMAND
+5225                root                0:00                /bin/bash
+```
 
 #### docker logs
 
-查看容器日志
+查看容器内的日志
 ```
+docker logs --help
+
+Usage:	docker logs [OPTIONS] CONTAINER
+
+Fetch the logs of a container
+
+Options:
+      --details        Show extra details provided to logs
+  -f, --follow         Follow log output
+      --since string   Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)
+      --tail string    Number of lines to show from the end of the logs (default "all")
+  -t, --timestamps     Show timestamps
+      --until string   Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)
+```
+
+例如
+```
+# 查看容器日志 - 实时持续查看日志
+docker logs my-nginx -f
+
 # 查看容器日志 -t 在每条日志数据之前显示"容器中"系统的时间戳 如2019-07-26T08:02:04.351634542Z
 docker logs my-nginx -t
 
@@ -506,12 +651,11 @@ docker logs my-nginx --until 50m
 docker logs my-nginx -t --since 70m
 
 
-# 查看日志文件 最后1行的内容(通常是最早的内容)
-docker logs my-nginx --tail 1
+# 查看日志文件 最后X行的内容(通常是最早的内容)
+docker logs my-nginx --tail 5
 
 
 # 更多选项查看docker logs --help
-
 ```
 
 #### docker history
@@ -551,8 +695,13 @@ Options:
 
 例如
 ```
-# 删除容器
+# 删除容器 - 一个或多个
 docker rm CONTAINER1 CONTAINER1
+
+# 删除容器 - 删除全部容器
+docker rm $(docker ps -aq)
+# 或
+docker ps -aq | xargs docker rm 
 
 # 删除容器 - 强制删除正在运行的容器(使用SIGKILL)
 docker rm -f my-nginx
