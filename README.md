@@ -49,10 +49,10 @@
  * [bin - pwn linux下的二进制程序pwn](bin_pwn.md)
  * [bin - GDB调试 原理 命令](bin_GDB.md)
  * [net - iptables 网络策略管理](net_iptables.md)
- * [笔记 - Docker](note_Docker.md)
- * [笔记 - Redis](note_DB_redis.md)
- * [笔记 - Node.js](note_node.md)
+ * [笔记 - Docker 命令](note_Docker.md)
+ * [笔记 - Node.js 基础](note_node.md)
  * [笔记 - headless Chrome & Puppeteer](web_headless.md)
+ * [笔记 - Redis](note_DB_redis.md)
  * [笔记 - Android应用安全](note_sec_android.md)
  * [笔记 - blockchain - ETH 智能合约 基本概念](blockchain_SmartContracts.md)
  * [笔记 - blockchain - 虚拟币挖矿的各种方式](blockchain_mining.md)
@@ -99,12 +99,3 @@
 |[Awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)|1k★ #pentesting |
 |[Awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)|4k★ #流量分析 A curated list of awesome malware analysis tools and resources.|
 
-#### 学习知识
-
-|名称|属性|描述|
-|:-------------:|--|-----|
-|[Annotated Nginx Source](https://github.com/chronolaw/annotated_nginx)|C web中间件|源代码学习 《Nginx完全开发指南》的作者 |
-|[CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)|md|40k★ Computer Science Learning Notes 算法 操作系统 网络 面向对象 数据库 Java 系统设计 工具 编码实践 后记|
-|[free-programming-books](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md)|md|110k★ WEB服务器 操作系统 数据库 大数据 编程语言|
-|[30-seconds-of-interviews-zh_CN](https://github.com/b3log/30-seconds-of-interviews-zh_CN)|非代码|#前端 常见面试问题集+答案|
-|[Java-Guide](https://github.com/Snailclimb/Java-Guide)|非代码|Java学习指南 一份涵盖大部分Java程序员所需要掌握的核心知识|
