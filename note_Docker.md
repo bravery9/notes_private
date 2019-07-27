@@ -49,6 +49,7 @@ chkconfig docker on        # 设置为开机启动
 * containers - 容器:用镜像创建的运行实例.独立的一个或一组应用.
   * 不同容器之间相互隔离
   * 查看容器 `docker ps`
+  * 容器状态 `docker stats NAMEorID`
   * 启动容器 `docker start NAMEorID`
   * 重启容器 `docker restart NAMEorID`
   * 停止容器 `docker stop NAMEorID`
@@ -501,7 +502,7 @@ Options:
       --sig-proxy            Proxy all received signals to the process (default true)
 ```
 
-### docker cp
+#### docker cp
 
 从容器中复制文件 到物理机
 ```
