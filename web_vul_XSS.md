@@ -437,36 +437,43 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
   * 正例 所有属性的值都应该被单引号或双引号`"`包裹 并对属性的值做HTML实体编码 `<div attr='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'>content`
   * 防御方案 - 必须用引号包裹属性的值,并且属性的值需要做HTML实体编码(用`&#xHH;`转义"除了字母数字字符之外的"所有`ASCII < 256`的字符 即可转义"能够跳出属性值的字符")
   * 注意 本规则不应被用于 复杂的属性(如`href`,`src`,`style`等) 和 任何事件处理属性(如`onmouseover`等) 参考规则#3
-* XSS防御规则#3 - 将"不受信任的数据"放在 JavaScript的"数据值"之前,需要做`JavaScript Escape`
+* XSS防御规则#3 - 将"不受信任的数据"放在 JavaScript的"数据值"之前,需要做 `JavaScript Escape`
   * 针对动态生成的JavaScript代码的情况: `<script>`脚本块 和 事件处理属性(event-handler attributes)
   * 防御方案 - 将"不受信任的数据"放在 JavaScript代码中 只有放在被引号括起来的"数据值"部分并将数据进行HTML实体编码(用`&#xHH;`转义"除了字母数字字符之外的"所有`ASCII < 256`的字符 即可转义"能够跳出属性值的字符")
-    * 不能使用`\"`这种可被逃逸的简单的转义(1.运行时引号字符可能被HTML属性解析器首先匹配 2.输入的`\"`可能被转义为`\\"`使双引号逃脱转义)
-    * 注意例外 将"不受信任的数据"放在 某些JavaScript函数中 永远不安全!! 即使做了`JavaScript Escape`也不行 如`<script>window.setInterval('...在此处做转义无法防御XSS 仍然会被XSS...');</script>`
+    * 注意 不能使用`\"`这种可被逃逸的简单的转义(1.运行时引号字符可能被HTML属性解析器首先匹配 2.输入的`\"`可能被转义为`\\"`使双引号逃脱转义)
+  * 反例 将"不受信任的数据"放在 某些JavaScript函数中 永远不安全!! 做任何转义都不行!! 包括`JavaScript Escape`也不行
+    * 如 window.setInterval `<script>window.setInterval('...此处的数据做任何转义都无法防御XSS...');</script>`
   * 正例 传入实参 `<script>alert('...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...')</script>`
   * 正例 变量赋值 `<script>x='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'</script>`
   * 正例 事件处理属性`<div onmouseover="x='...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'"</div>`
-* XSS防御规则#3.1 - HTML转义HTML上下文中的JSON值并使用JSON.parse读取数据
+* XSS防御规则#3.1 - HTML转义HTML内容中的JSON值 并使用`JSON.parse`读取数据
   * API接口 - 显式规定response的MIME类型 即`Content-Type` header 的值. 如json格式 则设置为`Content-type: application/json`
   * anti-pattern - 不能直接这么写`<script>var initData = <%= data.to_json %>; </script>` 而必须用以下的编码方式:
-    * 编码方式1 JSON serialization - 一个安全的JSON serializer能够使开发人员将`JSON`序列化为"绝对的JavaScript文本字符串"(string of literal JavaScript) 嵌入到HTML的`<script>`中是安全的. 注意 HTML characters 和 JavaScript line terminators 需要被转义.参考 [Yahoo JavaScript Serializer](https://github.com/yahoo/serialize-javascript)
+    * 编码方式1 JSON serialization
+      * 一个安全的JSON serializer能够使开发人员将 `JSON` 序列化为 **"绝对的JavaScript文本字符串"(string of literal JavaScript)** 然后嵌入`<script>`标签中是安全的.
+      * 注意 HTML characters 和 JavaScript line terminators 需要被转义. 参考 [Yahoo JavaScript Serializer](https://github.com/yahoo/serialize-javascript)
     * 编码方式2 HTML实体编码
-      * 数据源(HTML某个元素) - 将`JSON block`作为普通元素放在页面上，标签中的内容是经过HTML实体编码的内容
-      * 数据使用方(javascript) - 调用方通过该元素的`.innerHTML`获取标签中的内容
+      * 数据源(HTML某个元素) - 将`JSON block`作为普通元素放在页面上，标签中的数据内容 经过HTML实体编码
+      * 数据消费/使用(javascript) - javascript脚本通过该元素的`.innerHTML`获取标签中的数据内容
 
 ```html
 <!-- 数据源(HTML某个元素) -->
 
 <div id="init_data" style="display: none">
- <%= html_escape(data.to_json) %>
+ <%= html_escape(data.to_json) //"后端数据"输出(写数据)到"前端html的某个标签":必须先对数据进行"html编码" 再输出 %>
 </div>
 ```
 
+
 ```javascript
-// 数据使用方(javascript)
+// 数据消费/使用(javascript)
 
 // external js file - 读取数据的javascript可以保存在外部文件中，从而更容易实现CSP
+// 读取id为'init_data' 的div标签的内容
 var dataElement = document.getElementById('init_data');
+
 // decode and parse the content of the div
+// javascript中使用`JSON.parse`方法 读取div中的数据
 var initData = JSON.parse(dataElement.textContent);
 // 在JavaScript中直接转义/反转义JSON的另一种方法:JSON服务器端规范化输出(将Response中的JSON数据`<`转换为`\u003c`形式  再返回给浏览器)
 ```
