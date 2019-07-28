@@ -4,6 +4,11 @@
 |:-------------:|--|
 |[sqlmap](https://github.com/sqlmapproject/sqlmap)| Automatic SQL injection and database takeover tool|
 
+
+sqlmap相关代码实现参考的白皮书(2009年)
+
+https://www.blackhat.com/presentations/bh-europe-09/Guimaraes/Blackhat-europe-09-Damele-SQLInjection-whitepaper.pdf
+
 ### tamper详解
 
 tampers是sqlmap自带的绕过WAF的脚本，可查看所有tampers:
@@ -102,9 +107,9 @@ sqlmap -u "http://url/news?id=1"--level=3 --smart --dbms "Mysql" --os-shell #交
 ```
 
 * 实现原理
-  * MySQL/PostgreSQL: sqlmap通过web环境的文件上传函数上传一个二进制文件:共享库(shared library)，它包含两个UDF(user-defined functions)用户自定义函数(函数作用都是执行系统命令). 然后在数据库创建该函数 并调用该函数 即可执行系统命令
-    * `sys_exec()` 执行系统命令
-    * `sys_eval()` 执行系统命令 并标准输出
+  * MySQL/PostgreSQL: sqlmap通过文件上传函数上传一个二进制文件:共享库(shared library)到对应文件夹，它包含两个UDF(user-defined functions)用户自定义函数(函数作用都是执行系统命令). 然后在数据库创建该函数 并调用该函数 即可执行系统命令
+    * `sys_eval()` 执行系统命令 返回标准输出
+    * `sys_exec()` 执行系统命令 返回退出码
   * Microsoft SQL Server: sqlmap滥用 `xp_cmdshell`存储过程
     * 如果`xp_cmdshell`存储过程 被禁用(Microsoft SQL Server >= 2005 默认禁用)sqlmap会重新启用它
     * 如果`xp_cmdshell`存储过程 不存在 则从头开始创建它
