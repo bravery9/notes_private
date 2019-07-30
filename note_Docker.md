@@ -13,7 +13,7 @@ Docker 从 17.03 版本之后分为2个版本
 * C/S架构
   * Client - 控制台
   * Server - daemon
-  
+
 
 |对比项|Docker|VM|
 |:--:|----|----|
@@ -42,19 +42,30 @@ chkconfig docker on        # 设置为开机启动
 
 ### 基本概念
 
-* repository - 仓库:存放镜像
-  * public repository - 公开仓库
-  * private repository - 私有仓库
-* images - 镜像:模板. 一个image可以生成多个容器(实例).
-* containers - 容器:用镜像创建的运行实例.独立的一个或一组应用.
-  * 不同容器之间相互隔离
-  * 查看容器 `docker ps`
-  * 容器状态 `docker stats NAMEorID`
-  * 启动容器 `docker start NAMEorID`
-  * 重启容器 `docker restart NAMEorID`
-  * 停止容器 `docker stop NAMEorID`
-  * 强停容器 `docker kill NAMEorID`
-  * 删除容器 `docker rm NAMEorID`
+
+* Docker 镜像(Docker images)
+  * 作用与特点
+    * 镜像是只读模板. 一个image可以生成多个容器(实例).
+    * 组成 - 每一个镜像由一系列的层(layers)组成.
+* Docker 仓库(Docker registeries)
+  * 作用与特点
+    * 存放镜像.
+  * 分类
+    * public repository - 公开仓库
+    * private repository - 私有仓库
+* Docker 容器(Docker containers)
+  * 作用与特点
+    * 容器都是由镜像创建,容器是镜像的运行实例.
+    * 一个容器包含了某个应用运行所需要的环境.
+    * 独立性 - 不同容器之间相互隔离.
+  * 操作容器
+    * 查看容器 `docker ps`
+    * 容器状态 `docker stats NAMEorID`
+    * 启动容器 `docker start NAMEorID`
+    * 重启容器 `docker restart NAMEorID`
+    * 停止容器 `docker stop NAMEorID`
+    * 强停容器 `docker kill NAMEorID`
+    * 删除容器 `docker rm NAMEorID`
 
 ### 命令
 
