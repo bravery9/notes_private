@@ -374,8 +374,9 @@ XSS proxy - 与XSS受害者的浏览器实时交互.  工具 [JShell](https://gi
     * Angular (2+) - 禁止使用这样的函数[`bypassSecurityTrust{something}`](https://angular.io/guide/security#bypass-security-apis) (如 `bypassSecurityTrustHtml`, `bypassSecurityTrustStyle`, 等).  
     * Angular (2+) - 构建Angular模板必须使用`-prod`参数  即`ng build --prod`  以避免模板注入(template injection)
   * 建议使用内容安全策略(Content Security Policy)
-    * CSP本质 - 浏览器端的白名单机制(为Web应用的客户端资源创建源白名单，如JavaScript, CSS, images等)
-    * 设置CSP - Response Header 如`Content-Security-Policy: default-src: 'self'; script-src: 'self' static.domain.tld` 更多参考[Content Security Policy CSP Reference & Examples](https://content-security-policy.com/)
+    * CSP本质 - 浏览器端的白名单机制. 为Web应用的客户端资源(JavaScript, CSS, images...)创建源白名单
+    * 启用CSP - 通过设置Response Header `Content-Security-Policy:`使浏览器执行"开发者设置的CSP策略"
+    * 配置CSP - 如`default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';` 详细参考[Content Security Policy CSP Reference & Examples](https://content-security-policy.com/)
     * CSP安全评估工具 - [CSP Evaluator](https://csp-evaluator.withgoogle.com/)由Google开发
   * 建议使用 自动转义模版系统(Auto-Escaping Template System) - Web应用框架的自动上下文转义功能(automatic contextual escaping functionality)
     * 如 [AngularJS strict contextual escaping](https://docs.angularjs.org/api/ng/service/$sce)
