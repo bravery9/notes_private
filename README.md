@@ -1,3 +1,8 @@
+#### MyNotes我的笔记（未公开）
+
+ * [web - java JNDI简介与架构](web_java_jndi.md)
+ * [web - 代码审计 - PHP 思路 实践 Checklist](web_code_audit_PHP.md)
+
 #### MyNotes我的笔记
 
  * [SDL - 安全开发生命周期 实践与意义](sdl.md)
