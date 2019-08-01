@@ -8,8 +8,8 @@
 ### 思路
 
 * 掌握项目代码概况
-  * 白盒：安装并查看项目文件夹 确定基本设计架构与功能
-  * 黑盒：访问基本功能，得到HTTP请求与响应中的URL、参数值等，有助于定位到对应代码行
+  * 白盒：查看项目文件夹结构 确定基本设计架构与功能
+  * 黑盒：配置web应用所需的环境，访问基本功能，得到HTTP请求与响应中的**URL**、**参数名称**等，进而可定位到变量名、代码行
 
 * 搜索 PHP危险函数 参考[Exploitable PHP functions](https://stackoverflow.com/questions/3115559/exploitable-php-functions)
   * 命令执行类
@@ -17,6 +17,7 @@
   * 文件包含类
   * ...
 
+### Checklist - 检查点
 
 * 搜索 自定义安全过滤函数 - 尝试绕过
   * 常见的自定义函数名 `RemoveXSS`
@@ -28,6 +29,9 @@
   * 出库：`query`
   * 输出：`echo print printf sprintf print_r var_dump die`  项目自定义变量名-响应处理相关`resp`等
 
+
+* 权限设计:应当以当前用户的Cookie判断其身份 并仅允许执行该身份拥有的操作.
+* 不合理的权限设计(认证绕过、水平越权、垂直越权)
 
 ### 实例1 PHP-命令执行漏洞
 
